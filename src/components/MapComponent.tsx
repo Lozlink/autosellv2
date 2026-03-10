@@ -1,5 +1,4 @@
 'use client'
-/* eslint-disable */
 
 import { useEffect, useRef, useState } from 'react'
 
@@ -11,7 +10,6 @@ declare global {
         Marker: new (options: any) => any
         InfoWindow: new (options: any) => any
         OverlayView: new () => any
-        LatLng: new (lat: number, lng: number) => any
         SymbolPath: {
           CIRCLE: any
         }

@@ -52,7 +52,7 @@ export default function Home() {
                 visible on desktop where it anchors the left column.
                 pt-8 matches the form card's top padding (md:p-8 = 32px) so the h1
                 sits level with the StepIndicator row at the top of the form. */}
-            <div className="hidden lg:block pt-4">
+            <div className="hidden lg:block pt-5">
               <h1 className="text-4xl md:text-5xl font-black leading-tight text-gray-900">
                 Sell Your Car Today
                 <span className="block mt-2 text-[#FFC325]">Get The Best Price Guaranteed</span>
