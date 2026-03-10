@@ -16,8 +16,8 @@ const australianStates = [
   { value: 'ACT', label: 'ACT' },
 ];
 
-const inputClass = "w-full px-3 py-2 md:px-4 md:py-3 bg-white border border-gray-300 rounded-md text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#FFC325] focus:border-[#FFC325] transition-colors text-base";
-const labelClass = "block text-xs md:text-sm font-medium text-gray-700 mb-0.5 md:mb-1";
+const inputClass = "w-full px-3 py-2 md:px-4 md:py-3 rounded-lg text-base liquid-glass-input";
+const labelClass = "block text-xs md:text-sm font-light text-gray-500/90 mb-0.5 md:mb-1 tracking-wide";
 const formFont = { fontFamily: 'var(--font-montserrat), system-ui, sans-serif' };
 
 export default function CarSellForm() {
@@ -324,11 +324,11 @@ export default function CarSellForm() {
   // Step progress indicator
   const StepIndicator = ({ current }: { current: 1 | 2 }) => (
     <div className="flex items-center justify-center gap-0 mb-2 md:mb-8">
-      <div className={`w-7 h-7 md:w-9 md:h-9 rounded-md flex items-center justify-center text-xs md:text-sm font-bold transition-colors ${current >= 1 ? 'bg-gray-900 text-white' : 'border-2 border-gray-300 text-gray-400'}`}>
+      <div className={`w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-xs md:text-sm font-semibold transition-all duration-300 ${current >= 1 ? 'step-node-active' : 'step-node-inactive'}`}>
         1
       </div>
-      <div className={`flex-1 h-0.5 max-w-24 md:max-w-32 transition-colors ${current >= 2 ? 'bg-gray-900' : 'bg-gray-200'}`} />
-      <div className={`w-7 h-7 md:w-9 md:h-9 rounded-md flex items-center justify-center text-xs md:text-sm font-bold transition-colors ${current >= 2 ? 'bg-gray-900 text-white' : 'border-2 border-gray-300 text-gray-400'}`}>
+      <div className={`flex-1 h-px max-w-24 md:max-w-32 transition-all duration-300 ${current >= 2 ? 'step-connector-active' : 'step-connector-inactive'}`} />
+      <div className={`w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-xs md:text-sm font-semibold transition-all duration-300 ${current >= 2 ? 'step-node-active' : 'step-node-inactive'}`}>
         2
       </div>
     </div>
@@ -352,15 +352,15 @@ export default function CarSellForm() {
 
         <div ref={feedbackRef} />
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2.5 rounded-md mb-2 md:mb-6 flex items-center justify-between text-sm" role="alert">
+          <div className="glass-alert-error px-4 py-2.5 rounded-xl mb-2 md:mb-6 flex items-center justify-between text-sm" role="alert">
             <span>{error}</span>
-            <button onClick={() => setError(null)} className="ml-4 text-red-500 hover:text-red-700 font-bold text-lg leading-none cursor-pointer">&times;</button>
+            <button onClick={() => setError(null)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
           </div>
         )}
         {success && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-2.5 rounded-md mb-2 md:mb-6 flex items-center justify-between text-sm" role="alert">
+          <div className="glass-alert-success px-4 py-2.5 rounded-xl mb-2 md:mb-6 flex items-center justify-between text-sm" role="alert">
             <span><strong>Quote Submitted!</strong> We&apos;ll contact you within 30 minutes with your offer.</span>
-            <button onClick={() => setSuccess(false)} className="ml-4 text-green-500 hover:text-green-700 font-bold text-lg leading-none cursor-pointer">&times;</button>
+            <button onClick={() => setSuccess(false)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
           </div>
         )}
 
@@ -446,7 +446,7 @@ export default function CarSellForm() {
           )}
 
           {/* Divider */}
-          <div className="border-t border-gray-100 pt-2 md:pt-5">
+          <div className="border-t glass-divider pt-2 md:pt-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-4">
               <div>
                 <label htmlFor="name" className={labelClass}>Name</label>
@@ -468,7 +468,7 @@ export default function CarSellForm() {
             disabled={loading}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full cursor-pointer bg-[#FFC325] text-white py-3 px-6 md:py-4 rounded-md text-lg md:text-xl font-bold hover:bg-[#e6af1f] focus:outline-none focus:ring-2 focus:ring-[#FFC325] focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full cursor-pointer btn-liquid-gold py-3 px-6 md:py-4 rounded-xl text-lg md:text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (manualEntry ? 'Submitting...' : 'Finding Your Car...') : manualEntry ? 'Get My Free Quote' : 'Find My Car'}
           </motion.button>
@@ -507,21 +507,21 @@ export default function CarSellForm() {
 
       <div ref={feedbackRef} />
       {loading && (
-        <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-md mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
+        <div className="glass-alert-warning px-4 py-3 rounded-xl mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
           <span><strong>Processing...</strong> Getting your quote ready.</span>
-          <button onClick={() => setLoading(false)} className="ml-4 text-yellow-600 hover:text-yellow-800 font-bold text-lg leading-none cursor-pointer">&times;</button>
+          <button onClick={() => setLoading(false)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
         </div>
       )}
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
+        <div className="glass-alert-error px-4 py-3 rounded-xl mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
           <span>{error}</span>
-          <button onClick={() => setError(null)} className="ml-4 text-red-500 hover:text-red-700 font-bold text-lg leading-none cursor-pointer">&times;</button>
+          <button onClick={() => setError(null)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
         </div>
       )}
       {success && (
-        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
+        <div className="glass-alert-success px-4 py-3 rounded-xl mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
           <span><strong>Quote Submitted!</strong> We&apos;ll contact you within 30 minutes with your offer.</span>
-          <button onClick={() => setSuccess(false)} className="ml-4 text-green-500 hover:text-green-700 font-bold text-lg leading-none cursor-pointer">&times;</button>
+          <button onClick={() => setSuccess(false)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
         </div>
       )}
 
@@ -531,7 +531,7 @@ export default function CarSellForm() {
 
       {/* Vehicle details from API or manual entry */}
       {notMyCar ? (
-        <div className="bg-gray-50 border border-gray-200 rounded-md p-4 md:p-5 mb-4 md:mb-6">
+        <div className="liquid-glass-card rounded-xl p-4 md:p-5 mb-4 md:mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <div>
               <label htmlFor="vehicleMake" className={labelClass}>Make</label>
@@ -559,31 +559,31 @@ export default function CarSellForm() {
           </button>
         </div>
       ) : regoLookupResult ? (
-        <div className="bg-gray-50 border border-gray-200 rounded-md p-4 md:p-5 mb-4 md:mb-6">
+        <div className="liquid-glass-card rounded-xl p-4 md:p-5 mb-4 md:mb-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
             {regoLookupResult.year && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Year</span><span className="font-medium text-gray-900">{regoLookupResult.year}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Year</span><span className="font-medium text-gray-900">{regoLookupResult.year}</span></div>
             )}
             {regoLookupResult.make && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Make</span><span className="font-medium text-gray-900">{regoLookupResult.make}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Make</span><span className="font-medium text-gray-900">{regoLookupResult.make}</span></div>
             )}
             {regoLookupResult.model && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Model</span><span className="font-medium text-gray-900">{regoLookupResult.model}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Model</span><span className="font-medium text-gray-900">{regoLookupResult.model}</span></div>
             )}
             {regoLookupResult.badge && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Badge</span><span className="font-medium text-gray-900">{regoLookupResult.badge}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Badge</span><span className="font-medium text-gray-900">{regoLookupResult.badge}</span></div>
             )}
             {regoLookupResult.colour && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Colour</span><span className="font-medium text-gray-900">{regoLookupResult.colour}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Colour</span><span className="font-medium text-gray-900">{regoLookupResult.colour}</span></div>
             )}
             {regoLookupResult.bodyType && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Body</span><span className="font-medium text-gray-900">{regoLookupResult.bodyType}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Body</span><span className="font-medium text-gray-900">{regoLookupResult.bodyType}</span></div>
             )}
             {regoLookupResult.transmission && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Trans</span><span className="font-medium text-gray-900">{regoLookupResult.transmission}</span></div>
+              <div className="flex justify-between gap-2 py-1 border-b border-white/40"><span className="text-gray-500 shrink-0">Trans</span><span className="font-medium text-gray-900 text-right">{regoLookupResult.transmission}</span></div>
             )}
             {regoLookupResult.engineSize && (
-              <div className="flex justify-between py-1 border-b border-gray-100"><span className="text-gray-500">Engine</span><span className="font-medium text-gray-900">{regoLookupResult.engineSize}</span></div>
+              <div className="flex justify-between py-1 border-b border-white/40"><span className="text-gray-500">Engine</span><span className="font-medium text-gray-900">{regoLookupResult.engineSize}</span></div>
             )}
           </div>
           <button
@@ -595,7 +595,7 @@ export default function CarSellForm() {
           </button>
         </div>
       ) : (
-        <div className="bg-gray-50 border border-gray-200 rounded-md p-4 md:p-5 mb-4 md:mb-6">
+        <div className="liquid-glass-card rounded-xl p-4 md:p-5 mb-4 md:mb-6">
           <p className="text-sm text-gray-500">We couldn&apos;t find vehicle details for this registration. You can still get a quote by entering your vehicle details manually below.</p>
           <button
             type="button"
@@ -618,7 +618,7 @@ export default function CarSellForm() {
           disabled={loading}
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full cursor-pointer bg-[#FFC325] text-white py-4 px-6 rounded-md text-xl font-bold hover:bg-[#e6af1f] focus:outline-none focus:ring-2 focus:ring-[#FFC325] focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full cursor-pointer btn-liquid-gold py-4 px-6 rounded-xl text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Getting Your Quote...' : 'Get My Free Quote Now'}
         </motion.button>
