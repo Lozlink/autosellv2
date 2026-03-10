@@ -44,15 +44,15 @@ export default function Home() {
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section id="sell-form" className="bg-[#8B8987]/25 text-gray-900 pt-6 pb-6 md:pt-10 md:pb-12">
+      <section id="sell-form" className="bg-[#8B8987]/25 text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
             {/* SEO h1 — visually hidden on mobile (CarSellForm has its own visual heading),
                 visible on desktop where it anchors the left column.
                 pt-8 matches the form card's top padding (md:p-8 = 32px) so the h1
                 sits level with the StepIndicator row at the top of the form. */}
-            <div className="hidden lg:block pt-5">
+            <div className="hidden lg:block">
               <h1 className="text-4xl md:text-5xl font-black leading-tight text-gray-900">
                 Sell Your Car Today
                 <span className="block mt-2 text-[#FFC325]">Get The Best Price Guaranteed</span>
