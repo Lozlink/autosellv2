@@ -54,7 +54,11 @@ export default function AdminDashboard() {
       <div className="max-w-3xl mx-auto bg-white border border-yellow-300 rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Blog Admin</h1>
-          <button onClick={logout} className="text-sm text-yellow-600 hover:text-yellow-500">Logout</button>
+          <div className="flex items-center gap-3">
+            <button onClick={() => router.push('/admin/leads')} className="text-sm text-gray-500 hover:text-gray-700">Leads</button>
+            <button onClick={() => router.push('/admin/pages')} className="text-sm text-gray-500 hover:text-gray-700">Pages</button>
+            <button onClick={logout} className="text-sm text-yellow-600 hover:text-yellow-500">Logout</button>
+          </div>
         </div>
         <form onSubmit={submit} className="space-y-4">
           <div>
