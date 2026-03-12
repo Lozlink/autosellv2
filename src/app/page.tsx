@@ -44,7 +44,7 @@ export default function Home() {
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section id="sell-form" className="bg-[#8B8987]/25 text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12">
+      <section id="sell-form" className="hero-glass-bg text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
@@ -69,7 +69,7 @@ export default function Home() {
             </h1>
 
             {/* Hero Form */}
-            <div>
+            <div className="liquid-glass-form-container rounded-2xl md:rounded-3xl overflow-hidden">
               <Suspense fallback={<CarSellFormFallback />}>
                 <CarSellForm />
               </Suspense>

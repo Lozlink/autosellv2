@@ -323,12 +323,12 @@ export default function CarSellForm() {
 
   // Step progress indicator
   const StepIndicator = ({ current }: { current: 1 | 2 }) => (
-    <div className="flex items-center justify-center gap-0 mb-2 md:mb-8">
-      <div className={`w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-xs md:text-sm font-semibold transition-all duration-300 ${current >= 1 ? 'step-node-active' : 'step-node-inactive'}`}>
+    <div className="flex items-center justify-center gap-0 mb-3 md:mb-8">
+      <div className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-xs md:text-sm font-semibold transition-all duration-300 ${current >= 1 ? 'step-node-active' : 'step-node-inactive'}`}>
         1
       </div>
       <div className={`flex-1 h-px max-w-24 md:max-w-32 transition-all duration-300 ${current >= 2 ? 'step-connector-active' : 'step-connector-inactive'}`} />
-      <div className={`w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-xs md:text-sm font-semibold transition-all duration-300 ${current >= 2 ? 'step-node-active' : 'step-node-inactive'}`}>
+      <div className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-xs md:text-sm font-semibold transition-all duration-300 ${current >= 2 ? 'step-node-active' : 'step-node-inactive'}`}>
         2
       </div>
     </div>
@@ -341,10 +341,10 @@ export default function CarSellForm() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="p-3 md:p-8"
+        className="p-4 md:p-8"
         style={formFont}
       >
-        <h1 className="text-3xl sm:text-3xl font-black leading-tight text-gray-900 text-center mb-2 lg:hidden">
+        <h1 className="text-2xl sm:text-3xl font-black leading-tight text-gray-900 text-center mb-3 lg:hidden">
           Sell Your Car Today
           <span className="block text-[#FFC325]">Get The Best Price Guaranteed</span>
         </h1>
@@ -364,10 +364,11 @@ export default function CarSellForm() {
           </div>
         )}
 
-        <form onSubmit={manualEntry ? handleManualSubmit : handleRegoLookup} className="space-y-2 md:space-y-5">
+        <form onSubmit={manualEntry ? handleManualSubmit : handleRegoLookup} className="space-y-3 md:space-y-5">
           {/* Vehicle Identification */}
           {!manualEntry ? (
-            <div className="space-y-2 md:space-y-4">
+            <div className="space-y-3 md:space-y-4">
+              <div className="glass-section-header">Your Vehicle</div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
                 <div className="md:col-span-2">
                   <label htmlFor="vinOrReg" className={labelClass}>
@@ -415,6 +416,7 @@ export default function CarSellForm() {
             </div>
           ) : (
             <div className="space-y-3 md:space-y-4">
+              <div className="glass-section-header">Vehicle Details</div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
                   <label htmlFor="vehicleMake" className={labelClass}>Make</label>
@@ -445,9 +447,10 @@ export default function CarSellForm() {
             </div>
           )}
 
-          {/* Divider */}
-          <div className="border-t glass-divider pt-2 md:pt-5">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-4">
+          {/* Contact Details */}
+          <div className="pt-1 md:pt-3">
+            <div className="glass-section-header mb-3">Your Details</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
               <div>
                 <label htmlFor="name" className={labelClass}>Name</label>
                 <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} className={inputClass} placeholder="Your name" />
@@ -468,7 +471,7 @@ export default function CarSellForm() {
             disabled={loading}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full cursor-pointer btn-liquid-gold py-3 px-6 md:py-4 rounded-xl text-lg md:text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full cursor-pointer btn-liquid-gold py-3.5 px-6 md:py-4 rounded-xl text-lg md:text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed mt-1"
           >
             {loading ? (manualEntry ? 'Submitting...' : 'Finding Your Car...') : manualEntry ? 'Get My Free Quote' : 'Find My Car'}
           </motion.button>
