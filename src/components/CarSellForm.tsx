@@ -408,7 +408,7 @@ export default function CarSellForm() {
               <button
                 type="button"
                 onClick={() => setManualEntry(true)}
-                className="text-sm text-gray-900 hover:text-black underline cursor-pointer transition-colors"
+                className="text-sm font-bold  text-[#FFC325] hover:text-black underline cursor-pointer transition-colors"
               >
                 Or enter car details manually
               </button>
