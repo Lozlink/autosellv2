@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CarValuationGuidePage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
@@ -294,20 +294,20 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Get Your Accurate Car Valuation Today
           </h2>
           <p className="text-xl mb-8 text-gray-600">
-            Our AI-powered system provides market-accurate valuations in minutes. 
+            Our AI-powered system provides market-accurate valuations in minutes.
             No guesswork, just real market data and expert analysis.
           </p>
           <div className="space-y-4">
             <Link
               href="/#sell-form"
               className="inline-block px-12 py-4 rounded-lg text-xl font-bold hover:bg-[#e6af1f] transition-all duration-300 transform hover:scale-105 shadow-lg"
-              style={{ backgroundColor: '#8b898740', color: '#FFC325' }}
+              style={{ backgroundColor: '#333', color: '#FFC325' }}
             >
               Get My Free Valuation
             </Link>

@@ -21,9 +21,9 @@ export default async function TypePage({ params }: TypePageProps) {
 	const titleType = typeParam.charAt(0).toUpperCase() + typeParam.slice(1)
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-white">
 			<Header />
-			<section className="text-gray-800 py-12" style={{ backgroundColor: '#8b898740' }}>
+			<section className="text-gray-800 py-12 bg-gray-50">
 				<div className="px-4 sm:px-8">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div>

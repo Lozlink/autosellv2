@@ -3,8 +3,8 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: "Sell My Ute - Auto-Sell.ai | Get Cash for Your Ute Vehicle",
-  description: "Sell your ute fast with Auto-Sell.ai. We buy all ute models including work utes, dual cabs, and pickups. Get instant quotes and same-day payment.",
+  title: "Sell My Ute | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
+  description: "Sell your ute fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a simple, stress-free sale.",
   keywords: "sell ute, ute buyers, sell my ute, ute car buyers, cash for utes, sell ute fast, work ute, dual cab ute",
 }
 
@@ -19,11 +19,10 @@ export default function SellUtesPage() {
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Sell My Ute
-              <span className="block" style={{ color: '#000' }}>Get Cash for Your Ute Vehicle</span>
+              <span className="block" style={{ color: '#000' }}>Get Your Ute Valuation Now</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              We buy all ute models including work utes, dual cabs, and pickups.
-              Get an instant quote and same-day payment for your ute.
+              Australia&apos;s most sought-after vehicles for towing power, reliability & versatility. Get a fair quote in ~30 minutes with instant OSKO payment.
             </p>
             <Link
               href="/#sell-form"
@@ -50,15 +49,15 @@ export default function SellUtesPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { type: "Work Utes", description: "Hilux, Ranger, Triton, BT-50, D-Max" },
-              { type: "Dual Cab Utes", description: "Amarok, Colorado, Navara, Triton" },
-              { type: "Single Cab Utes", description: "Hilux Workmate, Ranger XL, Triton GL" },
-              { type: "Extra Cab Utes", description: "Hilux SR, Ranger XLT, Triton GLS" },
-              { type: "Luxury Utes", description: "Ranger Wildtrak, Hilux SR5, Amarok V6" },
-              { type: "4WD Utes", description: "LandCruiser 79, Patrol, Defender 130" },
-              { type: "Electric Utes", description: "F-150 Lightning, Rivian R1T" },
-              { type: "Modified Utes", description: "Lifted, chipped, or custom utes" },
-              { type: "Commercial Utes", description: "Trade utes, fleet vehicles" }
+              { type: "Dual-Cab 4x4 Utes", description: "From Hilux and Ranger to Navara, BT-50, Triton" },
+              { type: "Work Utes & Trade Vehicles", description: "Amarok, Colorado, D-Max, LDV utes" },
+              { type: "Heavy-Duty Towing Utes", description: "Maximum payload & towing capacity" },
+              { type: "Diesel & Turbo-Diesel Models", description: "Fuel-efficient work horses" },
+              { type: "Older Utes", description: "Any age welcome—classic to recent models" },
+              { type: "High-Km Utes", description: "Still valuable regardless of kilometers" },
+              { type: "Accident-Damaged Utes", description: "Non-running, major damage welcome" },
+              { type: "Unregistered Utes", description: "Mechanical issues, parts value recognized" },
+              { type: "Utes with Accessories", description: "Canopies, bullbars, toolboxes, tow kits included" }
             ].map((uteType, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{uteType.type}</h3>
@@ -84,34 +83,34 @@ export default function SellUtesPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                icon: "📊",
+                title: "Live Ute Market Data",
+                description: "Real-time market trends and recent comparable sales—you get current value."
+              },
+              {
                 icon: "💰",
-                title: "Competitive Ute Prices",
-                description: "We know ute values and offer market-competitive prices for all models."
+                title: "Fair Ute Valuation",
+                description: "Assessed on kilometers, mechanical condition, service history, accessories & demand."
               },
               {
                 icon: "⚡",
-                title: "Same-Day Payment",
-                description: "Get paid instantly via OSKO transfer once we complete the inspection."
+                title: "Instant OSKO Payment",
+                description: "Get paid same-day via OSKO transfer once inspection is complete."
               },
               {
-                icon: "🚗",
-                title: "All Ute Types Accepted",
-                description: "From work utes to luxury models, we buy every type in any condition."
+                icon: "🌍",
+                title: "Australia-Wide Pickup",
+                description: "From worksite to rural property to metro driveway—we collect anywhere."
               },
               {
-                icon: "🔧",
-                title: "Ute Expertise",
-                description: "Our team understands ute vehicles and their market values."
+                icon: "⏱️",
+                title: "Quote in ~30 Minutes",
+                description: "Submit ute details online and get a fair valuation without pressure."
               },
               {
-                icon: "📋",
-                title: "No Hidden Fees",
-                description: "What we quote is what you get paid. No deductions or hidden costs."
-              },
-              {
-                icon: "🌏",
-                title: "Australia-Wide Service",
-                description: "We come to you anywhere in Australia to inspect and buy your ute."
+                icon: "✓",
+                title: "Paperwork Handled",
+                description: "We manage registration transfers and all legal documentation for you."
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
@@ -131,14 +130,14 @@ export default function SellUtesPage() {
             Ready to Sell Your Ute?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free ute valuation in 30 minutes and receive same-day payment.
+            Get a fair ute valuation in ~30 minutes with same-day OSKO payment across Australia.
           </p>
           <Link
             href="/#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            style={{ backgroundColor: '#FFC325', color: '#fff' }}
+            style={{ backgroundColor: '#333', color: '#fff' }}
           >
-            Get My Ute Quote Now
+            Get Your Ute Valuation Now
           </Link>
         </div>
       </section>

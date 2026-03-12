@@ -52,7 +52,7 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
 
       <Header />
 
@@ -69,7 +69,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-12 bg-white">
 
         <div className="px-4 sm:px-8 max-w-4xl mx-auto text-center">
           <Accordion

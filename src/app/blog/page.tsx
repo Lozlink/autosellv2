@@ -86,9 +86,9 @@ export default async function BlogPage() {
   const posts = dbPosts.length ? dbPosts : blogPosts;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="text-gray-800 py-12" style={{ backgroundColor: '#FFC325' }}>
         <div className="px-4 sm:px-8">
@@ -104,7 +104,7 @@ export default async function BlogPage() {
       </section>
 
       {/* Blog Posts */}
-      <section className="py-12">
+      <section className="py-12 bg-gray-50">
         <div className="px-4 sm:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (

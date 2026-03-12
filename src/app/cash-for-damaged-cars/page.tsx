@@ -5,17 +5,17 @@ import Image from 'next/image'
 
 
 export const metadata: Metadata = {
-  title: "Cash for Damaged Cars - Auto-Sell.ai | We Buy Cars in Any Condition",
-  description: "Get cash for your damaged car today. We buy cars in any condition - running or not, damaged or perfect. Same-day payment, free pickup across Australia.",
+  title: "Sell Damaged Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
+  description: "Sell your damaged car fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell buys accident-damaged, hail-damaged and non-running cars Australia-wide.",
 }
 
 export default function CashForDamagedCarsPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="text-gray-800" style={{ backgroundColor: '#8b898740' }}>
+      <section className="text-gray-800 hero-glass-bg">
         <div className="relative aspect-[16/10] overflow-hidden">
 
             <Image
@@ -31,19 +31,18 @@ export default function CashForDamagedCarsPage() {
             <div className="text-center">
              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
 
-              Cash for Damaged Cars
-                <span className="block" style={{ color: '#FFC325' }}>We Buy Cars in Any Condition</span>
+              Sell Damaged Car
+                <span className="block" style={{ color: '#FFC325' }}>Get Your Valuation Now</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 drop-shadow-md">
-                Running or not, damaged or perfect - we buy all cars and pay cash on the same day.
-                No matter the condition, we&apos;ll give you a fair price.
+                A damaged car can be stressful to deal with—especially when repairs cost more than the vehicle is worth. Get a fair quote in ~30 minutes with same-day OSKO payment.
               </p>
               <Link
                 href="/#sell-form"
                 className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl focus:outline-none focus:ring-2"
-                style={{ backgroundColor: '#FFC325', color: '#fff', '--tw-ring-color': '#FFC325' } as React.CSSProperties}
+                style={{ backgroundColor: '#333', color: '#fff', '--tw-ring-color': '#333' } as React.CSSProperties}
               >
-                Get Cash for Your Damaged Car
+                Get Your Damaged Car Valuation
               </Link>
             </div>
           </div>
@@ -53,48 +52,48 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* Why Choose Us for Damaged Cars */}
-      <section className="py-20" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Why Choose Auto-Sell.ai for Damaged Cars?
+              Why Choose AutoSell for Damaged Cars?
             </h2>
             <p className="text-xl text-gray-600">
-              We specialize in buying cars in all conditions, no matter how damaged
+              Fair valuations for accident, hail and mechanical damage—no repairs needed
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: "🚗",
-                title: "Any Condition Accepted",
-                description: "Running or not, damaged or perfect - we buy them all. No car is too damaged for us."
+                icon: "📊",
+                title: "Fair Damage Assessment",
+                description: "Type & extent of damage, parts value & resale potential all considered fairly."
               },
               {
                 icon: "💰",
-                title: "Fair Market Value",
-                description: "We assess the true value of your car, considering damage, age, and market conditions."
+                title: "Market Value Pricing",
+                description: "Current market trends for damaged vehicles ensure you get a fair deal."
               },
               {
                 icon: "⚡",
-                title: "Same-Day Payment",
-                description: "Get paid instantly via OSKO transfer once we complete the inspection."
-              },
-              {
-                icon: "🔧",
-                title: "No Repairs Needed",
-                description: "Don't waste money fixing your car. We buy it as-is and handle everything."
+                title: "Instant OSKO Payment",
+                description: "Get paid same-day via OSKO transfer once on-site inspection is complete."
               },
               {
                 icon: "🚛",
-                title: "Free Pickup Service",
-                description: "We come to you anywhere in Australia, even if your car can't be driven."
+                title: "Australia-Wide Collection",
+                description: "We collect damaged cars from anywhere in Australia—running or not."
               },
               {
-                icon: "📋",
-                title: "All Paperwork Handled",
-                description: "We take care of all the legal paperwork and transfer processes for you."
+                icon: "⏱️",
+                title: "Quote in ~30 Minutes",
+                description: "Submit damage details and get a valuation quickly without obligation."
+              },
+              {
+                icon: "✓",
+                title: "Paperwork Handled",
+                description: "We manage title transfers and all legal documentation for damaged vehicles."
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl bg-white/40 hover:bg-white/60 transition-colors" style={{ borderColor: '#FFE9C0', borderWidth: '1px' }}>
@@ -108,58 +107,58 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* Types of Damage We Accept */}
-      <section className="py-20 text-gray-800" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-20 text-gray-800 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Types of Damage We Accept
+              Types of Damage We Buy
             </h2>
             <p className="text-xl text-gray-600">
-              From minor dents to major accidents - we buy them all
+              Accident-damaged, hail-damaged, mechanical failure & non-running cars
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white/40 p-8 rounded-xl" style={{ borderColor: '#FFE9C0', borderWidth: '1px' }}>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Minor Damage</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Accident & Impact Damage</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Dents and scratches</span>
+                  <span>Crash and collision damage</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Broken mirrors and lights</span>
+                  <span>Hail damage and dents</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Interior damage</span>
+                  <span>Side impact and roll-over</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Worn tires and brakes</span>
+                  <span>Frame and structural damage</span>
                 </li>
               </ul>
             </div>
-            
+
             <div className="bg-white/40 p-8 rounded-xl" style={{ borderColor: '#FFE9C0', borderWidth: '1px' }}>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Major Damage</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Mechanical & Non-Running</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Accident damage</span>
+                  <span>Major mechanical issues</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Engine problems</span>
+                  <span>Engine and transmission failure</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Transmission issues</span>
+                  <span>Non-running, broken-down cars</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-lg" style={{ color: '#FFC325' }}>✓</span>
-                  <span>Flood damage</span>
+                  <span>Unregistered & high-km vehicles</span>
                 </li>
               </ul>
             </div>
@@ -168,36 +167,42 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              How It Works
+              Simple 4-Step Process
             </h2>
             <p className="text-xl text-gray-600">
-              Get cash for your damaged car in just 3 simple steps
+              From damaged car to payment in hours
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-6">
             {[
               {
                 step: '01',
-                title: 'Get Your Quote',
-                description: 'Tell us about your car and damage. We provide a fair quote within 30 minutes.',
+                title: 'Submit Details',
+                description: 'Tell us about your damaged car via our quick online form.',
                 icon: '📝'
               },
               {
                 step: '02',
-                title: 'We Come to You',
-                description: 'Our team visits your location to inspect the car and finalize the offer.',
-                icon: '🚗'
+                title: 'Get Quote',
+                description: 'Receive a fair valuation within ~30 minutes—no obligation.',
+                icon: '💰'
               },
               {
                 step: '03',
-                title: 'Get Paid Instantly',
-                description: 'Accept our offer and receive payment via OSKO transfer on the same day.',
-                icon: '💰'
+                title: 'On-Site Inspection',
+                description: 'Our team visits and inspects your damaged car at your location.',
+                icon: '🔍'
+              },
+              {
+                step: '04',
+                title: 'Instant OSKO Payment',
+                description: 'Accept offer and get paid same-day via OSKO bank transfer.',
+                icon: '✅'
               }
             ].map((step, index) => (
               <div key={index} className="text-center">
@@ -214,20 +219,20 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Ready to Get Cash for Your Damaged Car?
+            Turn Your Damaged Car Into Cash Today
           </h2>
-          <p className="text-xl mb-8 text-gray-400">
-            Don&apos;t let a damaged car sit in your driveway. Get cash today and free up space.
+          <p className="text-xl mb-8 text-gray-600">
+            Don&apos;t waste money on repairs. Get a fair valuation in ~30 minutes with same-day OSKO payment.
           </p>
           <Link
             href="/#sell-form"
-            className="inline-block px-12 py-4 rounded-lg text-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            style={{ backgroundColor: '#8b898740', color: '#FFC325' }}
+            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{ backgroundColor: '#333', color: '#FFC325' }}
           >
-            Get My Quote Now
+            Get Your Damaged Car Valuation
           </Link>
         </div>
       </section>

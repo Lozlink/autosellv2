@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function SmoothSalesProcessPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
       <Header />
-      <section className="text-gray-800 py-12" style={{ backgroundColor: '#8b898740' }}>
+      <section className="text-gray-800 py-12 bg-gray-50">
         <div className="px-4 sm:px-8 max-w-5xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Smooth Sales Process</h1>
           <p className="text-lg text-gray-600 max-w-3xl">

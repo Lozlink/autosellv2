@@ -3,8 +3,8 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: "Sell My Used Car - Auto-Sell.ai | Get Cash for Your Used Vehicle",
-  description: "Sell your used car fast with Auto-Sell.ai. We buy all used cars in any condition. Get instant quotes and same-day payment for your used vehicle.",
+  title: "Sell My Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
+  description: "Sell your car fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell used car, used car buyers, sell my car, used vehicle buyers, cash for used cars, sell car fast",
 }
 
@@ -18,12 +18,11 @@ export default function SellUsedCarsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Sell My Used Car
-              <span className="block" style={{ color: '#000' }}>Get Cash for Your Used Vehicle</span>
+              Sell My Car
+              <span className="block" style={{ color: '#000' }}>Get Your Car Valuation Now</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              We buy all used cars in any condition - from daily drivers to project cars.
-              Get an instant quote and same-day payment for your used vehicle.
+              Selling your car shouldn&apos;t be a long or complicated process. Get a fair quote in ~30 minutes with instant OSKO payment and Australia-wide pickup.
             </p>
             <Link
               href="/#sell-form"
@@ -50,15 +49,15 @@ export default function SellUsedCarsPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { type: "Daily Drivers", description: "Well-maintained cars for everyday use" },
-              { type: "High Mileage Cars", description: "Cars with high kilometers but still running" },
-              { type: "Older Vehicles", description: "Classic cars and vintage vehicles" },
-              { type: "Project Cars", description: "Cars needing work or restoration" },
-              { type: "Accident Damaged", description: "Cars with accident damage or repairs" },
-              { type: "Mechanical Issues", description: "Cars with engine or transmission problems" },
-              { type: "Non-Running Cars", description: "Cars that don't start or drive" },
-              { type: "Flood Damaged", description: "Cars affected by water damage" },
-              { type: "Written Off", description: "Cars with write-off status" }
+              { type: "Small Cars & City Runarounds", description: "Corolla, Civic, 308, Fiesta, Pug" },
+              { type: "Family Sedans & Wagons", description: "Camry, Accord, Optima, Mondeo, Commodore" },
+              { type: "SUVs & Crossovers", description: "CRV, RAV4, Outlander, Kluger, Territory" },
+              { type: "Hybrid & Electric Vehicles", description: "Prius, Leaf, Ioniq, Niro, Tesla models" },
+              { type: "Performance & Sports Models", description: "Mustang, Holden SS, WRX, Focus ST" },
+              { type: "Older Cars with High Km", description: "Any age, any kilometer reading" },
+              { type: "Damaged Cars", description: "Accident, hail or mechanical damage" },
+              { type: "Unregistered Cars", description: "No current registration, no worries" },
+              { type: "Non-Running Cars", description: "Won&apos;t start, mechanical issues, broken-down" }
             ].map((carType, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{carType.type}</h3>
@@ -84,34 +83,34 @@ export default function SellUsedCarsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                icon: "📊",
+                title: "Current Market Pricing",
+                description: "Valuations based on make, model, year, kilometers and service history."
+              },
+              {
                 icon: "💰",
-                title: "Fair Used Car Prices",
-                description: "We assess each car individually and offer fair market prices based on condition."
+                title: "Fair Market Valuation",
+                description: "Factory features, condition, market demand and current pricing all factor in."
               },
               {
                 icon: "⚡",
-                title: "Same-Day Payment",
-                description: "Get paid instantly via OSKO transfer once we complete the inspection."
+                title: "Instant OSKO Payment",
+                description: "Get paid same-day via OSKO transfer once inspection is complete."
               },
               {
-                icon: "🚗",
-                title: "Any Condition Accepted",
-                description: "From perfect to non-running, we buy used cars in any condition."
+                icon: "🌍",
+                title: "Australia-Wide Pickup",
+                description: "We collect your car from home, work or anywhere across Australia."
               },
               {
-                icon: "🔧",
-                title: "Used Car Expertise",
-                description: "Our team understands used car values and market conditions."
+                icon: "⏱️",
+                title: "Quote in ~30 Minutes",
+                description: "Submit your car details and get a fair valuation quickly and easily."
               },
               {
-                icon: "📋",
-                title: "No Hidden Fees",
-                description: "What we quote is what you get paid. No deductions or hidden costs."
-              },
-              {
-                icon: "🌏",
-                title: "Australia-Wide Service",
-                description: "We come to you anywhere in Australia to inspect and buy your used car."
+                icon: "✓",
+                title: "Paperwork Handled",
+                description: "We manage registration transfers and all legal documentation for you."
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
@@ -131,14 +130,14 @@ export default function SellUsedCarsPage() {
             Ready to Sell Your Used Car?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free used car valuation in 30 minutes and receive same-day payment.
+            Get a fair car valuation in ~30 minutes with same-day OSKO payment across Australia.
           </p>
           <Link
             href="/#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            style={{ backgroundColor: '#FFC325', color: '#fff' }}
+            style={{ backgroundColor: '#333', color: '#fff' }}
           >
-            Get My Used Car Quote Now
+            Get Your Car Valuation Now
           </Link>
         </div>
       </section>

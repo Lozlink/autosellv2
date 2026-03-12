@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 export default function CarsPage() {
   return (
-    <div className="min-h-screen bg-[#8B8987]/25">
+    <div className="min-h-screen bg-white">
       <Header />
 
       {/* Hero Section with Form */}
-      <section className="text-gray-800 py-20 bg-[#8B8987]/25">
+      <section className="text-gray-800 py-20 hero-glass-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -59,7 +59,7 @@ export default function CarsPage() {
       </section>
 
       {/* Car Categories */}
-      <section className="py-20 bg-[#8B8987]/25">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -94,7 +94,7 @@ export default function CarsPage() {
       </section>
 
       {/* Popular Car Brands */}
-      <section className="py-20 bg-[#8B8987]/25">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -119,7 +119,7 @@ export default function CarsPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-[#8B8987]/25">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">

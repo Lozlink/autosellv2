@@ -3,8 +3,8 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: "Sell My Truck - Auto-Sell.ai | Get Cash for Your Truck Vehicle",
-  description: "Sell your truck fast with Auto-Sell.ai. We buy all truck models including light trucks, heavy trucks, and commercial vehicles. Get instant quotes and same-day payment.",
+  title: "Sell My Truck | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
+  description: "Sell your truck fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell truck, truck buyers, sell my truck, truck car buyers, cash for trucks, sell truck fast, light truck, heavy truck, commercial truck",
 }
 
@@ -19,11 +19,10 @@ export default function SellTrucksPage() {
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Sell My Truck
-              <span className="block" style={{ color: '#000' }}>Get Cash for Your Truck Vehicle</span>
+              <span className="block" style={{ color: '#000' }}>Get Your Truck Valuation Now</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              We buy all truck models including light trucks, heavy trucks, and commercial vehicles.
-              Get an instant quote and same-day payment for your truck.
+              Trucks are essential work assets—selling shouldn&apos;t slow your business. Get a fair quote in ~30 minutes with instant OSKO payment and Australia-wide pickup.
             </p>
             <Link
               href="/#sell-form"
@@ -50,15 +49,15 @@ export default function SellTrucksPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { type: "Light Trucks", description: "Hilux, Ranger, Triton, BT-50, D-Max" },
-              { type: "Heavy Trucks", description: "Isuzu, Hino, Fuso, Iveco, Volvo" },
-              { type: "Commercial Trucks", description: "Delivery trucks, box trucks, flatbeds" },
-              { type: "Tipper Trucks", description: "Dump trucks, tipper bodies" },
-              { type: "Crane Trucks", description: "Mobile cranes, service trucks" },
-              { type: "Refrigerated Trucks", description: "Cold storage, freezer trucks" },
-              { type: "Tow Trucks", description: "Recovery vehicles, car carriers" },
-              { type: "Fire Trucks", description: "Emergency vehicles, fire engines" },
-              { type: "Food Trucks", description: "Mobile kitchens, catering trucks" }
+              { type: "Light Trucks", description: "Hilux, Ranger, Triton, BT-50, D-Max, LDV" },
+              { type: "Medium & Heavy Rigid Trucks", description: "Isuzu, Hino, Fuso, Iveco, Volvo, Scania" },
+              { type: "Commercial Delivery Trucks", description: "Box trucks, panel vans, enclosed bodies" },
+              { type: "Tippers & Dump Trucks", description: "Tipper bodies, dump configurations" },
+              { type: "Box & Refrigerated Trucks", description: "Cold storage units, freezer bodies" },
+              { type: "Tray Trucks & Flatbeds", description: "Open trays, flatbed configurations" },
+              { type: "Curtain-Siders & Custom Bodies", description: "Pantechs, specialist fit-outs" },
+              { type: "Older & High-Km Trucks", description: "Any age, any kilometer reading" },
+              { type: "Unregistered Trucks", description: "Damaged, non-running, mechanical issues" }
             ].map((truckType, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{truckType.type}</h3>
@@ -84,34 +83,34 @@ export default function SellTrucksPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                icon: "📊",
+                title: "Verified Truck Market Data",
+                description: "Live commercial buyer demand and recent comparable truck sales drive fair valuations."
+              },
+              {
                 icon: "💰",
-                title: "Competitive Truck Prices",
-                description: "We know truck values and offer market-competitive prices for all models."
+                title: "Commercial Fair Value",
+                description: "Assessed on engine hours, maintenance, condition, usability & aftermarket equipment."
               },
               {
                 icon: "⚡",
-                title: "Same-Day Payment",
-                description: "Get paid instantly via OSKO transfer once we complete the inspection."
+                title: "Instant OSKO Payment",
+                description: "Get paid same-day via OSKO transfer once inspection is complete at your location."
               },
               {
-                icon: "🚗",
-                title: "All Truck Types Accepted",
-                description: "From light to heavy trucks, we buy every type in any condition."
+                icon: "🏢",
+                title: "Depot, Worksite & Farm Pickup",
+                description: "We collect from your depot, construction site, farm, workshop, or commercial yard."
               },
               {
-                icon: "🔧",
-                title: "Truck Expertise",
-                description: "Our team understands truck vehicles and their market values."
+                icon: "⏱️",
+                title: "Quote in ~30 Minutes",
+                description: "Submit truck details and get a fair valuation quickly—no sales pressure."
               },
               {
-                icon: "📋",
-                title: "No Hidden Fees",
-                description: "What we quote is what you get paid. No deductions or hidden costs."
-              },
-              {
-                icon: "🌏",
-                title: "Australia-Wide Service",
-                description: "We come to you anywhere in Australia to inspect and buy your truck."
+                icon: "✓",
+                title: "All Paperwork Handled",
+                description: "We manage title transfers and legal documentation so you can focus on business."
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
@@ -131,14 +130,14 @@ export default function SellTrucksPage() {
             Ready to Sell Your Truck?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free truck valuation in 30 minutes and receive same-day payment.
+            Get a commercial truck valuation in ~30 minutes with same-day OSKO payment—Australia-wide.
           </p>
           <Link
             href="/#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            style={{ backgroundColor: '#FFC325', color: '#fff' }}
+            style={{ backgroundColor: '#333', color: '#fff' }}
           >
-            Get My Truck Quote Now
+            Get Your Truck Valuation Now
           </Link>
         </div>
       </section>

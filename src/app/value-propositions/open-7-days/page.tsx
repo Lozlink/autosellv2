@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function OpenSevenDaysPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
       <Header />
-      <section className="text-gray-800 py-12" style={{ backgroundColor: '#8b898740' }}>
+      <section className="text-gray-800 py-12 bg-gray-50">
         <div className="px-4 sm:px-8 max-w-5xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Open 7 Days</h1>
           <p className="text-lg text-gray-600 max-w-3xl">
@@ -18,7 +18,7 @@ export default function OpenSevenDaysPage() {
           </p>
         </div>
       </section>
-      <section className="py-12">
+      <section className="py-12 bg-white">
         <div className="px-4 sm:px-8 max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
           <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
             <h2 className="text-2xl font-semibold mb-3 text-gray-900">Weekend Availability</h2>

@@ -21,11 +21,11 @@ export default async function BrandPage({ params }: BrandPageProps) {
   const titleBrand = brand.charAt(0).toUpperCase() + brand.slice(1)
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#8b898740' }}>
+    <div className="min-h-screen bg-white">
       <Header />
 
       {/* Hero Section with Form (Toyota layout-inspired) */}
-      <section className="text-gray-800 py-20" style={{ backgroundColor: '#8b898740' }}>
+      <section className="text-gray-800 py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -69,7 +69,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
       </section>
 
       {/* Popular Models Section (dark theme) */}
-      <section className="py-16" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-3">
@@ -104,7 +104,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16" style={{ backgroundColor: '#8b898740' }}>
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-3">
