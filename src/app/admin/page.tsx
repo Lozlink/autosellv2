@@ -49,50 +49,50 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-blue-100
+    <div className="min-h-screen bg-gradient-to-b from-white via-yellow-50 to-yellow-100
  px-4 py-8">
-      <div className="max-w-3xl mx-auto bg-white border border-blue-200 rounded-xl p-6">
+      <div className="max-w-3xl mx-auto bg-white border border-yellow-300 rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Blog Admin</h1>
-          <button onClick={logout} className="text-sm text-blue-500 hover:text-blue-300">Logout</button>
+          <button onClick={logout} className="text-sm text-yellow-600 hover:text-yellow-500">Logout</button>
         </div>
         <form onSubmit={submit} className="space-y-4">
           <div>
             <label className="block text-sm text-gray-600 mb-1">Title</label>
-            <input name="title" value={form.title} onChange={onChange} className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" required />
+            <input name="title" value={form.title} onChange={onChange} className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" required />
           </div>
           <div>
             <label className="block text-sm text-gray-600 mb-1">Slug</label>
-            <input name="slug" value={form.slug} onChange={onChange} placeholder="my-awesome-post" className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" required />
+            <input name="slug" value={form.slug} onChange={onChange} placeholder="my-awesome-post" className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" required />
           </div>
           <div>
             <label className="block text-sm text-gray-600 mb-1">Excerpt</label>
-            <input name="excerpt" value={form.excerpt} onChange={onChange} className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" />
+            <input name="excerpt" value={form.excerpt} onChange={onChange} className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
           </div>
           <div>
             <label className="block text-sm text-gray-600 mb-1">Image URL</label>
-            <input name="image_url" value={form.image_url} onChange={onChange} className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" />
+            <input name="image_url" value={form.image_url} onChange={onChange} className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm text-gray-600 mb-1">Category</label>
-              <input name="category" value={form.category} onChange={onChange} className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" />
+              <input name="category" value={form.category} onChange={onChange} className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
             </div>
             <div>
               <label className="block text-sm text-gray-600 mb-1">Read time (e.g. 5 min read)</label>
-              <input name="read_time" value={form.read_time} onChange={onChange} className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" />
+              <input name="read_time" value={form.read_time} onChange={onChange} className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
             </div>
           </div>
           <div>
             <label className="block text-sm text-gray-600 mb-1">Content</label>
-            <textarea name="content" value={form.content} onChange={onChange} rows={10} className="w-full px-3 py-2 bg-zinc-800 border border-blue-300 rounded-lg text-gray-800" required />
+            <textarea name="content" value={form.content} onChange={onChange} rows={10} className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" required />
           </div>
           <label className="flex items-center gap-2 text-gray-600">
             <input type="checkbox" name="published" checked={form.published} onChange={onChange} />
             Published
           </label>
           <div className="flex items-center gap-4">
-            <button disabled={loading} className="bg-blue-600 hover:bg-blue-600 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50">{loading ? 'Saving...' : 'Save Post'}</button>
+            <button disabled={loading} className="bg-[#FFC325] hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-lg disabled:opacity-50">{loading ? 'Saving...' : 'Save Post'}</button>
             {status && <p className="text-sm text-gray-600">{status}</p>}
           </div>
         </form>
