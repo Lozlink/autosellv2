@@ -55,6 +55,73 @@ function msgId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
 }
 
+/** Pick a random item from an array */
+function pick<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
+// ─── Response pools for variety ──────────────────────────────────────────
+
+const FAQ_CLOSERS = [
+  "\n\nI'm here if there's anything else on your mind — or we can jump into a free valuation whenever you're ready!",
+  "\n\nHappy to keep chatting! Or if you'd like, we can get your free valuation started right now.",
+  "\n\nFeel free to ask me anything else — and whenever you're ready, I'd love to help you get a valuation sorted!",
+  "\n\nAlways happy to help! Let me know if you've got more questions, or we can kick off a free valuation for you.",
+]
+
+const MAKE_MODEL_REACTIONS = [
+  (car: string) => `Nice — a ${car}! What year is it?`,
+  (car: string) => `Oh lovely, a ${car}! And what year would that be?`,
+  (car: string) => `A ${car} — great choice! Do you know what year it is?`,
+  (car: string) => `${car}, brilliant! What year are we looking at?`,
+]
+
+const CONDITION_PROMPTS = [
+  "Got it! How would you describe the overall condition?",
+  "Thanks for that! And how's the condition looking?",
+  "Noted! How would you say the car's condition is?",
+  "Perfect. And condition-wise, how's it going?",
+]
+
+const POSTCODE_TRANSITIONS = [
+  "You're doing great! What's your postcode? That way we can make sure we've got someone near you.",
+  "Wonderful, thanks for that! What postcode are you in? We want to make sure we can get to you easily.",
+  "Nearly there! Pop in your postcode and we'll check we've got coverage in your area.",
+  "Awesome! What's your postcode so we can line up someone close by?",
+]
+
+const NAME_PROMPTS = [
+  "Lovely! And what's your name? Just so we know who we're chatting with.",
+  "Perfect! What's your name? I'd love to stop calling you 'mate'!",
+  "Great stuff! And who do I have the pleasure of chatting with?",
+  "Brilliant! What's your name so our team knows who to look after?",
+]
+
+const PHONE_TRANSITIONS = [
+  (name: string) => `Thanks ${name}! What's the best phone number to reach you on?`,
+  (name: string) => `Lovely to meet you, ${name}! What's a good number to give you a call on?`,
+  (name: string) => `Great to chat with you, ${name}! What phone number works best for you?`,
+  (name: string) => `Cheers ${name}! What's the best number to reach you?`,
+]
+
+const EMAIL_PROMPTS = [
+  "Awesome, last one — what's your email address? We'll send your valuation straight to your inbox.",
+  "Nearly done! What email should we send your valuation to?",
+  "Just one more — what's your email? That's where we'll pop your valuation.",
+  "And finally, what's your email address? We'll have your valuation over to you in no time.",
+]
+
+const SUBMIT_SUCCESS = [
+  (name: string, year: string, car: string) =>
+    `You're all set, ${name}! Our team will review your ${year} ${car} and get back to you within a few hours with a valuation. We're really looking forward to helping you out — chat to you soon!`,
+  (name: string, year: string, car: string) =>
+    `Brilliant, ${name}! Your ${year} ${car} details are with our team now. You'll hear back from us within a few hours. Thanks so much for reaching out — we'll take great care of you!`,
+  (name: string, year: string, car: string) =>
+    `All done, ${name}! We've got your ${year} ${car} in our system and our team is on it. Expect to hear from us soon with your valuation. Really appreciate you choosing Auto-Sell.ai!`,
+  (name: string, year: string, car: string) =>
+    `Thank you so much, ${name}! Your ${year} ${car} valuation request is locked in. Our team will be in touch within a few hours. We can't wait to help you get the best price!`,
+]
+
 /** Very light validation helpers */
 const looksLikeYear = (s: string) => /^(19|20)\d{2}$/.test(s.trim())
 const looksLikePostcode = (s: string) => /^\d{4}$/.test(s.trim())
@@ -82,8 +149,8 @@ export default function ChatbotWidget() {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       botSay(
-        "G'day! I'm the Auto-Sell.ai assistant. I can get you a free car valuation in under 2 minutes — or answer any questions you have.\n\nWhat can I help you with?",
-        ['Get a free valuation', 'I have a question']
+        "G'day! Welcome to Auto-Sell.ai — so glad you stopped by! I can get you a free car valuation in under 2 minutes, or happy to answer any questions you might have.\n\nWhat can I help you with today?",
+        ['Get a free valuation', 'I have a question', 'Talk to someone']
       )
       setStage('awaiting_intent')
     }
@@ -174,6 +241,23 @@ export default function ChatbotWidget() {
           setStage('ask_make_model')
           botSay("Awesome — let's get you a valuation!\n\nWhat's the make and model of your car? (e.g. Toyota Corolla)")
         } else if (
+          lower.includes('talk to') ||
+          lower.includes('speak') ||
+          lower.includes('call') ||
+          lower.includes('human') ||
+          lower.includes('someone') ||
+          lower.includes('contact') ||
+          lower.includes('phone') ||
+          lower.includes('email')
+        ) {
+          botSay(
+            "Of course! Our team would love to hear from you. Here's how you can reach us:\n\n" +
+            "📞  1300 00 SELL (1300 007 355)\n" +
+            "📧  hello@auto-sell.ai\n\n" +
+            "We're available 7 days a week. Or if you'd prefer, I can take your details right now and have someone call you back — whatever works best for you!",
+            ['Get a free valuation', 'I have a question']
+          )
+        } else if (
           lower.includes('question') ||
           lower.includes('faq') ||
           lower.includes('info')
@@ -201,21 +285,30 @@ export default function ChatbotWidget() {
       case 'faq': {
         let answer = ''
         if (lower.includes('pric') || lower.includes('fee') || lower.includes('cost') || lower.includes('commission') || lower.includes('free')) {
-          answer = "Our service is 100% FREE — no fees, no commissions, no hidden costs. We make money by reselling, not by charging you. Free pickup Australia-wide and same-day OSKO payment."
+          answer = "Great question! Our service is 100% FREE — no fees, no commissions, no hidden costs. We make money by reselling, not by charging you. That includes free pickup anywhere in Australia and same-day OSKO payment. We want to make this as easy as possible for you."
         } else if (lower.includes('inspect') || lower.includes('visit') || lower.includes('come')) {
-          answer = "We come to you! Available 7 days a week, anywhere in Australia. Usually within 24–48 hours. The inspection takes about 30 minutes at your driveway, office, or wherever suits you."
+          answer = "We'd love to come to you! We're available 7 days a week, anywhere in Australia — usually within 24–48 hours. The inspection only takes about 30 minutes and we'll meet you at your driveway, office, or wherever's most convenient. Super easy."
         } else if (lower.includes('pay') || lower.includes('osko') || lower.includes('bank') || lower.includes('transfer') || lower.includes('money')) {
-          answer = "We pay instantly via OSKO transfer — straight to your bank account. Once the inspection and paperwork are done, money hits your account within minutes, not days."
+          answer = "You'll love this — we pay instantly via OSKO transfer, straight to your bank account. Once the inspection and paperwork are done, the money hits your account within minutes. No waiting around for days."
         } else if (lower.includes('damage') || lower.includes('broken') || lower.includes('not running') || lower.includes('wreck') || lower.includes('accident')) {
-          answer = "We buy cars in ANY condition — running or not, accident damage, mechanical issues, high mileage. No car is too far gone. We'll give you a fair price based on what we can work with."
+          answer = "Absolutely, we buy cars in ANY condition — running or not, accident damage, mechanical issues, high mileage, you name it. We'll always give you a fair price, so don't hesitate to reach out even if you think the car's seen better days!"
+        } else if (lower.includes('talk') || lower.includes('speak') || lower.includes('call') || lower.includes('human') || lower.includes('someone') || lower.includes('contact')) {
+          botSay(
+            "Of course! Our team would love to hear from you:\n\n" +
+            "📞  1300 00 SELL (1300 007 355)\n" +
+            "📧  hello@auto-sell.ai\n\n" +
+            "We're available 7 days a week. Or I can take your details and have someone reach out to you — whatever's easiest!",
+            ['Get a free valuation', 'I have another question']
+          )
+          return
         } else if (lower.includes('valuation') || lower.includes('quote') || lower.includes('sell') || lower.includes('get a')) {
           setStage('ask_make_model')
           botSay("Let's do it! What's the make and model of your car? (e.g. Toyota Corolla)")
           return
         } else {
-          answer = "I can help with questions about pricing, inspections, payment, or damaged cars. Or if you're ready, I can get you a free valuation right now!"
+          answer = "I'm happy to help with questions about pricing, inspections, payment, or damaged cars — just let me know what's on your mind! And whenever you're ready, I can get you a free valuation too."
         }
-        botSay(answer + "\n\nAnything else, or ready for a free valuation?", ['Get a free valuation', 'Another question'])
+        botSay(answer + pick(FAQ_CLOSERS), ['Get a free valuation', 'I have another question', 'Talk to someone'])
         break
       }
 
@@ -223,7 +316,7 @@ export default function ChatbotWidget() {
       case 'ask_make_model': {
         setLead(prev => ({ ...prev, vehicleMakeModel: msg }))
         setStage('ask_year')
-        botSay(`Nice — a ${msg}! What year is it?`)
+        botSay(pick(MAKE_MODEL_REACTIONS)(msg))
         break
       }
 
@@ -232,11 +325,11 @@ export default function ChatbotWidget() {
           setLead(prev => ({ ...prev, vehicleYear: msg.trim() }))
           setStage('ask_condition')
           botSay(
-            "Got it. How would you describe the condition?",
+            pick(CONDITION_PROMPTS),
             ['Excellent', 'Good', 'Fair', 'Poor / not running']
           )
         } else {
-          botSay("That doesn't look like a valid year — could you enter a 4-digit year? (e.g. 2018)")
+          botSay("No worries — I just need the 4-digit year so I can look it up for you (e.g. 2018)")
         }
         break
       }
@@ -244,7 +337,7 @@ export default function ChatbotWidget() {
       case 'ask_condition': {
         setLead(prev => ({ ...prev, vehicleCondition: msg }))
         setStage('ask_postcode')
-        botSay("Almost there! What's your postcode so we can check availability in your area?")
+        botSay(pick(POSTCODE_TRANSITIONS))
         break
       }
 
@@ -252,9 +345,9 @@ export default function ChatbotWidget() {
         if (looksLikePostcode(msg)) {
           setLead(prev => ({ ...prev, postcode: msg.trim() }))
           setStage('ask_name')
-          botSay("Perfect. And what's your name?")
+          botSay(pick(NAME_PROMPTS))
         } else {
-          botSay("I need a 4-digit Australian postcode — could you try again?")
+          botSay("Hmm, I just need a 4-digit Australian postcode — mind popping that in for me?")
         }
         break
       }
@@ -263,7 +356,7 @@ export default function ChatbotWidget() {
       case 'ask_name': {
         setLead(prev => ({ ...prev, name: msg }))
         setStage('ask_phone')
-        botSay(`Thanks ${msg}! What's the best phone number to reach you on?`)
+        botSay(pick(PHONE_TRANSITIONS)(msg))
         break
       }
 
@@ -271,9 +364,9 @@ export default function ChatbotWidget() {
         if (looksLikePhone(msg)) {
           setLead(prev => ({ ...prev, phone: msg.trim() }))
           setStage('ask_email')
-          botSay("And your email address? (we'll send your valuation there)")
+          botSay(pick(EMAIL_PROMPTS))
         } else {
-          botSay("That doesn't look right — could you double-check the phone number?")
+          botSay("Hmm, that doesn't quite look right — would you mind double-checking? A mobile or landline is perfect.")
         }
         break
       }
@@ -295,7 +388,7 @@ export default function ChatbotWidget() {
             ['Yes, submit!', 'No, let me fix something']
           )
         } else {
-          botSay("That doesn't look like a valid email — could you try again?")
+          botSay("That doesn't quite look like an email address — would you mind trying again? Something like name@example.com.")
         }
         break
       }
@@ -310,7 +403,7 @@ export default function ChatbotWidget() {
             setIsTyping(false)
             if (ok) {
               addMsg(
-                `You're all set, ${finalLead.name}! 🎉\n\nOur team will review your ${finalLead.vehicleYear} ${finalLead.vehicleMakeModel} and get back to you within a few hours with a valuation.\n\nIf you have any other questions in the meantime, just ask!`,
+                pick(SUBMIT_SUCCESS)(finalLead.name, finalLead.vehicleYear, finalLead.vehicleMakeModel),
                 false
               )
             } else {
@@ -323,9 +416,9 @@ export default function ChatbotWidget() {
         } else if (lower.includes('no') || lower.includes('fix') || lower.includes('change') || lower.includes('wrong')) {
           setStage('ask_make_model')
           setLead(EMPTY_LEAD)
-          botSay("No worries — let's start again. What's the make and model of your car?")
+          botSay("No worries at all! Let's go through it again — what's the make and model of your car?")
         } else {
-          botSay("Just need a quick yes or no — does the summary look correct?", ['Yes, submit!', 'No, let me fix something'])
+          botSay("No rush — just let me know if everything above looks good and I'll send it through for you!", ['Yes, submit!', 'No, let me fix something'])
         }
         break
       }
@@ -351,7 +444,7 @@ export default function ChatbotWidget() {
       }
 
       default:
-        botSay("I'm here to help! Would you like a free car valuation, or do you have a question?", ['Get a free valuation', 'I have a question'])
+        botSay("I'm here and happy to help! Would you like a free car valuation, have a question, or prefer to chat with our team directly?", ['Get a free valuation', 'I have a question', 'Talk to someone'])
         setStage('awaiting_intent')
     }
   }
