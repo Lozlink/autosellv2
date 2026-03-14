@@ -183,33 +183,46 @@ export default function ChatbotWidget() {
   // ── Lead submission ─────────────────────────────────────────────────────
 
   async function submitLead(finalLead: LeadData) {
-    // Parse make/model into separate fields as best we can
-    const parts = finalLead.vehicleMakeModel.trim().split(/\s+/)
-    const make = parts[0] || ''
-    const model = parts.slice(1).join(' ') || ''
-
-    const row = {
-      name: finalLead.name,
-      email: finalLead.email,
-      phone: finalLead.phone,
-      postcode: finalLead.postcode,
-      enquiry_type: 'sell',
-      vehicle_make: make,
-      vehicle_model: model,
-      vehicle_year: finalLead.vehicleYear,
-      vehicle_condition: finalLead.vehicleCondition,
-      vehicle_description: `${finalLead.vehicleYear} ${finalLead.vehicleMakeModel} — condition: ${finalLead.vehicleCondition}`,
-      message: `Chatbot lead: ${finalLead.vehicleYear} ${finalLead.vehicleMakeModel}, condition ${finalLead.vehicleCondition}, postcode ${finalLead.postcode}`,
-      preferred_location: finalLead.postcode,
-      vin_or_reg: 'chatbot_entry',
-      budget: '',
-      vehicle_odometer: '',
-      created_at: new Date().toISOString(),
-    }
+    const hasCarDetails = finalLead.vehicleMakeModel.trim() !== ''
 
     try {
-      const { error } = await supabase.from('inquiries').insert([row])
-      if (error) throw error
+      if (hasCarDetails) {
+        // Full valuation request → inquiries table
+        const parts = finalLead.vehicleMakeModel.trim().split(/\s+/)
+        const make = parts[0] || ''
+        const model = parts.slice(1).join(' ') || ''
+
+        const { error } = await supabase.from('inquiries').insert([{
+          name: finalLead.name,
+          email: finalLead.email,
+          phone: finalLead.phone,
+          postcode: finalLead.postcode,
+          enquiry_type: 'sell',
+          vehicle_make: make,
+          vehicle_model: model,
+          vehicle_year: finalLead.vehicleYear,
+          vehicle_condition: finalLead.vehicleCondition,
+          vehicle_description: `${finalLead.vehicleYear} ${finalLead.vehicleMakeModel} — condition: ${finalLead.vehicleCondition}`,
+          message: `Chatbot lead: ${finalLead.vehicleYear} ${finalLead.vehicleMakeModel}, condition ${finalLead.vehicleCondition}, postcode ${finalLead.postcode}`,
+          preferred_location: finalLead.postcode,
+          vin_or_reg: 'chatbot_entry',
+          budget: '',
+          vehicle_odometer: '',
+          created_at: new Date().toISOString(),
+        }])
+        if (error) throw error
+      } else {
+        // Callback request (no car details) → leads table
+        const { error } = await supabase.from('leads').insert([{
+          name: finalLead.name,
+          email: finalLead.email,
+          phone: finalLead.phone,
+          enquiry_type: 'chatbot_callback',
+          message: 'Callback requested via chatbot',
+          created_at: new Date().toISOString(),
+        }])
+        if (error) throw error
+      }
       return true
     } catch (err) {
       console.error('Lead submission failed:', err)
@@ -229,6 +242,15 @@ export default function ChatbotWidget() {
       // ─── Intent detection ─────────────────────────────────────────
       case 'awaiting_intent': {
         if (
+          lower.includes('leave my') ||
+          lower.includes('leave details') ||
+          lower.includes('call me') ||
+          lower.includes('callback') ||
+          lower.includes('call back')
+        ) {
+          setStage('ask_name')
+          botSay("Absolutely! I'll just grab a few details so our team can reach out to you. What's your name?")
+        } else if (
           lower.includes('valuation') ||
           lower.includes('quote') ||
           lower.includes('sell') ||
@@ -253,9 +275,9 @@ export default function ChatbotWidget() {
           botSay(
             "Of course! Our team would love to hear from you. Here's how you can reach us:\n\n" +
             "📞  1300 00 SELL (1300 007 355)\n" +
-            "📧  hello@auto-sell.ai\n\n" +
-            "We're available 7 days a week. Or if you'd prefer, I can take your details right now and have someone call you back — whatever works best for you!",
-            ['Get a free valuation', 'I have a question']
+            "📧  info@auto-sell.ai\n\n" +
+            "We're available 7 days a week. Or I can take your details right now and have someone call you back — whatever works best for you!",
+            ['Leave my details', 'Get a free valuation', 'I have a question']
           )
         } else if (
           lower.includes('question') ||
@@ -292,13 +314,17 @@ export default function ChatbotWidget() {
           answer = "You'll love this — we pay instantly via OSKO transfer, straight to your bank account. Once the inspection and paperwork are done, the money hits your account within minutes. No waiting around for days."
         } else if (lower.includes('damage') || lower.includes('broken') || lower.includes('not running') || lower.includes('wreck') || lower.includes('accident')) {
           answer = "Absolutely, we buy cars in ANY condition — running or not, accident damage, mechanical issues, high mileage, you name it. We'll always give you a fair price, so don't hesitate to reach out even if you think the car's seen better days!"
+        } else if (lower.includes('leave my') || lower.includes('leave details') || lower.includes('call me') || lower.includes('callback') || lower.includes('call back')) {
+          setStage('ask_name')
+          botSay("Absolutely! I'll just grab a few details so our team can reach out. What's your name?")
+          return
         } else if (lower.includes('talk') || lower.includes('speak') || lower.includes('call') || lower.includes('human') || lower.includes('someone') || lower.includes('contact')) {
           botSay(
             "Of course! Our team would love to hear from you:\n\n" +
             "📞  1300 00 SELL (1300 007 355)\n" +
-            "📧  hello@auto-sell.ai\n\n" +
+            "📧  info@auto-sell.ai\n\n" +
             "We're available 7 days a week. Or I can take your details and have someone reach out to you — whatever's easiest!",
-            ['Get a free valuation', 'I have another question']
+            ['Leave my details', 'Get a free valuation', 'I have another question']
           )
           return
         } else if (lower.includes('valuation') || lower.includes('quote') || lower.includes('sell') || lower.includes('get a')) {
@@ -375,18 +401,30 @@ export default function ChatbotWidget() {
         if (looksLikeEmail(msg)) {
           const updatedLead = { ...lead, email: msg.trim() }
           setLead(updatedLead)
+          const hasCarDetails = updatedLead.vehicleMakeModel.trim() !== ''
           setStage('confirm')
-          botSay(
-            `Great — here's a summary:\n\n` +
-            `🚗  ${updatedLead.vehicleYear} ${updatedLead.vehicleMakeModel}\n` +
-            `📋  Condition: ${updatedLead.vehicleCondition}\n` +
-            `📍  Postcode: ${updatedLead.postcode}\n` +
-            `👤  ${updatedLead.name}\n` +
-            `📞  ${updatedLead.phone}\n` +
-            `📧  ${updatedLead.email}\n\n` +
-            `Does everything look correct?`,
-            ['Yes, submit!', 'No, let me fix something']
-          )
+          if (hasCarDetails) {
+            botSay(
+              `Great — here's a summary:\n\n` +
+              `🚗  ${updatedLead.vehicleYear} ${updatedLead.vehicleMakeModel}\n` +
+              `📋  Condition: ${updatedLead.vehicleCondition}\n` +
+              `📍  Postcode: ${updatedLead.postcode}\n` +
+              `👤  ${updatedLead.name}\n` +
+              `📞  ${updatedLead.phone}\n` +
+              `📧  ${updatedLead.email}\n\n` +
+              `Does everything look correct?`,
+              ['Yes, submit!', 'No, let me fix something']
+            )
+          } else {
+            botSay(
+              `Perfect, here's what I've got:\n\n` +
+              `👤  ${updatedLead.name}\n` +
+              `📞  ${updatedLead.phone}\n` +
+              `📧  ${updatedLead.email}\n\n` +
+              `Shall I send this through so our team can give you a call?`,
+              ['Yes, send it!', 'No, let me fix something']
+            )
+          }
         } else {
           botSay("That doesn't quite look like an email address — would you mind trying again? Something like name@example.com.")
         }
@@ -395,28 +433,37 @@ export default function ChatbotWidget() {
 
       // ─── Confirm & submit ─────────────────────────────────────────
       case 'confirm': {
-        if (lower.includes('yes') || lower.includes('submit') || lower.includes('correct') || lower.includes('looks good')) {
+        if (lower.includes('yes') || lower.includes('submit') || lower.includes('correct') || lower.includes('looks good') || lower.includes('send')) {
           setStage('submitted')
           setIsTyping(true)
           const finalLead = { ...lead, email: lead.email || msg.trim() }
+          const isCallback = finalLead.vehicleMakeModel.trim() === ''
           submitLead(finalLead).then(ok => {
             setIsTyping(false)
             if (ok) {
               addMsg(
-                pick(SUBMIT_SUCCESS)(finalLead.name, finalLead.vehicleYear, finalLead.vehicleMakeModel),
+                isCallback
+                  ? `Thanks so much, ${finalLead.name}! Your details are with our team now — someone will be in touch with you very soon. We really appreciate you reaching out!`
+                  : pick(SUBMIT_SUCCESS)(finalLead.name, finalLead.vehicleYear, finalLead.vehicleMakeModel),
                 false
               )
             } else {
               addMsg(
-                "Hmm, something went wrong submitting your details. Please try our online form at Auto-Sell.ai or call us directly. Sorry about that!",
+                "Hmm, something went wrong submitting your details. Please try our online form at Auto-Sell.ai or give us a call on 1300 00 SELL. Sorry about that!",
                 false
               )
             }
           })
         } else if (lower.includes('no') || lower.includes('fix') || lower.includes('change') || lower.includes('wrong')) {
-          setStage('ask_make_model')
+          const isCallback = lead.vehicleMakeModel.trim() === ''
           setLead(EMPTY_LEAD)
-          botSay("No worries at all! Let's go through it again — what's the make and model of your car?")
+          if (isCallback) {
+            setStage('ask_name')
+            botSay("No worries at all! Let's try again — what's your name?")
+          } else {
+            setStage('ask_make_model')
+            botSay("No worries at all! Let's go through it again — what's the make and model of your car?")
+          }
         } else {
           botSay("No rush — just let me know if everything above looks good and I'll send it through for you!", ['Yes, submit!', 'No, let me fix something'])
         }
