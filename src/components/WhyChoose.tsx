@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 const GOLD = '#FFC325'
 
@@ -146,15 +146,29 @@ function DesktopCard({ card }: { card: Card }) {
 }
 
 // ─── Mobile tabbed showcase ────────────────────────────────────────────────
+const AUTO_SCROLL_INTERVAL = 4000 // ms between auto-advances
+
 function MobileShowcase() {
   const [activeIdx, setActiveIdx] = useState(0)
   const [dir, setDir] = useState(1)
+  const pauseUntilRef = useRef(0) // timestamp — pause auto-scroll after user tap
   const card = CARDS[activeIdx]
 
-  function goTo(idx: number) {
+  // Auto-advance on an interval
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (Date.now() < pauseUntilRef.current) return // user recently tapped
+      setDir(1)
+      setActiveIdx(prev => (prev + 1) % CARDS.length)
+    }, AUTO_SCROLL_INTERVAL)
+    return () => clearInterval(id)
+  }, [])
+
+  const goTo = useCallback((idx: number) => {
+    pauseUntilRef.current = Date.now() + 8000 // pause 8s after manual tap
     setDir(idx > activeIdx ? 1 : -1)
     setActiveIdx(idx)
-  }
+  }, [activeIdx])
 
   return (
     <div className="w-full">
