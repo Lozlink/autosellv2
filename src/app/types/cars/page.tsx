@@ -17,7 +17,7 @@ export default function CarsPage() {
       <section className="text-gray-800 py-20 hero-glass-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell Your Car
                 <span className="block" style={{ color: '#FFC325' }}>Any Make, Any Model</span>
@@ -26,33 +26,35 @@ export default function CarsPage() {
                 We buy all car makes and models - Toyota, Ford, Holden, BMW, Mercedes, and more.
                 Any condition, any age. Get your free quote in 30 minutes.
               </p>
-              
-              <div className="space-y-4 mb-8">
+
+              <div className="space-y-4 mb-8 hidden lg:block">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <span style={{ color: '#FFC325' }}>✓</span>
+                    <span style={{ color: '#FFC325' }}></span>
                   </div>
                   <span>All car makes and models</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <span style={{ color: '#FFC325' }}>✓</span>
+                    <span style={{ color: '#FFC325' }}></span>
                   </div>
                   <span>Any condition - running or not</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <span style={{ color: '#FFC325' }}>✓</span>
+                    <span style={{ color: '#FFC325' }}></span>
                   </div>
                   <span>Same-day payment guaranteed</span>
                 </div>
               </div>
             </div>
 
-            <div>
-              <Suspense fallback={<div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200 animate-pulse h-96"></div>}>
-                <CarSellForm />
-              </Suspense>
+            <div className="order-1 lg:order-2">
+              <div className="liquid-glass-form-container rounded-2xl shadow-xl">
+                <Suspense fallback={<div className="rounded-2xl p-8 border bg-white/30 animate-pulse h-96" style={{ borderColor: '#FFC325' }}></div>}>
+                  <CarSellForm heading="Sell Your Car" subheading="Get Your Free Quote Now" />
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
@@ -72,14 +74,14 @@ export default function CarsPage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { type: 'Sedans', description: 'Camry, Commodore, Falcon, Accord', icon: '🚗' },
-              { type: 'Hatchbacks', description: 'Corolla, Focus, Golf, i30', icon: '🚙' },
-              { type: 'Coupes', description: 'Mustang, 86, BRZ, TT', icon: '🏎️' },
-              { type: 'Convertibles', description: 'MX-5, SLK, TT Roadster', icon: '🌞' },
-              { type: 'Wagons', description: 'Commodore, Falcon, Liberty', icon: '🚐' },
-              { type: 'Luxury Cars', description: 'BMW, Mercedes, Audi, Lexus', icon: '💎' },
-              { type: 'Sports Cars', description: 'Porsche, Ferrari, Lamborghini', icon: '🏁' },
-              { type: 'Classic Cars', description: 'Vintage and classic vehicles', icon: '🕰️' }
+              { type: 'Sedans', description: 'Camry, Commodore, Falcon, Accord', icon: '' },
+              { type: 'Hatchbacks', description: 'Corolla, Focus, Golf, i30', icon: '' },
+              { type: 'Coupes', description: 'Mustang, 86, BRZ, TT', icon: '' },
+              { type: 'Convertibles', description: 'MX-5, SLK, TT Roadster', icon: '' },
+              { type: 'Wagons', description: 'Commodore, Falcon, Liberty', icon: '' },
+              { type: 'Luxury Cars', description: 'BMW, Mercedes, Audi, Lexus', icon: '' },
+              { type: 'Sports Cars', description: 'Porsche, Ferrari, Lamborghini', icon: '' },
+              { type: 'Classic Cars', description: 'Vintage and classic vehicles', icon: '' }
             ].map((category) => (
               <div key={category.type} className="text-center p-6 transition-all duration-300 hover:scale-105 group">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: '#FFC325' }}>
@@ -141,7 +143,7 @@ export default function CarsPage() {
             
             <div className="text-center p-6  hover:shadow-md transition-shadow">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFC325' }}>
-                <span className="text-2xl font-bold" style={{ color: '#000000' }}>⚡</span>
+                <span className="text-2xl font-bold" style={{ color: '#000000' }}></span>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Fast Service</h3>
               <p className="text-gray-600">Get your quote in 30 minutes and receive payment the same day.</p>
@@ -149,7 +151,7 @@ export default function CarsPage() {
             
             <div className="text-center p-6  hover:shadow-md transition-shadow">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFC325' }}>
-                <span className="text-2xl font-bold" style={{ color: '#000000' }}>✓</span>
+                <span className="text-2xl font-bold" style={{ color: '#000000' }}></span>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">No Hassle</h3>
               <p className="text-gray-600">We handle all the paperwork and come to you for inspection.</p>

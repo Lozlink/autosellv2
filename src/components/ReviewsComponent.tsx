@@ -21,7 +21,7 @@ function ReviewCard({ review, index, animate = true }: { review: Review; index: 
     <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <div className="flex text-yellow-400 text-lg" aria-label={`${review.rating} stars`}>
-          {'★'.repeat(review.rating)}
+          {''.repeat(review.rating)}
         </div>
         {review.verified && (
           <span
@@ -241,7 +241,9 @@ export default function ReviewsComponent() {
         const res = await fetch('/api/google-reviews', { cache: 'no-store' })
         const data = await res.json()
         if (Array.isArray(data.reviews) && data.reviews.length > 0) {
-          setReviews(data.reviews)
+          // Only show reviews that have written text content
+          const withText = data.reviews.filter((r: Review) => r.review && r.review.trim().length > 0)
+          setReviews(withText.length > 0 ? withText : data.reviews)
           setIsLoading(false)
         }
       } catch (error) {

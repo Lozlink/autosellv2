@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Link from 'next/link'
+import CarSellForm from '@/components/CarSellForm'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Mazda | Fast Quotes & Same-Day Payment Australia-Wide",
@@ -12,27 +15,92 @@ export default function SellMazdaPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section */}
-      <section className="text-gray-800 py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Sell My Mazda
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Sell My Mazda
               <span className="block" style={{ color: '#000' }}>Simple & Fast Payment</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
               Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand.
             </p>
-            <Link
-              href="/#sell-form"
-              className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
-              style={{ backgroundColor: '#FFC325', color: '#fff' }}
-            >
-              Get Your Mazda Quote
-            </Link>
+
+              <div className="space-y-4 mt-8 hidden lg:block">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.3)' }}>
+                    <span style={{ color: '#FFC325' }}>&#10003;</span>
+                  </div>
+                  <span>30-minute quote turnaround</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.3)' }}>
+                    <span style={{ color: '#FFC325' }}>&#10003;</span>
+                  </div>
+                  <span>Same-day OSKO payment</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.3)' }}>
+                    <span style={{ color: '#FFC325' }}>&#10003;</span>
+                  </div>
+                  <span>Free Australia-wide pickup</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="liquid-glass-form-container rounded-2xl shadow-xl">
+                <Suspense fallback={<div className="rounded-2xl p-8 border bg-white/30 animate-pulse h-96" style={{ borderColor: '#FFC325' }}></div>}>
+                  <CarSellForm heading="Sell Your Mazda" subheading="Get Your Free Quote Now" />
+                </Suspense>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Brand Showcase with Car Cutout */}
+      <section className="py-16 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Australia&apos;s Trusted Mazda Buyers
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Whether your Mazda is brand new or has seen better days, we&apos;ll make you a fair offer. No haggling, no hidden fees — just a straightforward process from quote to payment.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
+                  <span className="text-gray-700">Free quote in 30 minutes</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
+                  <span className="text-gray-700">Same-day OSKO payment</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
+                  <span className="text-gray-700">We handle all paperwork</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center items-center">
+              <div className="relative w-full max-w-md">
+                <Image
+                  src="/images/cars/brands/mazda-cutout.png"
+                  alt="Sell your Mazda"
+                  width={600}
+                  height={400}
+                  className="object-contain drop-shadow-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Intro Content Section */}
       <section className="py-16 bg-white">
@@ -96,32 +164,32 @@ export default function SellMazdaPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: "⚡",
+                icon: "",
                 title: "Fast 30-Minute Quotes",
                 description: "Submit your Mazda details and receive a quote usually within 30 minutes."
               },
               {
-                icon: "💰",
+                icon: "",
                 title: "Fair Market Pricing",
                 description: "Based on verified sales data, real-time pricing tools and industry-trusted sources."
               },
               {
-                icon: "🚗",
+                icon: "",
                 title: "All Models Accepted",
                 description: "We buy every Mazda model in any condition, including high-km and damaged vehicles."
               },
               {
-                icon: "⏱️",
+                icon: "",
                 title: "Same-Day OSKO Payment",
                 description: "Get paid instantly via OSKO transfer once inspection is complete."
               },
               {
-                icon: "🏠",
+                icon: "",
                 title: "Free Pickup Service",
                 description: "We come to you anywhere in Australia. No need to drop your car off."
               },
               {
-                icon: "✅",
+                icon: "",
                 title: "No Hidden Fees",
                 description: "What we quote is what you get paid. Complete transparency throughout."
               }
@@ -219,19 +287,19 @@ export default function SellMazdaPage() {
 
           <ul className="space-y-4">
             <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4">✓</span>
+              <span className="text-yellow-400 font-bold mr-4"></span>
               <span className="text-gray-700">Verified sales data and real-time pricing tools</span>
             </li>
             <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4">✓</span>
+              <span className="text-yellow-400 font-bold mr-4"></span>
               <span className="text-gray-700">Industry-trusted sources for accurate valuation</span>
             </li>
             <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4">✓</span>
+              <span className="text-yellow-400 font-bold mr-4"></span>
               <span className="text-gray-700">Model-specific demand analysis</span>
             </li>
             <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4">✓</span>
+              <span className="text-yellow-400 font-bold mr-4"></span>
               <span className="text-gray-700">No automated guesswork—honest, data-driven offers</span>
             </li>
           </ul>
@@ -254,19 +322,18 @@ export default function SellMazdaPage() {
               <p className="text-gray-600 text-sm">Major city or regional area—we service all of Australia.</p>
             </div>
             <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3">⚡</div>
+              <div className="text-3xl mb-3"></div>
               <h3 className="font-semibold text-gray-900 mb-2">Fastest Way</h3>
               <p className="text-gray-600 text-sm">Quick process without dealership visits.</p>
             </div>
             <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3">😌</div>
+              <div className="text-3xl mb-3"></div>
               <h3 className="font-semibold text-gray-900 mb-2">Most Convenient</h3>
               <p className="text-gray-600 text-sm">Inspection, payment and pickup all in one visit.</p>
             </div>
           </div>
         </div>
       </section>
-
       {/* Final CTA Section */}
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -277,7 +344,7 @@ export default function SellMazdaPage() {
             Get a fair valuation in 30 minutes and same-day OSKO payment.
           </p>
           <Link
-            href="/#sell-form"
+            href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >

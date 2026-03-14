@@ -35,7 +35,7 @@ export interface ChatbotResponse {
 const automatedResponses = {
   greeting: {
     keywords: ['hello', 'hi', 'hey', 'start', 'help'],
-    response: "Hi! I'm Auto-Sell.ai's assistant. I can help you with:\n\n🚗 Getting a car valuation\n💰 Understanding our pricing\n📅 Booking an inspection\n❓ General questions\n\nWhat would you like to know?",
+    response: "Hi! I'm Auto-Sell.ai's assistant. I can help you with:\n\n Getting a car valuation\n Understanding our pricing\n Booking an inspection\n General questions\n\nWhat would you like to know?",
     shouldEscalate: false,
     nextStep: 'waiting_for_query'
   },
@@ -49,35 +49,35 @@ const automatedResponses = {
   
   pricing: {
     keywords: ['pricing', 'fees', 'cost', 'charge', 'free', 'commission'],
-    response: "Our service is completely FREE! 🎉\n\n✅ No fees or commissions\n✅ No hidden costs\n✅ Free pickup anywhere in Australia\n✅ Same-day payment via OSKO\n\nWe make money by reselling your car, not by charging you. Ready to get your free quote?",
+    response: "Our service is completely FREE! \n\n No fees or commissions\n No hidden costs\n Free pickup anywhere in Australia\n Same-day payment via OSKO\n\nWe make money by reselling your car, not by charging you. Ready to get your free quote?",
     shouldEscalate: false,
     nextStep: 'ready_for_quote'
   },
   
   inspection: {
     keywords: ['inspection', 'visit', 'come', 'when', 'schedule', 'booking'],
-    response: "We can inspect your car at your convenience! 📅\n\n• Available 7 days a week\n• We come to you anywhere in Australia\n• Usually within 24-48 hours\n• Takes about 30 minutes\n\nWhat's your postcode? I can check availability in your area.",
+    response: "We can inspect your car at your convenience! \n\n• Available 7 days a week\n• We come to you anywhere in Australia\n• Usually within 24-48 hours\n• Takes about 30 minutes\n\nWhat's your postcode? I can check availability in your area.",
     shouldEscalate: false,
     nextStep: 'collecting_location'
   },
   
   payment: {
     keywords: ['payment', 'pay', 'money', 'osko', 'bank', 'transfer', 'when'],
-    response: "We pay instantly via OSKO transfer! 💰\n\n• Same-day payment after inspection\n• Direct to your bank account\n• Usually processed within minutes\n• No waiting for checks or cash\n\nOnce we agree on the price and complete paperwork, you'll have the money in your account within hours!",
+    response: "We pay instantly via OSKO transfer! \n\n• Same-day payment after inspection\n• Direct to your bank account\n• Usually processed within minutes\n• No waiting for checks or cash\n\nOnce we agree on the price and complete paperwork, you'll have the money in your account within hours!",
     shouldEscalate: false,
     nextStep: 'ready_for_quote'
   },
   
   condition: {
     keywords: ['damaged', 'broken', 'not running', 'accident', 'wreck', 'condition'],
-    response: "We buy cars in ANY condition! 🚗\n\n✅ Running or not running\n✅ Accident damage\n✅ Mechanical issues\n✅ High mileage\n✅ Old or new\n\nNo car is too damaged for us. We'll give you a fair price based on what we can salvage. Want to get a quote for your damaged car?",
+    response: "We buy cars in ANY condition! \n\n Running or not running\n Accident damage\n Mechanical issues\n High mileage\n Old or new\n\nNo car is too damaged for us. We'll give you a fair price based on what we can salvage. Want to get a quote for your damaged car?",
     shouldEscalate: false,
     nextStep: 'ready_for_quote'
   },
   
   escalation: {
     keywords: ['speak', 'human', 'manager', 'complaint', 'problem', 'issue', 'complex'],
-    response: "I understand you'd like to speak with someone. Let me connect you with our team right away! 👨‍💼\n\nOne of our car buying specialists will call you within 15 minutes to discuss your specific needs.\n\nIn the meantime, could you tell me your name and phone number?",
+    response: "I understand you'd like to speak with someone. Let me connect you with our team right away! \n\nOne of our car buying specialists will call you within 15 minutes to discuss your specific needs.\n\nIn the meantime, could you tell me your name and phone number?",
     shouldEscalate: true,
     nextStep: 'collecting_contact_for_escalation'
   }
@@ -151,7 +151,7 @@ export function analyzeMessage(message: string): ChatbotResponse {
   
   // Default response for unrecognized messages
   return {
-    message: "I'm here to help with your car selling needs! I can assist with:\n\n🚗 Getting a free car valuation\n💰 Explaining our pricing\n📅 Booking an inspection\n❓ Answering questions\n\nWhat would you like to know?",
+    message: "I'm here to help with your car selling needs! I can assist with:\n\n Getting a free car valuation\n Explaining our pricing\n Booking an inspection\n Answering questions\n\nWhat would you like to know?",
     shouldEscalate: false,
     nextStep: 'waiting_for_query'
   };

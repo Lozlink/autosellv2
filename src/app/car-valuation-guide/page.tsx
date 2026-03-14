@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Link from 'next/link'
+import CarSellForm from '@/components/CarSellForm'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Car Valuation Guide - Auto-Sell.ai | How to Price Your Car Right",
@@ -12,31 +14,55 @@ export default function CarValuationGuidePage() {
     <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Hero Section */}
-      <section className="text-gray-800 py-20" style={{ backgroundColor: '#FFC325' }}>
+      {/* Hero Section with Form */}
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Car Valuation Guide
-              <span className="block" style={{ color: '#FFC325' }}>How to Price Your Car Right</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8">
-              Understanding your car&apos;s true value is crucial for getting the best price. 
-              Learn what factors affect car values and how to maximize your return.
-            </p>
-            <Link
-              href="/#sell-form"
-              className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
-              style={{ backgroundColor: '#FFC325', color: '#fff' }}
-            >
-              Get Your Free Valuation
-            </Link>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Car Valuation Guide
+                <span className="block" style={{ color: '#FFC325' }}>How to Price Your Car Right</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mb-8">
+                Understanding your car&apos;s true value is crucial for getting the best price.
+                Learn what factors affect car values and how to maximize your return.
+              </p>
+
+              <div className="space-y-4 mt-8 hidden lg:block">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.3)' }}>
+                    <span style={{ color: '#FFC325' }}>&#10003;</span>
+                  </div>
+                  <span>30-minute quote turnaround</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.3)' }}>
+                    <span style={{ color: '#FFC325' }}>&#10003;</span>
+                  </div>
+                  <span>Same-day OSKO payment</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.3)' }}>
+                    <span style={{ color: '#FFC325' }}>&#10003;</span>
+                  </div>
+                  <span>Free Australia-wide pickup</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="liquid-glass-form-container rounded-2xl shadow-xl">
+                <Suspense fallback={<div className="rounded-2xl p-8 border bg-white/30 animate-pulse h-96" style={{ borderColor: '#FFC325' }}></div>}>
+                  <CarSellForm heading="Get Your Car Valuation" subheading="Free, Accurate, No Obligation" />
+                </Suspense>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Key Factors Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -50,39 +76,39 @@ export default function CarValuationGuidePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: "📅",
+                icon: "",
                 title: "Age & Mileage",
                 description: "Older cars with high mileage typically have lower values. However, well-maintained classics can be exceptions."
               },
               {
-                icon: "🚗",
+                icon: "",
                 title: "Make & Model",
                 description: "Popular brands and models often retain value better. Luxury and sports cars may have different depreciation curves."
               },
               {
-                icon: "🔧",
+                icon: "",
                 title: "Condition",
                 description: "Mechanical condition, bodywork, and interior quality significantly impact value. Well-maintained cars command higher prices."
               },
               {
-                icon: "🎨",
+                icon: "",
                 title: "Color & Features",
                 description: "Rare colors and desirable features (leather, sunroof, etc.) can increase value, while unpopular colors may decrease it."
               },
               {
-                icon: "📍",
+                icon: "",
                 title: "Location",
                 description: "Regional demand, climate, and local market conditions affect pricing. Some cars are worth more in certain areas."
               },
               {
-                icon: "📊",
+                icon: "",
                 title: "Market Demand",
                 description: "Current market trends, fuel prices, and economic conditions influence what buyers are willing to pay."
               }
             ].map((factor, index) => (
-              <div key={index} className="text-center px-2 md:px-4 py-2 transition-colors">
+              <div key={index} className="text-center p-6 rounded-xl border border-[#FFC325] bg-white hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">{factor.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-600 mb-3">{factor.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">{factor.title}</h3>
                 <p className="text-gray-600">{factor.description}</p>
               </div>
             ))}
@@ -91,7 +117,7 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* Valuation Methods */}
-      <section className="py-8 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -109,59 +135,59 @@ export default function CarValuationGuidePage() {
                 description: "Websites like RedBook, CarsGuide, and Glass's provide instant estimates based on basic information.",
                 pros: ["Quick and free", "Good starting point", "Easy to use"],
                 cons: ["May not reflect local market", "Limited accuracy", "No condition assessment"],
-                icon: "💻"
+                icon: ""
               },
               {
                 method: "Professional Appraisal",
                 description: "Expert assessment by qualified mechanics or appraisers who inspect your car in detail.",
                 pros: ["Most accurate", "Detailed condition report", "Professional opinion"],
                 cons: ["Costs money", "Takes time", "May require travel"],
-                icon: "👨‍🔧"
+                icon: ""
               },
               {
                 method: "Market Research",
                 description: "Researching similar cars for sale in your area to understand current market prices.",
                 pros: ["Real market data", "Local pricing", "Current trends"],
                 cons: ["Time-consuming", "May not find exact matches", "Prices can vary widely"],
-                icon: "🔍"
+                icon: ""
               },
               {
                 method: "Auto-Sell.ai Valuation",
                 description: "Our AI-powered system combines multiple data sources for accurate, market-based valuations.",
                 pros: ["Fast and accurate", "Market-based pricing", "Free service", "Local market data"],
                 cons: ["Requires basic information", "Online only"],
-                icon: "🤖"
+                icon: ""
               }
             ].map((method, index) => (
               <div key={index} className="bg-white p-8 rounded-xl border border-[#FFC325]">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="text-4xl">{method.icon}</div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-600">{method.method}</h3>
+                    <h3 className="text-xl font-semibold text-gray-800">{method.method}</h3>
                     <p className="text-gray-600 text-sm">{method.description}</p>
                   </div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-semibold mb-2 text-[#FFC325]">✓ Pros</h4>
+                    <h4 className="font-semibold mb-2 text-[#FFC325]"> Pros</h4>
                     <ul className="space-y-1 text-sm">
                       {method.pros.map((pro, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <span className="text-[#FFC325]">•</span>
-                          <span className="text-[#FFC325]">{pro}</span>
+                          <span className="text-gray-600">{pro}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold mb-2 text-red-600">✗ Cons</h4>
+                    <h4 className="font-semibold mb-2 text-red-600"> Cons</h4>
                     <ul className="space-y-1 text-sm">
                       {method.cons.map((con, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <span className="text-red-500">•</span>
-                          <span className="text-red-500">{con}</span>
+                          <span className="text-gray-600">{con}</span>
                         </li>
                       ))}
                     </ul>
@@ -174,7 +200,7 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* Tips for Better Value */}
-      <section className="py-8" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -190,30 +216,30 @@ export default function CarValuationGuidePage() {
               {
                 tip: "Maintain Service Records",
                 description: "Complete service history shows your car has been well-maintained and can increase value by 10-15%.",
-                icon: "📋"
+                icon: ""
               },
               {
                 tip: "Fix Minor Issues",
                 description: "Small repairs like replacing broken lights, fixing dents, or replacing worn tires can pay for themselves in increased value.",
-                icon: "🔧"
+                icon: ""
               },
               {
                 tip: "Clean Thoroughly",
                 description: "A clean car appears well-cared for and can increase perceived value. Professional detailing can add 5-10% to your car's value.",
-                icon: "🧹"
+                icon: ""
               },
               {
                 tip: "Time Your Sale",
                 description: "Consider seasonal demand - convertibles sell better in summer, 4WDs in winter. Also watch for market trends.",
-                icon: "📅"
+                icon: ""
               },
               {
                 tip: "Be Honest About Condition",
                 description: "Transparency builds trust and can lead to better offers. Hidden problems discovered later can kill deals.",
-                icon: "✅"
+                icon: ""
               }
             ].map((tip, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 bg-transparent border-l-2 border-[#FFC325]/40">
+              <div key={index} className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-200">
                 <div className="text-3xl">{tip.icon}</div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-700 mb-2">{tip.tip}</h3>
@@ -226,7 +252,7 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* Common Valuation Mistakes */}
-      <section className="py-6 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -239,7 +265,7 @@ export default function CarValuationGuidePage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-xl border border-[#FFC325]">
-              <h3 className="text-xl font-semibold mb-4 text-red-600">❌ What Not to Do</h3>
+              <h3 className="text-xl font-semibold mb-4 text-red-600"> What Not to Do</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 text-lg">•</span>
@@ -265,7 +291,7 @@ export default function CarValuationGuidePage() {
             </div>
             
             <div className="bg-white p-8 rounded-xl border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 text-green-600">✅ What to Do Instead</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 text-green-600"> What to Do Instead</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 text-lg">•</span>
@@ -294,27 +320,25 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Get Your Accurate Car Valuation Today
           </h2>
-          <p className="text-xl mb-8 text-gray-600">
-            Our AI-powered system provides market-accurate valuations in minutes.
+          <p className="text-xl mb-8 text-gray-700">
+            Our system provides market-accurate valuations in minutes.
             No guesswork, just real market data and expert analysis.
           </p>
-          <div className="space-y-4">
-            <Link
-              href="/#sell-form"
-              className="inline-block px-12 py-4 rounded-lg text-xl font-bold hover:bg-[#e6af1f] transition-all duration-300 transform hover:scale-105 shadow-lg"
-              style={{ backgroundColor: '#333', color: '#FFC325' }}
-            >
-              Get My Free Valuation
-            </Link>
-            <p className="text-gray-600 text-sm">
-              ⚡ 30-minute response • 📊 Market-based pricing • 💰 No obligations
-            </p>
-          </div>
+          <Link
+            href="#sell-form"
+            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{ backgroundColor: '#000', color: '#FFC325' }}
+          >
+            Get My Free Valuation
+          </Link>
+          <p className="text-gray-700 text-sm mt-4">
+            30-minute response · Market-based pricing · No obligations
+          </p>
         </div>
       </section>
     </div>

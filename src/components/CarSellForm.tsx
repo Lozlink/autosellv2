@@ -20,7 +20,12 @@ const inputClass = "w-full px-3 py-2 md:px-4 md:py-3 rounded-lg text-base liquid
 const labelClass = "block text-xs md:text-sm font-light text-gray-500/90 mb-0.5 md:mb-1 tracking-wide";
 const formFont = { fontFamily: 'var(--font-montserrat), system-ui, sans-serif' };
 
-export default function CarSellForm() {
+interface CarSellFormProps {
+  heading?: string
+  subheading?: string
+}
+
+export default function CarSellForm({ heading, subheading }: CarSellFormProps = {}) {
   const [step, setStep] = useState(1);
   const [manualEntry, setManualEntry] = useState(false);
   const [formData, setFormData] = useState({
@@ -60,7 +65,7 @@ export default function CarSellForm() {
     setLoading(true);
     setError(null);
 
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.phone) {
       setError('Please fill in all required fields.');
       setLoading(false);
       return;
@@ -136,7 +141,7 @@ export default function CarSellForm() {
     setError(null);
     setSuccess(false);
 
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.phone) {
       setError('Please fill in all required fields.');
       setLoading(false);
       return;
@@ -345,8 +350,8 @@ export default function CarSellForm() {
         style={formFont}
       >
         <h1 className="text-2xl sm:text-3xl font-black leading-tight text-gray-900 text-center mb-3 lg:hidden">
-          Sell Your Car Today
-          <span className="block text-[#FFC325]">Get The Best Price Guaranteed</span>
+          {heading || 'Powered by AI'}
+          <span className="block text-[#FFC325]">{subheading || 'Sell Your Car Today'}</span>
         </h1>
         <StepIndicator current={1} />
 
@@ -409,7 +414,7 @@ export default function CarSellForm() {
               <button
                 type="button"
                 onClick={() => setManualEntry(true)}
-                className="text-sm font-bold  text-[#FFC325] hover:text-black underline cursor-pointer transition-colors"
+                className="text-sm font-bold  text-gray-500 hover:text-black underline cursor-pointer transition-colors"
               >
                 Or enter car details manually
               </button>
@@ -440,7 +445,7 @@ export default function CarSellForm() {
               <button
                 type="button"
                 onClick={() => setManualEntry(false)}
-                className="text-sm text-gray-900 hover:text-black underline cursor-pointer transition-colors"
+                className="text-sm font-bold text-gray-500 hover:text-black underline cursor-pointer transition-colors"
               >
                 Use registration/VIN instead
               </button>
@@ -460,8 +465,8 @@ export default function CarSellForm() {
                 <input type="tel" id="phone" name="phone" required value={formData.phone} onChange={handleChange} className={inputClass} placeholder="0400 000 000" />
               </div>
               <div>
-                <label htmlFor="email" className={labelClass}>Email</label>
-                <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className={inputClass} placeholder="your@email.com" />
+                <label htmlFor="email" className={labelClass}>Email (optional)</label>
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className={inputClass} placeholder="your@email.com" />
               </div>
             </div>
           </div>
@@ -556,7 +561,7 @@ export default function CarSellForm() {
           <button
             type="button"
             onClick={() => setNotMyCar(false)}
-            className="mt-3 text-sm text-gray-500 hover:text-gray-900 underline underline-offset-2 cursor-pointer transition-colors"
+            className="mt-3 text-sm font-bold text-gray-500 hover:text-gray-900 underline underline-offset-2 cursor-pointer transition-colors"
           >
             Use the looked-up vehicle instead
           </button>
@@ -592,7 +597,7 @@ export default function CarSellForm() {
           <button
             type="button"
             onClick={() => setNotMyCar(true)}
-            className="mt-4 text-sm text-gray-500 hover:text-gray-900 underline underline-offset-2 cursor-pointer transition-colors"
+            className="mt-4 text-sm font-bold text-gray-500 hover:text-gray-900 underline underline-offset-2 cursor-pointer transition-colors"
           >
             Not your car? Enter details manually
           </button>

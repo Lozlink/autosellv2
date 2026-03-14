@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import CarSellForm from '@/components/CarSellForm'
 import BrandMarquee from '@/components/BrandMarquee'
@@ -44,26 +45,37 @@ export default function Home() {
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section id="sell-form" className="hero-glass-bg text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8">
+      <section id="sell-form" className="relative text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12 overflow-hidden">
+        {/* Hero background image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero/hero-car.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/80 lg:from-white/95 lg:via-white/85 lg:to-white/70" />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
             {/* SEO h1 — visually hidden on mobile (CarSellForm has its own visual heading),
-                visible on desktop where it anchors the left column.
-                pt-8 matches the form card's top padding (md:p-8 = 32px) so the h1
-                sits level with the StepIndicator row at the top of the form. */}
+                visible on desktop where it anchors the left column. */}
             <div className="hidden lg:block">
               <h1 className="text-4xl md:text-5xl font-black leading-tight text-gray-900">
-                Sell Your Car Today
-                <span className="block mt-2 text-[#FFC325]">Get The Best Price Guaranteed</span>
+                Powered By AI
+                <span className="block mt-2 text-[#FFC325]">Sell Your Car Today</span>
               </h1>
               <p className="text-lg text-gray-600 mt-4 mb-6 max-w-lg">
                 Get a <strong>FREE valuation</strong> in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
               </p>
             </div>
 
-            {/* Screen-reader-only h1 for mobile — CarSellForm's visual heading is not an h1,
-                so this ensures crawlers always find a primary heading. */}
+            {/* Screen-reader-only h1 for mobile */}
             <h1 className="sr-only">
               Sell Your Car Today — Get The Best Price Guaranteed with Auto-Sell.ai
             </h1>
@@ -87,7 +99,21 @@ export default function Home() {
             </h2>
             <p className="text-base md:text-lg text-gray-600">Three simple steps to get cash for your car</p>
           </div>
-          <HowItWorks />
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <HowItWorks />
+            {/* Car cutout image — seamless on white bg */}
+            <div className="hidden lg:flex justify-center items-center">
+              <div className="relative w-full max-w-md">
+                <Image
+                  src="/images/cars/sedan-cutout.png"
+                  alt="Sell your sedan"
+                  width={600}
+                  height={400}
+                  className="object-contain drop-shadow-xl"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -217,8 +243,18 @@ export default function Home() {
       </section>
 
       {/* ─── Final CTA ────────────────────────────────────────────────── */}
-      <section className="py-8 md:py-12 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-8 text-center">
+      <section className="relative py-8 md:py-12 bg-white overflow-hidden">
+        {/* Car cutout on the right */}
+        <div className="hidden lg:block absolute bottom-0 opacity-90 lg:-right-[30px] lg:w-[250px] xl:right-[2%] xl:w-[350px] 2xl:right-[8%] 2xl:w-[450px]">
+          <Image
+            src="/images/cars/suv-cutout.png"
+            alt="Sell your SUV"
+            width={480}
+            height={320}
+            className="object-contain drop-shadow-lg w-full h-auto"
+          />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 md:mb-4">
             Ready to Sell Your Car?
           </h2>

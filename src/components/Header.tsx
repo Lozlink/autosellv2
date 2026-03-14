@@ -183,19 +183,15 @@ export default function Header() {
               )}
             </div>
 
-            <a
-              href="tel:1800288673"
-              aria-label="Call 1800 AUTO SELL"
+            <Link
+              href="/#sell-form"
               className="ml-auto px-5 py-2 rounded-lg font-bold transition-colors flex items-center gap-2 text-sm"
               style={{ backgroundColor: '#FFC325', color: '#ffffff' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e6af1f'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFC325'}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span className="hidden xl:inline">1800 AUTO SELL</span>
-            </a>
+              Get Free Quote
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -354,16 +350,14 @@ export default function Header() {
                   Valuation Guide
                 </Link>
 
-                <a
-                    href="tel:1800288673"
-                    className="px-6 py-3 rounded-lg font-bold transition-colors text-center flex items-center justify-center gap-2"
+                <Link
+                    href="/#sell-form"
+                    className="px-6 py-3 rounded-lg font-bold transition-colors text-center"
                     style={{ backgroundColor: '#FFC325', color: '#ffffff' }}
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  Call 1800 AUTO SELL
-                </a>
+                  Get Free Quote
+                </Link>
               </div>
             </motion.div>
         )}

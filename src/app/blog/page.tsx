@@ -90,49 +90,50 @@ export default async function BlogPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="text-gray-800 py-12" style={{ backgroundColor: '#FFC325' }}>
-        <div className="px-4 sm:px-8">
+      <section className="text-gray-800 py-12 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Auto-Sell.ai Blog
+              <span className="block" style={{ color: '#FFC325' }}>Tips, Guides & Insights</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
-              Expert tips, guides, and insights to help you sell your car for the best price in Australia.
+            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              Expert advice to help you sell your car for the best price in Australia.
             </p>
           </div>
         </div>
       </section>
 
       {/* Blog Posts */}
-      <section className="py-12 bg-gray-50">
-        <div className="px-4 sm:px-8">
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <article key={post.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-[#FFC325] transition-all duration-300">
-                <div className="h-48 bg-gray-200 relative">
-                  <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: '#FFC325' }}>
-                    <span className="text-gray-800 text-4xl font-bold">{post.category.charAt(0)}</span>
+              <article key={post.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-[#FFC325] hover:shadow-lg transition-all duration-300">
+                <div className="h-48 relative flex items-center justify-center bg-gray-100">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFC325' }}>
+                    <span className="text-white text-2xl font-bold">{post.category.charAt(0)}</span>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="bg-[#FFC325]/20 text-[#FFC325] text-xs font-semibold px-2 py-1 rounded-full">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ backgroundColor: 'rgba(255, 195, 37, 0.15)', color: '#d4a017' }}>
                       {post.category}
                     </span>
-                    <span className="text-gray-600 text-sm">{post.readTime}</span>
+                    <span className="text-gray-500 text-sm">{post.readTime}</span>
                   </div>
-                  
+
                   <h2 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
                     {post.title}
                   </h2>
-                  
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+
+                  <p className="text-gray-600 mb-4 line-clamp-3 text-sm">
                     {post.excerpt}
                   </p>
-                  
+
                   <div className="flex items-center justify-between">
-                    <time className="text-sm text-gray-600">
+                    <time className="text-sm text-gray-500">
                       {new Date(post.date).toLocaleDateString('en-AU', {
                         year: 'numeric',
                         month: 'long',
@@ -141,9 +142,10 @@ export default async function BlogPage() {
                     </time>
                     <Link
                       href={`/blog/${post.id}`}
-                      className="text-[#FFC325] hover:text-[#FFC325] font-semibold text-sm"
+                      className="font-semibold text-sm hover:underline"
+                      style={{ color: '#FFC325' }}
                     >
-                      Read More →
+                      Read More &rarr;
                     </Link>
                   </div>
                 </div>
@@ -153,25 +155,22 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-12" style={{ background: '#FFC325' }}>
-        <div className="px-4 sm:px-8 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Stay Updated with Car Selling Tips
+      {/* CTA Section */}
+      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Ready to Sell Your Car?
           </h2>
-          <p className="text-xl text-gray-700 mb-8">
-            Get the latest insights and tips delivered to your inbox.
+          <p className="text-xl mb-8 text-gray-700">
+            Get a fair quote in 30 minutes and same-day OSKO payment. No fees, no hassle.
           </p>
-          <div className="max-w-md mx-auto flex gap-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#FFC325]"
-            />
-            <button className="bg-white text-[#FFC325] px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">
-              Subscribe
-            </button>
-          </div>
+          <Link
+            href="/#sell-form"
+            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{ backgroundColor: '#000', color: '#FFC325' }}
+          >
+            Get My Free Quote
+          </Link>
         </div>
       </section>
     </div>

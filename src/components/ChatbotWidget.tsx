@@ -95,7 +95,7 @@ export default function ChatbotWidget() {
     }
     
     if (message.includes('cost') || message.includes('fee') || message.includes('charge')) {
-      return "Our service is completely FREE! ✅ No fees or commissions ✅ No hidden costs ✅ Free pickup anywhere in Australia ✅ Same-day payment via OSKO. We make money by reselling your car, not by charging you!"
+      return "Our service is completely FREE!  No fees or commissions  No hidden costs  Free pickup anywhere in Australia  Same-day payment via OSKO. We make money by reselling your car, not by charging you!"
     }
     
     if (message.includes('inspection') || message.includes('visit') || message.includes('come')) {
@@ -103,7 +103,7 @@ export default function ChatbotWidget() {
     }
     
     if (message.includes('damaged') || message.includes('broken') || message.includes('not running')) {
-      return "We buy cars in ANY condition! 🚗 Running or not, accident damage, mechanical issues, high mileage - no car is too damaged for us. We'll give you a fair price based on what we can salvage. Ready for a quote?"
+      return "We buy cars in ANY condition!  Running or not, accident damage, mechanical issues, high mileage - no car is too damaged for us. We'll give you a fair price based on what we can salvage. Ready for a quote?"
     }
     
     if (message.includes('human') || message.includes('speak') || message.includes('manager')) {
