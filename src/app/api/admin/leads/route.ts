@@ -14,7 +14,7 @@ export async function GET() {
     return NextResponse.json({ error: 'Server missing SUPABASE_SERVICE_ROLE_KEY' }, { status: 500 })
   }
 
-  const [leadsRes, inquiriesRes] = await Promise.all([
+  const [leadsRes, inquiriesRes, conversationsRes] = await Promise.all([
     supabaseAdmin
       .from('leads')
       .select('*')
@@ -25,6 +25,11 @@ export async function GET() {
       .select('*')
       .order('created_at', { ascending: false })
       .limit(200),
+    supabaseAdmin
+      .from('conversations')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(500),
   ])
 
   if (leadsRes.error || inquiriesRes.error) {
@@ -37,5 +42,6 @@ export async function GET() {
   return NextResponse.json({
     leads: leadsRes.data ?? [],
     inquiries: inquiriesRes.data ?? [],
+    conversations: conversationsRes.data ?? [],
   })
 }
