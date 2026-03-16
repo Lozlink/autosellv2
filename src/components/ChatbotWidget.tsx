@@ -62,12 +62,6 @@ function pick<T>(arr: T[]): T {
 
 // ─── Response pools for variety ──────────────────────────────────────────
 
-const FAQ_CLOSERS = [
-  "\n\nI'm here if there's anything else on your mind — or we can jump into a free valuation whenever you're ready!",
-  "\n\nHappy to keep chatting! Or if you'd like, we can get your free valuation started right now.",
-  "\n\nFeel free to ask me anything else — and whenever you're ready, I'd love to help you get a valuation sorted!",
-  "\n\nAlways happy to help! Let me know if you've got more questions, or we can kick off a free valuation for you.",
-]
 
 const MAKE_MODEL_REACTIONS = [
   (car: string) => `Nice — a ${car}! What year is it?`,
@@ -321,6 +315,42 @@ export default function ChatbotWidget() {
 
       // ─── FAQ branch ───────────────────────────────────────────────
       case 'faq': {
+        // ── Valuation intent (check BEFORE pricing so "free valuation" isn't caught by "free") ──
+        if (lower.includes('valuation') || lower.includes('quote') || lower.includes('sell') || lower.includes('get a free')) {
+          setStage('ask_make_model')
+          botSay("Let's do it! What's the make and model of your car? (e.g. Toyota Corolla)")
+          return
+        }
+
+        // ── "I have another question" / generic re-entry → show FAQ menu again ──
+        if (lower.includes('another question') || lower.includes('question') || lower.includes('faq') || lower.includes('info')) {
+          botSay(
+            "Sure thing! Here are some common topics:\n\n• Pricing & fees\n• How inspections work\n• Payment process\n• Damaged or non-running cars\n\nWhat would you like to know about?",
+            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a valuation']
+          )
+          return
+        }
+
+        // ── Callback / leave details ──
+        if (lower.includes('leave my') || lower.includes('leave details') || lower.includes('call me') || lower.includes('callback') || lower.includes('call back')) {
+          setStage('ask_name')
+          botSay("Absolutely! I'll just grab a few details so our team can reach out. What's your name?")
+          return
+        }
+
+        // ── Talk to someone ──
+        if (lower.includes('talk') || lower.includes('speak') || lower.includes('human') || lower.includes('someone') || lower.includes('contact')) {
+          botSay(
+            "Of course! Our team would love to hear from you:\n\n" +
+            "📞  1300 00 SELL (1300 007 355)\n" +
+            "📧  info@auto-sell.ai\n\n" +
+            "We're available 7 days a week. Or I can take your details and have someone reach out to you — whatever's easiest!",
+            ['Leave my details', 'Get a free valuation', 'I have another question']
+          )
+          return
+        }
+
+        // ── Specific FAQ topics ──
         let answer = ''
         if (lower.includes('pric') || lower.includes('fee') || lower.includes('cost') || lower.includes('commission') || lower.includes('free')) {
           answer = "Great question! Our service is 100% FREE — no fees, no commissions, no hidden costs. We make money by reselling, not by charging you. That includes free pickup anywhere in Australia and same-day OSKO payment. We want to make this as easy as possible for you."
@@ -330,27 +360,15 @@ export default function ChatbotWidget() {
           answer = "You'll love this — we pay instantly via OSKO transfer, straight to your bank account. Once the inspection and paperwork are done, the money hits your account within minutes. No waiting around for days."
         } else if (lower.includes('damage') || lower.includes('broken') || lower.includes('not running') || lower.includes('wreck') || lower.includes('accident')) {
           answer = "Absolutely, we buy cars in ANY condition — running or not, accident damage, mechanical issues, high mileage, you name it. We'll always give you a fair price, so don't hesitate to reach out even if you think the car's seen better days!"
-        } else if (lower.includes('leave my') || lower.includes('leave details') || lower.includes('call me') || lower.includes('callback') || lower.includes('call back')) {
-          setStage('ask_name')
-          botSay("Absolutely! I'll just grab a few details so our team can reach out. What's your name?")
-          return
-        } else if (lower.includes('talk') || lower.includes('speak') || lower.includes('call') || lower.includes('human') || lower.includes('someone') || lower.includes('contact')) {
+        } else {
+          // Unrecognised topic → re-show FAQ menu
           botSay(
-            "Of course! Our team would love to hear from you:\n\n" +
-            "📞  1300 00 SELL (1300 007 355)\n" +
-            "📧  info@auto-sell.ai\n\n" +
-            "We're available 7 days a week. Or I can take your details and have someone reach out to you — whatever's easiest!",
-            ['Leave my details', 'Get a free valuation', 'I have another question']
+            "I'm happy to help! Here are the topics I can cover:\n\n• Pricing & fees\n• How inspections work\n• Payment process\n• Damaged or non-running cars\n\nWhat would you like to know about?",
+            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a valuation']
           )
           return
-        } else if (lower.includes('valuation') || lower.includes('quote') || lower.includes('sell') || lower.includes('get a')) {
-          setStage('ask_make_model')
-          botSay("Let's do it! What's the make and model of your car? (e.g. Toyota Corolla)")
-          return
-        } else {
-          answer = "I'm happy to help with questions about pricing, inspections, payment, or damaged cars — just let me know what's on your mind! And whenever you're ready, I can get you a free valuation too."
         }
-        botSay(answer + pick(FAQ_CLOSERS), ['Get a free valuation', 'I have another question', 'Talk to someone'])
+        botSay(answer, ['Get a free valuation', 'I have another question', 'Talk to someone'])
         break
       }
 
