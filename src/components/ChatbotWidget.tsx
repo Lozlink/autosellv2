@@ -139,6 +139,20 @@ export default function ChatbotWidget() {
   const [lead, setLead] = useState<LeadData>(EMPTY_LEAD)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const sessionIdRef = useRef<string>(`web_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`)
+
+  /** Fire-and-forget save to conversations table */
+  const logConvo = useCallback((incoming?: string, outgoing?: string) => {
+    fetch('/api/chatbot/conversation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        session_id: sessionIdRef.current,
+        incoming_message: incoming || null,
+        outgoing_message: outgoing || null,
+      }),
+    }).catch(() => {}) // silent — don't break chat if logging fails
+  }, [])
 
   // Auto-scroll to newest message
   useEffect(() => {
@@ -166,7 +180,9 @@ export default function ChatbotWidget() {
       ...prev,
       { id: msgId(), text, isUser, timestamp: new Date(), options },
     ])
-  }, [])
+    if (isUser) logConvo(text, undefined)
+    else logConvo(undefined, text)
+  }, [logConvo])
 
   /** Simulate bot typing then add message */
   const botSay = useCallback(
