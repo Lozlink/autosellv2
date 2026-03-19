@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Volkswagen | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Volkswagen fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a simple, stress-free sale.",
+  description: "Sell your Volkswagen fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a simple, stress-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-volkswagen',
   },
@@ -111,7 +111,7 @@ export default function SellVolkswagenPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Whether you own a Polo, a Golf, a Passat or one of VW&apos;s popular SUV models, selling your Volkswagen shouldn&apos;t take weeks or involve constant back-and-forth with private buyers. AutoSell gives you a fast, simple and transparent way to sell your Volkswagen, with a quote delivered in around 30 minutes and same-day OSKO payment once you accept.
+            Whether you own a Polo, a Golf, a Passat or one of VW&apos;s popular SUV models, selling your Volkswagen shouldn&apos;t take weeks or involve constant back-and-forth with private buyers. Auto-Sell.ai gives you a fast, simple and transparent way to sell your Volkswagen, with a quote delivered in around 30 minutes and same-day OSKO payment once you accept.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             If you&apos;ve been thinking &quot;I want a stress-free way to sell my Volkswagen,&quot; you&apos;re in the right place.
@@ -162,7 +162,7 @@ export default function SellVolkswagenPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Volkswagen?
+              Why Choose Auto-Sell.ai for Your Volkswagen?
             </h2>
           </div>
 
@@ -215,7 +215,7 @@ export default function SellVolkswagenPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">A Smooth and Simple Selling Process</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling privately can drag on, especially with popular brands like Volkswagen—buyers often want multiple inspections, detailed condition checks and slow negotiations. AutoSell removes all of that, giving you a straightforward process that fits your schedule.
+            Selling privately can drag on, especially with popular brands like Volkswagen—buyers often want multiple inspections, detailed condition checks and slow negotiations. Auto-Sell.ai removes all of that, giving you a straightforward process that fits your schedule.
           </p>
 
           <div className="space-y-6">

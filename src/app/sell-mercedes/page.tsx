@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Mercedes | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Mercedes fast with a fair valuation, 30-min quote and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, professional sale.',
+  description: 'Sell your Mercedes fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, professional sale.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-mercedes',
   },
@@ -146,7 +146,7 @@ export default function SellMercedesPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Mercedes-Benz vehicles are synonymous with refinement, engineering excellence and long-term value. Whether you&apos;re selling a sophisticated sedan, capable SUV, thrilling performance model or advanced electric or hybrid vehicle, AutoSell provides a premium selling experience. We specialise in valuing luxury vehicles and offer fair, competitive quotes based on comprehensive market analysis.
+            Mercedes-Benz vehicles are synonymous with refinement, engineering excellence and long-term value. Whether you&apos;re selling a sophisticated sedan, capable SUV, thrilling performance model or advanced electric or hybrid vehicle, Auto-Sell.ai provides a premium selling experience. We specialise in valuing luxury vehicles and offer fair, competitive quotes based on comprehensive market analysis.
           </p>
         </div>
       </section>
@@ -251,7 +251,7 @@ export default function SellMercedesPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Whether you&apos;re in a major city or remote location, AutoSell arranges convenient pickup of your Mercedes across Australia. Our professional service delivers the same exceptional experience from Sydney to Perth, Melbourne to Brisbane. Selling your luxury vehicle has never been easier.
+            Whether you&apos;re in a major city or remote location, Auto-Sell.ai arranges convenient pickup of your Mercedes across Australia. Our professional service delivers the same exceptional experience from Sydney to Perth, Melbourne to Brisbane. Selling your luxury vehicle has never been easier.
           </p>
         </div>
       </section>
@@ -260,7 +260,7 @@ export default function SellMercedesPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoSell</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
             <p className="text-xl text-gray-600">The smarter way to sell your Mercedes</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Holden | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Holden fast with a fair valuation, 30-min quote and same-day OSKO payment. AutoSell offers Australia-wide pickup and a hassle-free selling experience.',
+  description: 'Sell your Holden fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup and a hassle-free selling experience.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-holden',
   },
@@ -145,7 +145,7 @@ export default function SellHoldenPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Holden vehicles hold a special place in Australian automotive history. Although the brand finished local manufacturing, strong demand for quality Holden vehicles remains throughout Australia. Whether you&apos;re selling an iconic Commodore, capable Colorado, practical Astra, or any other Holden model, AutoSell understands the market and offers fair valuations based on current buyer demand.
+            Holden vehicles hold a special place in Australian automotive history. Although the brand finished local manufacturing, strong demand for quality Holden vehicles remains throughout Australia. Whether you&apos;re selling an iconic Commodore, capable Colorado, practical Astra, or any other Holden model, Auto-Sell.ai understands the market and offers fair valuations based on current buyer demand.
           </p>
         </div>
       </section>
@@ -250,7 +250,7 @@ export default function SellHoldenPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Selling your Holden is convenient across all of Australia. AutoSell arranges pickup from any location—city, suburb, regional town or remote area. Our Australia-wide network delivers professional, hassle-free service wherever you are.
+            Selling your Holden is convenient across all of Australia. Auto-Sell.ai arranges pickup from any location—city, suburb, regional town or remote area. Our Australia-wide network delivers professional, hassle-free service wherever you are.
           </p>
         </div>
       </section>
@@ -259,7 +259,7 @@ export default function SellHoldenPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoSell</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
             <p className="text-xl text-gray-600">The smarter way to sell your Holden</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

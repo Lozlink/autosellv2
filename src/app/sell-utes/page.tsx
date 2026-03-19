@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Ute | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your ute fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a simple, stress-free sale.",
+  description: "Sell your ute fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a simple, stress-free sale.",
   keywords: "sell ute, ute buyers, sell my ute, ute car buyers, cash for utes, sell ute fast, work ute, dual cab ute",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-utes',

@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Motorcycle | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your motorcycle fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your motorcycle fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell motorcycle, motorcycle buyers, sell my bike, cash for motorcycles, sell motorcycle fast, sports bike, cruiser, adventure bike",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-motorcycle',
@@ -146,7 +146,7 @@ export default function SellMotorcyclePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Motorcycle?
+              Why Choose Auto-Sell.ai for Your Motorcycle?
             </h2>
             <p className="text-xl text-gray-600">
               We understand motorcycle values and offer fair market prices for all types
