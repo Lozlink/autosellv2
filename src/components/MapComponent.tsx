@@ -10,8 +10,6 @@ declare global {
         Map: new (element: HTMLElement, options: any) => any
         Marker: new (options: any) => any
         InfoWindow: new (options: any) => any
-        OverlayView: new () => any
-        LatLng: new (lat: number, lng: number) => any
         SymbolPath: {
           CIRCLE: any
         }
@@ -46,10 +44,31 @@ export default function MapComponent({
   className = "w-full h-96"
 }: MapComponentProps) {
   const mapRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(false)
   const [mapError, setMapError] = useState<string | null>(null)
+  const [isInView, setIsInView] = useState(false)
+
+  // Only start loading when the component is near the viewport
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
+    if (!isInView) return
+
     const loadGoogleMaps = () => {
       if (window.google && window.google.maps) {
         setIsGoogleMapsLoaded(true)
@@ -63,7 +82,7 @@ export default function MapComponent({
       }
 
       const script = document.createElement('script')
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&loading=async`
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
       script.async = true
       script.defer = true
       script.onload = () => {
@@ -74,7 +93,7 @@ export default function MapComponent({
     }
 
     loadGoogleMaps()
-  }, [])
+  }, [isInView])
 
   useEffect(() => {
     if (!isGoogleMapsLoaded || !mapRef.current || !window.google || !window.google.maps) return
@@ -151,29 +170,6 @@ export default function MapComponent({
         })
       })
 
-      // Add a custom overlay for the main message
-      const overlay = new window.google.maps.OverlayView()
-      overlay.onAdd = function() {
-        const div = document.createElement('div')
-        div.className = 'absolute top-4 left-4 bg-gray-800 rounded-lg shadow-lg p-4 max-w-xs border border-gray-700'
-        div.innerHTML = `
-          <h3 class="font-bold text-gray-800 mb-1">Australia-Wide Service</h3>
-          <p class="text-sm text-gray-300">We come to you anywhere in Australia</p>
-        `
-        this.div = div
-        const panes = this.getPanes()
-        panes.overlayLayer.appendChild(div)
-      }
-      overlay.draw = function() {
-        const projection = this.getProjection()
-        const position = projection.fromLatLngToDivPixel(new window.google.maps.LatLng(-25.2744, 133.7751))
-        if (position) {
-          this.div.style.left = position.x + 'px'
-          this.div.style.top = position.y + 'px'
-        }
-      }
-      overlay.setMap(map)
-
     } catch (error) {
       console.error('Google Maps initialization error:', error)
       setMapError('Failed to initialize map')
@@ -183,7 +179,7 @@ export default function MapComponent({
   // Fallback for when Google Maps fails to load
   if (mapError || !isGoogleMapsLoaded) {
     return (
-      <div className={className}>
+      <div ref={containerRef} className={className}>
         <div className="w-full h-full bg-gray-900 rounded-lg flex items-center justify-center relative overflow-hidden border border-gray-700 shadow-lg">
           <div 
             className="absolute inset-0 bg-center bg-no-repeat bg-contain"
@@ -221,7 +217,7 @@ export default function MapComponent({
   }
 
   return (
-    <div className={className}>
+    <div ref={containerRef} className={className}>
       <div ref={mapRef} className="w-full h-full rounded-lg border border-gray-700 shadow-lg" />
     </div>
   )
