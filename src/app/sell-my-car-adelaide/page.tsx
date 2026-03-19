@@ -4,16 +4,21 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
+import { LocalBusinessJsonLd } from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: "Sell My Car Adelaide - Auto-Sell.ai | Get Cash for Your Car in Adelaide",
   description: "Sell your car fast in Adelaide with Auto-Sell.ai. We buy all cars in Adelaide and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car adelaide, car buyers adelaide, sell car adelaide, cash for cars adelaide, sell car fast adelaide, adelaide car buyers",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-my-car-adelaide',
+  },
 }
 
 export default function SellMyCarAdelaidePage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <LocalBusinessJsonLd city="Adelaide" />
       <Header />
       
       <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
@@ -95,6 +100,8 @@ export default function SellMyCarAdelaidePage() {
                   alt="Sell your car in Adelaide"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

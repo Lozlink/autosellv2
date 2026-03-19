@@ -8,6 +8,9 @@ import MapComponent from '@/components/MapComponent'
 export const metadata: Metadata = {
   title: "Contact Us - Auto-Sell.ai",
   description: "Contact Auto-Sell.ai for your car valuation. Call, email, text, or chat with us. We're here to help you sell your car fast.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/contact',
+  },
 }
 
 export default function ContactPage() {

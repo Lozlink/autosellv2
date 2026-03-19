@@ -8,6 +8,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: 'Sell My Holden | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Holden fast with a fair valuation, 30-min quote and same-day OSKO payment. AutoSell offers Australia-wide pickup and a hassle-free selling experience.',
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-holden',
+  },
 }
 
 export default function SellHoldenPage() {
@@ -127,6 +130,8 @@ export default function SellHoldenPage() {
                   alt="Sell your Holden"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

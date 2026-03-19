@@ -8,6 +8,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: "Sell My Ford | Fast Quotes & Same-Day Payment Australia-Wide | AutoSell",
   description: "Sell your Ford fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup and a simple, hassle-free process.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-ford',
+  },
 }
 
 export default function SellFordPage() {
@@ -93,6 +96,8 @@ export default function SellFordPage() {
                   alt="Sell your Ford"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

@@ -8,6 +8,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: 'Sell My Mercedes | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Mercedes fast with a fair valuation, 30-min quote and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, professional sale.',
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-mercedes',
+  },
 }
 
 export default function SellMercedesPage() {
@@ -128,6 +131,8 @@ export default function SellMercedesPage() {
                   alt="Sell your Mercedes"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

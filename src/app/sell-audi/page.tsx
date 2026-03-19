@@ -8,6 +8,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: 'Sell My Audi | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Audi fast with a fair valuation, 30-min quote and same-day OSKO payment. Australia-wide pickup for a smooth, professional and hassle-free sale.',
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-audi',
+  },
 }
 
 export default function SellAudiPage() {
@@ -130,6 +133,8 @@ export default function SellAudiPage() {
                   alt="Sell your Audi"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

@@ -4,16 +4,21 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
+import { LocalBusinessJsonLd } from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: "Sell My Car Canberra - Auto-Sell.ai | Get Cash for Your Car in Canberra",
   description: "Sell your car fast in Canberra with Auto-Sell.ai. We buy all cars in Canberra and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car canberra, car buyers canberra, sell car canberra, cash for cars canberra, sell car fast canberra, canberra car buyers",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-my-car-canberra',
+  },
 }
 
 export default function SellMyCarCanberraPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <LocalBusinessJsonLd city="Canberra" />
       <Header />
       
       <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
@@ -95,6 +100,8 @@ export default function SellMyCarCanberraPage() {
                   alt="Sell your car in Canberra"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

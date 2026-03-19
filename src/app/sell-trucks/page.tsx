@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Sell My Truck | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
   description: "Sell your truck fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell truck, truck buyers, sell my truck, truck car buyers, cash for trucks, sell truck fast, light truck, heavy truck, commercial truck",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-trucks',
+  },
 }
 
 export default function SellTrucksPage() {
@@ -94,6 +97,8 @@ export default function SellTrucksPage() {
                   alt="Sell your Truck"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

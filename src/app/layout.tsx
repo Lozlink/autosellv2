@@ -7,7 +7,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import FloatingPhoneIcon from "@/components/FloatingPhoneIcon";
-import ChatbotWidget from "@/components/ChatbotWidget";
+import LazyChatbotWidget from "@/components/LazyChatbotWidget";
+import { OrganizationJsonLd } from "@/components/JsonLd";
 
 // Heading font: AllRoundGothic — Medium (500) and Demi (700).
 // font-bold (700) and font-black (900) both resolve to Demi via nearest-weight matching.
@@ -47,13 +48,29 @@ export const metadata: Metadata = {
     description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed. We buy all cars in any condition across Australia.",
     type: "website",
     locale: "en_AU",
+    url: "https://auto-sell.ai",
+    siteName: "Auto-Sell.ai",
+    images: [
+      {
+        url: "https://auto-sell.ai/brand-guideline/autosell-logo/JPEG/1 (1).jpg",
+        width: 1200,
+        height: 630,
+        alt: "Auto-Sell.ai - Sell Your Car Fast for Cash",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
+    description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed.",
+    images: ["https://auto-sell.ai/brand-guideline/autosell-logo/JPEG/1 (1).jpg"],
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: 'https://Auto-Sell.ai',
+    canonical: 'https://auto-sell.ai',
   },
 };
 
@@ -106,17 +123,20 @@ export default function RootLayout({
       <body
         className={`${allRoundGothic.variable} ${montserrat.variable} md:mx-auto antialiased min-h-screen bg-white`}
       >
-      <noscript>
-        <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-        />
-      </noscript>
+      {GTM_ID && (
+        <noscript>
+          <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+      )}
+        <OrganizationJsonLd />
         {children}
 
-        <ChatbotWidget />
+        <LazyChatbotWidget />
         <Footer />
         <FloatingPhoneIcon />
       <Analytics />

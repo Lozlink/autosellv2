@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Sell My Coupe - Auto-Sell.ai | Get Cash for Your Coupe Car",
   description: "Sell your coupe fast with Auto-Sell.ai. We buy all coupe models including sports coupes, luxury coupes, and performance coupes. Get instant quotes and same-day payment.",
   keywords: "sell coupe, coupe buyers, sell my coupe, coupe car buyers, cash for coupes, sell coupe fast, sports coupe, luxury coupe",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-coupes',
+  },
 }
 
 export default function SellCoupesPage() {
@@ -95,6 +98,8 @@ export default function SellCoupesPage() {
                   alt="Sell your Coupe"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

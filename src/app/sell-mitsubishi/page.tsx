@@ -4,6 +4,9 @@ import BrandPage from '../brands/[brand]/page'
 export const metadata: Metadata = {
   title: 'Sell Your Mitsubishi - Auto-Sell.ai',
   description: 'We buy all Mitsubishi models in any condition. Free quote in 30 minutes and same-day OSKO payment.',
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-mitsubishi',
+  },
 }
 
 export default function SellMitsubishiPage() {

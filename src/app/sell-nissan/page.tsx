@@ -8,6 +8,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: 'Sell My Nissan | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Nissan fast with a fair valuation, 30-min quote and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, hassle-free sale.',
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-nissan',
+  },
 }
 
 export default function SellNissanPage() {
@@ -123,6 +126,8 @@ export default function SellNissanPage() {
                   alt="Sell your Nissan"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

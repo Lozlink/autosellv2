@@ -4,16 +4,21 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
+import { LocalBusinessJsonLd } from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: "Sell My Car Gold Coast - Auto-Sell.ai | Get Cash for Your Car on the Gold Coast",
   description: "Sell your car fast on the Gold Coast with Auto-Sell.ai. We buy all cars on the Gold Coast and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car gold coast, car buyers gold coast, sell car gold coast, cash for cars gold coast, sell car fast gold coast, gold coast car buyers",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-my-car-gold-coast',
+  },
 }
 
 export default function SellMyCarGoldCoastPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <LocalBusinessJsonLd city="Gold Coast" />
       <Header />
       
       <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
@@ -95,6 +100,8 @@ export default function SellMyCarGoldCoastPage() {
                   alt="Sell your car in Gold Coast"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

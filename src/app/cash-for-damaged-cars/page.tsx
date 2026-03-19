@@ -9,6 +9,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: "Sell Damaged Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
   description: "Sell your damaged car fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell buys accident-damaged, hail-damaged and non-running cars Australia-wide.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/cash-for-damaged-cars',
+  },
 }
 
 export default function CashForDamagedCarsPage() {
@@ -94,6 +97,8 @@ export default function CashForDamagedCarsPage() {
                   alt="Sell your Damaged Car"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

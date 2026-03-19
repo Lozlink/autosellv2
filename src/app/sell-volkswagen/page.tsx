@@ -8,6 +8,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: "Sell My Volkswagen | Fast Quotes & Same-Day Payment Australia-Wide",
   description: "Sell your Volkswagen fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a simple, stress-free sale.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-volkswagen',
+  },
 }
 
 export default function SellVolkswagenPage() {
@@ -93,6 +96,8 @@ export default function SellVolkswagenPage() {
                   alt="Sell your Volkswagen"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

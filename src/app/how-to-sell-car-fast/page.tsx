@@ -7,6 +7,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: "How to Sell Your Car Fast - Auto-Sell.ai | Expert Tips & Guide",
   description: "Learn how to sell your car fast with our expert guide. Get tips on preparation, pricing, and choosing the best selling method for maximum speed and value.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/how-to-sell-car-fast',
+  },
 }
 
 export default function HowToSellCarFastPage() {

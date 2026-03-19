@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Sell My Convertible - Auto-Sell.ai | Get Cash for Your Convertible Car",
   description: "Sell your convertible fast with Auto-Sell.ai. We buy all convertible models including roadsters, cabriolets, and drop-tops. Get instant quotes and same-day payment.",
   keywords: "sell convertible, convertible buyers, sell my convertible, convertible car buyers, cash for convertibles, sell convertible fast, roadster, cabriolet",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-convertibles',
+  },
 }
 
 export default function SellConvertiblesPage() {
@@ -95,6 +98,8 @@ export default function SellConvertiblesPage() {
                   alt="Sell your Convertible"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

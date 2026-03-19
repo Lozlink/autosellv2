@@ -14,6 +14,12 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
   return {
     title: `Sell Your ${titleBrand} - Auto-Sell.ai`,
     description: `We buy all ${titleBrand} models in any condition. Free quote in 30 minutes and same-day OSKO payment.`,
+    alternates: {
+      canonical: `https://auto-sell.ai/sell-${brand}`,
+    },
+    openGraph: {
+      url: `https://auto-sell.ai/sell-${brand}`,
+    },
   }
 }
 
@@ -102,6 +108,8 @@ export default async function BrandPage({ params }: BrandPageProps) {
                   alt={`Sell your ${titleBrand}`}
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Sell My Van | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
   description: "Sell your van fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell van, van buyers, sell my van, cash for vans, commercial van, sell van fast, cargo van",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-van',
+  },
 }
 
 export default function SellVanPage() {
@@ -94,6 +97,8 @@ export default function SellVanPage() {
                   alt="Sell your Van"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

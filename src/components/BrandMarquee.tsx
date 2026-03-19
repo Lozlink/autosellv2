@@ -1,5 +1,3 @@
-"use client"
-
 import Image from "next/image"
 
 const BRANDS = [
@@ -48,7 +46,7 @@ export default function BrandMarquee() {
               width={140}
               height={60}
               className="object-contain max-h-[60px]"
-              priority={idx < 4}
+              loading="lazy"
             />
           </a>
         ))}

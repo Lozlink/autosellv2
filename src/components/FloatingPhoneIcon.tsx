@@ -1,13 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function FloatingPhoneIcon() {
   const [isVisible] = useState(true)
-
-  // Always visible; no scroll handling needed
-  useEffect(() => {}, [])
 
   return (
     <AnimatePresence>

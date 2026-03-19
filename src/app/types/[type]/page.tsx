@@ -14,6 +14,12 @@ export async function generateMetadata({ params }: TypePageProps): Promise<Metad
 	return {
 		title: `Sell ${titleType} - Auto-Sell.ai`,
 		description: `We buy all ${titleType} in any condition. Free quote in 30 minutes and same-day OSKO payment.`,
+		alternates: {
+			canonical: `https://auto-sell.ai/sell-${typeParam}`,
+		},
+		openGraph: {
+			url: `https://auto-sell.ai/sell-${typeParam}`,
+		},
 	}
 }
 
@@ -79,6 +85,8 @@ export default async function TypePage({ params }: TypePageProps) {
 									alt={`Sell your ${titleType}`}
 									width={600}
 									height={400}
+									sizes="(max-width: 1024px) 100vw, 50vw"
+									priority
 									className="object-contain drop-shadow-xl"
 								/>
 							</div>

@@ -9,6 +9,7 @@ import HowItWorks from '@/components/HowItWorks'
 import WhyChoose from '@/components/WhyChoose'
 import VehicleTypesGrid from '@/components/VehicleTypesGrid'
 import type { Metadata } from 'next'
+import { FAQPageJsonLd } from '@/components/JsonLd'
 
 function CarSellFormFallback() {
   return (
@@ -36,12 +37,28 @@ export const metadata: Metadata = {
     description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed. We buy all cars in any condition across Australia.",
     type: "website",
     locale: "en_AU",
+    url: "https://auto-sell.ai",
+  },
+  alternates: {
+    canonical: "https://auto-sell.ai",
   },
 }
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
+      <FAQPageJsonLd
+        items={[
+          { question: "How can you value my car in seconds?", answer: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to generate an accurate valuation instantly. What used to take days now happens in seconds." },
+          { question: "How fast is the entire process?", answer: "Get your AI-powered quote in 30 minutes, book an on-site inspection at your convenience, and receive same-day OSKO payment. Most customers complete the entire process within 24 hours." },
+          { question: "Do you really pay on the same day?", answer: "Yes! Once we inspect your vehicle and complete the paperwork, we transfer funds directly to your bank account via OSKO, which processes within seconds." },
+          { question: "What if I don't like the offer?", answer: "There's absolutely no obligation. You can decline the offer at any point before signing — we never pressure you." },
+          { question: "How do you calculate my car's value?", answer: "Our AI cross-references live market data, recent comparable sales, your car's make, model, year, condition, and odometer." },
+          { question: "What makes this 'smarter' than traditional selling?", answer: "Traditional private sales take weeks of ads, time-wasters, and negotiations. Our AI instantly connects you with genuine buyers, eliminates haggling, and gets you paid the same day." },
+          { question: "What if my car isn't running?", answer: "No problem! Our AI values cars in any condition. We'll arrange free towing if needed and still provide a fast, fair offer." },
+          { question: "What areas do you service?", answer: "We operate Australia-wide! From major cities to remote areas, we come to you." },
+        ]}
+      />
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Sell My Sedan - Auto-Sell.ai | Get Cash for Your Sedan Car",
   description: "Sell your sedan fast with Auto-Sell.ai. We buy all sedan models including compact, mid-size, and large sedans. Get instant quotes and same-day payment.",
   keywords: "sell sedan, sedan buyers, sell my sedan, sedan car buyers, cash for sedans, sell sedan fast, compact sedan, large sedan",
+  alternates: {
+    canonical: 'https://auto-sell.ai/sell-sedans',
+  },
 }
 
 export default function SellSedansPage() {
@@ -95,6 +98,8 @@ export default function SellSedansPage() {
                   alt="Sell your Sedan"
                   width={600}
                   height={400}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-contain drop-shadow-xl"
                 />
               </div>

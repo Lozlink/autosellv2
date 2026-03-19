@@ -22,6 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} - Auto-Sell.ai Blog`,
     description: post.excerpt || '',
+    alternates: {
+      canonical: `https://auto-sell.ai/blog/${slug}`,
+    },
+    openGraph: {
+      url: `https://auto-sell.ai/blog/${slug}`,
+    },
   }
 }
 

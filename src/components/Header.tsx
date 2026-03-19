@@ -284,12 +284,12 @@ export default function Header() {
                   >
                     <div className="ml-4 mt-2 grid grid-cols-2 gap-2">
                       {[
-                        { type: 'Cars', href: '/types/cars' },
-                        { type: 'SUVs', href: '/types/suvs' },
-                        { type: 'Utes', href: '/types/utes' },
-                        { type: 'Trucks', href: '/types/trucks' },
-                        { type: 'Vans', href: '/types/vans' },
-                        { type: 'Motorcycles', href: '/types/motorcycles' },
+                        { type: 'Cars', href: '/sell-used-cars' },
+                        { type: 'SUVs', href: '/sell-suvs' },
+                        { type: 'Utes', href: '/sell-utes' },
+                        { type: 'Trucks', href: '/sell-trucks' },
+                        { type: 'Vans', href: '/sell-van' },
+                        { type: 'Motorcycles', href: '/sell-motorcycle' },
                         { type: 'Damaged Cars', href: '/cash-for-damaged-cars' },
                       ].map((item) => (
                           <Link

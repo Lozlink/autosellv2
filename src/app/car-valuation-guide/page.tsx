@@ -7,6 +7,9 @@ import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: "Car Valuation Guide - Auto-Sell.ai | How to Price Your Car Right",
   description: "Learn how to value your car accurately with our comprehensive guide. Understand factors that affect car prices and get the best value when selling.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/car-valuation-guide',
+  },
 }
 
 export default function CarValuationGuidePage() {

@@ -5,6 +5,9 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: "Terms and Conditions - Auto-Sell.ai",
   description: "Terms and conditions for Auto-Sell.ai car buying service. Read our service terms, payment conditions, and customer obligations.",
+  alternates: {
+    canonical: 'https://auto-sell.ai/terms',
+  },
 }
 
 export default function TermsPage() {
