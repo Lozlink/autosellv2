@@ -6,8 +6,8 @@ import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | AutoSell",
-  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent valuation with AutoSell.",
+  title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | Auto-Sell.ai",
+  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent valuation with Auto-Sell.ai.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-toyota',
   },
@@ -27,7 +27,7 @@ export default function SellToyotaPage() {
               <span className="block" style={{ color: '#000' }}>Get Top Dollar Today</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Selling your Toyota should be quick, simple and fair. At AutoSell, we make it easy to turn your Toyota into cash without the back-and-forth of private buyers or the lowball offers that come with trade-ins.
+              Selling your Toyota should be quick, simple and fair. At Auto-Sell.ai, we make it easy to turn your Toyota into cash without the back-and-forth of private buyers or the lowball offers that come with trade-ins.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -162,7 +162,7 @@ export default function SellToyotaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Toyota?
+              Why Choose Auto-Sell.ai for Your Toyota?
             </h2>
           </div>
 
