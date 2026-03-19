@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-white text-gray-700 border-t-2" style={{ borderColor: '#FFC325' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20 md:py-8 md:pb-8">
         {/* Top grid: Company, Quick Links, Services (exactly like screenshot) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-16 xl:gap-24">
           {/* Company Info */}
