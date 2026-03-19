@@ -123,8 +123,8 @@ export default function TermsPage() {
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li>Phone: 1800 AUTO SELL</li>
                 <li>Email: legal@Auto-Sell.ai</li>
-                <li>Address: [Your Business Address]</li>
-                <li>ABN: [Your ABN]</li>
+                <li>Address: 1017 Canley Vale Rd, Wetherill Park NSW 2164</li>
+                <li>ABN: 87 689 164 832</li>
               </ul>
 
               <div className="mt-8 p-6 bg-gray-50 rounded-lg">

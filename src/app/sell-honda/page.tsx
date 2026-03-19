@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Honda | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Honda quickly with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup and a stress-free selling experience.',
+  description: 'Sell your Honda quickly with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup and a stress-free selling experience.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-honda',
   },
@@ -140,7 +140,7 @@ export default function SellHondaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Honda vehicles are trusted across Australia for their reliability, efficiency and long-lasting performance. Whether you&apos;re driving a popular CR-V SUV, practical Civic sedan, spacious Odyssey van or hybrid model, AutoSell makes selling your Honda straightforward and stress-free. Honda consistently maintains strong resale demand, and we offer fair valuations based on real market data.
+            Honda vehicles are trusted across Australia for their reliability, efficiency and long-lasting performance. Whether you&apos;re driving a popular CR-V SUV, practical Civic sedan, spacious Odyssey van or hybrid model, Auto-Sell.ai makes selling your Honda straightforward and stress-free. Honda consistently maintains strong resale demand, and we offer fair valuations based on real market data.
           </p>
         </div>
       </section>
@@ -245,7 +245,7 @@ export default function SellHondaPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            We service all of Australia, from major cities to regional areas. AutoSell organises convenient pickup of your Honda wherever you are, ensuring a stress-free selling experience. Our Australia-wide network means you get the same professional service, no matter your location.
+            We service all of Australia, from major cities to regional areas. Auto-Sell.ai organises convenient pickup of your Honda wherever you are, ensuring a stress-free selling experience. Our Australia-wide network means you get the same professional service, no matter your location.
           </p>
         </div>
       </section>
@@ -254,7 +254,7 @@ export default function SellHondaPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoSell</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
             <p className="text-xl text-gray-600">The smarter way to sell your Honda</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Nissan | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Nissan fast with a fair valuation, 30-min quote and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, hassle-free sale.',
+  description: 'Sell your Nissan fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, hassle-free sale.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-nissan',
   },
@@ -141,7 +141,7 @@ export default function SellNissanPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Nissan vehicles are popular across Australia for their reliability, versatility and strong resale demand. Whether you&apos;re driving a popular X-Trail or Qashqai SUV, capable Navara ute, spacious Patrol, or innovative Leaf electric vehicle, AutoSell makes selling your Nissan quick and straightforward. We offer fair valuations based on real market demand and verified pricing data.
+            Nissan vehicles are popular across Australia for their reliability, versatility and strong resale demand. Whether you&apos;re driving a popular X-Trail or Qashqai SUV, capable Navara ute, spacious Patrol, or innovative Leaf electric vehicle, Auto-Sell.ai makes selling your Nissan quick and straightforward. We offer fair valuations based on real market demand and verified pricing data.
           </p>
         </div>
       </section>
@@ -246,7 +246,7 @@ export default function SellNissanPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            AutoSell services all of Australia, making it easy to sell your Nissan no matter where you are. We arrange convenient pickup across the country, from metropolitan centres to regional towns. Our Australia-wide presence means consistent, professional service every time.
+            Auto-Sell.ai services all of Australia, making it easy to sell your Nissan no matter where you are. We arrange convenient pickup across the country, from metropolitan centres to regional towns. Our Australia-wide presence means consistent, professional service every time.
           </p>
         </div>
       </section>
@@ -255,7 +255,7 @@ export default function SellNissanPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoSell</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
             <p className="text-xl text-gray-600">The smarter way to sell your Nissan</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

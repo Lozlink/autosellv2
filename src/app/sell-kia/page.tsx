@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Kia | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Kia fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your Kia fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, stress-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-kia',
   },
@@ -111,7 +111,7 @@ export default function SellKiaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Whether you drive a Rio, Sportage, Cerato or one of Kia&apos;s newer hybrid or electric models, selling your Kia shouldn&apos;t require weeks of advertising or dealing with unreliable private buyers. AutoSell gives you a fast, fair and stress-free way to sell your Kia, with a quote typically provided within 30 minutes and same-day OSKO payment when you choose to move forward.
+            Whether you drive a Rio, Sportage, Cerato or one of Kia&apos;s newer hybrid or electric models, selling your Kia shouldn&apos;t require weeks of advertising or dealing with unreliable private buyers. Auto-Sell.ai gives you a fast, fair and stress-free way to sell your Kia, with a quote typically provided within 30 minutes and same-day OSKO payment when you choose to move forward.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             If you&apos;ve been thinking &quot;I want a quick and simple way to sell my Kia,&quot; our process makes it easy from start to finish.
@@ -162,7 +162,7 @@ export default function SellKiaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Kia?
+              Why Choose Auto-Sell.ai for Your Kia?
             </h2>
           </div>
 
@@ -215,7 +215,7 @@ export default function SellKiaPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">A Fast and Hassle-Free Selling Experience</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Private selling often means multiple inspections, message back-and-forth, cancellations and negotiation fatigue. AutoSell removes all that and replaces it with a clean, streamlined service designed around convenience.
+            Private selling often means multiple inspections, message back-and-forth, cancellations and negotiation fatigue. Auto-Sell.ai removes all that and replaces it with a clean, streamlined service designed around convenience.
           </p>
 
           <div className="space-y-6">

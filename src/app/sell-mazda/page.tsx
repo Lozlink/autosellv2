@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Mazda | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Mazda fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a quick, hassle-free sale.",
+  description: "Sell your Mazda fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a quick, hassle-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-mazda',
   },
@@ -111,7 +111,7 @@ export default function SellMazdaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            If you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, AutoSell gives you a hassle-free process from valuation to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear valuation, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
+            If you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.ai gives you a hassle-free process from valuation to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear valuation, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             Whether you&apos;re upgrading, downsizing, or simply ready to part with your Mazda, we make sure the process is quick, transparent and convenient.
@@ -162,7 +162,7 @@ export default function SellMazdaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Mazda?
+              Why Choose Auto-Sell.ai for Your Mazda?
             </h2>
           </div>
 
@@ -215,7 +215,7 @@ export default function SellMazdaPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">A Simple Way to Sell Your Mazda</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Private selling often means dealing with tyre-kickers, last-minute cancellations and slow negotiations. AutoSell replaces all of that with a streamlined process designed around your convenience.
+            Private selling often means dealing with tyre-kickers, last-minute cancellations and slow negotiations. Auto-Sell.ai replaces all of that with a streamlined process designed around your convenience.
           </p>
 
           <div className="space-y-6">

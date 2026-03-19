@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My BMW | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your BMW quickly with a fair valuation, 30-min quote and same-day OSKO payment. Australia-wide pickup and a professional selling experience with AutoSell.',
+  description: 'Sell your BMW quickly with a fair valuation, 30-min quote and same-day OSKO payment. Australia-wide pickup and a professional selling experience with Auto-Sell.ai.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-bmw',
   },
@@ -147,7 +147,7 @@ export default function SellBmwPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            BMW vehicles are celebrated for their exceptional performance, precise engineering and premium build quality. Whether you&apos;re selling a luxury sedan, versatile SUV, high-performance M model or innovative electric or hybrid BMW, AutoSell provides a professional selling experience. We specialise in valuing premium vehicles and offer competitive quotes based on current market data.
+            BMW vehicles are celebrated for their exceptional performance, precise engineering and premium build quality. Whether you&apos;re selling a luxury sedan, versatile SUV, high-performance M model or innovative electric or hybrid BMW, Auto-Sell.ai provides a professional selling experience. We specialise in valuing premium vehicles and offer competitive quotes based on current market data.
           </p>
         </div>
       </section>
@@ -252,7 +252,7 @@ export default function SellBmwPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Our service spans every state and territory across Australia. From Sydney to Perth, Melbourne to Brisbane and everywhere in between, AutoSell coordinates convenient pickup of your BMW. We manage the logistics so you can focus on what matters to you.
+            Our service spans every state and territory across Australia. From Sydney to Perth, Melbourne to Brisbane and everywhere in between, Auto-Sell.ai coordinates convenient pickup of your BMW. We manage the logistics so you can focus on what matters to you.
           </p>
         </div>
       </section>
@@ -261,7 +261,7 @@ export default function SellBmwPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoSell</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
             <p className="text-xl text-gray-600">The smarter way to sell your BMW</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

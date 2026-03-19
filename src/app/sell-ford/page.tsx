@@ -6,8 +6,8 @@ import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "Sell My Ford | Fast Quotes & Same-Day Payment Australia-Wide | AutoSell",
-  description: "Sell your Ford fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup and a simple, hassle-free process.",
+  title: "Sell My Ford | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell.ai",
+  description: "Sell your Ford fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup and a simple, hassle-free process.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-ford',
   },
@@ -27,7 +27,7 @@ export default function SellFordPage() {
               <span className="block" style={{ color: '#000' }}>Fast, Fair & Hassle-Free</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              If you&apos;re ready to sell your Ford and want a fast, fair and hassle-free experience, AutoSell gives you a simple way to get it done.
+              If you&apos;re ready to sell your Ford and want a fast, fair and hassle-free experience, Auto-Sell.ai gives you a simple way to get it done.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -162,7 +162,7 @@ export default function SellFordPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Ford?
+              Why Choose Auto-Sell.ai for Your Ford?
             </h2>
           </div>
 
@@ -215,7 +215,7 @@ export default function SellFordPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Easy Process From Valuation to Pickup</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling privately can take weeks of messages, inspections, last-minute cancellations and low offers. AutoSell replaces that with one smooth process.
+            Selling privately can take weeks of messages, inspections, last-minute cancellations and low offers. Auto-Sell.ai replaces that with one smooth process.
           </p>
 
           <div className="space-y-6">
