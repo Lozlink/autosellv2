@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Honda | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Honda quickly with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup and a stress-free selling experience.',
+  description: 'Sell your Honda quickly with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a stress-free selling experience.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-honda',
   },
@@ -15,23 +15,21 @@ export const metadata: Metadata = {
 
 export default function SellHondaPage() {
   const models = [
-    'CR-V',
-    'HR-V',
-    'Civic',
-    'Accord',
-    'Jazz',
-    'Odyssey',
-    'City',
-    'Insight',
-    'Hybrid Models',
+    'Honda CR-V',
+    'Honda HR-V',
+    'Honda Civic',
+    'Honda Accord',
+    'Honda Jazz',
+    'Honda Odyssey',
+    'Honda City',
+    'Honda Insight and hybrid models',
   ]
 
   const valuationFactors = [
-    'Live market demand data',
-    'Recent Honda sales analysis',
-    'Verified pricing sources',
-    'Vehicle condition and mileage',
-    'Service history and maintenance records',
+    'Live market demand',
+    'Recent Honda sales',
+    'Verified data sources',
+    'Condition, kilometres and service history',
   ]
 
   const whyChoose = [
@@ -98,10 +96,10 @@ export default function SellHondaPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Australia&apos;s Trusted Honda Buyers
+                We Buy Every Honda Model
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Whether your Honda is brand new or has seen better days, we&apos;ll make you a fair offer. No haggling, no hidden fees — just a straightforward process from quote to payment.
+                Honda has a wide and versatile model range, and we buy all of them&mdash;regardless of age, condition or kilometres. Whether your Honda is in excellent condition, needs repairs, is unregistered or no longer running, you&apos;ll receive a fair valuation backed by real market data.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -140,7 +138,7 @@ export default function SellHondaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Honda vehicles are trusted across Australia for their reliability, efficiency and long-lasting performance. Whether you&apos;re driving a popular CR-V SUV, practical Civic sedan, spacious Odyssey van or hybrid model, Auto-Sell.ai makes selling your Honda straightforward and stress-free. Honda consistently maintains strong resale demand, and we offer fair valuations based on real market data.
+            Honda vehicles are known for their reliability, efficiency and long lifespan, which makes them consistently popular across Australia. Whether you drive a compact Jazz, a family-friendly CR-V or a sporty Civic, you shouldn&apos;t have to wait weeks to find a buyer or deal with constant back-and-forth messages. Auto-Sell.aigives you a fast, fair and straightforward way to sell your Honda without the stress of private selling or the lowball offers that often come with trade-ins.
           </p>
         </div>
       </section>
@@ -150,7 +148,7 @@ export default function SellHondaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Honda Models</h2>
-            <p className="text-xl text-gray-600">Popular sedans, SUVs, vans and hybrid models</p>
+            <p className="text-xl text-gray-600">Honda has a wide and versatile model range, and we buy all of them</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {models.map((model) => (
@@ -163,7 +161,7 @@ export default function SellHondaPage() {
             ))}
           </div>
           <p className="text-center text-gray-600 mt-8">
-            Plus unregistered vehicles, high-mileage, accident-damaged, and non-running Hondas.
+            We also buy older Hondas, high-kilometre vehicles and cars with wear and tear. If it&apos;s a Honda, we&apos;ll make you an offer.
           </p>
         </div>
       </section>
@@ -171,51 +169,23 @@ export default function SellHondaPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Selling Your Honda is Simple</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Auto-Sell.airemoves the hassle and gives you a streamlined, transparent process from start to finish.
+          </p>
           <div className="space-y-4">
             <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                1
-              </span>
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Tell us about your Honda—make, model, year, mileage and condition</p>
+                <p className="text-gray-700">Start by submitting your Honda&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                2
-              </span>
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">2</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">Receive a fair valuation based on market data and your vehicle&apos;s condition</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                3
-              </span>
-              <div>
-                <h3 className="font-semibold text-gray-900">On-Site Inspection</h3>
-                <p className="text-gray-700">Our inspector verifies the vehicle&apos;s condition and finalises the offer</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                4
-              </span>
-              <div>
-                <h3 className="font-semibold text-gray-900">Instant OSKO Payment</h3>
-                <p className="text-gray-700">Get paid the same day via secure OSKO transfer</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                5
-              </span>
-              <div>
-                <h3 className="font-semibold text-gray-900">Paperwork Handled</h3>
-                <p className="text-gray-700">We manage all registration and documentation on your behalf</p>
+                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
               </div>
             </div>
           </div>
@@ -225,9 +195,12 @@ export default function SellHondaPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">How We Value Your Honda</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Market Valuation for Your Honda</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            We value your Honda using comprehensive market research and verified data sources. Our approach ensures you receive a fair, competitive quote that reflects the true market value of your vehicle.
+            Honda prices vary across models, and demand can shift based on fuel efficiency, hybrid technology and model popularity. The CR-V and Civic frequently attract strong buyer interest, while models like the Jazz, Accord and HR-V maintain steady resale value.
+          </p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            Our valuations are based on:
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -237,15 +210,18 @@ export default function SellHondaPage() {
               </div>
             ))}
           </div>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">
+            This means you get an accurate offer&mdash;not an automated estimate, and not an inflated number that drops later. If you&apos;ve received another quote, we&apos;re happy to review it. We often beat like-for-like offers and are transparent about how our figures are calculated.
+          </p>
         </div>
       </section>
 
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">We Come to You Across Australia</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            We service all of Australia, from major cities to regional areas. Auto-Sell.ai organises convenient pickup of your Honda wherever you are, ensuring a stress-free selling experience. Our Australia-wide network means you get the same professional service, no matter your location.
+            There&apos;s no need to drive anywhere or organise multiple buyer appointments. Whether you&apos;re in a capital city or a regional area, we come to you for the inspection, payment and collection. Selling your Honda becomes a simple one-appointment process instead of a drawn-out task.
           </p>
         </div>
       </section>
@@ -254,8 +230,8 @@ export default function SellHondaPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
-            <p className="text-xl text-gray-600">The smarter way to sell your Honda</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">The Easiest Way to Sell My Honda</h2>
+            <p className="text-xl text-gray-600">Honda owners choose Auto-Sell.aibecause we make selling a car simple, fair and fast. You avoid the uncertainty of private listings, the pressure of dealership trade-ins and the inconvenience of managing everything yourself. Our process is transparent from the first contact to the final handover.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChoose.map((item) => (
@@ -274,7 +250,7 @@ export default function SellHondaPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get Your Honda Valuation Now</h2>
           <p className="text-xl mb-8 text-gray-700">
-            It takes just a few minutes to submit your details and receive a quick quote.
+            If you&apos;re ready to sell your Honda&mdash;or just want to know its current market value&mdash;start with a free, no-obligation valuation.
           </p>
           <Link
             href="#sell-form"

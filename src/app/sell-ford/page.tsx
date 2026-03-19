@@ -6,8 +6,8 @@ import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "Sell My Ford | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell.ai",
-  description: "Sell your Ford fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup and a simple, hassle-free process.",
+  title: "Sell My Ford | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell",
+  description: "Sell your Ford fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a simple, hassle-free process.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-ford',
   },
@@ -24,10 +24,10 @@ export default function SellFordPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell My Ford
-              <span className="block" style={{ color: '#000' }}>Fast, Fair & Hassle-Free</span>
+              <span className="block" style={{ color: '#000' }}>Fast, Fair &amp; Hassle-Free</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              If you&apos;re ready to sell your Ford and want a fast, fair and hassle-free experience, Auto-Sell.ai gives you a simple way to get it done.
+              If you&apos;re ready to sell your Ford and want a fast, fair and hassle-free experience, Auto-Sell.aigives you a simple way to get it done.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -151,121 +151,36 @@ export default function SellFordPage() {
 
           <div className="mt-12 p-8 bg-white rounded-xl border border-gray-200">
             <p className="text-lg text-gray-700 text-center">
-              We also buy older Fords, fleet vehicles and commercial vans. Even if your Ford has high kilometres, is unregistered, needs repairs or no longer runs, you&apos;ll still receive a valuation.
+              We also buy older Fords, fleet vehicles and commercial vans. If it&apos;s a Ford, we&apos;ll make you an offer.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Auto-Sell.ai for Your Ford?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Fast 30-Minute Quotes",
-                description: "Submit your Ford details and receive a fair quote in around 30 minutes."
-              },
-              {
-                icon: "",
-                title: "Real Market Valuation",
-                description: "Based on real-time buyer demand, verified sales data and trusted industry sources."
-              },
-              {
-                icon: "",
-                title: "All Models & Conditions",
-                description: "We buy every Ford model in any condition, from high-km to commercial vans."
-              },
-              {
-                icon: "",
-                title: "Same-Day OSKO Payment",
-                description: "Get paid instantly via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Free Pickup Service",
-                description: "We come to you anywhere in Australia. No need to arrange transport."
-              },
-              {
-                icon: "",
-                title: "Transparent & Upfront",
-                description: "What we quote is what you get paid. No hidden fees or surprises."
-              }
-            ].map((benefit, index) => (
-              <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Process */}
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Easy Process From Valuation to Pickup</h2>
-
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling privately can take weeks of messages, inspections, last-minute cancellations and low offers. Auto-Sell.ai replaces that with one smooth process.
+            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Buyers typically want multiple inspections, detailed condition checks and lengthy negotiation discussions. Auto-Sell.airemoves all of that by offering a smooth, straightforward process built around convenience and trust.
           </p>
-
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">1</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="mt-2 text-gray-700">Send your Ford&apos;s details through our simple valuation form.</p>
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
+                1
+              </span>
+              <div>
+                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
+                <p className="text-gray-700">Start by submitting your Ford&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
-
             <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">2</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Quick Quote</h3>
-                <p className="mt-2 text-gray-700">We&apos;ll review everything and send your quote quickly—usually within 30 minutes during business hours.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">3</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">On-Site Inspection</h3>
-                <p className="mt-2 text-gray-700">We book an on-site inspection at a place that suits you—home, workplace, or another location.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">4</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Instant Payment & Paperwork</h3>
-                <p className="mt-2 text-gray-700">Once confirmed, payment is made instantly via OSKO, and we take care of all the paperwork.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">5</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Free Vehicle Pickup</h3>
-                <p className="mt-2 text-gray-700">You don&apos;t need to organise transport, prepare listings or negotiate with multiple buyers.</p>
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
+                2
+              </span>
+              <div>
+                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
+                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
               </div>
             </div>
           </div>
@@ -336,14 +251,80 @@ export default function SellFordPage() {
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Why Choose Auto-Sell.aifor Your Ford?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "",
+                title: "Fast 30-Minute Quotes",
+                description: "Submit your Ford details and receive a fair quote in around 30 minutes."
+              },
+              {
+                icon: "",
+                title: "Real Market Valuation",
+                description: "Based on real-time buyer demand, verified sales data and trusted industry sources."
+              },
+              {
+                icon: "",
+                title: "All Models & Conditions",
+                description: "We buy every Ford model in any condition, from high-km to commercial vans."
+              },
+              {
+                icon: "",
+                title: "Same-Day OSKO Payment",
+                description: "Get paid instantly via OSKO transfer once inspection is complete."
+              },
+              {
+                icon: "",
+                title: "Free Pickup Service",
+                description: "We come to you anywhere in Australia. No need to arrange transport."
+              },
+              {
+                icon: "",
+                title: "Transparent & Upfront",
+                description: "What we quote is what you get paid. No hidden fees or surprises."
+              }
+            ].map((benefit, index) => (
+              <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="text-4xl mb-4">{benefit.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* A Trusted Way to Sell Your Ford */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Trusted Way to Sell Your Ford</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            Auto-Sell.aiis built for people who value convenience, fairness and reliability. Ford owners choose us because they want a quick sale without the noise or uncertainty that comes with selling privately. Our team handles the process professionally and keeps you informed at every step.
+          </p>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            If you&apos;re thinking about selling your Ford or simply want to know what it&apos;s worth today, start with a free, no-obligation valuation.
+          </p>
+        </div>
+      </section>
+
       {/* Final CTA Section */}
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Ready to Sell Your Ford?
+            Get Your Ford Valuation Now
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            Get a fair valuation in 30 minutes and same-day OSKO payment.
+            Make selling simple.
           </p>
           <Link
             href="#sell-form"

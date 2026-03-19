@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Truck | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your truck fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your truck fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell truck, truck buyers, sell my truck, truck car buyers, cash for trucks, sell truck fast, light truck, heavy truck, commercial truck",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-trucks',
@@ -18,7 +18,7 @@ export default function SellTrucksPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -107,16 +107,23 @@ export default function SellTrucksPage() {
         </div>
       </section>
 
+      {/* Intro Content */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">Trucks are essential work assets, and when it&apos;s time to upgrade, downsize or move on from yours, the selling process shouldn&apos;t slow down your business. Whether you own a light commercial truck, medium rigid, heavy rigid or a specialised work vehicle, Auto-Sell.aigives you a fast and transparent way to sell your truck. You receive a valuation typically within 30 minutes and same-day OSKO payment once you accept.</p>
+          <p className="text-lg text-gray-700 leading-relaxed">If you&apos;re thinking &#34;I need a simple, reliable way to sell my truck,&#34; we&apos;ve built a process designed for speed, fairness and convenience.</p>
+        </div>
+      </section>
 
       {/* Popular Truck Types We Buy */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Popular Truck Types We Buy
+              We Buy All Truck Types
             </h2>
             <p className="text-xl text-gray-600">
-              We buy all truck models in any condition
+              Trucks come in countless configurations, and we purchase them all. Whether your truck is used for freight, construction, delivery, trades, landscaping, agriculture or specialised commercial work, we&apos;ll give you a fair, data-backed valuation.
             </p>
           </div>
 
@@ -141,15 +148,64 @@ export default function SellTrucksPage() {
         </div>
       </section>
 
+      {/* Process */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast, Straightforward Way to Sell Your Truck</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">Selling a truck privately can take weeks, especially with specialised vehicles. Buyers often require detailed inspections, mechanical checks, test drives and negotiations. Auto-Sell.airemoves all that stress and gives you a professional, simple process from beginning to end.</p>
+          <div className="space-y-4">
+            <div className="flex items-start">
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
+              <div>
+                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
+                <p className="text-gray-700">Start by submitting your truck&apos;s details through our valuation form. Once received, our team reviews everything and sends your quote—normally within 30 minutes during business hours.</p>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">2</span>
+              <div>
+                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
+                <p className="text-gray-700">If you choose to proceed, we organise an on-site inspection at your depot, worksite, office or anywhere that suits you. After verifying the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we handle the paperwork and collection on the same day. No negotiation fatigue. No lowball trade-in offers. No downtime for your business.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Valuation */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Truck Valuation Backed by Real Market Insights</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">Truck pricing is influenced by many variables—engine size, transmission, suspension setup, body configuration, load capacity, kilometres, service records, accessories and commercial demand. Our valuations consider all of these factors and are based on:</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Verified truck market data</span></div>
+            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Commercial buyer demand</span></div>
+            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Comparable recent sales</span></div>
+            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Engine hours and maintenance history</span></div>
+            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Condition and overall usability</span></div>
+            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Aftermarket equipment and modifications</span></div>
+          </div>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">You receive a fair and accurate figure—not a generic automated estimate and not a quote that changes during inspection. If you&apos;ve already received another offer, we can review it and often provide a stronger like-for-like valuation.</p>
+        </div>
+      </section>
+
+      {/* Australia-Wide */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Service, We Come to You</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">Trucks aren&apos;t always convenient to move—so we come to you. Whether your vehicle is located at a depot, construction site, farm, workshop or commercial yard, our team handles inspection, payment and pickup in one seamless appointment.</p>
+        </div>
+      </section>
+
       {/* Why Choose Us for Trucks */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Auto-Sell.ai for Your Truck?
+              The Professional Way to Sell My Truck
             </h2>
             <p className="text-xl text-gray-600">
-              We understand truck values and offer competitive prices
+              Truck owners choose Auto-Sell.aibecause the process is fast, transparent and respectful of the value of commercial vehicles. You stay in control, and the entire transaction is simple, straightforward and handled by experienced professionals.
             </p>
           </div>
 
@@ -200,15 +256,15 @@ export default function SellTrucksPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Ready to Sell Your Truck?
+            Get Your Truck Valuation Now
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get a commercial truck valuation in ~30 minutes with same-day OSKO payment—Australia-wide.
+            If you&apos;re ready to sell your truck—or want to know what it&apos;s worth in today&apos;s market—start with a free, no-obligation valuation.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            style={{ backgroundColor: '#333', color: '#fff' }}
+            style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
             Get Your Truck Valuation Now
           </Link>
@@ -217,4 +273,3 @@ export default function SellTrucksPage() {
     </div>
   )
 }
-

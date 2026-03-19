@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Mercedes | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Mercedes fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, professional sale.',
+  description: 'Sell your Mercedes fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, professional sale.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-mercedes',
   },
@@ -15,38 +15,28 @@ export const metadata: Metadata = {
 
 export default function SellMercedesPage() {
   const models = [
-    'A-Class',
-    'B-Class',
-    'CLA',
-    'C-Class',
-    'E-Class',
-    'S-Class',
-    'GLA',
-    'GLB',
-    'GLC',
-    'GLE',
-    'GLS',
-    'G-Class',
-    'AMG',
-    'EQ Electric',
-    'Hybrid Models',
+    'A-Class, B-Class and CLA',
+    'C-Class, E-Class and S-Class',
+    'GLA, GLB, GLC, GLE and GLS',
+    'G-Class and AMG models',
+    'EQ electric and hybrid models',
   ]
 
   const valuationFactors = [
     'Model, trim and factory options',
-    'Mileage and condition assessment',
-    'Service and ownership history',
-    'Current buyer demand',
-    'Comparable market listings',
+    'Kilometres and overall condition',
+    'Service history and ownership',
+    'Market demand for your specific variant',
+    'Comparable current listings and recent sales',
   ]
 
   const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Fast, professional valuation of your Mercedes' },
+    { icon: '', title: '30-min Quote', desc: 'Fast, professional valuation based on market data' },
     { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
-    { icon: '', title: 'All Mercedes Models', desc: 'From compact to luxury, SUV to performance' },
-    { icon: '', title: 'Australia-Wide', desc: 'We arrange pickup anywhere across Australia' },
+    { icon: '', title: 'All Mercedes Models', desc: 'From compact cars to luxury SUVs and performance variants' },
+    { icon: '', title: 'Australia-Wide', desc: 'We come to you for inspection, payment and collection' },
     { icon: '', title: 'Any Condition', desc: 'High-km, unregistered, damaged vehicles' },
-    { icon: '', title: 'Hassle-Free', desc: 'We handle all paperwork and registration' },
+    { icon: '', title: 'Professional Service', desc: 'Specialist appraisal respecting your vehicle&apos;s value' },
   ]
 
   return (
@@ -107,7 +97,7 @@ export default function SellMercedesPage() {
                 Australia&apos;s Trusted Mercedes Buyers
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Whether your Mercedes is brand new or has seen better days, we&apos;ll make you a fair offer. No haggling, no hidden fees — just a straightforward process from quote to payment.
+                Mercedes-Benz vehicles are known for refinement, engineering excellence and long-term value. When you&apos;re ready to move on from yours, you should receive a fair, transparent offer without the stress of private selling. Auto-Sell.aioffers a simple, fast and professional way to sell your Mercedes, with a quote sent in around 30 minutes and same-day OSKO payment once you accept.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -146,7 +136,7 @@ export default function SellMercedesPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Mercedes-Benz vehicles are synonymous with refinement, engineering excellence and long-term value. Whether you&apos;re selling a sophisticated sedan, capable SUV, thrilling performance model or advanced electric or hybrid vehicle, Auto-Sell.ai provides a premium selling experience. We specialise in valuing luxury vehicles and offer fair, competitive quotes based on comprehensive market analysis.
+            Mercedes-Benz vehicles are known for refinement, engineering excellence and long-term value. When you&apos;re ready to move on from yours, you should receive a fair, transparent offer without the stress of private selling. Auto-Sell.aioffers a simple, fast and professional way to sell your Mercedes, with a quote sent in around 30 minutes and same-day OSKO payment once you accept. If you&apos;ve been thinking &ldquo;I want to sell my Mercedes quickly and easily,&rdquo; this is exactly what our process is built for.
           </p>
         </div>
       </section>
@@ -155,8 +145,8 @@ export default function SellMercedesPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Mercedes Models</h2>
-            <p className="text-xl text-gray-600">From compact cars to luxury SUVs and performance variants</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Mercedes-Benz Models</h2>
+            <p className="text-xl text-gray-600">From compact sedans to luxury SUVs and high-performance AMG models</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {models.map((model) => (
@@ -169,7 +159,7 @@ export default function SellMercedesPage() {
             ))}
           </div>
           <p className="text-center text-gray-600 mt-8">
-            Plus unregistered vehicles, high-mileage, accident-damaged, and non-running Mercedes.
+            Prestige vehicles require specialist appraisal, and our valuations reflect real buyer demand, live pricing insights and the specific features that influence Mercedes resale value.
           </p>
         </div>
       </section>
@@ -177,7 +167,12 @@ export default function SellMercedesPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Selling Your Mercedes is Simple</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Streamlined Way to Sell Your Mercedes</h2>
+
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            Selling a prestige vehicle privately often involves cautious buyers, lengthy inspections and uncertain negotiations. Auto-Sell.airemoves those hurdles by giving you a smooth, professional and convenient experience from start to finish.
+          </p>
+
           <div className="space-y-4">
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
@@ -185,7 +180,7 @@ export default function SellMercedesPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Tell us about your Mercedes—make, model, year, mileage and condition</p>
+                <p className="text-gray-700">Start by submitting your Mercedes&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -194,34 +189,7 @@ export default function SellMercedesPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">Receive a fair valuation based on market data and your vehicle&apos;s condition</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                3
-              </span>
-              <div>
-                <h3 className="font-semibold text-gray-900">On-Site Inspection</h3>
-                <p className="text-gray-700">Our inspector verifies the vehicle&apos;s condition and finalises the offer</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                4
-              </span>
-              <div>
-                <h3 className="font-semibold text-gray-900">Instant OSKO Payment</h3>
-                <p className="text-gray-700">Get paid the same day via secure OSKO transfer</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
-                5
-              </span>
-              <div>
-                <h3 className="font-semibold text-gray-900">Paperwork Handled</h3>
-                <p className="text-gray-700">We manage all registration and documentation on your behalf</p>
+                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
               </div>
             </div>
           </div>
@@ -231,9 +199,12 @@ export default function SellMercedesPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">How We Value Your Mercedes</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair, Transparent Mercedes Valuation</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Our valuations reflect the premium nature of Mercedes vehicles. We assess every detail—from factory options to service history—to ensure you receive a competitive offer that accurately reflects your Mercedes&apos; true market value.
+            Mercedes pricing varies widely between body types, model years, trim levels and engine options. Performance AMG variants and luxury SUVs often require specialised valuation, while newer EQ electric models rely on fast-moving market data. Our team uses verified sales history, live pricing tools and trusted automotive sources to determine your offer.
+          </p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            Your valuation considers the factors below, ensuring your offer is accurate and honest&mdash;not an automated number and not a figure that decreases during inspection. If you&apos;ve received another quote, let us know&mdash;we often beat like-for-like valuations and we&apos;re upfront about how we calculate pricing.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -249,9 +220,9 @@ export default function SellMercedesPage() {
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">We Come to You, Australia-Wide</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Whether you&apos;re in a major city or remote location, Auto-Sell.ai arranges convenient pickup of your Mercedes across Australia. Our professional service delivers the same exceptional experience from Sydney to Perth, Melbourne to Brisbane. Selling your luxury vehicle has never been easier.
+            Selling a prestige vehicle should be convenient. Whether you&apos;re in a capital city or a regional area, we come to you for inspection, payment and vehicle collection. The entire process happens in one appointment, making it the easiest way to sell your Mercedes without disruption.
           </p>
         </div>
       </section>
@@ -260,8 +231,8 @@ export default function SellMercedesPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
-            <p className="text-xl text-gray-600">The smarter way to sell your Mercedes</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">The Professional Way to Sell My Mercedes</h2>
+            <p className="text-xl text-gray-600">Mercedes owners choose Auto-Sell.aibecause our process is quick, reliable and respectful of your vehicle&apos;s value. You stay in control at every stage and enjoy a seamless, trustworthy experience.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChoose.map((item) => (
@@ -280,14 +251,14 @@ export default function SellMercedesPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get Your Mercedes Valuation Now</h2>
           <p className="text-xl mb-8 text-gray-700">
-            It takes just a few minutes to submit your details and receive a quick quote.
+            If you&apos;re ready to sell&mdash;or simply want to understand your Mercedes&apos; current market value&mdash;start with a free, no-obligation valuation.
           </p>
           <Link
             href="#sell-form"
-            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            style={{ backgroundColor: '#FFC325', color: '#fff' }}
+            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
+            style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Valuation
+            Get Your Mercedes Valuation Now
           </Link>
         </div>
       </section>

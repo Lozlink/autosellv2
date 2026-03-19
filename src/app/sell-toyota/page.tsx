@@ -6,8 +6,8 @@ import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | Auto-Sell.ai",
-  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent valuation with Auto-Sell.ai.",
+  title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | Auto-Sell",
+  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent valuation with Auto-Sell.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-toyota',
   },
@@ -27,7 +27,7 @@ export default function SellToyotaPage() {
               <span className="block" style={{ color: '#000' }}>Get Top Dollar Today</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Selling your Toyota should be quick, simple and fair. At Auto-Sell.ai, we make it easy to turn your Toyota into cash without the back-and-forth of private buyers or the lowball offers that come with trade-ins.
+              Selling your Toyota should be quick, simple and fair. At Auto-Sell, we make it easy to turn your Toyota into cash without the back-and-forth of private buyers or the lowball offers that come with trade-ins.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -141,7 +141,7 @@ export default function SellToyotaPage() {
               "Yaris & Yaris Cross",
               "Kluger",
               "HiAce",
-              "CH-R, Fortuner & Granvia"
+              "CH-R, Fortuner, Granvia & more"
             ].map((model, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow bg-white">
                 <h3 className="text-xl font-semibold text-gray-900">{model}</h3>
@@ -157,111 +157,30 @@ export default function SellToyotaPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Auto-Sell.ai for Your Toyota?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Fast 30-Minute Quotes",
-                description: "Submit your Toyota details and receive a quote in around 30 minutes."
-              },
-              {
-                icon: "",
-                title: "Fair Market Pricing",
-                description: "Based on current market conditions, live buyer demand, and recent comparable sales."
-              },
-              {
-                icon: "",
-                title: "All Models Accepted",
-                description: "We buy every Toyota model in any condition, including high-km and damaged vehicles."
-              },
-              {
-                icon: "",
-                title: "Same-Day OSKO Payment",
-                description: "Get paid instantly via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Free Pickup Service",
-                description: "We come to you anywhere in Australia. No need to drop your car off."
-              },
-              {
-                icon: "",
-                title: "No Hidden Fees",
-                description: "What we quote is what you get paid. Complete transparency from start to finish."
-              }
-            ].map((benefit, index) => (
-              <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Process */}
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">A Simple Process From Quote to Payment</h2>
-
-          <div className="space-y-6">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Buyers typically want multiple inspections, detailed condition checks and lengthy negotiation discussions. Auto-Sell.airemoves all of that by offering a smooth, straightforward process built around convenience and trust.
+          </p>
+          <div className="space-y-4">
             <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">1</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Send Your Details</h3>
-                <p className="mt-2 text-gray-700">Submit your Toyota&apos;s details through our short free valuation form.</p>
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
+                1
+              </span>
+              <div>
+                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
+                <p className="text-gray-700">Start by submitting your Toyota&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
-
             <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">2</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Get Your Quote in 30 Minutes</h3>
-                <p className="mt-2 text-gray-700">We review the information and send your quote—usually inside 30 minutes.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">3</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">On-Site Inspection</h3>
-                <p className="mt-2 text-gray-700">We organise an on-site inspection at your home or workplace. Everything happens in one visit.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">4</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Instant OSKO Payment</h3>
-                <p className="mt-2 text-gray-700">Once everything checks out, we transfer payment instantly via OSKO and take care of the paperwork.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-400 text-white font-bold">5</div>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-gray-900">Free Pickup</h3>
-                <p className="mt-2 text-gray-700">Pickup is arranged at a time that suits you. You stay in control the whole way.</p>
+              <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">
+                2
+              </span>
+              <div>
+                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
+                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
               </div>
             </div>
           </div>
@@ -332,14 +251,68 @@ export default function SellToyotaPage() {
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Why Toyota Owners Choose Auto-Sell
+            </h2>
+            <p className="text-xl text-gray-600">People choose us because selling a car should be easy, quick and fair. Toyota owners trust us with their sale because we&apos;re transparent, consistent and reliable. We give real valuations based on real data, handle all the paperwork, and pay instantly. It&apos;s a stress-free way to move on from your Toyota without wasting weeks negotiating.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "",
+                title: "Fast 30-Minute Quotes",
+                description: "Submit your Toyota details and receive a quote in around 30 minutes."
+              },
+              {
+                icon: "",
+                title: "Fair Market Pricing",
+                description: "Based on current market conditions, live buyer demand, and recent comparable sales."
+              },
+              {
+                icon: "",
+                title: "All Models Accepted",
+                description: "We buy every Toyota model in any condition, including high-km and damaged vehicles."
+              },
+              {
+                icon: "",
+                title: "Same-Day OSKO Payment",
+                description: "Get paid instantly via OSKO transfer once inspection is complete."
+              },
+              {
+                icon: "",
+                title: "Free Pickup Service",
+                description: "We come to you anywhere in Australia. No need to drop your car off."
+              },
+              {
+                icon: "",
+                title: "No Hidden Fees",
+                description: "What we quote is what you get paid. Complete transparency from start to finish."
+              }
+            ].map((benefit, index) => (
+              <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow bg-white">
+                <div className="text-4xl mb-4">{benefit.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA Section */}
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Ready to Sell Your Toyota?
+            Get Your Toyota Valuation Now
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            Get your fair valuation in 30 minutes and receive same-day OSKO payment.
+            Sell your car the easy way.
           </p>
           <Link
             href="#sell-form"
