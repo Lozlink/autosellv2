@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your car fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your car fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell used car, used car buyers, sell my car, used vehicle buyers, cash for used cars, sell car fast",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-used-cars',

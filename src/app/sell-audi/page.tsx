@@ -148,7 +148,7 @@ export default function SellAudiPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Audi vehicles are renowned for their refinement, performance and cutting-edge technology. Whether you&apos;re driving an elegant sedan, versatile SUV, thrilling performance model or cutting-edge electric Audi, AutoSell makes selling your vehicle simple and straightforward. We understand the value of premium vehicles and offer fair, competitive quotes based on real market data.
+            Audi vehicles are renowned for their refinement, performance and cutting-edge technology. Whether you&apos;re driving an elegant sedan, versatile SUV, thrilling performance model or cutting-edge electric Audi, Auto-Sell.ai makes selling your vehicle simple and straightforward. We understand the value of premium vehicles and offer fair, competitive quotes based on real market data.
           </p>
         </div>
       </section>
@@ -253,7 +253,7 @@ export default function SellAudiPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Convenience</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            No matter where you are in Australia, AutoSell comes to you. We arrange pickup from any location—metropolitan areas, regional towns or remote outback locations. Our network of inspectors ensures a smooth, professional experience wherever you&apos;re located. Selling your Audi has never been more convenient.
+            No matter where you are in Australia, Auto-Sell.ai comes to you. We arrange pickup from any location—metropolitan areas, regional towns or remote outback locations. Our network of inspectors ensures a smooth, professional experience wherever you&apos;re located. Selling your Audi has never been more convenient.
           </p>
         </div>
       </section>
@@ -262,7 +262,7 @@ export default function SellAudiPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoSell</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Auto-Sell.ai</h2>
             <p className="text-xl text-gray-600">The smarter way to sell your Audi</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Hyundai | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your Hyundai fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your Hyundai fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, stress-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-hyundai',
   },
@@ -111,7 +111,7 @@ export default function SellHyundaiPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            AutoSell gives you a fast and transparent way to sell your Hyundai, with a quote usually sent within 30 minutes and same-day OSKO payment as soon as you accept. Whether you drive an i30, Tucson, Santa Fe or one of Hyundai&apos;s growing hybrid and electric options, we make the process simple.
+            Auto-Sell.ai gives you a fast and transparent way to sell your Hyundai, with a quote usually sent within 30 minutes and same-day OSKO payment as soon as you accept. Whether you drive an i30, Tucson, Santa Fe or one of Hyundai&apos;s growing hybrid and electric options, we make the process simple.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             If you&apos;ve been thinking &quot;I want a simple, hassle-free way to sell my Hyundai,&quot; our process is built for exactly that.
@@ -162,7 +162,7 @@ export default function SellHyundaiPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Hyundai?
+              Why Choose Auto-Sell.ai for Your Hyundai?
             </h2>
           </div>
 
@@ -215,7 +215,7 @@ export default function SellHyundaiPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">A Simple and Stress-Free Selling Experience</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling privately can become a slow and unpredictable process—photos, listings, messages, cancellations and negotiating with buyers. AutoSell removes all of that, giving you a clean, no-stress experience from start to finish.
+            Selling privately can become a slow and unpredictable process—photos, listings, messages, cancellations and negotiating with buyers. Auto-Sell.ai removes all of that, giving you a clean, no-stress experience from start to finish.
           </p>
 
           <div className="space-y-6">

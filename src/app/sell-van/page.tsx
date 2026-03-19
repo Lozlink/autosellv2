@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Van | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your van fast with a 30-min quote, fair valuation and same-day OSKO payment. AutoSell offers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your van fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.ai offers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell van, van buyers, sell my van, cash for vans, commercial van, sell van fast, cargo van",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-van',
@@ -146,7 +146,7 @@ export default function SellVanPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose AutoSell for Your Van?
+              Why Choose Auto-Sell.ai for Your Van?
             </h2>
             <p className="text-xl text-gray-600">
               We understand van values and commercial vehicle needs

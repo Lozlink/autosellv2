@@ -161,8 +161,8 @@ export default function PrivacyPage() {
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li>Email: privacy@Auto-Sell.ai</li>
                 <li>Phone: 1800 AUTO SELL</li>
-                <li>Address: [Your Business Address]</li>
-                <li>Privacy Officer: [Contact Name]</li>
+                <li>Address: 1017 Canley Vale Rd, Wetherill Park NSW 2164</li>
+                <li>Privacy Officer: The Privacy Officer</li>
               </ul>
 
               <div className="mt-8 p-6 bg-gray-50 rounded-lg">
