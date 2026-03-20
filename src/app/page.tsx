@@ -45,7 +45,7 @@ export default function Home() {
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section id="sell-form" className="relative text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12 overflow-hidden">
+      <section id="sell-form" className="relative text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12 overflow-hidden min-h-[600px] md:min-h-[700px]">
         {/* Hero background image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -54,10 +54,10 @@ export default function Home() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-[75%_54%] md:object-[center_54%]"
           />
           {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/80 lg:from-white/95 lg:via-white/85 lg:to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/88 via-white/72 to-white/62 lg:bg-gradient-to-r lg:from-white/95 lg:via-white/85 lg:to-white/70" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
