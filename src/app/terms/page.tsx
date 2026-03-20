@@ -121,7 +121,7 @@ export default function TermsPage() {
                 For questions about these terms, contact us at:
               </p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li>Phone: 1800 AUTO SELL</li>
+                <li>Phone: 0492 858 699</li>
                 <li>Email: legal@Auto-Sell.ai</li>
                 <li>Address: 1017 Canley Vale Rd, Wetherill Park NSW 2164</li>
                 <li>ABN: 87 689 164 832</li>

@@ -23,9 +23,10 @@ const formFont = { fontFamily: 'var(--font-montserrat), system-ui, sans-serif' }
 interface CarSellFormProps {
   heading?: string
   subheading?: string
+  onStepChange?: (step: number) => void
 }
 
-export default function CarSellForm({ heading, subheading }: CarSellFormProps = {}) {
+export default function CarSellForm({ heading, subheading, onStepChange }: CarSellFormProps = {}) {
   const [step, setStep] = useState(1);
   const [manualEntry, setManualEntry] = useState(false);
   const [formData, setFormData] = useState({
@@ -127,6 +128,7 @@ export default function CarSellForm({ heading, subheading }: CarSellFormProps = 
 
     // Move to step 2
     setStep(2);
+    onStepChange?.(2);
     setLoading(false);
 
     setTimeout(() => {
@@ -298,6 +300,7 @@ export default function CarSellForm({ heading, subheading }: CarSellFormProps = 
       setRegoLookupResult(null);
       setNotMyCar(false);
       setStep(1);
+      onStepChange?.(1);
       setTimeout(() => {
         if (feedbackRef.current) feedbackRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
@@ -507,7 +510,7 @@ export default function CarSellForm({ heading, subheading }: CarSellFormProps = 
 
       {/* Back link */}
       <button
-        onClick={() => setStep(1)}
+        onClick={() => { setStep(1); onStepChange?.(1); }}
         className="mb-3 md:mb-6 text-sm text-gray-500 hover:text-gray-900 cursor-pointer transition-colors flex items-center gap-1"
       >
         &larr; Back
@@ -616,10 +619,8 @@ export default function CarSellForm({ heading, subheading }: CarSellFormProps = 
       )}
 
       <form onSubmit={handleRegoConfirmSubmit} className="space-y-3 md:space-y-5">
-        <div>
-          <label htmlFor="message" className={labelClass}>Additional Info</label>
-          <input type="text" id="message" name="message" value={formData.message} onChange={handleChange} className={inputClass} placeholder="Any additional details..." />
-        </div>
+        {/* Spacer to maintain layout height for background image */}
+        <div className="h-7 md:h-16" aria-hidden="true" />
 
         <motion.button
           type="submit"
@@ -639,7 +640,7 @@ export default function CarSellForm({ heading, subheading }: CarSellFormProps = 
           </svg>
           Your information is secure and will not be shared with third parties
         </p>
-        <p className="text-sm text-gray-500 mt-1 flex items-center justify-center gap-2">
+        <p className="text-[11px] md:text-sm text-gray-500 mt-1 flex items-center justify-center gap-2">
           <svg className="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>

@@ -160,7 +160,7 @@ export default function PrivacyPage() {
               </p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li>Email: privacy@Auto-Sell.ai</li>
-                <li>Phone: 1800 AUTO SELL</li>
+                <li>Phone: 0492 858 699</li>
                 <li>Address: 1017 Canley Vale Rd, Wetherill Park NSW 2164</li>
                 <li>Privacy Officer: The Privacy Officer</li>
               </ul>

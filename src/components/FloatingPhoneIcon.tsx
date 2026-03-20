@@ -17,11 +17,11 @@ export default function FloatingPhoneIcon() {
           className="fixed bottom-6 right-20 md:right-24 z-50 pointer-events-none"
         >
           <motion.a
-            href="tel:1800288673"
+            href="tel:0492 858 699"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             className="pointer-events-auto bg-[#FFC325] hover:bg-[#e6af1f] text-white p-2.5 md:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-            aria-label="Call 1800 AUTO SELL"
+            aria-label="Call 0492 858 699"
           >
             <svg
               className="w-5 h-5 md:w-6 md:h-6"
@@ -39,7 +39,7 @@ export default function FloatingPhoneIcon() {
             
             {/* Tooltip */}
             <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-200 text-gray-800 font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-              Call 1800 AUTO SELL
+              Call 0492 858 699
               <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-900"></div>
             </div>
           </motion.a>

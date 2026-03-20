@@ -284,7 +284,7 @@ export default function ChatbotWidget() {
         ) {
           botSay(
             "Of course! Our team would love to hear from you. Here's how you can reach us:\n\n" +
-            "📞  1300 00 SELL (1300 007 355)\n" +
+            "📞  0492 858 699\n" +
             "📧  info@auto-sell.ai\n\n" +
             "We're available 7 days a week. Or I can take your details right now and have someone call you back — whatever works best for you!",
             ['Leave my details', 'Get a free valuation', 'I have a question']
@@ -342,7 +342,7 @@ export default function ChatbotWidget() {
         if (lower.includes('talk') || lower.includes('speak') || lower.includes('human') || lower.includes('someone') || lower.includes('contact')) {
           botSay(
             "Of course! Our team would love to hear from you:\n\n" +
-            "📞  1300 00 SELL (1300 007 355)\n" +
+            "📞  0492 858 699\n" +
             "📧  info@auto-sell.ai\n\n" +
             "We're available 7 days a week. Or I can take your details and have someone reach out to you — whatever's easiest!",
             ['Leave my details', 'Get a free valuation', 'I have another question']
@@ -483,7 +483,7 @@ export default function ChatbotWidget() {
               )
             } else {
               addMsg(
-                "Hmm, something went wrong submitting your details. Please try our online form at Auto-Sell.ai or give us a call on 1300 00 SELL. Sorry about that!",
+                "Hmm, something went wrong submitting your details. Please try our online form at Auto-Sell.ai or give us a call on 0492 858 699. Sorry about that!",
                 false
               )
             }

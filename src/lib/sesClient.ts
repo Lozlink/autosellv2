@@ -47,7 +47,7 @@ export async function sendQuoteEmail(data: QuoteEmailData): Promise<void> {
     <hr />
     <h3>Contact Details</h3>
     <p><strong>Name:</strong> ${data.name}</p>
-    <p><strong>Email:</strong> ${data.email}</p>
+    <p><strong>Email:</strong> ${data.email || 'Not provided'}</p>
     <p><strong>Phone:</strong> ${data.phone}</p>
     <p><strong>Postcode:</strong> ${data.postcode}</p>
     <hr />

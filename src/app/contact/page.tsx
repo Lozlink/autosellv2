@@ -32,7 +32,7 @@ export default function ContactPage() {
               </p>
 
               <div className="space-y-5 hidden lg:block">
-                <Link href="tel:1800288673" className="flex items-center gap-4 group">
+                <Link href="tel:0492 858 699" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.1)' }}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FFC325' }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -40,7 +40,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800 group-hover:text-gray-900">Call Us</h3>
-                    <p className="font-bold" style={{ color: '#FFC325' }}>1800 AUTO SELL</p>
+                    <p className="font-bold" style={{ color: '#FFC325' }}>0492 858 699</p>
                     <p className="text-sm text-gray-500">Open 7 days &middot; 8am-6pm AEST</p>
                   </div>
                 </Link>
@@ -58,7 +58,7 @@ export default function ContactPage() {
                   </div>
                 </Link>
 
-                <Link href="sms:1800288673" className="flex items-center gap-4 group">
+                <Link href="sms:0492 858 699" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 195, 37, 0.1)' }}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FFC325' }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -88,12 +88,12 @@ export default function ContactPage() {
       <section className="py-12 bg-white lg:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-3 gap-6">
-            <Link href="tel:1800288673" className="text-center p-6 rounded-xl border border-[#FFC325] hover:shadow-lg transition-shadow">
+            <Link href="tel:0492 858 699" className="text-center p-6 rounded-xl border border-[#FFC325] hover:shadow-lg transition-shadow">
               <svg className="w-8 h-8 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FFC325' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
               <h3 className="font-semibold text-gray-800">Call Us</h3>
-              <p className="font-bold text-sm" style={{ color: '#FFC325' }}>1800 AUTO SELL</p>
+              <p className="font-bold text-sm" style={{ color: '#FFC325' }}>0492 858 699</p>
             </Link>
             <Link href="mailto:info@auto-sell.ai" className="text-center p-6 rounded-xl border border-[#FFC325] hover:shadow-lg transition-shadow">
               <svg className="w-8 h-8 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FFC325' }}>
@@ -102,7 +102,7 @@ export default function ContactPage() {
               <h3 className="font-semibold text-gray-800">Email</h3>
               <p className="font-bold text-sm" style={{ color: '#FFC325' }}>info@auto-sell.ai</p>
             </Link>
-            <Link href="sms:1800288673" className="text-center p-6 rounded-xl border border-[#FFC325] hover:shadow-lg transition-shadow">
+            <Link href="sms:0492 858 699" className="text-center p-6 rounded-xl border border-[#FFC325] hover:shadow-lg transition-shadow">
               <svg className="w-8 h-8 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FFC325' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>

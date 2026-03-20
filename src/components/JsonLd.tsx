@@ -9,7 +9,7 @@ export function OrganizationJsonLd() {
       "Australia's #1 AI-powered car buying service. Get free valuations in 30 minutes, same-day OSKO payment, and free Australia-wide pickup.",
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+61-1800-288-673',
+      telephone: '+61-492 858 699',
       contactType: 'customer service',
       areaServed: 'AU',
       availableLanguage: 'English',
@@ -60,7 +60,7 @@ export function LocalBusinessJsonLd({ city }: { city: string }) {
     '@type': 'LocalBusiness',
     name: `Auto-Sell.ai - ${city}`,
     url: `https://auto-sell.ai/sell-my-car-${city.toLowerCase().replace(/\s+/g, '-')}`,
-    telephone: '+61-1800-288-673',
+    telephone: '+61-492 858 699',
     description: `Sell your car fast in ${city} with Auto-Sell.ai. Free 30-minute valuations, same-day OSKO payment, and free pickup across ${city}.`,
     address: {
       '@type': 'PostalAddress',

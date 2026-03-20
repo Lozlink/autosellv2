@@ -1,7 +1,6 @@
-import { Suspense } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
-import CarSellForm from '@/components/CarSellForm'
+import HeroFormSection from '@/components/HeroFormSection'
 import BrandMarquee from '@/components/BrandMarquee'
 import ReviewsComponent from '@/components/ReviewsComponent'
 import Accordion from '@/components/Accordion'
@@ -11,22 +10,6 @@ import VehicleTypesGrid from '@/components/VehicleTypesGrid'
 import type { Metadata } from 'next'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 
-function CarSellFormFallback() {
-  return (
-    <div className="rounded-2xl p-8 border border-gray-100 bg-white/30">
-      <div className="animate-pulse">
-        <div className="h-8 bg-gray-200 rounded mb-6"></div>
-        <div className="space-y-4">
-          <div className="h-12 bg-gray-200 rounded"></div>
-          <div className="h-12 bg-gray-200 rounded"></div>
-          <div className="h-12 bg-gray-200 rounded"></div>
-          <div className="h-12 bg-gray-200 rounded"></div>
-          <div className="h-12 bg-gray-200 rounded"></div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export const metadata: Metadata = {
   title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
@@ -78,32 +61,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-
-            {/* SEO h1 — visually hidden on mobile (CarSellForm has its own visual heading),
-                visible on desktop where it anchors the left column. */}
-            <div className="hidden lg:block">
-              <h1 className="text-4xl md:text-5xl font-black leading-tight text-gray-900">
-                Powered By AI
-                <span className="block mt-2 text-[#FFC325]">Sell Your Car Today</span>
-              </h1>
-              <p className="text-lg text-gray-600 mt-4 mb-6 max-w-lg">
-                Get a <strong>FREE valuation</strong> in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
-              </p>
-            </div>
-
-            {/* Screen-reader-only h1 for mobile */}
-            <h1 className="sr-only">
-              Sell Your Car Today — Get The Best Price Guaranteed with Auto-Sell.ai
-            </h1>
-
-            {/* Hero Form */}
-            <div className="liquid-glass-form-container rounded-2xl md:rounded-3xl overflow-hidden">
-              <Suspense fallback={<CarSellFormFallback />}>
-                <CarSellForm />
-              </Suspense>
-            </div>
-          </div>
+          <HeroFormSection />
         </div>
       </section>
 
@@ -291,13 +249,13 @@ export default function Home() {
             <div>
               <p className="text-gray-600 text-base mb-2">Call us directly:</p>
               <a
-                href="tel:1800288673"
+                href="tel:0492 858 699"
                 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 hover:text-gray-700 transition-colors flex items-center justify-center gap-3"
               >
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span>1800 AUTO SELL</span>
+                <span>0492 858 699</span>
               </a>
               <p className="text-sm text-gray-500 mt-2">Open 7 days a week &bull; 8am–6pm AEST</p>
             </div>
