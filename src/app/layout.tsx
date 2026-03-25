@@ -72,6 +72,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://auto-sell.ai',
   },
+  verification: {
+    google: 'uesYUYENnimZ0evqhEg6cDi3L4pH9it5-cqJXmo9RQM',
+  },
 };
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
