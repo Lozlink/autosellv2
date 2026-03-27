@@ -61,6 +61,14 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
     engineSize?: string;
   } | null>(null);
 
+  const sendToCloseCRM = (data: Record<string, string | undefined>) => {
+    fetch('/api/close-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).catch((err) => console.error('Close CRM sync failed:', err));
+  };
+
   const handleRegoLookup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -189,6 +197,21 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
       return;
     }
 
+    // Fire Close CRM lead creation (non-blocking)
+    sendToCloseCRM({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      vehicle_make: formData.vehicleMake,
+      vehicle_model: formData.vehicleModel,
+      vehicle_year: formData.vehicleYear,
+      vehicle_description: supabaseData.vehicle_description,
+      vin_or_reg: 'manual_entry',
+      postcode: formData.postcode,
+      message: supabaseData.message,
+      autograb_badge: formData.vehicleBadge,
+    });
+
     try {
       const res = await fetch('/api/send-email', {
         method: 'POST',
@@ -273,6 +296,25 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
       }, 100);
       return;
     }
+
+    // Fire Close CRM lead creation with Autograb enrichment (non-blocking)
+    sendToCloseCRM({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      vehicle_make: supabaseData.vehicle_make,
+      vehicle_model: supabaseData.vehicle_model,
+      vehicle_year: supabaseData.vehicle_year,
+      vehicle_description: supabaseData.vehicle_description,
+      vin_or_reg: supabaseData.vin_or_reg,
+      postcode: formData.postcode,
+      message: supabaseData.message,
+      autograb_badge: regoLookupResult?.badge,
+      autograb_colour: regoLookupResult?.colour,
+      autograb_body_type: regoLookupResult?.bodyType,
+      autograb_transmission: regoLookupResult?.transmission,
+      autograb_engine_size: regoLookupResult?.engineSize,
+    });
 
     try {
       const res = await fetch('/api/send-email', {
