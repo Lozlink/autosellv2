@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "Auto-Sell.ai",
     images: [
       {
-        url: "https://auto-sell.ai/brand-guideline/autosell-logo/JPEG/1 (1).jpg",
+        url: "https://auto-sell.ai/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Auto-Sell.ai - Sell Your Car Fast for Cash",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
     description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed.",
-    images: ["https://auto-sell.ai/brand-guideline/autosell-logo/JPEG/1 (1).jpg"],
+    images: ["https://auto-sell.ai/og-image.jpg"],
   },
   robots: {
     index: true,
