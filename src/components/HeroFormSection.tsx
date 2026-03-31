@@ -34,7 +34,7 @@ export default function HeroFormSection() {
               <span className="block mt-2 text-[#FFC325]">Sell Your Car Today</span>
             </h1>
             <p className="text-lg text-gray-600 mt-4 mb-6 max-w-lg">
-              Get a <strong>FREE valuation</strong> in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
+                <strong>SELL YOUR CAR </strong> in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
             </p>
           </>
         ) : (
