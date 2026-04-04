@@ -39,13 +39,13 @@ const montserrat = Montserrat({
 
 
 export const metadata: Metadata = {
-  title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
-  description: "Sell your car instantly with Auto-Sell.ai. Get free quotes in 30 minutes, same-day payment, and hassle-free car selling across Australia. We buy all cars in any condition!",
-  keywords: "sell my car, car buyers Australia, cash for cars, sell car fast, instant car quote, same day payment, car valuation, we buy cars",
+  title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
+  description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
+  keywords: "sell my car, sell my car online, cash for cars Sydney, sell car fast, instant car quote, same day payment, sell car online, we buy cars",
   authors: [{ name: "Auto-Sell.ai" }],
   openGraph: {
-    title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
-    description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed. We buy all cars in any condition across Australia.",
+    title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
+    description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
     type: "website",
     locale: "en_AU",
     url: "https://auto-sell.ai",
@@ -61,8 +61,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
-    description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed.",
+    title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
+    description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
     images: ["https://auto-sell.ai/og-image.jpg"],
   },
   robots: {

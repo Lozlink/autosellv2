@@ -6,7 +6,7 @@ export function OrganizationJsonLd() {
     url: 'https://auto-sell.ai',
     logo: 'https://auto-sell.ai/brand-guideline/autosell-logo/PNG/1 (1).png',
     description:
-      "Australia's #1 AI-powered car buying service. Get free valuations in 30 minutes, same-day OSKO payment, and free Australia-wide pickup.",
+      "Australia's #1 AI-powered car buying service. Get free quotes in 30 minutes, same-day OSKO payment, and free Australia-wide pickup.",
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+61-492 858 699',
@@ -61,7 +61,7 @@ export function LocalBusinessJsonLd({ city }: { city: string }) {
     name: `Auto-Sell.ai - ${city}`,
     url: `https://auto-sell.ai/sell-my-car-${city.toLowerCase().replace(/\s+/g, '-')}`,
     telephone: '+61-492 858 699',
-    description: `Sell your car fast in ${city} with Auto-Sell.ai. Free 30-minute valuations, same-day OSKO payment, and free pickup across ${city}.`,
+    description: `Sell your car fast in ${city} with Auto-Sell.ai. Free 30-minute quotes, same-day OSKO payment, and free pickup across ${city}.`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: city,

@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Ute | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your ute fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
+  description: "Sell your ute fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
   keywords: "sell ute, ute buyers, sell my ute, ute car buyers, cash for utes, sell ute fast, work ute, dual cab ute",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-utes',
@@ -25,7 +25,7 @@ export default function SellUtesPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell My Ute
-              <span className="block" style={{ color: '#000' }}>Get Your Ute Valuation Now</span>
+              <span className="block" style={{ color: '#000' }}>Sell Your Ute for Cash Today</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
               Australia&apos;s most sought-after vehicles for towing power, reliability & versatility. Get a fair quote in ~30 minutes with instant OSKO payment.
@@ -111,7 +111,7 @@ export default function SellUtesPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Utes are some of the most sought-after vehicles in Australia, prized for their towing power, reliability and versatility—whether for work, family or weekend adventures. When you&apos;re ready to sell your ute, the process shouldn&apos;t involve time-wasters, lowball offers or weeks of back-and-forth. Auto-Sell.aigives you a fast and transparent way to sell your ute, with a valuation typically delivered within 30 minutes and same-day OSKO payment once you accept.
+            Utes are some of the most sought-after vehicles in Australia, prized for their towing power, reliability and versatility—whether for work, family or weekend adventures. When you&apos;re ready to sell your ute, the process shouldn&apos;t involve time-wasters, lowball offers or weeks of back-and-forth. Auto-Sell.aigives you a fast and transparent way to sell your ute, with a quote typically delivered within 30 minutes and same-day OSKO payment once you accept.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             If you&apos;ve been thinking &#34;I need a quick, fair and simple way to sell my ute,&#34; our process is built to make it easy.
@@ -127,7 +127,7 @@ export default function SellUtesPage() {
               We Buy All Ute Makes and Models
             </h2>
             <p className="text-xl text-gray-600">
-              Utes hold their value exceptionally well, and we buy every type—diesel, petrol, 4x2, 4x4, single cab, dual cab and everything in between. No matter the condition, kilometres or age, you&apos;ll receive a fair, data-backed valuation.
+              Utes hold their value exceptionally well, and we buy every type—diesel, petrol, 4x2, 4x4, single cab, dual cab and everything in between. No matter the condition, kilometres or age, you&apos;ll receive a fair, data-backed offer.
             </p>
           </div>
 
@@ -162,7 +162,7 @@ export default function SellUtesPage() {
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your ute&apos;s details through our quick valuation form. Once received, we review everything and send your quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your ute&apos;s details through our quick online form. Once received, we review everything and send your quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -179,8 +179,8 @@ export default function SellUtesPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Ute Valuation Backed by Real Market Data</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Utes require specific expertise to value correctly—towing capacity, tray setup, accessories, suspension upgrades and service history can influence pricing significantly. Our valuations are based on:</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Ute Pricing Backed by Real Market Data</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">Utes require specific expertise to value correctly—towing capacity, tray setup, accessories, suspension upgrades and service history can influence pricing significantly. Our offers are based on:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Live ute market data</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Recent sales of comparable models</span></div>
@@ -189,7 +189,7 @@ export default function SellUtesPage() {
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Accessories like canopies, bullbars, toolboxes and tow kits</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Brand- and model-specific demand trends</span></div>
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">You get a fair, accurate figure—not an automated estimate or a quote that&apos;s reduced later. If you have another offer, we&apos;re happy to review it—our valuations often beat like-for-like quotes.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">You get a fair, accurate figure—not an automated estimate or a quote that&apos;s reduced later. If you have another offer, we&apos;re happy to review it—our offers often beat like-for-like quotes.</p>
         </div>
       </section>
 
@@ -222,7 +222,7 @@ export default function SellUtesPage() {
               },
               {
                 icon: "",
-                title: "Fair Ute Valuation",
+                title: "Fair Ute Pricing",
                 description: "Assessed on kilometers, mechanical condition, service history, accessories & demand."
               },
               {
@@ -238,7 +238,7 @@ export default function SellUtesPage() {
               {
                 icon: "",
                 title: "Quote in ~30 Minutes",
-                description: "Submit ute details online and get a fair valuation without pressure."
+                description: "Submit ute details online and get a fair quote without pressure."
               },
               {
                 icon: "",
@@ -260,17 +260,17 @@ export default function SellUtesPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Ute Valuation Now
+            Sell Your Ute for Cash Today
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your ute—or want to check its current market value—start with a fast, obligation-free valuation.
+            If you&apos;re ready to sell your ute—or want to check its current market value—start with a fast, obligation-free quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Ute Valuation Now
+            Sell Your Ute for Cash Today
           </Link>
         </div>
       </section>

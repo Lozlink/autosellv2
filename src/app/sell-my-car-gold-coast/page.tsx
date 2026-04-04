@@ -206,7 +206,7 @@ export default function SellMyCarGoldCoastPage() {
             Ready to Sell Your Car on the Gold Coast?
           </h2>
           <p className="text-xl mb-8" style={{ color: '#1f2937' }}>
-            Get your free Gold Coast car valuation in 30 minutes and receive same-day payment.
+            Get your free Gold Coast car quote in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

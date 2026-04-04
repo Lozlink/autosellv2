@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Mercedes | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Mercedes fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, professional sale.',
+  description: 'Sell your Mercedes fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, professional sale.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-mercedes',
   },
@@ -31,7 +31,7 @@ export default function SellMercedesPage() {
   ]
 
   const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Fast, professional valuation based on market data' },
+    { icon: '', title: '30-min Quote', desc: 'Fast, professional quote based on market data' },
     { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
     { icon: '', title: 'All Mercedes Models', desc: 'From compact cars to luxury SUVs and performance variants' },
     { icon: '', title: 'Australia-Wide', desc: 'We come to you for inspection, payment and collection' },
@@ -49,10 +49,10 @@ export default function SellMercedesPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell Your Mercedes
-              <span className="block" style={{ color: '#000' }}>Fast & Fair Valuation</span>
+              <span className="block" style={{ color: '#000' }}>Fast & Fair Quote</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get a quick, professional valuation and same-day OSKO payment for your Mercedes. Australia-wide pickup with zero hassle.
+              Get a quick, professional quote and same-day OSKO payment for your Mercedes. Australia-wide pickup with zero hassle.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -159,7 +159,7 @@ export default function SellMercedesPage() {
             ))}
           </div>
           <p className="text-center text-gray-600 mt-8">
-            Prestige vehicles require specialist appraisal, and our valuations reflect real buyer demand, live pricing insights and the specific features that influence Mercedes resale value.
+            Prestige vehicles require specialist appraisal, and our quotes reflect real buyer demand, live pricing insights and the specific features that influence Mercedes resale value.
           </p>
         </div>
       </section>
@@ -180,7 +180,7 @@ export default function SellMercedesPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Mercedes&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Mercedes&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -199,12 +199,12 @@ export default function SellMercedesPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair, Transparent Mercedes Valuation</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair, Transparent Mercedes Pricing</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Mercedes pricing varies widely between body types, model years, trim levels and engine options. Performance AMG variants and luxury SUVs often require specialised valuation, while newer EQ electric models rely on fast-moving market data. Our team uses verified sales history, live pricing tools and trusted automotive sources to determine your offer.
+            Mercedes pricing varies widely between body types, model years, trim levels and engine options. Performance AMG variants and luxury SUVs often require specialist pricing, while newer EQ electric models rely on fast-moving market data. Our team uses verified sales history, live pricing tools and trusted automotive sources to determine your offer.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Your valuation considers the factors below, ensuring your offer is accurate and honest&mdash;not an automated number and not a figure that decreases during inspection. If you&apos;ve received another quote, let us know&mdash;we often beat like-for-like valuations and we&apos;re upfront about how we calculate pricing.
+            Your quote considers the factors below, ensuring your offer is accurate and honest&mdash;not an automated number and not a figure that decreases during inspection. If you&apos;ve received another quote, let us know&mdash;we often beat like-for-like quotes and we&apos;re upfront about how we calculate pricing.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -249,16 +249,16 @@ export default function SellMercedesPage() {
       {/* CTA */}
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get Your Mercedes Valuation Now</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your Mercedes for Cash Today</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell&mdash;or simply want to understand your Mercedes&apos; current market value&mdash;start with a free, no-obligation valuation.
+            If you&apos;re ready to sell&mdash;or simply want to understand your Mercedes&apos; current market value&mdash;start with a free, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Mercedes Valuation Now
+            Sell Your Mercedes for Cash Today
           </Link>
         </div>
       </section>

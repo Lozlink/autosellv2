@@ -51,7 +51,7 @@ export default function PrivacyPage() {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">3. How We Use Your Information</h2>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li>Provide car valuation and buying services</li>
+                <li>Provide car quoting and buying services</li>
                 <li>Communicate with you about your quote and transaction</li>
                 <li>Process payments and complete transactions</li>
                 <li>Improve our services and customer experience</li>

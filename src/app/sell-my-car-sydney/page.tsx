@@ -206,7 +206,7 @@ export default function SellMyCarSydneyPage() {
             Ready to Sell Your Car in Sydney?
           </h2>
           <p className="text-xl mb-8" style={{ color: '#1f2937' }}>
-            Get your free Sydney car valuation in 30 minutes and receive same-day payment.
+            Get your free Sydney car quote in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

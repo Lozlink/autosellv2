@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Holden | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Holden fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a hassle-free selling experience.',
+  description: 'Sell your Holden fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a hassle-free selling experience.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-holden',
   },
@@ -30,7 +30,7 @@ export default function SellHoldenPage() {
     'Live buyer demand',
     'Trusted automotive sources',
     'Model, condition and demand',
-    'Specialist valuation for performance models and limited editions',
+    'Specialist pricing for performance models and limited editions',
   ]
 
   const whyChoose = [
@@ -52,7 +52,7 @@ export default function SellHoldenPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell Your Holden
-              <span className="block" style={{ color: '#000' }}>Quick & Fair Valuation</span>
+              <span className="block" style={{ color: '#000' }}>Quick & Fair Quote</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
               Holden vehicles hold a special place in Australia, and even though the brand has finished up locally, demand for good-condition Holdens remains strong. At Auto-Sell, we make it easy to sell your Holden quickly and without the stress of private listings or drawn-out negotiations.
@@ -139,7 +139,7 @@ export default function SellHoldenPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            You get a fair valuation based on real market data, a quote in around 30 minutes, and same-day OSKO payment once you accept. We handle everything—from paperwork to pickup—so you can move on without the hassle.
+            You get a fair offer based on real market data, a quote in around 30 minutes, and same-day OSKO payment once you accept. We handle everything—from paperwork to pickup—so you can move on without the hassle.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             If you&apos;ve been wondering &ldquo;what&apos;s the easiest way to sell my Holden?&rdquo;, our process is built for you.
@@ -184,7 +184,7 @@ export default function SellHoldenPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Holden&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Holden&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -205,10 +205,10 @@ export default function SellHoldenPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Prices Backed by Real Market Data</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Holden pricing varies widely depending on model, condition and demand, especially for popular nameplates like Commodore and Colorado. Performance models and limited editions often require specialist valuation, and we take all of this into account. Our team uses verified sales data, live buyer demand and trusted automotive sources to calculate your offer. That means no automated lowball figures and no pressure tactics—just a fair price for your Holden based on what it&apos;s truly worth today.
+            Holden pricing varies widely depending on model, condition and demand, especially for popular nameplates like Commodore and Colorado. Performance models and limited editions often require specialist pricing, and we take all of this into account. Our team uses verified sales data, live buyer demand and trusted automotive sources to calculate your offer. That means no automated lowball figures and no pressure tactics—just a fair price for your Holden based on what it&apos;s truly worth today.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            If you&apos;ve received another quote, tell us. We regularly beat like-for-like offers, and we&apos;re transparent about how our valuation process works.
+            If you&apos;ve received another quote, tell us. We regularly beat like-for-like offers, and we&apos;re transparent about how our pricing process works.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -255,14 +255,14 @@ export default function SellHoldenPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ready to Sell Your Holden?</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell—or just want to know what your Holden is worth—start with a fast, obligation-free valuation.
+            If you&apos;re ready to sell—or just want to know what your Holden is worth—start with a fast, obligation-free quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Holden Valuation Now
+            Sell Your Holden for Cash Today
           </Link>
         </div>
       </section>

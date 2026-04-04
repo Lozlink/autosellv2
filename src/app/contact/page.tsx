@@ -7,7 +7,7 @@ import MapComponent from '@/components/MapComponent'
 
 export const metadata: Metadata = {
   title: "Contact Us - Auto-Sell.ai",
-  description: "Contact Auto-Sell.ai for your car valuation. Call, email, text, or chat with us. We're here to help you sell your car fast.",
+  description: "Contact Auto-Sell.ai to sell your car. Call, email, text, or chat with us. We're here to help you sell your car fast.",
   alternates: {
     canonical: 'https://auto-sell.ai/contact',
   },
@@ -181,7 +181,7 @@ export default function ContactPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Ready to Get Your Free Valuation?
+            Ready to Sell Your Car?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
             Don&apos;t wait - get your car valued in 30 minutes and receive same-day payment.
@@ -191,7 +191,7 @@ export default function ContactPage() {
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get My Free Valuation Now
+            Get My Free Quote Now
           </Link>
         </div>
       </section>

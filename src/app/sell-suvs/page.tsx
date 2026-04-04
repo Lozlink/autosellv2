@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My SUV | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your SUV fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
+  description: "Sell your SUV fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
   keywords: "sell suv, suv buyers, sell my suv, suv car buyers, cash for suvs, sell suv fast, compact suv, large suv",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-suvs',
@@ -25,7 +25,7 @@ export default function SellSUVsPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell My SUV
-              <span className="block" style={{ color: '#000' }}>Get Your SUV Valuation Now</span>
+              <span className="block" style={{ color: '#000' }}>Sell Your SUV for Cash Today</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
               SUVs are the most in-demand vehicles in Australia. Get a fair quote in ~30 minutes with instant OSKO payment and Australia-wide pickup.
@@ -127,7 +127,7 @@ export default function SellSUVsPage() {
               We Buy Every Type of SUV
             </h2>
             <p className="text-xl text-gray-600">
-              Australia&apos;s SUV market is huge, and we buy all makes, models and sizes—from small runarounds to luxury SUVs and rugged off-roaders. Regardless of kilometres, age or condition, you&apos;ll receive a fair valuation backed by real market pricing.
+              Australia&apos;s SUV market is huge, and we buy all makes, models and sizes—from small runarounds to luxury SUVs and rugged off-roaders. Regardless of kilometres, age or condition, you&apos;ll receive a fair offer backed by real market pricing.
             </p>
           </div>
 
@@ -162,7 +162,7 @@ export default function SellSUVsPage() {
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your SUV&apos;s details through our short valuation form. Once received, our team reviews your information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your SUV&apos;s details through our short online form. Once received, our team reviews your information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -179,8 +179,8 @@ export default function SellSUVsPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair SUV Valuation Backed by Real Market Data</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">SUV pricing varies significantly across brands and segments. Popular family models, hybrids and late-model 7-seaters often attract strong demand, while off-road and towing-capable SUVs require specialised valuation.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair SUV Pricing Backed by Real Market Data</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">SUV pricing varies significantly across brands and segments. Popular family models, hybrids and late-model 7-seaters often attract strong demand, while off-road and towing-capable SUVs require specialised pricing.</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Verified SUV market data</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Live buyer demand</span></div>
@@ -189,7 +189,7 @@ export default function SellSUVsPage() {
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Service history and options</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Brand and model-specific trends</span></div>
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">This ensures an accurate, transparent valuation—not an automated estimate and not a figure that gets reduced later. If you&apos;ve already received another offer, we&apos;re happy to review it—our valuations often beat like-for-like quotes.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">This ensures an accurate, transparent offer—not an automated estimate and not a figure that gets reduced later. If you&apos;ve already received another offer, we&apos;re happy to review it—our offers often beat like-for-like quotes.</p>
         </div>
       </section>
 
@@ -218,11 +218,11 @@ export default function SellSUVsPage() {
               {
                 icon: "",
                 title: "Verified Market Data",
-                description: "We use live SUV market data and recent comparable sales for accurate valuations."
+                description: "We use live SUV market data and recent comparable sales for accurate offers."
               },
               {
                 icon: "",
-                title: "Fair Valuation",
+                title: "Fair Pricing",
                 description: "Assessed on kilometers, condition, service history, factory features & current demand."
               },
               {
@@ -238,7 +238,7 @@ export default function SellSUVsPage() {
               {
                 icon: "",
                 title: "Quote in ~30 Minutes",
-                description: "Submit details online and receive a fair valuation quickly—no pressure sales."
+                description: "Submit details online and receive a fair quote quickly—no pressure sales."
               },
               {
                 icon: "",
@@ -260,17 +260,17 @@ export default function SellSUVsPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your SUV Valuation Now
+            Sell Your SUV for Cash Today
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your SUV—or want to find out what it&apos;s worth today—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell your SUV—or want to find out what it&apos;s worth today—start with a free, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your SUV Valuation Now
+            Sell Your SUV for Cash Today
           </Link>
         </div>
       </section>

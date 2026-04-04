@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Nissan | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Nissan fast with a fair valuation, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, hassle-free sale.',
+  description: 'Sell your Nissan fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, hassle-free sale.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-nissan',
   },
@@ -34,7 +34,7 @@ export default function SellNissanPage() {
   ]
 
   const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Fast valuation based on verified data' },
+    { icon: '', title: '30-min Quote', desc: 'Fast quote based on verified data' },
     { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
     { icon: '', title: 'All Nissan Models', desc: 'SUVs, utes, sedans, vans and electric models' },
     { icon: '', title: 'Australia-Wide', desc: 'We come to you for inspection, payment and collection' },
@@ -52,10 +52,10 @@ export default function SellNissanPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell Your Nissan
-              <span className="block" style={{ color: '#000' }}>Quick & Fair Valuation</span>
+              <span className="block" style={{ color: '#000' }}>Quick & Fair Quote</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get a quick, professional valuation and same-day OSKO payment for your Nissan. Australia-wide pickup with zero hassle.
+              Get a quick, professional quote and same-day OSKO payment for your Nissan. Australia-wide pickup with zero hassle.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -149,7 +149,7 @@ export default function SellNissanPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Nissan Models</h2>
-            <p className="text-xl text-gray-600">The Nissan range covers everything from small hatches and sedans to SUVs, 4x4s and work-ready utes. No matter which model you own&mdash;or what condition it&apos;s in&mdash;you&apos;ll receive a data-backed valuation that reflects today&apos;s real market demand.</p>
+            <p className="text-xl text-gray-600">The Nissan range covers everything from small hatches and sedans to SUVs, 4x4s and work-ready utes. No matter which model you own&mdash;or what condition it&apos;s in&mdash;you&apos;ll receive a data-backed offer that reflects today&apos;s real market demand.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {models.map((model) => (
@@ -183,7 +183,7 @@ export default function SellNissanPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Nissan&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Nissan&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -204,10 +204,10 @@ export default function SellNissanPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Pricing Based on Real Market Data</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Nissan prices vary significantly across the range. Models like the Navara and Patrol often attract strong demand, while popular SUVs like the X-Trail and Qashqai maintain consistent resale value. Electric and hybrid models like the Leaf also require specialised pricing.
+            Nissan prices vary significantly across the range. Models like the Navara and Patrol often attract strong demand, while popular SUVs like the X-Trail and Qashqai maintain consistent resale value. Electric and hybrid models like the Leaf also require specialist pricing.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Our valuation approach ensures you receive a fair, realistic offer&mdash;not an automated estimate or a number that drops during inspection. If you already have another quote, share it with us&mdash;we often beat like-for-like offers, and we&apos;re transparent about how our pricing works.
+            Our pricing approach ensures you receive a fair, realistic offer&mdash;not an automated estimate or a number that drops during inspection. If you already have another quote, share it with us&mdash;we often beat like-for-like offers, and we&apos;re transparent about how our pricing works.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -252,16 +252,16 @@ export default function SellNissanPage() {
       {/* CTA */}
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get Your Nissan Valuation Now</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your Nissan for Cash Today</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your Nissan&mdash;or want an accurate idea of its current value&mdash;start with a fast, no-obligation valuation.
+            If you&apos;re ready to sell your Nissan&mdash;or want an accurate idea of its current value&mdash;start with a fast, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Nissan Valuation Now
+            Sell Your Nissan for Cash Today
           </Link>
         </div>
       </section>

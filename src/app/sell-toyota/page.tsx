@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | Auto-Sell",
-  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent valuation with Auto-Sell.",
+  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent quote with Auto-Sell.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-toyota',
   },
@@ -114,7 +114,7 @@ export default function SellToyotaPage() {
             Whether you&apos;re upgrading, clearing space or just ready to move on, we provide a fast, transparent way to sell your Toyota anywhere in Australia. Toyota holds its value well, but that doesn&apos;t mean you should wait weeks to get a decent offer.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Our team looks at real market demand, recent Toyota sales, condition, service history and extras to give you a fair, data-backed valuation. You get a quote in around 30 minutes, and if you&apos;re happy, we come to you for pickup and same-day OSKO payment. No fees, no fuss, no pressure.
+            Our team looks at real market demand, recent Toyota sales, condition, service history and extras to give you a fair, data-backed offer. You get a quote in around 30 minutes, and if you&apos;re happy, we come to you for pickup and same-day OSKO payment. No fees, no fuss, no pressure.
           </p>
         </div>
       </section>
@@ -171,7 +171,7 @@ export default function SellToyotaPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Toyota&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Toyota&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -193,7 +193,7 @@ export default function SellToyotaPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Pricing Based on Real Market Data</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Toyota vehicles are in strong demand, especially hybrids and popular models like Hilux, RAV4 and LandCruiser. Our valuations are based on current market conditions, live buyer demand, recent comparable sales and trusted data sources. The result is a fair, realistic offer that reflects what your Toyota is actually worth today—not an automated estimate or low trade-in figure.
+            Toyota vehicles are in strong demand, especially hybrids and popular models like Hilux, RAV4 and LandCruiser. Our offers are based on current market conditions, live buyer demand, recent comparable sales and trusted data sources. The result is a fair, realistic offer that reflects what your Toyota is actually worth today—not an automated estimate or low trade-in figure.
           </p>
 
           <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
@@ -259,7 +259,7 @@ export default function SellToyotaPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Why Toyota Owners Choose Auto-Sell
             </h2>
-            <p className="text-xl text-gray-600">People choose us because selling a car should be easy, quick and fair. Toyota owners trust us with their sale because we&apos;re transparent, consistent and reliable. We give real valuations based on real data, handle all the paperwork, and pay instantly. It&apos;s a stress-free way to move on from your Toyota without wasting weeks negotiating.</p>
+            <p className="text-xl text-gray-600">People choose us because selling a car should be easy, quick and fair. Toyota owners trust us with their sale because we&apos;re transparent, consistent and reliable. We give real quotes based on real data, handle all the paperwork, and pay instantly. It&apos;s a stress-free way to move on from your Toyota without wasting weeks negotiating.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -309,7 +309,7 @@ export default function SellToyotaPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Toyota Valuation Now
+            Sell Your Toyota for Cash Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
             Sell your car the easy way.
@@ -319,7 +319,7 @@ export default function SellToyotaPage() {
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Toyota Valuation Now
+            Sell Your Toyota for Cash Today
           </Link>
         </div>
       </section>

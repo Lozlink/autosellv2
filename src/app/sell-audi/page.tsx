@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Sell My Audi | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell',
-  description: 'Sell your Audi fast with a fair valuation, 30-min quote and same-day OSKO payment. Australia-wide pickup for a smooth, professional and hassle-free sale.',
+  description: 'Sell your Audi fast with a fair quote, 30-min quote and same-day OSKO payment. Australia-wide pickup for a smooth, professional and hassle-free sale.',
   alternates: {
     canonical: 'https://auto-sell.ai/sell-audi',
   },
@@ -42,7 +42,7 @@ export default function SellAudiPage() {
   ]
 
   const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Quick, professional valuation of your Audi' },
+    { icon: '', title: '30-min Quote', desc: 'Quick, professional quote for your Audi' },
     { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
     { icon: '', title: 'All Audi Models', desc: 'From A1 to R8, plus electric and hybrid' },
     { icon: '', title: 'Australia-Wide', desc: 'We arrange pickup anywhere across Australia' },
@@ -60,10 +60,10 @@ export default function SellAudiPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell Your Audi
-              <span className="block" style={{ color: '#000' }}>Fast &amp; Fair Valuation</span>
+              <span className="block" style={{ color: '#000' }}>Fast &amp; Fair Quote</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get a quick, professional valuation and same-day OSKO payment for your Audi. Australia-wide pickup with zero hassle.
+              Get a quick, professional quote and same-day OSKO payment for your Audi. Australia-wide pickup with zero hassle.
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -157,7 +157,7 @@ export default function SellAudiPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Audi Models</h2>
-            <p className="text-xl text-gray-600">From compact hatches to luxury sedans, performance models and premium SUVs. Regardless of the age, kilometres or condition of your Audi, we provide a fair valuation backed by genuine market data.</p>
+            <p className="text-xl text-gray-600">From compact hatches to luxury sedans, performance models and premium SUVs. Regardless of the age, kilometres or condition of your Audi, we provide a fair offer backed by genuine market data.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {models.map((model) => (
@@ -189,7 +189,7 @@ export default function SellAudiPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Audi&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Audi&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -208,9 +208,9 @@ export default function SellAudiPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Audi Valuation Based on Real Market Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Audi Pricing Based on Real Market Data</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Audi pricing varies widely depending on model, engine type, trim level and optional features. Performance variants like the S and RS models require specialised valuation, while electric models such as the e-tron rely on fast-evolving market data.
+            Audi pricing varies widely depending on model, engine type, trim level and optional features. Performance variants like the S and RS models require specialist pricing, while electric models such as the e-tron rely on fast-evolving market data.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             Your offer is calculated using:
@@ -224,7 +224,7 @@ export default function SellAudiPage() {
             ))}
           </div>
           <p className="text-lg text-gray-700 leading-relaxed mt-8">
-            This approach ensures a fair, accurate figure—not an automated estimate and not a number that changes later. If you&apos;ve received another quote, let us know—we often beat like-for-like valuations and we&apos;re transparent about how we determine your price.
+            This approach ensures a fair, accurate figure—not an automated estimate and not a number that changes later. If you&apos;ve received another quote, let us know—we often beat like-for-like quotes and we&apos;re transparent about how we determine your price.
           </p>
         </div>
       </section>
@@ -261,16 +261,16 @@ export default function SellAudiPage() {
       {/* CTA */}
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get Your Audi Valuation Now</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your Audi for Cash Today</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your Audi—or want to know its true market value—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell your Audi—or want to know its true market value—start with a free, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Audi Valuation Now
+            Sell Your Audi for Cash Today
           </Link>
         </div>
       </section>

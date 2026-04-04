@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     question: "How do you determine the price?",
-    answer: "We use real-time market data, RedBook valuations, and our extensive network of buyers to ensure you get the best possible price for your vehicle."
+    answer: "We use real-time market data, RedBook pricing, and our extensive network of buyers to ensure you get the best possible price for your vehicle."
   },
   {
     question: "What areas do you service?",

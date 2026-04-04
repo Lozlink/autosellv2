@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your car fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your car fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell used car, used car buyers, sell my car, used vehicle buyers, cash for used cars, sell car fast",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-used-cars',
@@ -25,7 +25,7 @@ export default function SellUsedCarsPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell My Car
-              <span className="block" style={{ color: '#000' }}>Get Your Car Valuation Now</span>
+              <span className="block" style={{ color: '#000' }}>Sell Your Car for Cash Today</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
               Selling your car shouldn&apos;t be a long or complicated process. Get a fair quote in ~30 minutes with instant OSKO payment and Australia-wide pickup.
@@ -110,7 +110,7 @@ export default function SellUsedCarsPage() {
       {/* Intro Content */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">Selling your car shouldn&apos;t be a long or complicated process. Whether you&apos;re upgrading, downsizing or simply ready to move on, Auto-Sell.aimakes it easy to sell your car quickly and for a fair price. Instead of dealing with tyre-kickers, private messages, low trade-in offers or weeks of waiting around, you get a fast valuation, a quote in around 30 minutes and same-day OSKO payment once you accept.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">Selling your car shouldn&apos;t be a long or complicated process. Whether you&apos;re upgrading, downsizing or simply ready to move on, Auto-Sell.aimakes it easy to sell your car quickly and for a fair price. Instead of dealing with tyre-kickers, private messages, low trade-in offers or weeks of waiting around, you get a fast offer, a quote in around 30 minutes and same-day OSKO payment once you accept.</p>
           <p className="text-lg text-gray-700 leading-relaxed">If you&apos;ve been thinking &#34;I want a simple and reliable way to sell my car,&#34; our process is designed to give you exactly that.</p>
         </div>
       </section>
@@ -123,7 +123,7 @@ export default function SellUsedCarsPage() {
               We Buy All Makes and Models
             </h2>
             <p className="text-xl text-gray-600">
-              No matter what you drive, we&apos;ll give you an accurate valuation backed by real market data. From compact hatches and sedans to SUVs, utes and performance vehicles, we buy every type of car across Australia.
+              No matter what you drive, we&apos;ll give you an accurate quote backed by real market data. From compact hatches and sedans to SUVs, utes and performance vehicles, we buy every type of car across Australia.
             </p>
           </div>
 
@@ -158,7 +158,7 @@ export default function SellUsedCarsPage() {
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your car&apos;s details through our quick online valuation form. Once we receive the information, our team reviews the details and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your car&apos;s details through our quick online form. Once we receive the information, our team reviews the details and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -175,9 +175,9 @@ export default function SellUsedCarsPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Car Valuation Backed by Real Data</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your offer is calculated using trusted data sources, recent sales trends and live buyer demand. This ensures you receive an accurate and transparent valuation—not a generic automated estimate or a figure that changes at the last minute.</p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your valuation considers:</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Car Pricing Backed by Real Data</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your offer is calculated using trusted data sources, recent sales trends and live buyer demand. This ensures you receive an accurate and transparent offer—not a generic automated estimate or a figure that changes at the last minute.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your quote considers:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Make, model and year</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Kilometres and condition</span></div>
@@ -214,11 +214,11 @@ export default function SellUsedCarsPage() {
               {
                 icon: "",
                 title: "Current Market Pricing",
-                description: "Valuations based on make, model, year, kilometers and service history."
+                description: "Offers based on make, model, year, kilometers and service history."
               },
               {
                 icon: "",
-                title: "Fair Market Valuation",
+                title: "Fair Market Pricing",
                 description: "Factory features, condition, market demand and current pricing all factor in."
               },
               {
@@ -234,7 +234,7 @@ export default function SellUsedCarsPage() {
               {
                 icon: "",
                 title: "Quote in ~30 Minutes",
-                description: "Submit your car details and get a fair valuation quickly and easily."
+                description: "Submit your car details and get a fair quote quickly and easily."
               },
               {
                 icon: "",
@@ -256,17 +256,17 @@ export default function SellUsedCarsPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Car Valuation Now
+            Sell Your Car for Cash Today
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your car—or simply want to know its current market value—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell your car—or simply want to know its current market value—start with a free, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Car Valuation Now
+            Sell Your Car for Cash Today
           </Link>
         </div>
       </section>

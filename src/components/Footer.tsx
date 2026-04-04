@@ -24,7 +24,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-3 md:mb-4 max-w-md mx-auto md:mx-0 text-sm md:text-base">
-              Get your FREE car valuation in 30 minutes. Same-day OSKO payment, 
+              Get your FREE car quote in 30 minutes. Same-day OSKO payment,
               on-site inspections, and we come to you anywhere in Australia.
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
@@ -75,7 +75,7 @@ export default function Footer() {
             <ul className="space-y-1.5 md:space-y-2">
               <li>
                 <Link href="/#sell-form" className="text-gray-600 hover:text-gray-800 transition-colors">
-                  Free Car Valuation
+                  Sell Your Car Now
                 </Link>
               </li>
               <li>

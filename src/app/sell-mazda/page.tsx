@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Mazda | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Mazda fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a quick, hassle-free sale.",
+  description: "Sell your Mazda fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a quick, hassle-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-mazda',
   },
@@ -72,7 +72,7 @@ export default function SellMazdaPage() {
                 Australia&apos;s Trusted Mazda Buyers
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand. Whether you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.aigives you a hassle-free process from valuation to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear valuation, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
+                Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand. Whether you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.aigives you a hassle-free process from quote to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear offer, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -111,7 +111,7 @@ export default function SellMazdaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand. If you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.aigives you a hassle-free process from valuation to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear valuation, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
+            Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand. If you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.aigives you a hassle-free process from quote to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear offer, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             Whether you&apos;re upgrading, downsizing, or simply ready to part with your Mazda, we make sure the process is quick, transparent and convenient.
@@ -169,7 +169,7 @@ export default function SellMazdaPage() {
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Mazda&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Mazda&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -189,16 +189,16 @@ export default function SellMazdaPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Mazda Pricing Backed By Real Market Data</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            The Mazda range has strong resale patterns, but values can vary significantly depending on model and demand. The CX-5 often attracts strong interest, while models like the MX-5 or late-model Mazda 3 may require more specialised valuation. Our team uses verified sales data, real-time pricing tools and industry-trusted sources to determine your offer.
+            The Mazda range has strong resale patterns, but values can vary significantly depending on model and demand. The CX-5 often attracts strong interest, while models like the MX-5 or late-model Mazda 3 may require more specialist pricing. Our team uses verified sales data, real-time pricing tools and industry-trusted sources to determine your offer.
           </p>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            No matter which Mazda you own, you&apos;ll receive a fair valuation based on today&apos;s real market data, live buyer demand, kilometres, condition and service history.
+            No matter which Mazda you own, you&apos;ll receive a fair offer based on today&apos;s real market data, live buyer demand, kilometres, condition and service history.
           </p>
 
           <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
             <p className="text-lg text-gray-800 font-semibold mb-4">
-              That means no automated guesswork and no inflated numbers that get reduced later. Just an honest, data-driven valuation that reflects what your Mazda is worth today.
+              That means no automated guesswork and no inflated numbers that get reduced later. Just an honest, data-driven offer that reflects what your Mazda is worth today.
             </p>
             <p className="text-gray-700">
               If you have another offer, share it with us—we commonly beat like-for-like quotes and we&apos;re upfront about how our pricing works.
@@ -212,7 +212,7 @@ export default function SellMazdaPage() {
             </li>
             <li className="flex items-start">
               <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Industry-trusted sources for accurate valuation</span>
+              <span className="text-gray-700">Industry-trusted sources for accurate pricing</span>
             </li>
             <li className="flex items-start">
               <span className="text-yellow-400 font-bold mr-4"></span>
@@ -319,7 +319,7 @@ export default function SellMazdaPage() {
             Mazda owners choose Auto-Sell.aibecause our process is fast, fair and straightforward. You stay in control at every step and never deal with hidden fees or unclear pricing. It&apos;s the easiest way to sell your Mazda with confidence.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;re ready to sell—or just want to know what your Mazda is worth—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell—or just want to know what your Mazda is worth—start with a free, no-obligation quote.
           </p>
         </div>
       </section>
@@ -328,7 +328,7 @@ export default function SellMazdaPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Mazda Valuation Now
+            Sell Your Mazda for Cash Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
             Sell your car the easy way.
@@ -338,7 +338,7 @@ export default function SellMazdaPage() {
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Mazda Valuation Now
+            Sell Your Mazda for Cash Today
           </Link>
         </div>
       </section>

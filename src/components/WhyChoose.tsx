@@ -26,7 +26,7 @@ const CARDS: Card[] = [
     stat: '30',
     statLabel: 'min',
     title: 'Instant Payment',
-    description: 'AI-powered valuation and same-day OSKO transfer. Get paid in seconds, not weeks.',
+    description: 'AI-powered pricing and same-day OSKO transfer. Get paid in seconds, not weeks.',
     href: '/value-propositions/immediate-payment',
     imageSrc: '/images/branding/osko-and-payid-icon.jpg',
     imageAlt: 'OSKO and PayID instant payment',

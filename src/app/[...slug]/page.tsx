@@ -67,7 +67,7 @@ export default async function Page({
               className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
               style={{ backgroundColor: '#FFC325', color: '#fff' }}
             >
-              Get Your Valuation
+              Sell Your Car Now
             </Link>
           </div>
         </div>
@@ -90,14 +90,14 @@ export default async function Page({
             {page.cta_heading || 'Ready to Get Started?'}
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            {page.cta_description || 'Get a fair valuation in ~30 minutes with same-day OSKO payment across Australia.'}
+            {page.cta_description || 'Get a fair quote in ~30 minutes with same-day OSKO payment across Australia.'}
           </p>
           <Link
             href={page.cta_button_link || '/#sell-form'}
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#333', color: '#fff' }}
           >
-            {page.cta_button_text || 'Get Your Valuation Now'}
+            {page.cta_button_text || 'Get Your Quote Now'}
           </Link>
         </div>
       </section>

@@ -5,8 +5,8 @@ import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "How to Sell Your Car Fast - Auto-Sell.ai | Expert Tips & Guide",
-  description: "Learn how to sell your car fast with our expert guide. Get tips on preparation, pricing, and choosing the best selling method for maximum speed and value.",
+  title: "Sell My Car Fast in Sydney | Instant Car Offer | Auto-Sell",
+  description: "Looking for the best way to sell a car in Sydney? Get an instant car offer with Auto-Sell! We provide 30-min quotes and same-day payment. Sell my car fast!",
   alternates: {
     canonical: 'https://auto-sell.ai/how-to-sell-car-fast',
   },

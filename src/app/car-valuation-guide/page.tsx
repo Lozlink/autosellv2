@@ -5,8 +5,8 @@ import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "Car Valuation Guide - Auto-Sell.ai | How to Price Your Car Right",
-  description: "Learn how to value your car accurately with our comprehensive guide. Understand factors that affect car prices and get the best value when selling.",
+  title: "Car Valuation Guide | Instant Car Offer | Auto-Sell",
+  description: "Discover your vehicle's true worth with Auto-Sell. We provide accurate market pricing and an instant car offer. Get paid today!",
   alternates: {
     canonical: 'https://auto-sell.ai/car-valuation-guide',
   },

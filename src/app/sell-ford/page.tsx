@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Ford | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell",
-  description: "Sell your Ford fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a simple, hassle-free process.",
+  description: "Sell your Ford fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a simple, hassle-free process.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-ford',
   },
@@ -111,7 +111,7 @@ export default function SellFordPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            We make it easy to move on from your Ford without the delays and uncertainty of private selling, trade-ins or marketplace negotiations. You get a real valuation backed by current market data, a quote in around 30 minutes, and same-day OSKO payment once you accept.
+            We make it easy to move on from your Ford without the delays and uncertainty of private selling, trade-ins or marketplace negotiations. You get a real offer backed by current market data, a quote in around 30 minutes, and same-day OSKO payment once you accept.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             Ford vehicles hold strong appeal in Australia—whether it&apos;s the practicality of a Ranger, the comfort of an Escape, or the timeless pull of a Mustang. That demand means your Ford shouldn&apos;t take weeks to sell. Our team looks at accurate live data, recent sales, condition, kilometres, upgrades and service history to give you a fair offer that reflects today&apos;s real market.
@@ -171,7 +171,7 @@ export default function SellFordPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Ford&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Ford&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -193,7 +193,7 @@ export default function SellFordPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Offers Backed by Real Data</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Our valuations are based on real-time buyer demand, verified sales data and trusted industry sources. Ford pricing can vary significantly across models—Ranger and Everest often attract strong demand, while performance models like Mustang require specialist pricing. We consider all of it so you get a fair, transparent offer without the guesswork.
+            Our offers are based on real-time buyer demand, verified sales data and trusted industry sources. Ford pricing can vary significantly across models—Ranger and Everest often attract strong demand, while performance models like Mustang require specialist pricing. We consider all of it so you get a fair, transparent offer without the guesswork.
           </p>
 
           <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
@@ -270,7 +270,7 @@ export default function SellFordPage() {
               },
               {
                 icon: "",
-                title: "Real Market Valuation",
+                title: "Real Market Pricing",
                 description: "Based on real-time buyer demand, verified sales data and trusted industry sources."
               },
               {
@@ -312,7 +312,7 @@ export default function SellFordPage() {
             Auto-Sell.aiis built for people who value convenience, fairness and reliability. Ford owners choose us because they want a quick sale without the noise or uncertainty that comes with selling privately. Our team handles the process professionally and keeps you informed at every step.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;re thinking about selling your Ford or simply want to know what it&apos;s worth today, start with a free, no-obligation valuation.
+            If you&apos;re thinking about selling your Ford or simply want to know what it&apos;s worth today, start with a free, no-obligation quote.
           </p>
         </div>
       </section>
@@ -321,7 +321,7 @@ export default function SellFordPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Ford Valuation Now
+            Sell Your Ford for Cash Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
             Make selling simple.
@@ -331,7 +331,7 @@ export default function SellFordPage() {
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Ford Valuation Now
+            Sell Your Ford for Cash Today
           </Link>
         </div>
       </section>

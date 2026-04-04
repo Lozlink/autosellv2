@@ -12,12 +12,12 @@ import { FAQPageJsonLd } from '@/components/JsonLd'
 
 
 export const metadata: Metadata = {
-  title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
-  description: "Sell your car instantly with Auto-Sell.ai. Get free quotes in 30 minutes, same-day payment, and hassle-free car selling across Australia. We buy all cars in any condition!",
-  keywords: "sell my car, car buyers Australia, cash for cars, sell car fast, instant car quote, same day payment, car valuation, we buy cars, car buying service",
+  title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
+  description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
+  keywords: "sell my car, sell my car online, cash for cars Sydney, sell car fast, instant car quote, same day payment, sell car online, we buy cars, car buying service",
   openGraph: {
-    title: "Auto-Sell.ai - Sell Your Car Fast for Cash | Australia's #1 Car Buyers",
-    description: "Get an instant quote for your car. Same-day payment, no hassles, best prices guaranteed. We buy all cars in any condition across Australia.",
+    title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
+    description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
     type: "website",
     locale: "en_AU",
     url: "https://auto-sell.ai",
@@ -32,7 +32,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <FAQPageJsonLd
         items={[
-          { question: "How can you value my car in seconds?", answer: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to generate an accurate valuation instantly. What used to take days now happens in seconds." },
+          { question: "How can you value my car in seconds?", answer: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to generate an accurate quote instantly. What used to take days now happens in seconds." },
           { question: "How fast is the entire process?", answer: "Get your AI-powered quote in 30 minutes, book an on-site inspection at your convenience, and receive same-day OSKO payment. Most customers complete the entire process within 24 hours." },
           { question: "Do you really pay on the same day?", answer: "Yes! Once we inspect your vehicle and complete the paperwork, we transfer funds directly to your bank account via OSKO, which processes within seconds." },
           { question: "What if I don't like the offer?", answer: "There's absolutely no obligation. You can decline the offer at any point before signing — we never pressure you." },
@@ -148,7 +148,7 @@ export default function Home() {
               items={[
                 {
                   title: "How can you value my car in seconds?",
-                  content: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to generate an accurate valuation instantly. What used to take days now happens in seconds.",
+                  content: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to provide an accurate quote instantly. What used to take days now happens in seconds.",
                 },
                 {
                   title: "How fast is the entire process?",

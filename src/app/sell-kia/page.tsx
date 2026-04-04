@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Kia | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Kia fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your Kia fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-kia',
   },
@@ -156,7 +156,7 @@ export default function SellKiaPage() {
           </div>
 
           <p className="text-lg text-gray-700 leading-relaxed mt-8 text-center">
-            Kia offers a wide range of practical and popular vehicles, and we purchase all of them&mdash;regardless of age, condition or kilometres. Whether your Kia is in excellent condition, needs mechanical work, is unregistered or no longer running, you&apos;ll receive an accurate, data-backed valuation.
+            Kia offers a wide range of practical and popular vehicles, and we purchase all of them&mdash;regardless of age, condition or kilometres. Whether your Kia is in excellent condition, needs mechanical work, is unregistered or no longer running, you&apos;ll receive an accurate, data-backed offer.
           </p>
         </div>
       </section>
@@ -173,7 +173,7 @@ export default function SellKiaPage() {
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Kia&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Kia&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -190,15 +190,15 @@ export default function SellKiaPage() {
       {/* Fair Pricing Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Kia Valuation Based on Real Market Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Kia Pricing Based on Real Market Data</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             Kia vehicles hold value exceptionally well, especially popular models like the Sportage, Cerato and Carnival. Electric and hybrid models such as the Niro require accurate, up-to-date pricing based on fast-changing market demand.
           </p>
 
           <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Your valuation considers:</h3>
-            <p className="text-gray-700 mb-4">This gives you a fair and realistic offer&mdash;not an automated lowball figure or a quote that drops later. If you&apos;ve already received a valuation elsewhere, we&apos;re happy to review it&mdash;our offers regularly beat like-for-like quotes.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Your quote considers:</h3>
+            <p className="text-gray-700 mb-4">This gives you a fair and realistic offer&mdash;not an automated lowball figure or a quote that drops later. If you&apos;ve already received a quote elsewhere, we&apos;re happy to review it&mdash;our offers regularly beat like-for-like quotes.</p>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="text-yellow-400 font-bold mr-4"></span>
@@ -319,7 +319,7 @@ export default function SellKiaPage() {
             Kia owners choose Auto-Sell.aibecause our process is fast, fair and transparent. You stay in control throughout the sale, and the experience is simple, professional and stress-free.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;re ready to sell your Kia—or want to know its current market value—start with a fast, no-obligation valuation.
+            If you&apos;re ready to sell your Kia—or want to know its current market value—start with a fast, no-obligation quote.
           </p>
         </div>
       </section>
@@ -328,20 +328,20 @@ export default function SellKiaPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Kia Valuation Now
+            Sell Your Kia for Cash Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
             Sell your car the easy way.
           </p>
           <p className="text-lg text-gray-700 mb-8">
-            If you&apos;re ready to sell your Kia&mdash;or want to know its current market value&mdash;start with a fast, no-obligation valuation.
+            If you&apos;re ready to sell your Kia&mdash;or want to know its current market value&mdash;start with a fast, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Kia Valuation Now
+            Sell Your Kia for Cash Today
           </Link>
         </div>
       </section>

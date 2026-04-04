@@ -204,7 +204,7 @@ export default function SellCoupesPage() {
             Ready to Sell Your Coupe?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free coupe valuation in 30 minutes and receive same-day payment.
+            Get your free coupe offer in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

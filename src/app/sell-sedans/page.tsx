@@ -204,7 +204,7 @@ export default function SellSedansPage() {
             Ready to Sell Your Sedan?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free sedan valuation in 30 minutes and receive same-day payment.
+            Get your free sedan offer in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

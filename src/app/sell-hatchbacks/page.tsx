@@ -204,7 +204,7 @@ export default function SellHatchbacksPage() {
             Ready to Sell Your Hatchback?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free hatchback valuation in 30 minutes and receive same-day payment.
+            Get your free hatchback quote in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

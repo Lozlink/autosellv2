@@ -204,7 +204,7 @@ export default function SellPeopleMoversPage() {
             Ready to Sell Your People Mover?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free people mover valuation in 30 minutes and receive same-day payment.
+            Get your free people mover offer in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

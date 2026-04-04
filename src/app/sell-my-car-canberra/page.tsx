@@ -206,7 +206,7 @@ export default function SellMyCarCanberraPage() {
             Ready to Sell Your Car in Canberra?
           </h2>
           <p className="text-xl mb-8" style={{ color: '#1f2937' }}>
-            Get your free Canberra car valuation in 30 minutes and receive same-day payment.
+            Get your free Canberra car quote in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

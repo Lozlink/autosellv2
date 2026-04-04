@@ -99,21 +99,21 @@ const PHONE_TRANSITIONS = [
 ]
 
 const EMAIL_PROMPTS = [
-  "Awesome, last one — what's your email address? We'll send your valuation straight to your inbox.",
-  "Nearly done! What email should we send your valuation to?",
-  "Just one more — what's your email? That's where we'll pop your valuation.",
-  "And finally, what's your email address? We'll have your valuation over to you in no time.",
+  "Awesome, last one — what's your email address? We'll send your quote straight to your inbox.",
+  "Nearly done! What email should we send your quote to?",
+  "Just one more — what's your email? That's where we'll pop your quote.",
+  "And finally, what's your email address? We'll have your quote over to you in no time.",
 ]
 
 const SUBMIT_SUCCESS = [
   (name: string, year: string, car: string) =>
-    `You're all set, ${name}! Our team will review your ${year} ${car} and get back to you within a few hours with a valuation. We're really looking forward to helping you out — chat to you soon!`,
+    `You're all set, ${name}! Our team will review your ${year} ${car} and get back to you within a few hours with a quote. We're really looking forward to helping you out — chat to you soon!`,
   (name: string, year: string, car: string) =>
     `Brilliant, ${name}! Your ${year} ${car} details are with our team now. You'll hear back from us within a few hours. Thanks so much for reaching out — we'll take great care of you!`,
   (name: string, year: string, car: string) =>
-    `All done, ${name}! We've got your ${year} ${car} in our system and our team is on it. Expect to hear from us soon with your valuation. Really appreciate you choosing Auto-Sell.ai!`,
+    `All done, ${name}! We've got your ${year} ${car} in our system and our team is on it. Expect to hear from us soon with your quote. Really appreciate you choosing Auto-Sell.ai!`,
   (name: string, year: string, car: string) =>
-    `Thank you so much, ${name}! Your ${year} ${car} valuation request is locked in. Our team will be in touch within a few hours. We can't wait to help you get the best price!`,
+    `Thank you so much, ${name}! Your ${year} ${car} quote request is locked in. Our team will be in touch within a few hours. We can't wait to help you get the best price!`,
 ]
 
 /** Very light validation helpers */
@@ -157,8 +157,8 @@ export default function ChatbotWidget() {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       botSay(
-        "G'day! Welcome to Auto-Sell.ai — so glad you stopped by! I can get you a free car valuation in under 2 minutes, or happy to answer any questions you might have.\n\nWhat can I help you with today?",
-        ['Get a free valuation', 'I have a question', 'Talk to someone']
+        "G'day! Welcome to Auto-Sell.ai — so glad you stopped by! I can get you a free car quote in under 2 minutes, or happy to answer any questions you might have.\n\nWhat can I help you with today?",
+        ['Get a free quote', 'I have a question', 'Talk to someone']
       )
       setStage('awaiting_intent')
     }
@@ -271,7 +271,7 @@ export default function ChatbotWidget() {
           lower.includes('get a free')
         ) {
           setStage('ask_make_model')
-          botSay("Awesome — let's get you a valuation!\n\nWhat's the make and model of your car? (e.g. Toyota Corolla)")
+          botSay("Awesome — let's get you a quote!\n\nWhat's the make and model of your car? (e.g. Toyota Corolla)")
         } else if (
           lower.includes('talk to') ||
           lower.includes('speak') ||
@@ -287,7 +287,7 @@ export default function ChatbotWidget() {
             "📞  0492 858 699\n" +
             "📧  info@auto-sell.ai\n\n" +
             "We're available 7 days a week. Or I can take your details right now and have someone call you back — whatever works best for you!",
-            ['Leave my details', 'Get a free valuation', 'I have a question']
+            ['Leave my details', 'Get a free quote', 'I have a question']
           )
         } else if (
           lower.includes('question') ||
@@ -297,7 +297,7 @@ export default function ChatbotWidget() {
           setStage('faq')
           botSay(
             "Sure thing! Here are some common topics:\n\n• Pricing & fees\n• How inspections work\n• Payment process\n• Damaged or non-running cars\n\nWhat would you like to know about?",
-            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a valuation']
+            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a quote']
           )
         } else {
           // Try to detect if they just typed car details directly
@@ -307,7 +307,7 @@ export default function ChatbotWidget() {
             botSay("Great choice! What year is your " + msg + "?")
           } else {
             setStage('ask_make_model')
-            botSay("I'd love to help! Let me get you a quick valuation.\n\nWhat's the make and model of your car? (e.g. Toyota Corolla)")
+            botSay("I'd love to help! Let me get you a quick quote.\n\nWhat's the make and model of your car? (e.g. Toyota Corolla)")
           }
         }
         break
@@ -326,7 +326,7 @@ export default function ChatbotWidget() {
         if (lower.includes('another question') || lower.includes('question') || lower.includes('faq') || lower.includes('info')) {
           botSay(
             "Sure thing! Here are some common topics:\n\n• Pricing & fees\n• How inspections work\n• Payment process\n• Damaged or non-running cars\n\nWhat would you like to know about?",
-            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a valuation']
+            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a quote']
           )
           return
         }
@@ -345,7 +345,7 @@ export default function ChatbotWidget() {
             "📞  0492 858 699\n" +
             "📧  info@auto-sell.ai\n\n" +
             "We're available 7 days a week. Or I can take your details and have someone reach out to you — whatever's easiest!",
-            ['Leave my details', 'Get a free valuation', 'I have another question']
+            ['Leave my details', 'Get a free quote', 'I have another question']
           )
           return
         }
@@ -364,11 +364,11 @@ export default function ChatbotWidget() {
           // Unrecognised topic → re-show FAQ menu
           botSay(
             "I'm happy to help! Here are the topics I can cover:\n\n• Pricing & fees\n• How inspections work\n• Payment process\n• Damaged or non-running cars\n\nWhat would you like to know about?",
-            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a valuation']
+            ['Pricing & fees', 'Inspections', 'Payment', 'Damaged cars', 'Get a quote']
           )
           return
         }
-        botSay(answer, ['Get a free valuation', 'I have another question', 'Talk to someone'])
+        botSay(answer, ['Get a free quote', 'I have another question', 'Talk to someone'])
         break
       }
 
@@ -525,7 +525,7 @@ export default function ChatbotWidget() {
       }
 
       default:
-        botSay("I'm here and happy to help! Would you like a free car valuation, have a question, or prefer to chat with our team directly?", ['Get a free valuation', 'I have a question', 'Talk to someone'])
+        botSay("I'm here and happy to help! Would you like a free car quote, have a question, or prefer to chat with our team directly?", ['Get a free quote', 'I have a question', 'Talk to someone'])
         setStage('awaiting_intent')
     }
   }

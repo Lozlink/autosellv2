@@ -204,7 +204,7 @@ export default function SellConvertiblesPage() {
             Ready to Sell Your Convertible?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free convertible valuation in 30 minutes and receive same-day payment.
+            Get your free convertible offer in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

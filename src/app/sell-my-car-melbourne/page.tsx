@@ -206,7 +206,7 @@ export default function SellMyCarMelbournePage() {
             Ready to Sell Your Car in Melbourne?
           </h2>
           <p className="text-xl mb-8" style={{ color: '#1f2937' }}>
-            Get your free Melbourne car valuation in 30 minutes and receive same-day payment.
+            Get your free Melbourne car quote in 30 minutes and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

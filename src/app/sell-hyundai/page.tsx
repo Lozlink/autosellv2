@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Hyundai | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your Hyundai fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
+  description: "Sell your Hyundai fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-hyundai',
   },
@@ -156,7 +156,7 @@ export default function SellHyundaiPage() {
           </div>
 
           <p className="text-lg text-gray-700 leading-relaxed mt-8 text-center">
-            No matter the model, age, kilometres or condition, we provide a fair valuation backed by real market data.
+            No matter the model, age, kilometres or condition, we provide a fair offer backed by real market data.
           </p>
         </div>
       </section>
@@ -173,7 +173,7 @@ export default function SellHyundaiPage() {
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Hyundai&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Hyundai&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -197,7 +197,7 @@ export default function SellHyundaiPage() {
           </p>
 
           <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Your valuation is based on:</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Your quote is based on:</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="text-yellow-400 font-bold mr-4"></span>
@@ -224,7 +224,7 @@ export default function SellHyundaiPage() {
 
           <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
             <p className="text-gray-800">
-              This ensures an accurate and transparent offer—not an automated estimate or a figure that changes later. If you&apos;ve received another valuation, we&apos;re happy to review it—our offers often beat like-for-like quotes.
+              This ensures an accurate and transparent offer—not an automated estimate or a figure that changes later. If you&apos;ve received another quote, we&apos;re happy to review it—our offers often beat like-for-like quotes.
             </p>
           </div>
         </div>
@@ -319,7 +319,7 @@ export default function SellHyundaiPage() {
             Hyundai owners choose Auto-Sell.aibecause the process is quick, fair and completely transparent. You stay in control throughout, and there are no hidden fees or last-minute surprises. Just a clean, fast sale handled by professionals.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;re ready to sell your Hyundai—or want to know what it&apos;s worth today—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell your Hyundai—or want to know what it&apos;s worth today—start with a free, no-obligation quote.
           </p>
         </div>
       </section>
@@ -328,7 +328,7 @@ export default function SellHyundaiPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Hyundai Valuation Now
+            Sell Your Hyundai for Cash Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
             Sell your car the easy way.
@@ -338,7 +338,7 @@ export default function SellHyundaiPage() {
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Hyundai Valuation Now
+            Sell Your Hyundai for Cash Today
           </Link>
         </div>
       </section>

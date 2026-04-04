@@ -8,7 +8,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell Damaged Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your damaged car fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell buys accident-damaged, hail-damaged and non-running cars Australia-wide.",
+  description: "Sell your damaged car fast with a 30-min quote, fair offer and same-day OSKO payment. Auto-Sell buys accident-damaged, hail-damaged and non-running cars Australia-wide.",
   alternates: {
     canonical: 'https://auto-sell.ai/cash-for-damaged-cars',
   },
@@ -25,7 +25,7 @@ export default function CashForDamagedCarsPage() {
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Sell Damaged Car
-                <span className="block" style={{ color: '#FFC325' }}>Get Your Valuation Now</span>
+                <span className="block" style={{ color: '#FFC325' }}>Get Your Offer Now</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
                 A damaged car can be stressful to deal with—especially when repairs cost more than the vehicle is worth or you simply don&apos;t want the hassle of fixing it. Whether your car has accident damage, mechanical faults, hail damage or is no longer drivable, Auto-Sell gives you a fast and straightforward way to sell your damaged car.
@@ -73,7 +73,7 @@ export default function CashForDamagedCarsPage() {
                 We Buy Damaged Cars of All Types
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Damage doesn&apos;t stop us from making an offer. We buy cars in all conditions—from lightly damaged vehicles to non-running write-offs. Whether the car has been in a collision, suffered mechanical failure or shows signs of wear and tear, we provide a fair valuation based on real market data.
+                Damage doesn&apos;t stop us from making an offer. We buy cars in all conditions—from lightly damaged vehicles to non-running write-offs. Whether the car has been in a collision, suffered mechanical failure or shows signs of wear and tear, we provide a fair offer based on real market data.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -112,7 +112,7 @@ export default function CashForDamagedCarsPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            A damaged car can be stressful to deal with—especially when repairs cost more than the vehicle is worth or you simply don&apos;t want the hassle of fixing it. Whether your car has accident damage, mechanical faults, hail damage or is no longer drivable, Auto-Sell gives you a fast and straightforward way to sell your damaged car. You&apos;ll receive a valuation within around 30 minutes and same-day OSKO payment once you choose to accept.
+            A damaged car can be stressful to deal with—especially when repairs cost more than the vehicle is worth or you simply don&apos;t want the hassle of fixing it. Whether your car has accident damage, mechanical faults, hail damage or is no longer drivable, Auto-Sell gives you a fast and straightforward way to sell your damaged car. You&apos;ll receive a quote within around 30 minutes and same-day OSKO payment once you choose to accept.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
             If you&apos;ve been thinking &ldquo;I want a simple, fair way to sell my damaged car,&rdquo; this is the easiest place to start.
@@ -186,7 +186,7 @@ export default function CashForDamagedCarsPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your car&apos;s details through our online valuation form. Once we receive the information, we review everything and send your quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your car&apos;s details through our online form. Once we receive the information, we review everything and send your quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -205,7 +205,7 @@ export default function CashForDamagedCarsPage() {
       {/* Valuation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Valuation for Damaged Vehicles</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Pricing for Damaged Vehicles</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">Even damaged cars have value, and our team uses verified market data and industry pricing tools to determine a fair offer. We consider:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">The type and extent of damage</span></div>
@@ -215,7 +215,7 @@ export default function CashForDamagedCarsPage() {
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Demand for parts or resale</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Current market trends for your vehicle type</span></div>
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">You receive a realistic valuation—not an automated guess and not a figure that drops dramatically later. If you already have another quote, we&apos;re happy to compare—our offers often beat like-for-like valuations.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">You receive a realistic offer—not an automated guess and not a figure that drops dramatically later. If you already have another quote, we&apos;re happy to compare—our offers often beat like-for-like quotes.</p>
         </div>
       </section>
 
@@ -244,7 +244,7 @@ export default function CashForDamagedCarsPage() {
               {
                 icon: "",
                 title: "Type & Extent of Damage",
-                description: "We assess the full scope of damage to determine a fair valuation."
+                description: "We assess the full scope of damage to determine a fair offer."
               },
               {
                 icon: "",
@@ -254,7 +254,7 @@ export default function CashForDamagedCarsPage() {
               {
                 icon: "",
                 title: "Kilometres & Service History",
-                description: "We consider your car's full history for an accurate valuation."
+                description: "We consider your car's full history for an accurate offer."
               },
               {
                 icon: "",
@@ -269,7 +269,7 @@ export default function CashForDamagedCarsPage() {
               {
                 icon: "",
                 title: "Current Market Trends",
-                description: "Real-time data for your vehicle type ensures a realistic valuation."
+                description: "Real-time data for your vehicle type ensures a realistic offer."
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow bg-white">
@@ -286,17 +286,17 @@ export default function CashForDamagedCarsPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Damaged Car Valuation Now
+            Sell Your Damaged Car for Cash Today
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your damaged car—or want to know what it&apos;s worth—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell your damaged car—or want to know what it&apos;s worth—start with a free, no-obligation quote.
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your Damaged Car Valuation Now
+            Sell Your Damaged Car for Cash Today
           </Link>
         </div>
       </section>

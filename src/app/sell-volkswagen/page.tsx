@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell My Volkswagen | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Volkswagen fast with a 30-min quote, fair valuation and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
+  description: "Sell your Volkswagen fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
   alternates: {
     canonical: 'https://auto-sell.ai/sell-volkswagen',
   },
@@ -171,7 +171,7 @@ export default function SellVolkswagenPage() {
               </span>
               <div>
                 <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Volkswagen&apos;s details through our valuation form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <p className="text-gray-700">Start by submitting your Volkswagen&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -193,7 +193,7 @@ export default function SellVolkswagenPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Volkswagen Pricing Based on Real Market Data</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Volkswagen resale values vary across models. The Tiguan and Amarok often draw strong interest, while the Golf and Polo consistently maintain solid market demand. Performance variants like the Golf GTI and Golf R may require specialised valuation.
+            Volkswagen resale values vary across models. The Tiguan and Amarok often draw strong interest, while the Golf and Polo consistently maintain solid market demand. Performance variants like the Golf GTI and Golf R may require specialist pricing.
           </p>
 
           <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
@@ -224,7 +224,7 @@ export default function SellVolkswagenPage() {
 
           <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
             <p className="text-gray-800">
-              This ensures your valuation is accurate and transparent—not an automated estimate or an inflated number that drops later. If you&apos;ve already received a quote elsewhere, share it with us—we regularly beat like-for-like offers and we&apos;re upfront about how we price each vehicle.
+              This ensures your quote is accurate and transparent—not an automated estimate or an inflated number that drops later. If you&apos;ve already received a quote elsewhere, share it with us—we regularly beat like-for-like offers and we&apos;re upfront about how we price each vehicle.
             </p>
           </div>
         </div>
@@ -277,7 +277,7 @@ export default function SellVolkswagenPage() {
               },
               {
                 icon: "",
-                title: "Fair Market Valuation",
+                title: "Fair Market Pricing",
                 description: "Based on verified market data, recent sales, and specialist pricing for performance models."
               },
               {
@@ -319,7 +319,7 @@ export default function SellVolkswagenPage() {
             Volkswagen owners choose Auto-Sell.aibecause we make the selling experience fast, fair and stress-free. Our process is transparent from start to finish and ensures you get paid immediately with no hidden fees or surprises.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;re ready to sell your Volkswagen—or simply want to know its current market value—start with a free, no-obligation valuation.
+            If you&apos;re ready to sell your Volkswagen—or simply want to know its current market value—start with a free, no-obligation quote.
           </p>
         </div>
       </section>
@@ -328,7 +328,7 @@ export default function SellVolkswagenPage() {
       <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get Your Volkswagen Valuation Now
+            Sell Your Volkswagen for Cash Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
             Sell your car the easy way.
@@ -338,7 +338,7 @@ export default function SellVolkswagenPage() {
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Get Your VW Valuation Now
+            Sell Your VW for Cash Today
           </Link>
         </div>
       </section>
