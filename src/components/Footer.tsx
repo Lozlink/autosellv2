@@ -15,7 +15,7 @@ export default function Footer() {
                 <Link href="/" >
                   <Image
                     src='/brand-guideline/autosell-logo/PNG/1 (1).png'
-                    alt='Auto-Sell.ai, The smart way to sell cars'
+                    alt='Sell my car online in seconds'
                     width={250}
                     height={100}
                     className="w-[180px] md:w-[250px] h-auto"

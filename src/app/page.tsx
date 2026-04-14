@@ -50,7 +50,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero/hero-car.jpg"
-            alt=""
+            alt="Top car selling sites to sell your car"
             fill
             priority
             sizes="100vw"
@@ -81,7 +81,7 @@ export default function Home() {
               <div className="relative w-full max-w-md">
                 <Image
                   src="/images/cars/sedan-cutout.png"
-                  alt="Sell your sedan"
+                  alt="best way to sell a car online"
                   width={600}
                   height={400}
                   className="object-contain drop-shadow-xl"

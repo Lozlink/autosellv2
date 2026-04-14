@@ -40,7 +40,7 @@ export default function Header() {
             <Link href="/" >
               <Image
                src='/brand-guideline/autosell-logo/PNG/1 (1).png'
-               alt='Auto-Sell.ai, The smart way to sell cars'
+               alt='Sell my car online in seconds'
                width={260}
                height={130}
               />

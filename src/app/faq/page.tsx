@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Accordion from '@/components/Accordion'
 import Link from 'next/link'
+import { FAQPageJsonLd } from '@/components/JsonLd'
 
 
 
@@ -59,6 +60,7 @@ const faqs = [
 export default function FAQPage() {
   return (
     <div className="min-h-screen bg-white">
+      <FAQPageJsonLd items={faqs} />
 
       <Header />
 
