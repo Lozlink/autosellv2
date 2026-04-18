@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link";
 
 const BRANDS = [
   "Toyota",
@@ -34,7 +35,7 @@ export default function BrandMarquee() {
 
       <div className="marquee flex items-center gap-10">
         {items.map((brand, idx) => (
-          <a
+          <Link
             key={`${brand}-${idx}`}
             href={`/sell-${brand.toLowerCase()}`}
             className="shrink-0 opacity-70 hover:opacity-100 transition-opacity"
@@ -48,7 +49,7 @@ export default function BrandMarquee() {
               className="object-contain max-h-[60px]"
               loading="lazy"
             />
-          </a>
+          </Link>
         ))}
       </div>
     </div>

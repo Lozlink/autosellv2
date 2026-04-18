@@ -118,10 +118,10 @@ export default function RootLayout({
             `}
           </Script>
       )}
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-      <link rel="icon" href="/favicon.ico" sizes="48x48 32x32 16x16" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" href="/brand-guideline/autosell-logo/PNG/logo.png" />
+      <link rel="shortcut icon" type="image/png" href="/brand-guideline/autosell-logo/PNG/logo.png" />
+      <link rel="apple-touch-icon" href="/brand-guideline/autosell-logo/PNG/logo.png" />
+      <link rel="manifest" href="/site.webmanifest" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#FFC325" />
     </head>
