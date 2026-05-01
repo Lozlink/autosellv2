@@ -12,21 +12,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const { data: post } = await supabase
     .from('posts')
-    .select('title, excerpt')
+    .select('title, excerpt, meta_title, meta_description')
     .eq('slug', slug)
     .eq('published', true)
     .single()
 
   if (!post) return { title: 'Post Not Found - Auto-Sell.ai' }
 
+  const title = post.meta_title?.trim()
+    ? post.meta_title
+    : `${post.title} - Auto-Sell.ai Blog`
+  const description = post.meta_description?.trim() || post.excerpt || ''
+
   return {
-    title: `${post.title} - Auto-Sell.ai Blog`,
-    description: post.excerpt || '',
+    title,
+    description,
     alternates: {
       canonical: `https://auto-sell.ai/blog/${slug}`,
     },
     openGraph: {
+      title,
+      description,
       url: `https://auto-sell.ai/blog/${slug}`,
+      type: 'article',
     },
   }
 }
@@ -41,6 +49,14 @@ export default async function BlogPostPage({ params }: Props) {
     .single()
 
   if (!post) notFound()
+
+  const looksLikeHtml = /<\/?[a-z][\s\S]*>/i.test(post.content)
+  const html = looksLikeHtml
+    ? post.content
+    : post.content
+        .split(/\n{2,}/)
+        .map((para: string) => `<p>${para.replace(/\n/g, '<br />')}</p>`)
+        .join('')
 
   return (
     <div className="min-h-screen bg-white">
@@ -83,9 +99,10 @@ export default async function BlogPostPage({ params }: Props) {
 
         <hr className="border-gray-200 mb-8" />
 
-        <div className="prose prose-gray max-w-none text-gray-800 leading-relaxed whitespace-pre-wrap">
-          {post.content}
-        </div>
+        <div
+          className="blog-content prose prose-gray max-w-none text-gray-800 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </article>
     </div>
   )

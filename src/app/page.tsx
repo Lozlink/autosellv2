@@ -7,6 +7,7 @@ import Accordion from '@/components/Accordion'
 import HowItWorks from '@/components/HowItWorks'
 import WhyChoose from '@/components/WhyChoose'
 import VehicleTypesGrid from '@/components/VehicleTypesGrid'
+import LatestBlogPosts from '@/components/LatestBlogPosts'
 import type { Metadata } from 'next'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 
@@ -206,6 +207,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ─── Latest Blog Posts ────────────────────────────────────────── */}
+      <LatestBlogPosts />
 
       {/* ─── Brand Marquee ────────────────────────────────────────────── */}
       <section className="py-4 md:py-6 bg-[#8B8987]/25">

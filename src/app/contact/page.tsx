@@ -3,7 +3,7 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import CarSellForm from '@/components/CarSellForm'
 import { Suspense } from 'react'
-import MapComponent from '@/components/MapComponent'
+import GoogleMapEmbed from '@/components/GoogleMapEmbed'
 
 export const metadata: Metadata = {
   title: "Contact Us - Auto-Sell.ai",
@@ -171,7 +171,7 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <MapComponent />
+              <GoogleMapEmbed height={420} />
             </div>
           </div>
         </div>

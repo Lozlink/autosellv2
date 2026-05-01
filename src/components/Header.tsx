@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Image from "next/image";
+import GoogleReviewsBadge from '@/components/GoogleReviewsBadge'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -33,6 +34,7 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50 text-gray-700 border-b-2 border-brand-yellow" style={{ borderColor: '#FFC325' }}>
+      <GoogleReviewsBadge />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center py-5 gap-8">
           {/* Logo */}
