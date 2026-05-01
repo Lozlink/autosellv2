@@ -53,7 +53,7 @@ export default function Home() {
             src="/images/hero/hero-car.jpg"
             alt="Top car selling sites to sell your car"
             fill
-            priority
+            preload
             sizes="100vw"
             className="object-cover object-[75%_54%] md:object-[center_54%]"
           />
