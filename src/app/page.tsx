@@ -11,6 +11,7 @@ import LatestBlogPosts from '@/components/LatestBlogPosts'
 import type { Metadata } from 'next'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
