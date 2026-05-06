@@ -114,9 +114,18 @@ export default async function BlogPage() {
             {posts.map((post) => (
               <article key={post.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-[#FFC325] hover:shadow-lg transition-all duration-300">
                 <div className="h-48 relative flex items-center justify-center bg-gray-100">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFC325' }}>
-                    <span className="text-white text-2xl font-bold">{post.category.charAt(0)}</span>
-                  </div>
+                  {post.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFC325' }}>
+                      <span className="text-white text-2xl font-bold">{post.category.charAt(0)}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-6">
