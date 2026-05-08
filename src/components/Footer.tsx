@@ -33,7 +33,7 @@ const vehicleTypes = [
 ]
 
 // const FACEBOOK_URL = 'https://www.facebook.com/autosell.ai'
-const INSTAGRAM_URL = 'https://www.instagram.com/autosell.ai'
+const INSTAGRAM_URL = 'https://www.instagram.com/auto.sell.ai/'
 // const LINKEDIN_URL = 'https://www.linkedin.com/company/auto-sell-ai'
 // const TIKTOK_URL = 'https://www.tiktok.com/@autosell.ai'
 
