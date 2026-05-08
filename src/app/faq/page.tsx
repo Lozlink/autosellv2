@@ -65,7 +65,7 @@ export default function FAQPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="text-gray-800 py-12" style={{ backgroundColor: '#FFC325' }}>
+      <section className="text-gray-800 py-12 section-cta">
         <div className="px-4 sm:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Frequently Asked Questions</h1>
@@ -85,15 +85,15 @@ export default function FAQPage() {
           />
 
           {/* Contact CTA */}
-          <div className="mt-16 bg-[#FFC325] border border-gray-200/30 rounded-xl p-8 text-gray-800 text-center">
+          <div className="mt-16 section-cta border border-[rgba(255,195,37,0.3)] rounded-2xl p-8 text-gray-800 text-center">
             <h2 className="text-2xl font-bold mb-3">Still have questions?</h2>
             <p className="text-gray-600 mb-6">Our team is here to help. Contact us for personalised assistance.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:0492 858 699" className="inline-flex items-center justify-center gap-2 bg-[#FFC325] hover:bg-[#e6af1f] text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              <a href="tel:0492 858 699" className="inline-flex items-center justify-center gap-2 btn-pill-gold px-6 py-3">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                 Call 0492 858 699
               </a>
-              <Link href="/contact" className="bg-white text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">Contact Us</Link>
+              <Link href="/contact" className="btn-pill-outline px-6 py-3">Contact Us</Link>
             </div>
           </div>
         </div>

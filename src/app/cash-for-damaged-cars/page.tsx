@@ -19,7 +19,7 @@ export default function CashForDamagedCarsPage() {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -203,7 +203,7 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* Valuation */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Pricing for Damaged Vehicles</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">Even damaged cars have value, and our team uses verified market data and industry pricing tools to determine a fair offer. We consider:</p>
@@ -228,7 +228,7 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* Why Choose Us for Damaged Cars */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -283,7 +283,7 @@ export default function CashForDamagedCarsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Sell Your Damaged Car for Cash Today

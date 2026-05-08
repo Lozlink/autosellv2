@@ -4,6 +4,8 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
 
+export const revalidate = 60
+
 type Props = {
   params: Promise<{ slug: string }>
 }

@@ -17,32 +17,55 @@ interface Review {
 
 // ─── Shared review card ────────────────────────────────────────────────────
 function ReviewCard({ review, index, animate = true }: { review: Review; index: number; animate?: boolean }) {
+  const stars = Math.max(0, Math.min(5, Math.round(review.rating)))
   const content = (
-    <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex text-yellow-400 text-lg" aria-label={`${review.rating} stars`}>
-          {''.repeat(review.rating)}
+    <div className="friendly-card relative p-6 md:p-7 h-full flex flex-col">
+      {/* Decorative quote mark */}
+      <svg
+        aria-hidden="true"
+        className="absolute -top-3 left-5 w-10 h-10 text-[#FFC325]/30"
+        viewBox="0 0 32 32"
+        fill="currentColor"
+      >
+        <path d="M9.5 8C5.4 8 2 11.4 2 15.5V24h8v-8.5H6.5C6.5 13.5 8 12 9.5 12V8zm14 0c-4.1 0-7.5 3.4-7.5 7.5V24h8v-8.5h-3.5c0-2 1.5-3.5 3.5-3.5V8z"/>
+      </svg>
+
+      <div className="flex items-center justify-between mb-4 mt-2">
+        <div className="flex items-center gap-0.5" aria-label={`${stars} out of 5 stars`}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <svg
+              key={i}
+              className={i < stars ? 'w-4 h-4 text-[#FFC325]' : 'w-4 h-4 text-gray-200'}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.05 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
+            </svg>
+          ))}
         </div>
         {review.verified && (
-          <span
-            className="text-xs font-semibold px-2 py-1 rounded-full"
-            style={{ backgroundColor: '#FFC325', color: '#000000' }}
-          >
+          <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
             Verified
           </span>
         )}
       </div>
 
-      <p className="text-gray-600 mb-4 italic leading-relaxed flex-1">
-        &#34;{review.review}&#34;
+      <p className="text-gray-700 mb-5 leading-relaxed flex-1 text-[15px]">
+        &ldquo;{review.review}&rdquo;
       </p>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
         <div>
-          <div className="font-semibold text-gray-600">{review.name}</div>
-          <div className="text-sm text-gray-600">{review.location}</div>
+          <div className="font-bold text-gray-900 text-sm">{review.name}</div>
+          {review.location && (
+            <div className="text-xs text-gray-500 mt-0.5">{review.location}</div>
+          )}
         </div>
-        <div className="text-sm text-gray-600">
+        <div className="text-xs text-gray-400 font-medium">
           {new Intl.DateTimeFormat('en-AU', {
             month: 'short',
             day: 'numeric',

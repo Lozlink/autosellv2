@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 export default function SellToyotaPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
 
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -120,7 +120,7 @@ export default function SellToyotaPage() {
       </section>
 
       {/* Popular Toyota Models We Buy */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -196,7 +196,7 @@ export default function SellToyotaPage() {
             Toyota vehicles are in strong demand, especially hybrids and popular models like Hilux, RAV4 and LandCruiser. Our offers are based on current market conditions, live buyer demand, recent comparable sales and trusted data sources. The result is a fair, realistic offer that reflects what your Toyota is actually worth today—not an automated estimate or low trade-in figure.
           </p>
 
-          <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
+          <div className="friendly-card p-8 mb-8">
             <p className="text-lg text-gray-800 font-semibold">
               If you&apos;ve received another offer, tell us. We regularly beat like-for-like quotes and we&apos;re upfront about how our pricing works. Transparency is what sets us apart.
             </p>
@@ -224,7 +224,7 @@ export default function SellToyotaPage() {
       </section>
 
       {/* Australia-Wide Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">We Come to You Anywhere in Australia</h2>
 
@@ -253,7 +253,7 @@ export default function SellToyotaPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -306,7 +306,7 @@ export default function SellToyotaPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Sell Your Toyota for Cash Today
@@ -316,8 +316,7 @@ export default function SellToyotaPage() {
           </p>
           <Link
             href="#sell-form"
-            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            style={{ backgroundColor: '#000', color: '#FFC325' }}
+            className="btn-pill-gold px-12 py-4 text-xl"
           >
             Sell Your Toyota for Cash Today
           </Link>

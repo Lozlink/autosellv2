@@ -18,7 +18,7 @@ export default function CarValuationGuidePage() {
       <Header />
       
       {/* Hero Section with Form */}
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -120,7 +120,7 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* Valuation Methods */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -242,7 +242,7 @@ export default function CarValuationGuidePage() {
                 icon: ""
               }
             ].map((tip, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-200">
+              <div key={index} className="flex items-start gap-4 p-6 friendly-card">
                 <div className="text-3xl">{tip.icon}</div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-700 mb-2">{tip.tip}</h3>
@@ -255,7 +255,7 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* Common Valuation Mistakes */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -323,7 +323,7 @@ export default function CarValuationGuidePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Get Your Accurate Car Valuation Today

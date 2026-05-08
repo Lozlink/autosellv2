@@ -19,7 +19,7 @@ export default function ContactPage() {
       <Header />
 
       {/* Hero with Form */}
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -114,7 +114,7 @@ export default function ContactPage() {
       </section>
 
       {/* Business Info + Map */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="bg-white rounded-xl p-8 border border-gray-200">
@@ -178,7 +178,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Ready to Sell Your Car?

@@ -51,10 +51,10 @@ export default function SellAudiPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
 
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -153,7 +153,7 @@ export default function SellAudiPage() {
       </section>
 
       {/* Models Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Audi Models</h2>
@@ -206,7 +206,7 @@ export default function SellAudiPage() {
       </section>
 
       {/* Valuation */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Audi Pricing Based on Real Market Data</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
@@ -240,7 +240,7 @@ export default function SellAudiPage() {
       </section>
 
       {/* Why Choose */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">The Trusted Way to Sell My Audi</h2>
@@ -259,7 +259,7 @@ export default function SellAudiPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your Audi for Cash Today</h2>
           <p className="text-xl mb-8 text-gray-700">

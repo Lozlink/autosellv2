@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
       
       <section className="py-20">
@@ -127,7 +127,7 @@ export default function TermsPage() {
                 <li>ABN: 87 689 164 832</li>
               </ul>
 
-              <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+              <div className="mt-8 p-6 friendly-card">
                 <p className="text-sm text-gray-600">
                   <strong>Note:</strong> These terms are a general guide. Specific terms may apply to your transaction. 
                   Please read all documentation carefully before proceeding with any sale.

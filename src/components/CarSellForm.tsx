@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { supabase } from '../lib/supabaseClient'
 
@@ -514,11 +515,27 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
           <motion.button
             type="submit"
             disabled={loading}
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full cursor-pointer btn-liquid-gold py-3.5 px-6 md:py-4 rounded-xl text-lg md:text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed mt-1"
+            whileTap={{ scale: 0.97 }}
+            aria-label={manualEntry ? 'Get my free quote' : 'Find my car'}
+            className="w-full btn-license-plate mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? (manualEntry ? 'Submitting...' : 'Finding Your Car...') : manualEntry ? 'Get My Free Quote' : 'Find My Car'}
+            <Image
+              src="/brand-guideline/autosell-logo/PNG/1 (1).png"
+              alt=""
+              width={260}
+              height={130}
+              className="btn-license-plate__logo"
+              priority={false}
+            />
+            <span className="btn-license-plate__hint">
+              {loading
+                ? (manualEntry ? 'Submitting…' : 'Finding your car…')
+                : (manualEntry ? '→ Tap to get my quote' : '→ Tap to find my car')}
+            </span>
+            <span className="btn-license-plate__screw btn-license-plate__screw--tl" aria-hidden="true" />
+            <span className="btn-license-plate__screw btn-license-plate__screw--tr" aria-hidden="true" />
+            <span className="btn-license-plate__screw btn-license-plate__screw--bl" aria-hidden="true" />
+            <span className="btn-license-plate__screw btn-license-plate__screw--br" aria-hidden="true" />
           </motion.button>
         </form>
 
@@ -659,11 +676,25 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
         <motion.button
           type="submit"
           disabled={loading}
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.98 }}
-          className=" md:mt-10 w-full cursor-pointer btn-liquid-gold py-4 px-6 rounded-xl text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+          whileTap={{ scale: 0.97 }}
+          aria-label="Get my free quote now"
+          className="md:mt-10 w-full btn-license-plate disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {loading ? 'Getting Your Quote...' : 'Get My Free Quote Now'}
+          <Image
+            src="/brand-guideline/autosell-logo/PNG/1 (1).png"
+            alt=""
+            width={260}
+            height={130}
+            className="btn-license-plate__logo"
+            priority={false}
+          />
+          <span className="btn-license-plate__hint">
+            {loading ? 'Getting your quote…' : '→ Tap to get my quote'}
+          </span>
+          <span className="btn-license-plate__screw btn-license-plate__screw--tl" aria-hidden="true" />
+          <span className="btn-license-plate__screw btn-license-plate__screw--tr" aria-hidden="true" />
+          <span className="btn-license-plate__screw btn-license-plate__screw--bl" aria-hidden="true" />
+          <span className="btn-license-plate__screw btn-license-plate__screw--br" aria-hidden="true" />
         </motion.button>
       </form>
 

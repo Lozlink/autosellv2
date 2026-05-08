@@ -101,11 +101,11 @@ function DesktopCard({ card }: { card: Card }) {
     <motion.div variants={cardVariants} className="h-full">
       <Link
         href={card.href}
-        className="group flex flex-col h-full rounded-2xl border border-gray-100 bg-white overflow-hidden hover:border-[#FFC325]/60 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+        className="friendly-card group flex flex-col h-full overflow-hidden"
         aria-label={card.title}
       >
         {/* Image strip */}
-        <div className={`relative w-full h-36 flex-shrink-0 ${card.imageBg}`}>
+        <div className={`relative w-full h-40 flex-shrink-0 ${card.imageBg}`}>
           <Image
             src={card.imageSrc}
             alt={card.imageAlt}
@@ -121,19 +121,22 @@ function DesktopCard({ card }: { card: Card }) {
         </div>
 
         {/* Card body */}
-        <div className="flex flex-col flex-1 p-5">
-          <div className="flex items-baseline gap-1 mb-3">
-            <span className="text-3xl font-black leading-none text-gray-900" style={{ fontVariantNumeric: 'tabular-nums' }}>
+        <div className="flex flex-col flex-1 p-6">
+          <div className="flex items-baseline gap-1.5 mb-3">
+            <span
+              className="text-4xl font-black leading-none text-gray-900"
+              style={{ fontVariantNumeric: 'tabular-nums' }}
+            >
               {card.stat}
             </span>
-            <span className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-gray-500">
               {card.statLabel}
             </span>
           </div>
-          <div className="w-8 h-[2px] mb-3 rounded-full" style={{ backgroundColor: GOLD }} aria-hidden="true" />
-          <h3 className="text-base font-bold text-gray-900 mb-1.5 leading-snug">{card.title}</h3>
-          <p className="text-sm text-gray-500 leading-relaxed flex-1">{card.description}</p>
-          <div className="flex items-center gap-1.5 mt-4 text-xs font-semibold text-gray-400 group-hover:text-gray-900 transition-colors duration-200">
+          <div className="w-10 h-[2px] mb-3 rounded-full" style={{ backgroundColor: GOLD }} aria-hidden="true" />
+          <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug">{card.title}</h3>
+          <p className="text-sm text-gray-600 leading-relaxed flex-1">{card.description}</p>
+          <div className="flex items-center gap-1.5 mt-5 text-xs font-bold uppercase tracking-wider text-gray-500 group-hover:text-[#92560A] transition-colors duration-200">
             <span>Learn more</span>
             <svg className="w-3.5 h-3.5 translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

@@ -11,6 +11,7 @@ import LatestBlogPosts from '@/components/LatestBlogPosts'
 import type { Metadata } from 'next'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
@@ -46,7 +47,7 @@ export default function Home() {
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section id="sell-form" className="relative text-gray-900 pt-6 pb-6 md:pt-6 md:pb-12 overflow-hidden min-h-[600px] md:min-h-[700px]">
+      <section id="sell-form" className="relative text-gray-900 pt-8 pb-8 md:pt-12 md:pb-20 overflow-hidden min-h-[640px] md:min-h-[760px]">
         {/* Hero background image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -57,8 +58,10 @@ export default function Home() {
             sizes="100vw"
             className="object-cover object-[75%_54%] md:object-[center_54%]"
           />
-          {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/88 via-white/72 to-white/62 lg:bg-gradient-to-r lg:from-white/95 lg:via-white/85 lg:to-white/70" />
+          {/* Lighter overlay so the hero photo breathes through on desktop */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/75 to-white/55 lg:bg-gradient-to-r lg:from-white/92 lg:via-white/72 lg:to-white/30" />
+          {/* Subtle warm gradient accent in the bottom-right for depth */}
+          <div aria-hidden="true" className="absolute -bottom-16 -right-20 w-[420px] h-[420px] rounded-full bg-[#FFC325]/12 blur-3xl pointer-events-none" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
@@ -67,13 +70,14 @@ export default function Home() {
       </section>
 
       {/* ─── How It Works ─────────────────────────────────────────────── */}
-      <section id="how-it-works" className="py-5 md:py-7 bg-white">
+      <section id="how-it-works" className="py-8 md:py-14 section-warm-white">
         <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-          <div className="text-center mb-4 md:mb-5">
-            <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-2">
+          <div className="text-center mb-6 md:mb-8">
+            <span className="trust-pill mb-3">Simple &amp; Stress-Free</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
               How It Works
             </h2>
-            <p className="text-base md:text-lg text-gray-600">Three simple steps to get cash for your car</p>
+            <p className="text-base md:text-lg text-gray-600 max-w-xl mx-auto">Three simple steps to get cash for your car</p>
           </div>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <HowItWorks />
@@ -94,57 +98,60 @@ export default function Home() {
       </section>
 
       {/* ─── Why Choose ───────────────────────────────────────────────── */}
-      <section id="why-choose" className="py-5 md:py-8 bg-[#8B8987]/25">
+      <section id="why-choose" className="py-10 md:py-16 section-soft">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
-          <div className="text-center mb-4 md:mb-5">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+          <div className="text-center mb-6 md:mb-10">
+            <span className="trust-pill mb-3">Why Choose Us</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
               Why Choose The Smarter Way?
             </h2>
-            <p className="text-base md:text-lg text-gray-600">AI-powered selling that gets you paid in seconds, not weeks</p>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">AI-powered selling that gets you paid in seconds, not weeks</p>
           </div>
           <WhyChoose />
         </div>
       </section>
 
       {/* ─── Customer Reviews ─────────────────────────────────────────── */}
-      <section id="reviews" className="py-5 md:py-8 bg-white">
+      <section id="reviews" className="py-10 md:py-16 section-warm-white">
         <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-          <div className="text-center mb-4 md:mb-5">
-            <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-3">
+          <div className="text-center mb-6 md:mb-10">
+            <span className="trust-pill mb-3">5.0 ★ on Google</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
               Thousands of Happy Sellers
             </h2>
-            <p className="text-base md:text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               Real Australians who chose the smarter way to sell their cars
             </p>
           </div>
 
           <ReviewsComponent />
 
-          <div className="text-center mt-4">
+          <div className="text-center mt-8">
             <a
               href="#sell-form"
-              className="inline-block px-8 py-3.5 rounded-full font-bold text-base transition-all hover:scale-[1.02] bg-[#FFC325] text-white hover:bg-[#e6af1f] shadow-sm hover:shadow-md"
+              className="btn-pill-gold px-8 py-3.5 text-base"
             >
               Get My Free Quote
             </a>
-            <p className="text-sm text-gray-400 mt-2">Free quote. No obligation.</p>
+            <p className="text-sm text-gray-500 mt-3">Free quote. No obligation.</p>
           </div>
         </div>
       </section>
 
       {/* ─── FAQ ──────────────────────────────────────────────────────── */}
-      <section id="faq" className="py-5 md:py-8 bg-[#8B8987]/25">
+      <section id="faq" className="py-10 md:py-16 section-soft">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
-          <div className="text-center mb-4 md:mb-5">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+          <div className="text-center mb-6 md:mb-10">
+            <span className="trust-pill mb-3">Got Questions?</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
               Frequently Asked Questions
             </h2>
-            <p className="text-base md:text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               Everything you need to know about selling your car with us
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto faq-group">
             <Accordion
               items={[
                 {
@@ -186,21 +193,22 @@ export default function Home() {
       </section>
 
       {/* ─── Vehicle Types ────────────────────────────────────────────── */}
-      <section className="py-5 md:py-8 bg-white">
+      <section className="py-10 md:py-16 section-warm-white">
         <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-          <div className="text-center mb-4 md:mb-5">
-            <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-3">
+          <div className="text-center mb-6 md:mb-10">
+            <span className="trust-pill mb-3">Any Make &middot; Any Model</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
               We Buy All Types of Vehicles
             </h2>
-            <p className="text-base md:text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               From sedans to trucks, we buy everything — any condition
             </p>
           </div>
           <VehicleTypesGrid />
-          <div className="text-center mt-4">
+          <div className="text-center mt-8">
             <a
               href="#sell-form"
-              className="inline-block px-8 py-3 rounded-full font-bold text-base transition-all hover:scale-[1.02] border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
+              className="btn-pill-outline px-8 py-3 text-base"
             >
               What&apos;s My Car Worth?
             </a>
@@ -212,9 +220,9 @@ export default function Home() {
       <LatestBlogPosts />
 
       {/* ─── Brand Marquee ────────────────────────────────────────────── */}
-      <section className="py-4 md:py-6 bg-[#8B8987]/25">
+      <section className="py-6 md:py-10 section-cream">
         <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+          <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-gray-500 mb-5">
             Trusted across all makes and models
           </p>
           <BrandMarquee />
@@ -243,12 +251,12 @@ export default function Home() {
           <div className="space-y-5">
             <a
               href="#sell-form"
-              className="inline-block bg-[#FFC325] text-white px-10 py-4 rounded-full text-lg md:text-xl font-bold hover:bg-[#e6af1f] transition-all hover:scale-[1.02] shadow-sm hover:shadow-md"
+              className="btn-pill-gold px-10 py-4 text-lg md:text-xl"
             >
               Get My Free Quote
             </a>
 
-            <p className="text-sm text-gray-400">— or —</p>
+            <p className="text-sm text-gray-500">— or —</p>
 
             <div>
               <p className="text-gray-600 text-base mb-2">Call us directly:</p>
