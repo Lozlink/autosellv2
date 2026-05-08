@@ -24,26 +24,26 @@ export default function HeroFormSection() {
   const [formStep, setFormStep] = useState(1)
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+    <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
       {/* Desktop hero text — conditionally changes based on form step */}
       <div className="hidden lg:block">
         {formStep === 1 ? (
           <>
-            <h1 className="text-4xl md:text-5xl font-black leading-tight text-gray-900">
+            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] text-gray-900">
               Powered By AI
               <span className="block mt-2 text-[#FFC325]">Sell Your Car Today</span>
             </h1>
-            <p className="text-lg text-gray-600 mt-4 mb-6 max-w-lg">
+            <p className="text-lg md:text-xl text-gray-600 mt-5 mb-6 max-w-xl leading-relaxed">
                 <strong>SELL YOUR CAR </strong> — get a no-obligation offer in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
             </p>
           </>
         ) : (
           <>
-            <h1 className="text-4xl md:text-5xl font-black leading-tight text-gray-900">
+            <h1 className="text-5xl md:text-6xl font-black leading-[1.05] text-gray-900">
               Almost There!
               <span className="block mt-2 text-[#FFC325]">Confirm Your Vehicle</span>
             </h1>
-            <p className="text-lg text-gray-600 mt-4 mb-6 max-w-lg">
+            <p className="text-lg md:text-xl text-gray-600 mt-5 mb-6 max-w-xl leading-relaxed">
               Just confirm your vehicle details and we&apos;ll have your <strong>FREE quote</strong> ready in 30 minutes.
             </p>
           </>

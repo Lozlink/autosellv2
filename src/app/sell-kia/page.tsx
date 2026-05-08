@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 export default function SellKiaPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
 
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -120,7 +120,7 @@ export default function SellKiaPage() {
       </section>
 
       {/* Kia Models We Buy */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -196,7 +196,7 @@ export default function SellKiaPage() {
             Kia vehicles hold value exceptionally well, especially popular models like the Sportage, Cerato and Carnival. Electric and hybrid models such as the Niro require accurate, up-to-date pricing based on fast-changing market demand.
           </p>
 
-          <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
+          <div className="friendly-card p-8 mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Your quote considers:</h3>
             <p className="text-gray-700 mb-4">This gives you a fair and realistic offer&mdash;not an automated lowball figure or a quote that drops later. If you&apos;ve already received a quote elsewhere, we&apos;re happy to review it&mdash;our offers regularly beat like-for-like quotes.</p>
             <ul className="space-y-3">
@@ -227,7 +227,7 @@ export default function SellKiaPage() {
       </section>
 
       {/* Australia-Wide Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">We Come to You Australia-Wide</h2>
 
@@ -325,7 +325,7 @@ export default function SellKiaPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Sell Your Kia for Cash Today
@@ -338,8 +338,7 @@ export default function SellKiaPage() {
           </p>
           <Link
             href="#sell-form"
-            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            style={{ backgroundColor: '#000', color: '#FFC325' }}
+            className="btn-pill-gold px-12 py-4 text-xl"
           >
             Sell Your Kia for Cash Today
           </Link>

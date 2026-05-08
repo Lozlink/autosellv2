@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 export default function SellFordPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
 
-      <section id="sell-form" className="text-gray-800 py-12 md:py-20 bg-gray-50">
+      <section id="sell-form" className="text-gray-800 py-12 md:py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -120,7 +120,7 @@ export default function SellFordPage() {
       </section>
 
       {/* Ford Models We Buy */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -196,7 +196,7 @@ export default function SellFordPage() {
             Our offers are based on real-time buyer demand, verified sales data and trusted industry sources. Ford pricing can vary significantly across models—Ranger and Everest often attract strong demand, while performance models like Mustang require specialist pricing. We consider all of it so you get a fair, transparent offer without the guesswork.
           </p>
 
-          <div className="bg-gray-50 p-8 rounded-xl border border-gray-200 mb-8">
+          <div className="friendly-card p-8 mb-8">
             <p className="text-lg text-gray-800 font-semibold">
               If you&apos;ve received another quote, let us know. We frequently beat like-for-like offers and we&apos;re upfront about how our figures are calculated. Straightforward, clear and honest—that&apos;s how we operate.
             </p>
@@ -224,7 +224,7 @@ export default function SellFordPage() {
       </section>
 
       {/* Australia-Wide Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Australia-Wide Service</h2>
 
@@ -318,7 +318,7 @@ export default function SellFordPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Sell Your Ford for Cash Today
@@ -328,8 +328,7 @@ export default function SellFordPage() {
           </p>
           <Link
             href="#sell-form"
-            className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            style={{ backgroundColor: '#000', color: '#FFC325' }}
+            className="btn-pill-gold px-12 py-4 text-xl"
           >
             Sell Your Ford for Cash Today
           </Link>

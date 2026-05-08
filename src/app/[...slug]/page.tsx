@@ -60,11 +60,11 @@ export default async function Page({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
 
       {/* Hero Section */}
-      <section className="text-gray-800 py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="text-gray-800 py-20 section-cta">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">{page.title}</h1>
@@ -95,7 +95,7 @@ export default async function Page({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             {page.cta_heading || 'Ready to Get Started?'}

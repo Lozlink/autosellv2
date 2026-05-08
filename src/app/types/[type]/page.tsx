@@ -46,7 +46,7 @@ export default async function TypePage({ params }: TypePageProps) {
 	return (
 		<div className="min-h-screen bg-white">
 			<Header />
-			<section className="text-gray-800 py-12 bg-gray-50">
+			<section className="text-gray-800 py-12 section-cream">
 				<div className="px-4 sm:px-8">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div className="order-2 lg:order-1">

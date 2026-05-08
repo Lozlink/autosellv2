@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen section-cream">
       <Header />
       
       <section className="py-20">
@@ -165,7 +165,7 @@ export default function PrivacyPage() {
                 <li>Privacy Officer: The Privacy Officer</li>
               </ul>
 
-              <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+              <div className="mt-8 p-6 friendly-card">
                 <p className="text-sm text-gray-600">
                   <strong>Note:</strong> This Privacy Policy is designed to comply with the Australian Privacy Principles 
                   and relevant privacy legislation. If you believe we have not handled your personal information 

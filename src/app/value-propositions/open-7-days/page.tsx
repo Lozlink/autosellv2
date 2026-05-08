@@ -10,7 +10,7 @@ export default function OpenSevenDaysPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <section className="text-gray-800 py-12 bg-gray-50">
+      <section className="text-gray-800 py-12 section-cream">
         <div className="px-4 sm:px-8 max-w-5xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Open 7 Days</h1>
           <p className="text-lg text-gray-600 max-w-3xl">

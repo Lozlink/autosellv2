@@ -32,7 +32,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
       <Header />
 
       {/* Hero Section with Form (Toyota layout-inspired) */}
-      <section className="text-gray-800 py-20 bg-gray-50">
+      <section className="text-gray-800 py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -154,7 +154,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-3">
@@ -194,7 +194,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#FFC325' }}>
+      <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">
             Ready to Sell Your {titleBrand}?
