@@ -671,22 +671,23 @@ select.liquid-glass-input option {
 }
 
 /* ─── Form container glass card ───────────────────────────────────────────
-   Bumped opacity so form text and labels read cleanly even when the hero
-   photo behind it is more visible. */
+   Higher opacity + visible edge so the panel reads as a defined surface
+   against the hero photo. Addresses "text blends into background" feedback. */
 .liquid-glass-form-container {
   background:
     linear-gradient(
       165deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.92) 40%,
-      rgba(255, 255, 255, 0.88) 100%
+      rgba(255, 255, 255, 0.99) 0%,
+      rgba(255, 253, 248, 0.98) 40%,
+      rgba(252, 247, 236, 0.97) 100%
     );
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  border-bottom-color: rgba(0, 0, 0, 0.05);
-  border-right-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom-color: rgba(15, 23, 42, 0.10);
+  border-right-color: rgba(15, 23, 42, 0.08);
   box-shadow:
-    0 16px 48px -12px rgba(15, 23, 42, 0.18),
-    0 4px 12px -2px rgba(15, 23, 42, 0.08),
+    0 24px 60px -16px rgba(15, 23, 42, 0.28),
+    0 8px 20px -4px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(255, 195, 37, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
     inset 0 -1px 0 rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(24px) saturate(1.1);

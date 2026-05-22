@@ -29,22 +29,22 @@ export default function HeroFormSection() {
       <div className="hidden lg:block">
         {formStep === 1 ? (
           <>
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] text-gray-900">
+            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] text-white">
               Powered By AI
               <span className="block mt-2 text-[#FFC325]">Sell Your Car Today</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mt-5 mb-6 max-w-xl leading-relaxed">
-                <strong>SELL YOUR CAR </strong> — get a no-obligation offer in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
+            <p className="text-lg md:text-xl text-slate-200 mt-5 mb-6 max-w-xl leading-relaxed">
+                <strong className="text-white">SELL YOUR CAR </strong> — get a no-obligation offer in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
             </p>
           </>
         ) : (
           <>
-            <h1 className="text-5xl md:text-6xl font-black leading-[1.05] text-gray-900">
+            <h1 className="text-5xl md:text-6xl font-black leading-[1.05] text-white">
               Almost There!
               <span className="block mt-2 text-[#FFC325]">Confirm Your Vehicle</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mt-5 mb-6 max-w-xl leading-relaxed">
-              Just confirm your vehicle details and we&apos;ll have your <strong>FREE quote</strong> ready in 30 minutes.
+            <p className="text-lg md:text-xl text-slate-200 mt-5 mb-6 max-w-xl leading-relaxed">
+              Just confirm your vehicle details and we&apos;ll have your <strong className="text-white">FREE quote</strong> ready in 30 minutes.
             </p>
           </>
         )}
