@@ -6,6 +6,7 @@ import ReviewsComponent from '@/components/ReviewsComponent'
 import Accordion from '@/components/Accordion'
 import HowItWorks from '@/components/HowItWorks'
 import WhyChoose from '@/components/WhyChoose'
+import ComparisonTable from '@/components/ComparisonTable'
 import VehicleTypesGrid from '@/components/VehicleTypesGrid'
 import LatestBlogPosts from '@/components/LatestBlogPosts'
 import type { Metadata } from 'next'
@@ -47,7 +48,7 @@ export default function Home() {
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
-      <section id="sell-form" className="relative text-gray-900 pt-8 pb-8 md:pt-12 md:pb-20 overflow-hidden min-h-[640px] md:min-h-[760px]">
+      <section id="sell-form" className="relative text-white pt-8 pb-8 md:pt-12 md:pb-20 overflow-hidden min-h-[640px] md:min-h-[760px]">
         {/* Hero background image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -58,10 +59,12 @@ export default function Home() {
             sizes="100vw"
             className="object-cover object-[75%_54%] md:object-[center_54%]"
           />
-          {/* Lighter overlay so the hero photo breathes through on desktop */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/75 to-white/55 lg:bg-gradient-to-r lg:from-white/92 lg:via-white/72 lg:to-white/30" />
-          {/* Subtle warm gradient accent in the bottom-right for depth */}
-          <div aria-hidden="true" className="absolute -bottom-16 -right-20 w-[420px] h-[420px] rounded-full bg-[#FFC325]/12 blur-3xl pointer-events-none" />
+          {/* Dark charcoal overlay — denser on the text side, lighter near the white form panel */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/88 via-slate-900/78 to-slate-900/60 lg:bg-gradient-to-r lg:from-slate-900/92 lg:via-slate-900/72 lg:to-slate-900/35" />
+          {/* Subtle warm gold glow in the bottom-right for depth */}
+          <div aria-hidden="true" className="absolute -bottom-16 -right-20 w-[420px] h-[420px] rounded-full bg-[#FFC325]/18 blur-3xl pointer-events-none" />
+          {/* Faint top-left gold accent for asymmetry */}
+          <div aria-hidden="true" className="absolute -top-24 -left-24 w-[360px] h-[360px] rounded-full bg-[#FFC325]/8 blur-3xl pointer-events-none" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
@@ -108,6 +111,23 @@ export default function Home() {
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">AI-powered selling that gets you paid in seconds, not weeks</p>
           </div>
           <WhyChoose />
+        </div>
+      </section>
+
+      {/* ─── Comparison Table ─────────────────────────────────────────── */}
+      <section id="compare" className="py-10 md:py-16 section-warm-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-6 md:mb-10">
+            <span className="trust-pill mb-3">Three Ways To Sell</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
+              Which Path Fits Your Sale?
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+              There&apos;s no one-size-fits-all. Here&apos;s how Auto-Sell.ai, a dealer trade-in
+              and a private sale actually compare.
+            </p>
+          </div>
+          <ComparisonTable />
         </div>
       </section>
 
