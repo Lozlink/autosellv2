@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { DEFAULT_EMBED_SRC, DEFAULT_PROFILE_URL } from '@/components/GoogleMapEmbed'
+import { getGoogleRating } from '@/lib/googleRating'
 
 const popularLocations = [
   { label: 'Sydney', href: '/sell-my-car-sydney' },
@@ -37,7 +38,10 @@ const INSTAGRAM_URL = 'https://www.instagram.com/auto.sell.ai/'
 // const LINKEDIN_URL = 'https://www.linkedin.com/company/auto-sell-ai'
 // const TIKTOK_URL = 'https://www.tiktok.com/@autosell.ai'
 
-export default function Footer() {
+export default async function Footer() {
+  const { rating } = await getGoogleRating()
+  const ratingLabel = rating != null ? rating.toFixed(1) : '5.0'
+
   return (
     <footer className="bg-white text-gray-700 border-t-2" style={{ borderColor: '#FFC325' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-24 md:py-12 md:pb-12">
@@ -70,7 +74,7 @@ export default function Footer() {
                   </svg>
                 ))}
               </div>
-              <span className="text-xs text-gray-500 font-semibold">Rated 5 Stars</span>
+              <span className="text-xs text-gray-500 font-semibold">Rated {ratingLabel} Stars</span>
             </div>
 
             {/* Social */}
