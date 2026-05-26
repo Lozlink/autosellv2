@@ -142,9 +142,9 @@ export default function RootLayout({
         <OrganizationJsonLd />
         {children}
 
-        <LazyChatbotWidget />
+        {/*<LazyChatbotWidget />*/}
         <Footer />
-        <FloatingPhoneIcon />
+        {/*<FloatingPhoneIcon />*/}
       <Analytics />
       <SpeedInsights />
       </body>
