@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
+import BlogEditor from '@/components/BlogEditor'
 
 interface PostForm {
   title: string
@@ -188,20 +189,11 @@ export default function EditPostAdmin() {
           {/* Content */}
           <div className="space-y-4">
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Content</h2>
-            <p className="text-xs text-gray-400">
-              Supports HTML. For internal links, use:
-              <code className="bg-gray-100 px-1.5 py-0.5 rounded ml-1 text-gray-700">{'<a href="/sell-my-car-sydney">cash for cars</a>'}</code>
-            </p>
-            <div>
-              <textarea
-                name="content"
-                value={form.content}
-                onChange={onChange}
-                rows={16}
-                required
-                className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325] font-mono text-sm"
-              />
-            </div>
+            <BlogEditor
+              value={form.content}
+              onChange={(next) => setForm((prev) => ({ ...prev, content: next }))}
+              rows={18}
+            />
           </div>
 
           <hr className="border-yellow-200" />

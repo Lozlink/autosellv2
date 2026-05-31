@@ -1,11 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import HeroFormSection from '@/components/HeroFormSection'
 import BrandMarquee from '@/components/BrandMarquee'
 import ReviewsComponent from '@/components/ReviewsComponent'
 import Accordion from '@/components/Accordion'
 import HowItWorks from '@/components/HowItWorks'
-import WhyChoose from '@/components/WhyChoose'
 import ComparisonTable from '@/components/ComparisonTable'
 import VehicleTypesGrid from '@/components/VehicleTypesGrid'
 import LatestBlogPosts from '@/components/LatestBlogPosts'
@@ -15,12 +15,15 @@ import { FAQPageJsonLd } from '@/components/JsonLd'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
-  description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
-  keywords: "sell my car, sell my car online, cash for cars Sydney, sell car fast, instant car quote, same day payment, sell car online, we buy cars, car buying service",
+  title: "Sell My Car Online | Instant AI Valuation & Same-Day Payment | Auto-Sell.ai",
+  description:
+    "Want to sell your car and actually get a fair price? Auto-Sell.ai uses AI-powered valuations to give you an instant offer and same-day OSKO payment. No fees, no hassle, Australia-wide.",
+  keywords:
+    "sell my car, sell my car online, instant car valuation, AI car valuation, same day payment, OSKO car payment, sell car online Australia, fair price for my car",
   openGraph: {
-    title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
-    description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
+    title: "Sell My Car Online | Instant AI Valuation & Same-Day Payment | Auto-Sell.ai",
+    description:
+      "Want to sell your car and actually get a fair price? Auto-Sell.ai uses AI-powered valuations to give you an instant offer and same-day OSKO payment. No fees, no hassle, Australia-wide.",
     type: "website",
     locale: "en_AU",
     url: "https://auto-sell.ai",
@@ -30,21 +33,44 @@ export const metadata: Metadata = {
   },
 }
 
+// ─── FAQ data (mirrored to the FAQPage schema and the on-page accordion) ───
+const FAQ_ITEMS = [
+  {
+    question: "How do I sell my car online in Australia?",
+    answer:
+      "Simply enter your vehicle details into our online valuation form — rego, make, model, and a few basic condition details. Our AI generates a fair market offer within seconds. If you're happy with it, accept online, and we'll organise pickup at a time that suits you. Payment is made via OSKO on the same day.",
+  },
+  {
+    question: "How long does it take to sell my car with Auto-Sell.ai?",
+    answer:
+      "Most customers complete the entire process — valuation to payment — within the same day. The AI valuation takes under 60 seconds. Once you accept the offer and we complete the pickup, payment hits your account instantly via OSKO. No multi-day waits.",
+  },
+  {
+    question: "What condition does my car need to be in?",
+    answer:
+      "Any condition. Damaged, unregistered, high kilometres, mechanical issues — we buy it all. You don't need to fix anything up or spend money preparing the car before you sell. We assess it as-is and make you a genuine offer based on its actual current condition.",
+  },
+  {
+    question: "Will I get a better price than trading in at a dealership?",
+    answer:
+      "In most cases, yes — often significantly more. Dealer trade-ins are designed to maximise the dealer's margin, not your return. Our AI uses real market data to calculate what your car is genuinely worth, giving you a fair offer that reflects actual buyer demand — not what a dealership is willing to pay.",
+  },
+  {
+    question: "Is there a fee to use Auto-Sell.ai?",
+    answer:
+      "None whatsoever. Getting a valuation is completely free with no obligation to accept. There are no listing fees, no admin charges, and no commission deducted from your payment. What we offer is exactly what you receive.",
+  },
+  {
+    question: "Can I sell a car that's still under finance?",
+    answer:
+      "Yes. If your vehicle is still under finance, you'll need to provide a payout letter from your finance company showing the current settlement figure. We handle the rest — paying out the finance balance and transferring any remaining amount directly to you.",
+  },
+] as const
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <FAQPageJsonLd
-        items={[
-          { question: "How can you value my car in seconds?", answer: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to generate an accurate quote instantly. What used to take days now happens in seconds." },
-          { question: "How fast is the entire process?", answer: "Get your AI-powered quote in 30 minutes, book an on-site inspection at your convenience, and receive same-day OSKO payment. Most customers complete the entire process within 24 hours." },
-          { question: "Do you really pay on the same day?", answer: "Yes! Once we inspect your vehicle and complete the paperwork, we transfer funds directly to your bank account via OSKO, which processes within seconds." },
-          { question: "What if I don't like the offer?", answer: "There's absolutely no obligation. You can decline the offer at any point before signing — we never pressure you." },
-          { question: "How do you calculate my car's value?", answer: "Our AI cross-references live market data, recent comparable sales, your car's make, model, year, condition, and odometer." },
-          { question: "What makes this 'smarter' than traditional selling?", answer: "Traditional private sales take weeks of ads, time-wasters, and negotiations. Our AI instantly connects you with genuine buyers, eliminates haggling, and gets you paid the same day." },
-          { question: "What if my car isn't running?", answer: "No problem! Our AI values cars in any condition. We'll arrange free towing if needed and still provide a fast, fair offer." },
-          { question: "What areas do you service?", answer: "We operate Australia-wide! From major cities to remote areas, we come to you." },
-        ]}
-      />
+      <FAQPageJsonLd items={FAQ_ITEMS.map((f) => ({ question: f.question, answer: f.answer }))} />
       <Header />
 
       {/* ─── Hero Section ─────────────────────────────────────────────── */}
@@ -53,7 +79,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero/hero-car.jpg"
-            alt="Top car selling sites to sell your car"
+            alt="Sell my car online with instant AI valuation"
             fill
             preload
             sizes="100vw"
@@ -72,19 +98,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Trust Bar — stat strip below hero ────────────────────────── */}
+      <section className="bg-white border-y border-gray-100 py-6 md:py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {[
+            { stat: '10,000+', label: 'Cars Purchased' },
+            { stat: '4.9 ★', label: 'on Google' },
+            { stat: '2024', label: 'Serving Australia' },
+            { stat: 'Nationwide', label: 'Australia-wide service' },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="text-2xl md:text-3xl font-black text-gray-900">{s.stat}</div>
+              <div className="text-xs md:text-sm text-gray-500 mt-1 uppercase tracking-wide font-semibold">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ─── How It Works ─────────────────────────────────────────────── */}
-      <section id="how-it-works" className="py-8 md:py-14 section-warm-white">
+      <section id="how-it-works" className="py-10 md:py-16 section-warm-white">
         <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-          <div className="text-center mb-6 md:mb-8">
+          <div className="text-center mb-6 md:mb-10 max-w-3xl mx-auto">
             <span className="trust-pill mb-3">Simple &amp; Stress-Free</span>
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
-              How It Works
+              Sell Your Car Online in 3 Simple Steps
             </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-xl mx-auto">Three simple steps to get cash for your car</p>
+            <p className="text-base md:text-lg text-gray-600">
+              Forget the old way of doing things. No haggling. No strangers coming to your home. No paperwork
+              nightmares. Here&apos;s how we make selling your car online the easiest thing you&apos;ll do this week.
+            </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <HowItWorks />
-            {/* Car cutout image — seamless on white bg */}
             <div className="hidden lg:flex justify-center items-center">
               <div className="relative w-full max-w-md">
                 <Image
@@ -100,22 +147,90 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Why Choose ───────────────────────────────────────────────── */}
-      <section id="why-choose" className="py-10 md:py-16 section-soft">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8">
-          <div className="text-center mb-6 md:mb-10">
+      {/* ─── Why Australians Choose Us — long-form 5-point section ─────── */}
+      <section id="why-choose" className="py-12 md:py-20 section-soft">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-10 md:mb-14">
             <span className="trust-pill mb-3">Why Choose Us</span>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
-              Why Choose The Smarter Way?
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 mt-3">
+              Why Australians Choose Us to Sell Their Car
             </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">AI-powered selling that gets you paid in seconds, not weeks</p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              We built Auto-Sell.ai because selling a car in Australia was broken. Dealers low-ball you.
+              Private sales waste your weekends. Online platforms charge you to list, then leave you to
+              figure out the rest. We&apos;ve fixed all of that.
+            </p>
           </div>
-          <WhyChoose />
+
+          <div className="space-y-10 md:space-y-12">
+            {[
+              {
+                title: 'AI-Powered Valuations That Beat Dealer Trade-Ins',
+                body:
+                  "When you walk into a dealership, the offer you get is based on what's best for them — not you. Our AI doesn't work for a dealership. It analyses live market data from across Australia to give you a price that actually reflects what your car is worth right now. Most of our customers receive significantly more than their dealer trade-in quote. See for yourself — it costs you nothing to find out.",
+              },
+              {
+                title: 'No Tyre-Kickers, No Haggling, No Waiting',
+                body:
+                  'Selling privately means listing fees, dozens of enquiries that go nowhere, strangers turning up late, and buyers who want to knock $3,000 off because of a tiny scratch. With Auto-Sell.ai, none of that happens. You get one fair offer, based on real data, and you decide. That’s the whole process.',
+              },
+              {
+                title: 'We Buy Any Car, Any Condition, Australia-Wide',
+                body:
+                  "New, used, high kilometres, a few bumps and scratches — we buy it all. Running or not. Registered or unregistered. We don't cherry-pick only the easy cars. If you've got a vehicle you want to sell, we want to hear from you. Our service covers every state and territory, from the Sydney CBD to regional Queensland and everywhere in between.",
+              },
+              {
+                title: 'Sell Your Car Online Without Leaving Your Driveway',
+                body:
+                  "The entire process — valuation, offer, paperwork, payment — happens online or at your front door. You never need to drive anywhere, sit in a waiting room, or deal with a pushy salesperson. If you've got a smartphone and 10 minutes, you can sell your car today.",
+              },
+              {
+                title: 'No Hidden Fees, No Commission — Ever',
+                body:
+                  "What we offer is what you get. We don’t clip the ticket on the way out. No admin fees, no listing costs, no surprise deductions on the day. Transparent pricing from start to finish — because that’s how it should work.",
+              },
+            ].map((item) => (
+              <article key={item.title}>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── The AI Advantage ─────────────────────────────────────────── */}
+      <section id="ai-advantage" className="py-12 md:py-20 section-warm-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-8 md:mb-10">
+            <span className="trust-pill mb-3">The AI Advantage</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 mt-3">
+              How Our AI Makes Online Car Sales Smarter
+            </h2>
+          </div>
+          <div className="space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
+            <p>
+              The difference between Auto-Sell.ai and every other car buyer out there comes down to one
+              thing: data. While a traditional buyer gives you a gut-feel offer, our AI processes thousands of
+              real-time data points — current private sale listings, recent dealer auction results, regional
+              supply and demand, seasonal trends, and your vehicle&apos;s specific make, model, age, and
+              condition — all in seconds.
+            </p>
+            <p>
+              The result is a valuation that&apos;s grounded in what the market is actually doing today, not
+              what someone thinks your car might be worth. It means you walk into every transaction knowing
+              the offer on the table is fair, calculated, and backed by real intelligence — not guesswork.
+            </p>
+            <p>
+              That&apos;s the Auto-Sell.ai difference. And it&apos;s why more Australians are choosing to sell
+              their car with us over traditional dealers and private sale platforms.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ─── Comparison Table ─────────────────────────────────────────── */}
-      <section id="compare" className="py-10 md:py-16 section-warm-white">
+      <section id="compare" className="py-10 md:py-16 section-soft">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
           <div className="text-center mb-6 md:mb-10">
             <span className="trust-pill mb-3">Three Ways To Sell</span>
@@ -123,8 +238,8 @@ export default function Home() {
               Which Path Fits Your Sale?
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              There&apos;s no one-size-fits-all. Here&apos;s how Auto-Sell.ai, a dealer trade-in
-              and a private sale actually compare.
+              There&apos;s no one-size-fits-all. Here&apos;s how Auto-Sell.ai, a dealer trade-in and a private
+              sale actually compare.
             </p>
           </div>
           <ComparisonTable />
@@ -137,7 +252,7 @@ export default function Home() {
           <div className="text-center mb-6 md:mb-10">
             <span className="trust-pill mb-3">5.0 ★ on Google</span>
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
-              Thousands of Happy Sellers
+              What Our Customers Say About Selling Their Car with Us
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               Real Australians who chose the smarter way to sell their cars
@@ -147,13 +262,74 @@ export default function Home() {
           <ReviewsComponent />
 
           <div className="text-center mt-8">
-            <a
-              href="#sell-form"
-              className="btn-pill-gold px-8 py-3.5 text-base"
-            >
-              Get My Free Quote
+            <a href="#sell-form" className="btn-pill-gold px-8 py-3.5 text-base">
+              Get My Free Valuation
             </a>
             <p className="text-sm text-gray-500 mt-3">Free quote. No obligation.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Vehicle Types ────────────────────────────────────────────── */}
+      <section className="py-10 md:py-16 section-soft">
+        <div className="px-4 sm:px-8 max-w-6xl mx-auto">
+          <div className="text-center mb-6 md:mb-10 max-w-3xl mx-auto">
+            <span className="trust-pill mb-3">Any Make &middot; Any Model</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
+              Sell Any Vehicle — We Buy Cars, Utes, SUVs, Vans and More
+            </h2>
+            <p className="text-base md:text-lg text-gray-600">
+              Whether you&apos;re selling the family hatchback, a workhorse ute, or a prestige SUV you&apos;re
+              ready to move on from, we&apos;ll make you an offer. We buy all vehicle types across Australia,
+              in any condition.
+            </p>
+          </div>
+          <VehicleTypesGrid />
+          <div className="text-center mt-8">
+            <p className="text-sm md:text-base text-gray-600 mb-3">
+              Not sure if we&apos;ll buy yours?
+            </p>
+            <a href="#sell-form" className="btn-pill-outline px-8 py-3 text-base">
+              Get a free valuation →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Service Areas ────────────────────────────────────────────── */}
+      <section id="service-areas" className="py-12 md:py-16 section-warm-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
+            <span className="trust-pill mb-3">Australia-Wide</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 mt-3">
+              We Buy Cars Across Australia — Sydney, Melbourne, Brisbane, Perth and Beyond
+            </h2>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              No matter where you are in Australia, we&apos;ve got you covered. Our team services all major
+              cities and regional areas — from Sydney&apos;s inner suburbs and Melbourne&apos;s outer east to
+              Brisbane&apos;s north side and the Perth metro area. If you&apos;re somewhere in between, chances
+              are we service you too.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+            {[
+              { label: 'Sell My Car Sydney', href: '/sell-my-car-sydney' },
+              { label: 'Sell My Car Melbourne', href: '/sell-my-car-melbourne' },
+              { label: 'Sell My Car Brisbane', href: '/sell-my-car-brisbane' },
+              { label: 'Sell My Car Perth', href: '/sell-my-car-perth' },
+              { label: 'Sell My Car Adelaide', href: '/sell-my-car-adelaide' },
+              { label: 'Sell My Car Canberra', href: '/sell-my-car-canberra' },
+              { label: 'Sell My Car Gold Coast', href: '/sell-my-car-gold-coast' },
+            ].map((city) => (
+              <Link
+                key={city.href}
+                href={city.href}
+                className="rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm md:text-base font-semibold text-gray-800 hover:border-[#FFC325] hover:text-[#92560A] hover:shadow-sm transition-all text-center"
+              >
+                {city.label}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -164,7 +340,7 @@ export default function Home() {
           <div className="text-center mb-6 md:mb-10">
             <span className="trust-pill mb-3">Got Questions?</span>
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
-              Frequently Asked Questions
+              Frequently Asked Questions About Selling Your Car Online
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               Everything you need to know about selling your car with us
@@ -173,65 +349,8 @@ export default function Home() {
 
           <div className="max-w-4xl mx-auto faq-group">
             <Accordion
-              items={[
-                {
-                  title: "How can you value my car in seconds?",
-                  content: "Our AI technology analyzes real-time market data, recent sales, and your car's specific details to provide an accurate quote instantly. What used to take days now happens in seconds.",
-                },
-                {
-                  title: "How fast is the entire process?",
-                  content: "Get your AI-powered quote in 30 minutes, book an on-site inspection at your convenience, and receive same-day OSKO payment. Most customers complete the entire process within 24 hours.",
-                },
-                {
-                  title: "Do you really pay on the same day?",
-                  content: "Yes! Once we inspect your vehicle and complete the paperwork, we transfer funds directly to your bank account via OSKO, which processes within seconds. That's the smarter way — no waiting weeks for payment.",
-                },
-                {
-                  title: "What if I don't like the offer?",
-                  content: "There's absolutely no obligation. You can decline the offer at any point before signing — we never pressure you. If you accept, we honour the agreed price on the spot.",
-                },
-                {
-                  title: "How do you calculate my car's value?",
-                  content: "Our AI cross-references live market data, recent comparable sales, your car's make, model, year, condition, and odometer. You'll get a fair, data-backed figure — not a lowball dealer guess.",
-                },
-                {
-                  title: "What makes this 'smarter' than traditional selling?",
-                  content: "Traditional private sales take weeks of ads, time-wasters, and negotiations. Dealerships lowball offers. Our AI instantly connects you with genuine buyers, eliminates haggling, and gets you paid the same day.",
-                },
-                {
-                  title: "What if my car isn't running?",
-                  content: "No problem! Our AI values cars in any condition. We'll arrange free towing if needed and still provide a fast, fair offer based on your car's actual condition.",
-                },
-                {
-                  title: "What areas do you service?",
-                  content: "We operate Australia-wide! From major cities to remote areas, we come to you. Our AI-powered service works everywhere, ensuring fast quotes and payment no matter your location.",
-                },
-              ]}
+              items={FAQ_ITEMS.map((f) => ({ title: f.question, content: f.answer }))}
             />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Vehicle Types ────────────────────────────────────────────── */}
-      <section className="py-10 md:py-16 section-warm-white">
-        <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-          <div className="text-center mb-6 md:mb-10">
-            <span className="trust-pill mb-3">Any Make &middot; Any Model</span>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 mt-3">
-              We Buy All Types of Vehicles
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              From sedans to trucks, we buy everything — any condition
-            </p>
-          </div>
-          <VehicleTypesGrid />
-          <div className="text-center mt-8">
-            <a
-              href="#sell-form"
-              className="btn-pill-outline px-8 py-3 text-base"
-            >
-              What&apos;s My Car Worth?
-            </a>
           </div>
         </div>
       </section>
@@ -250,8 +369,7 @@ export default function Home() {
       </section>
 
       {/* ─── Final CTA ────────────────────────────────────────────────── */}
-      <section className="relative py-8 md:py-12 bg-white overflow-hidden">
-        {/* Car cutout on the right */}
+      <section className="relative py-12 md:py-16 bg-white overflow-hidden">
         <div className="hidden lg:block absolute bottom-0 opacity-90 lg:-right-[30px] lg:w-[250px] xl:right-[2%] xl:w-[350px] 2xl:right-[8%] 2xl:w-[450px]">
           <Image
             src="/images/cars/suv-cutout.png"
@@ -263,17 +381,17 @@ export default function Home() {
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3 md:mb-4">
-            Ready to Sell Your Car?
+            Ready to Sell Your Car? Get Your Free AI Valuation Now
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 mb-5 md:mb-6">
-            Join thousands of Australians who chose the smarter way. Get your free quote now.
+          <p className="text-base md:text-lg text-gray-700 mb-6 md:mb-8 leading-relaxed">
+            When it comes to selling your car, Australians deserve better than low-ball dealer offers and the
+            frustration of private sales that drag on for weeks. Auto-Sell.ai was built to give you exactly
+            that — a faster, fairer, and genuinely smarter way to sell your car online. Instant valuation,
+            same-day payment, zero fees. No catches.
           </p>
           <div className="space-y-5">
-            <a
-              href="#sell-form"
-              className="btn-pill-gold px-10 py-4 text-lg md:text-xl"
-            >
-              Get My Free Quote
+            <a href="#sell-form" className="btn-pill-gold px-10 py-4 text-lg md:text-xl">
+              Sell My Car Today →
             </a>
 
             <p className="text-sm text-gray-500">— or —</p>
@@ -281,7 +399,7 @@ export default function Home() {
             <div>
               <p className="text-gray-600 text-base mb-2">Call us directly:</p>
               <a
-                href="tel:0492 858 699"
+                href="tel:0492858699"
                 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 hover:text-gray-700 transition-colors flex items-center justify-center gap-3"
               >
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,7 +407,9 @@ export default function Home() {
                 </svg>
                 <span>0492 858 699</span>
               </a>
-              <p className="text-sm text-gray-500 mt-2">Open 7 days a week &bull; 8am–6pm AEST</p>
+              <p className="text-sm text-gray-500 mt-2">
+                Serving Sydney, Melbourne, Brisbane, Perth and everywhere in between.
+              </p>
             </div>
           </div>
         </div>

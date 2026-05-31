@@ -10,16 +10,19 @@ interface Step {
 
 const STEPS: Step[] = [
   {
-    title: 'Get Your Quote',
-    description: 'Fill out our simple form and receive an instant offer within 30 minutes.',
+    title: 'Get Your Instant AI Valuation',
+    description:
+      'Enter your rego, make, model and a few quick details. Our AI analyses live Australian market data and returns a fair, data-backed offer in under 60 seconds — no obligation, no cost.',
   },
   {
-    title: 'Book Inspection',
-    description: 'Schedule a free on-site inspection at your convenience — we come to you.',
+    title: 'Accept Your Offer and Book a Pickup',
+    description:
+      'Happy with your offer? We handle all the paperwork digitally — no printing, no trips anywhere. Our team comes to you at home, work, or wherever suits.',
   },
   {
-    title: 'Get Paid Instantly',
-    description: 'Same-day OSKO payment directly to your bank account. That simple.',
+    title: 'Get Paid the Same Day via OSKO',
+    description:
+      'The money hits your bank account before we drive away. We pay via OSKO — real-time, secure, in your account in under a minute. Instant. Every time.',
   },
 ]
 
