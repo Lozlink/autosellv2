@@ -1,12 +1,31 @@
+'use client'
 
+import { useEffect, useState } from 'react'
 
 export default function GoogleReviewsBadge() {
+  const [rating, setRating] = useState<number | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/reviews')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled && typeof data?.rating === 'number') setRating(data.rating)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const display = rating != null ? rating.toFixed(1) : '5.0'
+
   return (
     <a
       href='https://www.google.com/maps/place/Auto-Sell.AI/@-33.8490153,150.8962532,16z/data=!4m18!1m9!3m8!1s0x6b12974f9c62484b:0x7dc9ecf85fabfd4!2sAuto-Sell.AI!8m2!3d-33.8490153!4d150.8962532!9m1!1b1!16s%2Fg%2F11xp96nncw!3m7!1s0x6b12974f9c62484b:0x7dc9ecf85fabfd4!8m2!3d-33.8490153!4d150.8962532!9m1!1b1!16s%2Fg%2F11xp96nncw?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D'
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Rated 5.0 stars on Google Reviews — read what customers say"
+      aria-label={`Rated ${display} stars on Google Reviews — read what customers say`}
       className="block bg-gradient-to-r from-yellow-50 via-white to-yellow-50 border-b border-yellow-100 hover:via-yellow-50 transition-colors group"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-center gap-2 text-xs sm:text-sm">
@@ -43,7 +62,7 @@ export default function GoogleReviewsBadge() {
           ))}
         </div>
 
-        <span className="font-bold text-gray-800 tabular-nums">5.0</span>
+        <span className="font-bold text-gray-800 tabular-nums">{display}</span>
 
         <span className="text-gray-500 hidden sm:inline">on Google Reviews</span>
         <span className="text-gray-500 sm:hidden">on Google</span>
