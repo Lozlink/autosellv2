@@ -29,13 +29,30 @@ export default function HeroFormSection() {
       <div className="hidden lg:block">
         {formStep === 1 ? (
           <>
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] text-white">
-              Powered By AI
-              <span className="block mt-2 text-[#FFC325]">Sell Your Car Today</span>
+            <h1 className="text-4xl md:text-5xl xl:text-6xl font-black leading-[1.05] text-white">
+              The Smarter Way to
+              <span className="block mt-2 text-[#FFC325]">Sell My Car Online</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-200 mt-5 mb-6 max-w-xl leading-relaxed">
-                <strong className="text-white">SELL YOUR CAR </strong> — get a no-obligation offer in 30 minutes, same-day OSKO payment, and we come to you Australia-wide.
+            <p className="text-lg md:text-xl text-slate-200 mt-5 leading-relaxed max-w-xl">
+              Instant AI valuation. <strong className="text-white">Same-day OSKO payment</strong>. No fees,
+              no dealer lowballs, no tyre-kickers — just a fair, data-backed offer in minutes,
+              Australia-wide.
             </p>
+            {/* Micro-trust bar */}
+            <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-200">
+              {[
+                'No obligation',
+                'Instant AI valuation',
+                'Paid same day via OSKO',
+              ].map((item) => (
+                <li key={item} className="inline-flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-[#FFC325] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </>
         ) : (
           <>
@@ -44,7 +61,7 @@ export default function HeroFormSection() {
               <span className="block mt-2 text-[#FFC325]">Confirm Your Vehicle</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mt-5 mb-6 max-w-xl leading-relaxed">
-              Just confirm your vehicle details and we&apos;ll have your <strong className="text-white">FREE quote</strong> ready in 30 minutes.
+              Just confirm your vehicle details and we&apos;ll have your <strong className="text-white">free AI valuation</strong> ready in minutes.
             </p>
           </>
         )}

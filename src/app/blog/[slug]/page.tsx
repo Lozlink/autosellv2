@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
+import { markdownLiteToHtml, looksLikeBlockHtml } from '@/lib/markdownLite'
 
 export const revalidate = 60
 
@@ -52,13 +53,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound()
 
-  const looksLikeHtml = /<\/?[a-z][\s\S]*>/i.test(post.content)
-  const html = looksLikeHtml
+  const html = looksLikeBlockHtml(post.content)
     ? post.content
-    : post.content
-        .split(/\n{2,}/)
-        .map((para: string) => `<p>${para.replace(/\n/g, '<br />')}</p>`)
-        .join('')
+    : markdownLiteToHtml(post.content)
 
   return (
     <div className="min-h-screen bg-white">
