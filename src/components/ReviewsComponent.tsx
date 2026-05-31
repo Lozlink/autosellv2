@@ -243,6 +243,8 @@ function DesktopGrid({ reviews }: { reviews: Review[] }) {
           <button
             key={index}
             onClick={() => setCurrentIndex(index * 3)}
+            aria-label={`Show customer reviews, group ${index + 1}`}
+            aria-current={Math.floor(currentIndex / 3) === index ? 'true' : undefined}
             className={`w-3 h-3 rounded-full transition-colors ${
               Math.floor(currentIndex / 3) === index ? 'bg-[#FFC325]' : 'bg-gray-300'
             }`}

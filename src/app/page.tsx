@@ -81,7 +81,7 @@ export default function Home() {
             src="/images/hero/hero-car.jpg"
             alt="Sell my car online with instant AI valuation"
             fill
-            preload
+            priority
             sizes="100vw"
             className="object-cover object-[75%_54%] md:object-[center_54%]"
           />
