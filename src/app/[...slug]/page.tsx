@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Link from 'next/link'
+import { markdownLiteToHtml, looksLikeBlockHtml } from '@/lib/markdownLite'
 
 export async function generateMetadata({
   params,
@@ -59,6 +60,13 @@ export default async function Page({
     notFound()
   }
 
+  // Pages may store either markdown-lite (toolbar/editor) or raw HTML. Only
+  // skip the converter when real block-level HTML is present, so markdown
+  // headings/lists render properly while legacy HTML pages keep working.
+  const contentHtml = looksLikeBlockHtml(page.content)
+    ? page.content
+    : markdownLiteToHtml(page.content)
+
   return (
     <div className="min-h-screen section-cream">
       <Header />
@@ -88,8 +96,8 @@ export default async function Page({
       <section className="py-16 bg-white text-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className="prose prose-lg prose-gray max-w-none"
-            dangerouslySetInnerHTML={{ __html: page.content }}
+            className="blog-content prose prose-lg prose-gray max-w-none"
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
         </div>
       </section>

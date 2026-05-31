@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import BlogEditor from '@/components/BlogEditor'
 
 export default function NewPageAdmin() {
   const router = useRouter()
@@ -107,11 +108,12 @@ export default function NewPageAdmin() {
           {/* Page Content */}
           <div className="space-y-4">
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Page Content</h2>
-            <p className="text-xs text-gray-400">The main body section. Supports HTML.</p>
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">Content</label>
-              <textarea name="content" value={form.content} onChange={onChange} rows={12} required className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
-            </div>
+            <p className="text-xs text-gray-400">The main body section. Use the toolbar for formatting (markdown), or paste raw HTML.</p>
+            <BlogEditor
+              value={form.content}
+              onChange={(next) => setForm((prev) => ({ ...prev, content: next }))}
+              rows={12}
+            />
           </div>
 
           <hr className="border-yellow-200" />

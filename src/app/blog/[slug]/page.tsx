@@ -3,127 +3,9 @@ import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
+import { markdownLiteToHtml, looksLikeBlockHtml } from '@/lib/markdownLite'
 
 export const revalidate = 60
-
-/**
- * Lightweight markdown-to-HTML converter for plain-text posts where the
- * author wrote in markdown conventions but never wrapped anything in proper
- * HTML tags. Handles:
- *   - `# Heading` and `## Subheading` and `### Sub-subheading` → <h2> / <h3>
- *   - `- item` / `* item` lines → <ul><li>
- *   - `1. item` lines → <ol><li>
- *   - `> quote` lines → <blockquote>
- *   - `**bold**` → <strong>
- *   - `*italic*` / `_italic_` → <em>
- *   - `[label](url)` → <a>
- *
- * Line-based scan: structural prefixes (`##`, `-`, `1.`, `>`) start a new
- * block without requiring a blank line above them. Blank lines also act as
- * block separators. Paragraphs absorb consecutive plain lines and join them
- * with a space (markdown convention) — not <br />, so re-flowed text doesn't
- * produce ragged output.
- *
- * Real WYSIWYG/HTML-authored content with proper tags bypasses this entirely
- * via the looksLikeHtml check below.
- */
-function markdownLiteToHtml(input: string): string {
-  const inline = (s: string): string =>
-    s
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/__([^_]+)__/g, '<strong>$1</strong>')
-      .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>')
-      .replace(/(?<!_)_([^_\n]+)_(?!_)/g, '<em>$1</em>')
-      .replace(
-        /\[([^\]]+)\]\(([^)]+)\)/g,
-        (_, label, url) => `<a href="${url}">${label}</a>`
-      )
-
-  type Block =
-    | { kind: 'ul'; items: string[] }
-    | { kind: 'ol'; items: string[] }
-    | { kind: 'quote'; lines: string[] }
-    | { kind: 'p'; lines: string[] }
-
-  const lines = input.replace(/\r\n/g, '\n').split('\n')
-  const out: string[] = []
-  let current: Block | null = null
-
-  const flush = () => {
-    if (!current) return
-    if (current.kind === 'ul') {
-      out.push(`<ul>${current.items.map((i) => `<li>${inline(i)}</li>`).join('')}</ul>`)
-    } else if (current.kind === 'ol') {
-      out.push(`<ol>${current.items.map((i) => `<li>${inline(i)}</li>`).join('')}</ol>`)
-    } else if (current.kind === 'quote') {
-      out.push(`<blockquote>${inline(current.lines.join(' '))}</blockquote>`)
-    } else if (current.kind === 'p') {
-      out.push(`<p>${inline(current.lines.join(' '))}</p>`)
-    }
-    current = null
-  }
-
-  for (const raw of lines) {
-    const line = raw.trim()
-
-    if (!line) {
-      flush()
-      continue
-    }
-
-    // Heading: 1–3 leading hashes followed by space + text. Standalone block.
-    const h = line.match(/^(#{1,3})\s+(.*)$/)
-    if (h) {
-      flush()
-      const level = h[1].length === 3 ? 'h3' : 'h2'
-      out.push(`<${level}>${inline(h[2])}</${level}>`)
-      continue
-    }
-
-    // Bulleted list item
-    const ul = line.match(/^[-*]\s+(.*)$/)
-    if (ul) {
-      if (current?.kind !== 'ul') {
-        flush()
-        current = { kind: 'ul', items: [] }
-      }
-      current.items.push(ul[1])
-      continue
-    }
-
-    // Numbered list item
-    const ol = line.match(/^\d+\.\s+(.*)$/)
-    if (ol) {
-      if (current?.kind !== 'ol') {
-        flush()
-        current = { kind: 'ol', items: [] }
-      }
-      current.items.push(ol[1])
-      continue
-    }
-
-    // Blockquote line
-    const q = line.match(/^>\s?(.*)$/)
-    if (q) {
-      if (current?.kind !== 'quote') {
-        flush()
-        current = { kind: 'quote', lines: [] }
-      }
-      current.lines.push(q[1])
-      continue
-    }
-
-    // Plain paragraph line
-    if (current?.kind !== 'p') {
-      flush()
-      current = { kind: 'p', lines: [] }
-    }
-    current.lines.push(line)
-  }
-
-  flush()
-  return out.join('\n')
-}
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -171,8 +53,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound()
 
-  const looksLikeHtml = /<\/?[a-z][\s\S]*>/i.test(post.content)
-  const html = looksLikeHtml ? post.content : markdownLiteToHtml(post.content)
+  const html = looksLikeBlockHtml(post.content)
+    ? post.content
+    : markdownLiteToHtml(post.content)
 
   return (
     <div className="min-h-screen bg-white">

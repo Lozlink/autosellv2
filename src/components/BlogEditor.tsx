@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import { markdownLiteToHtml } from '@/lib/markdownLite'
 
 /**
  * BlogEditor — markdown editor with toolbar + live preview tab.
@@ -72,86 +73,6 @@ const BUTTONS: ButtonSpec[] = [
     line: (line) => (line.startsWith('> ') ? line.slice(2) : `> ${line}`),
   },
 ]
-
-/**
- * Mirror of the parser in blog/[slug]/page.tsx — kept in sync. Line-based:
- * structural prefixes (`##`, `-`, `1.`, `>`) start a new block without
- * requiring a blank line above, and consecutive plain lines fold into one
- * paragraph (joined by a space).
- */
-function markdownLiteToHtml(input: string): string {
-  const inline = (s: string): string =>
-    s
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/__([^_]+)__/g, '<strong>$1</strong>')
-      .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>')
-      .replace(/(?<!_)_([^_\n]+)_(?!_)/g, '<em>$1</em>')
-      .replace(
-        /\[([^\]]+)\]\(([^)]+)\)/g,
-        (_, label, url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`
-      )
-
-  type Block =
-    | { kind: 'ul'; items: string[] }
-    | { kind: 'ol'; items: string[] }
-    | { kind: 'quote'; lines: string[] }
-    | { kind: 'p'; lines: string[] }
-
-  const lines = input.replace(/\r\n/g, '\n').split('\n')
-  const out: string[] = []
-  let current: Block | null = null
-
-  const flush = () => {
-    if (!current) return
-    if (current.kind === 'ul') {
-      out.push(`<ul>${current.items.map((i) => `<li>${inline(i)}</li>`).join('')}</ul>`)
-    } else if (current.kind === 'ol') {
-      out.push(`<ol>${current.items.map((i) => `<li>${inline(i)}</li>`).join('')}</ol>`)
-    } else if (current.kind === 'quote') {
-      out.push(`<blockquote>${inline(current.lines.join(' '))}</blockquote>`)
-    } else if (current.kind === 'p') {
-      out.push(`<p>${inline(current.lines.join(' '))}</p>`)
-    }
-    current = null
-  }
-
-  for (const raw of lines) {
-    const line = raw.trim()
-    if (!line) {
-      flush()
-      continue
-    }
-    const h = line.match(/^(#{1,3})\s+(.*)$/)
-    if (h) {
-      flush()
-      const level = h[1].length === 3 ? 'h3' : 'h2'
-      out.push(`<${level}>${inline(h[2])}</${level}>`)
-      continue
-    }
-    const ul = line.match(/^[-*]\s+(.*)$/)
-    if (ul) {
-      if (current?.kind !== 'ul') { flush(); current = { kind: 'ul', items: [] } }
-      current.items.push(ul[1])
-      continue
-    }
-    const ol = line.match(/^\d+\.\s+(.*)$/)
-    if (ol) {
-      if (current?.kind !== 'ol') { flush(); current = { kind: 'ol', items: [] } }
-      current.items.push(ol[1])
-      continue
-    }
-    const q = line.match(/^>\s?(.*)$/)
-    if (q) {
-      if (current?.kind !== 'quote') { flush(); current = { kind: 'quote', lines: [] } }
-      current.lines.push(q[1])
-      continue
-    }
-    if (current?.kind !== 'p') { flush(); current = { kind: 'p', lines: [] } }
-    current.lines.push(line)
-  }
-  flush()
-  return out.join('\n')
-}
 
 interface BlogEditorProps {
   value: string
