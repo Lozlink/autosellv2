@@ -126,7 +126,7 @@ function validateStep2(s: FormState): Errors {
 
 // ─── Component ────────────────────────────────────────────────────────────
 
-export default function OfferForm() {
+export default function OfferForm({ heading, subheading }: { heading?: string; subheading?: string } = {}) {
   const [step, setStep] = useState<Step>(1)
   const [form, setForm] = useState<FormState>(EMPTY)
   const [errors, setErrors] = useState<Errors>({})
@@ -302,10 +302,10 @@ export default function OfferForm() {
               AUTO-SELL.AI
             </div>
             <h2 className="text-2xl md:text-[26px] font-black mt-1 text-white leading-tight">
-              {submitted ? 'Offer request received!' : 'Get Your Offer Now'}
+              {submitted ? 'Offer request received!' : (heading ?? 'Get Your Offer Now')}
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              {submitted ? 'We’ll be in touch shortly with your offer.' : 'Priority quote lane · no dealer runaround'}
+              {submitted ? 'We’ll be in touch shortly with your offer.' : (subheading ?? 'Priority quote lane · no dealer runaround')}
             </p>
           </div>
           <span

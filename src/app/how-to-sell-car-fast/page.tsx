@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import Header from '@/components/Header'
-import CarSellForm from '@/components/CarSellForm'
+import OfferForm from '@/app/_home/OfferForm'
 import Accordion from '@/components/Accordion'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 
@@ -183,7 +183,7 @@ export default function HowToSellCarFastPage() {
                     ></div>
                   }
                 >
-                  <CarSellForm heading="Get Your Instant Car Offer" subheading="Takes 2 minutes — no obligation" />
+                  <OfferForm heading="Get Your Instant Car Offer" subheading="Takes 2 minutes — no obligation" />
                 </Suspense>
               </div>
             </div>

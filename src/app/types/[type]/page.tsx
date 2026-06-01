@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Header from '@/components/Header'
-import CarSellForm from '@/components/CarSellForm'
+import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
 
 interface TypePageProps {
@@ -61,7 +61,7 @@ export default async function TypePage({ params }: TypePageProps) {
 
 						<div className="order-1 lg:order-2">
 							<Suspense fallback={<div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200 animate-pulse h-96"></div>}>
-								<CarSellForm heading={`Sell Your ${singular}`} subheading="Get Your Free Quote Now" />
+								<OfferForm heading={`Sell Your ${singular}`} subheading="Get Your Free Quote Now" />
 							</Suspense>
 						</div>
 					</div>

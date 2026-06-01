@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
-import CarSellForm from '@/components/CarSellForm'
+import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function CarsPage() {
             <div className="order-1 lg:order-2">
               <div className="liquid-glass-form-container rounded-2xl shadow-xl">
                 <Suspense fallback={<div className="rounded-2xl p-8 border bg-white/30 animate-pulse h-96" style={{ borderColor: '#FFC325' }}></div>}>
-                  <CarSellForm heading="Sell Your Car" subheading="Get Your Free Quote Now" />
+                  <OfferForm heading="Sell Your Car" subheading="Get Your Free Quote Now" />
                 </Suspense>
               </div>
             </div>

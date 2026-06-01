@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Header from '@/components/Header'
-import CarSellForm from '@/components/CarSellForm'
+import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
 
 interface BrandPageProps {
@@ -68,7 +68,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
 
             <div id="sell-form" className="order-1 lg:order-2">
               <Suspense fallback={<div className="rounded-2xl p-8 border bg-white/30 animate-pulse h-96" style={{ borderColor: '#FFC325' }}></div>}>
-                <CarSellForm heading={`Sell Your ${titleBrand}`} subheading="Get Your Free Quote Now" />
+                <OfferForm heading={`Sell Your ${titleBrand}`} subheading="Get Your Free Quote Now" />
               </Suspense>
             </div>
           </div>
