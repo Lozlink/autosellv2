@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sell My Mercedes | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Mercedes fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, professional sale.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-mercedes',
+    canonical: 'https://www.auto-sell.ai/sell-mercedes',
   },
 }
 

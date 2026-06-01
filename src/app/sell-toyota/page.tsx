@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | Auto-Sell",
   description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent quote with Auto-Sell.",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-toyota',
+    canonical: 'https://www.auto-sell.ai/sell-toyota',
   },
 }
 

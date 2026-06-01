@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast in Canberra with Auto-Sell.ai. We buy all cars in Canberra and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car canberra, car buyers canberra, sell car canberra, cash for cars canberra, sell car fast canberra, canberra car buyers",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-my-car-canberra',
+    canonical: 'https://www.auto-sell.ai/sell-my-car-canberra',
   },
 }
 

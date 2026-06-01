@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Contact Us - Auto-Sell.ai",
   description: "Contact Auto-Sell.ai to sell your car. Call, email, text, or chat with us. We're here to help you sell your car fast.",
   alternates: {
-    canonical: 'https://auto-sell.ai/contact',
+    canonical: 'https://www.auto-sell.ai/contact',
   },
 }
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your people mover fast with Auto-Sell.ai. We buy all people mover models including 7-seat and 8-seat vehicles. Get instant quotes and same-day payment.",
   keywords: "sell people mover, people mover buyers, sell my people mover, people mover car buyers, cash for people movers, sell people mover fast, 7 seat car, 8 seat car",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-people-movers',
+    canonical: 'https://www.auto-sell.ai/sell-people-movers',
   },
 }
 

@@ -31,10 +31,10 @@ export async function generateMetadata({ params }: TypePageProps): Promise<Metad
 		title: `Sell ${titleType} - Auto-Sell.ai`,
 		description: `We buy all ${titleType} in any condition. Free quote in 30 minutes and same-day OSKO payment.`,
 		alternates: {
-			canonical: `https://auto-sell.ai/sell-${typeParam}`,
+			canonical: `https://www.auto-sell.ai/sell-${typeParam}`,
 		},
 		openGraph: {
-			url: `https://auto-sell.ai/sell-${typeParam}`,
+			url: `https://www.auto-sell.ai/sell-${typeParam}`,
 		},
 	}
 }

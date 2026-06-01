@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Sell My Volkswagen | Fast Quotes & Same-Day Payment Australia-Wide",
   description: "Sell your Volkswagen fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-volkswagen',
+    canonical: 'https://www.auto-sell.ai/sell-volkswagen',
   },
 }
 

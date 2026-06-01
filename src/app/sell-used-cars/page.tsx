@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell used car, used car buyers, sell my car, used vehicle buyers, cash for used cars, sell car fast",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-used-cars',
+    canonical: 'https://www.auto-sell.ai/sell-used-cars',
   },
 }
 

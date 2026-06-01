@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sell My Holden | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Holden fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a hassle-free selling experience.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-holden',
+    canonical: 'https://www.auto-sell.ai/sell-holden',
   },
 }
 

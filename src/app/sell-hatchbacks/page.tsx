@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your hatchback fast with Auto-Sell.ai. We buy all hatchback models including small, mid-size, and large hatchbacks. Get instant quotes and same-day payment.",
   keywords: "sell hatchback, hatchback buyers, sell my hatchback, hatchback car buyers, cash for hatchbacks, sell hatchback fast, small hatchback, large hatchback",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-hatchbacks',
+    canonical: 'https://www.auto-sell.ai/sell-hatchbacks',
   },
 }
 

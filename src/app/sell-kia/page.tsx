@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Sell My Kia | Fast Quotes & Same-Day Payment Australia-Wide",
   description: "Sell your Kia fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-kia',
+    canonical: 'https://www.auto-sell.ai/sell-kia',
   },
 }
 

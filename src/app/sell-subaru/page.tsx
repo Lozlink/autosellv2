@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Sell Your Subaru - Auto-Sell.ai',
   description: 'We buy all Subaru models in any condition. Free quote in 30 minutes and same-day OSKO payment.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-subaru',
+    canonical: 'https://www.auto-sell.ai/sell-subaru',
   },
 }
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast in Brisbane with Auto-Sell.ai. We buy all cars in Brisbane and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car brisbane, car buyers brisbane, sell car brisbane, cash for cars brisbane, sell car fast brisbane, brisbane car buyers",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-my-car-brisbane',
+    canonical: 'https://www.auto-sell.ai/sell-my-car-brisbane',
   },
 }
 

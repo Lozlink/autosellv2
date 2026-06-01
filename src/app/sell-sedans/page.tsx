@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your sedan fast with Auto-Sell.ai. We buy all sedan models including compact, mid-size, and large sedans. Get instant quotes and same-day payment.",
   keywords: "sell sedan, sedan buyers, sell my sedan, sedan car buyers, cash for sedans, sell sedan fast, compact sedan, large sedan",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-sedans',
+    canonical: 'https://www.auto-sell.ai/sell-sedans',
   },
 }
 

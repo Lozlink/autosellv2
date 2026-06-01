@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sell My Audi | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell',
   description: 'Sell your Audi fast with a fair quote, 30-min quote and same-day OSKO payment. Australia-wide pickup for a smooth, professional and hassle-free sale.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-audi',
+    canonical: 'https://www.auto-sell.ai/sell-audi',
   },
 }
 

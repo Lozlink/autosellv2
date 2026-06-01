@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast in Melbourne with Auto-Sell.ai. We buy all cars in Melbourne and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car melbourne, car buyers melbourne, sell car melbourne, cash for cars melbourne, sell car fast melbourne, melbourne car buyers",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-my-car-melbourne',
+    canonical: 'https://www.auto-sell.ai/sell-my-car-melbourne',
   },
 }
 

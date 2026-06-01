@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your motorcycle fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell motorcycle, motorcycle buyers, sell my bike, cash for motorcycles, sell motorcycle fast, sports bike, cruiser, adventure bike",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-motorcycle',
+    canonical: 'https://www.auto-sell.ai/sell-motorcycle',
   },
 }
 

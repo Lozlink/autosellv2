@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { supabase } from '@/lib/supabaseClient';
 
-const BASE_URL = 'https://auto-sell.ai';
+const BASE_URL = 'https://www.auto-sell.ai';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date().toISOString();

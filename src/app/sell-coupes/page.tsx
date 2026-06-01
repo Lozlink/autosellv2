@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your coupe fast with Auto-Sell.ai. We buy all coupe models including sports coupes, luxury coupes, and performance coupes. Get instant quotes and same-day payment.",
   keywords: "sell coupe, coupe buyers, sell my coupe, coupe car buyers, cash for coupes, sell coupe fast, sports coupe, luxury coupe",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-coupes',
+    canonical: 'https://www.auto-sell.ai/sell-coupes',
   },
 }
 

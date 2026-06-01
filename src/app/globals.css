@@ -35,9 +35,11 @@
   --background-start-rgb: 255, 253, 248;
   --background-end-rgb: 255, 255, 255;
 
-  /* Font families - must be in :root, not @theme (runtime vs build time) */
-  --font-family-brand: var(--font-all-round-gothic), system-ui, sans-serif;
-  --font-family-secondary: var(--font-montserrat), system-ui, sans-serif;
+  /* Font families - single font for the whole site (Geist). The legacy
+     brand/secondary variables now both point at Geist so any older selectors
+     that read them continue working without producing fallback fonts. */
+  --font-family-brand: var(--font-geist-sans), system-ui, sans-serif;
+  --font-family-secondary: var(--font-geist-sans), system-ui, sans-serif;
 }
 
 /* Site keeps its bright trustworthy palette regardless of OS theme. */
@@ -52,14 +54,14 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
-  font-family: var(--font-montserrat), system-ui, sans-serif !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-all-round-gothic), system-ui, sans-serif !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
   letter-spacing: -0.01em;
 }
 

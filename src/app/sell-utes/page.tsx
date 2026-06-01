@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your ute fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
   keywords: "sell ute, ute buyers, sell my ute, ute car buyers, cash for utes, sell ute fast, work ute, dual cab ute",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-utes',
+    canonical: 'https://www.auto-sell.ai/sell-utes',
   },
 }
 

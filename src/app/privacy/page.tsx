@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy - Auto-Sell.ai",
   description: "Privacy policy for Auto-Sell.ai. Learn how we collect, use, and protect your personal information.",
   alternates: {
-    canonical: 'https://auto-sell.ai/privacy',
+    canonical: 'https://www.auto-sell.ai/privacy',
   },
 }
 

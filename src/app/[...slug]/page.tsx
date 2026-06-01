@@ -28,12 +28,12 @@ export async function generateMetadata({
     description: page.meta_description || undefined,
     keywords: page.meta_keywords || undefined,
     alternates: {
-      canonical: `https://auto-sell.ai/${fullSlug}`,
+      canonical: `https://www.auto-sell.ai/${fullSlug}`,
     },
     openGraph: {
       title: page.meta_title || page.title,
       description: page.meta_description || undefined,
-      url: `https://auto-sell.ai/${fullSlug}`,
+      url: `https://www.auto-sell.ai/${fullSlug}`,
       type: 'website',
       locale: 'en_AU',
       siteName: 'Auto-Sell.ai',

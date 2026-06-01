@@ -2,39 +2,15 @@ import type { Metadata } from "next";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights} from "@vercel/speed-insights/next";
 import Script from 'next/script';
-import { Montserrat } from "next/font/google";
-import localFont from "next/font/local";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import FloatingPhoneIcon from "@/components/FloatingPhoneIcon";
-import LazyChatbotWidget from "@/components/LazyChatbotWidget";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 
-// Heading font: AllRoundGothic — Medium (500) and Demi (700).
-// font-bold (700) and font-black (900) both resolve to Demi via nearest-weight matching.
-const allRoundGothic = localFont({
-  src: [
-    {
-      path: '../fonts/AllRoundGothic-Medium.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/AllRoundGothic-Demi.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-all-round-gothic',
-  display: 'swap',
-});
-
-// Body font: Montserrat
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ['400', '500', '600', '700'],
-});
+// Single font for the whole site. Per Mark's call, the legacy AllRoundGothic +
+// Montserrat brand pair has been retired in favour of Geist — the font Alex
+// picked from the lovable reference. GeistSans exposes both .className (font-
+// family on the element) and .variable (--font-geist-sans for CSS).
 
 
 
@@ -48,11 +24,11 @@ export const metadata: Metadata = {
     description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
     type: "website",
     locale: "en_AU",
-    url: "https://auto-sell.ai",
+    url: "https://www.auto-sell.ai",
     siteName: "Auto-Sell.ai",
     images: [
       {
-        url: "https://auto-sell.ai/og-image.jpg",
+        url: "https://www.auto-sell.ai/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Auto-Sell.ai - Sell Your Car Fast for Cash",
@@ -63,14 +39,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sell My Car Online in Sydney | Fast Cash | Auto-Sell.ai",
     description: "Looking to sell my car online? We make it easy to sell your car in Sydney. Get a free 30-minute quote, same-day OSKO payment, and we come to you!",
-    images: ["https://auto-sell.ai/og-image.jpg"],
+    images: ["https://www.auto-sell.ai/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: 'https://auto-sell.ai',
+    canonical: 'https://www.auto-sell.ai',
   },
   verification: {
     google: 'uesYUYENnimZ0evqhEg6cDi3L4pH9it5-cqJXmo9RQM',
@@ -127,7 +103,7 @@ export default function RootLayout({
       <meta name="theme-color" content="#FFC325" />
     </head>
       <body
-        className={`${allRoundGothic.variable} ${montserrat.variable} md:mx-auto antialiased min-h-screen bg-white`}
+        className={`${GeistSans.variable} ${GeistSans.className} md:mx-auto antialiased min-h-screen bg-white`}
       >
       {GTM_ID && (
         <noscript>

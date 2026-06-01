@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `https://auto-sell.ai/blog/${slug}`,
+      canonical: `https://www.auto-sell.ai/blog/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://auto-sell.ai/blog/${slug}`,
+      url: `https://www.auto-sell.ai/blog/${slug}`,
       type: 'article',
     },
   }

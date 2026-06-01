@@ -3,8 +3,8 @@ export function OrganizationJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Auto-Sell.ai',
-    url: 'https://auto-sell.ai',
-    logo: 'https://auto-sell.ai/brand-guideline/autosell-logo/PNG/1 (1).png',
+    url: 'https://www.auto-sell.ai',
+    logo: 'https://www.auto-sell.ai/brand-guideline/autosell-logo/PNG/1 (1).png',
     description:
       "Australia's #1 AI-powered car buying service. Get free quotes in 30 minutes, same-day OSKO payment, and free Australia-wide pickup.",
     contactPoint: {
@@ -59,7 +59,7 @@ export function LocalBusinessJsonLd({ city }: { city: string }) {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: `Auto-Sell.ai - ${city}`,
-    url: `https://auto-sell.ai/sell-my-car-${city.toLowerCase().replace(/\s+/g, '-')}`,
+    url: `https://www.auto-sell.ai/sell-my-car-${city.toLowerCase().replace(/\s+/g, '-')}`,
     telephone: '+61-492 858 699',
     description: `Sell your car fast in ${city} with Auto-Sell.ai. Free 30-minute quotes, same-day OSKO payment, and free pickup across ${city}.`,
     address: {
@@ -78,7 +78,7 @@ export function LocalBusinessJsonLd({ city }: { city: string }) {
     parentOrganization: {
       '@type': 'Organization',
       name: 'Auto-Sell.ai',
-      url: 'https://auto-sell.ai',
+      url: 'https://www.auto-sell.ai',
     },
   };
 

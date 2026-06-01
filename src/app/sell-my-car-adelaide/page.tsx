@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast in Adelaide with Auto-Sell.ai. We buy all cars in Adelaide and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car adelaide, car buyers adelaide, sell car adelaide, cash for cars adelaide, sell car fast adelaide, adelaide car buyers",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-my-car-adelaide',
+    canonical: 'https://www.auto-sell.ai/sell-my-car-adelaide',
   },
 }
 

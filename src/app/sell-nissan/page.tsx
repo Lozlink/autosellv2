@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sell My Nissan | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Nissan fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, hassle-free sale.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-nissan',
+    canonical: 'https://www.auto-sell.ai/sell-nissan',
   },
 }
 

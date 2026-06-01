@@ -15,10 +15,10 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
     title: `Sell Your ${titleBrand} - Auto-Sell.ai`,
     description: `We buy all ${titleBrand} models in any condition. Free quote in 30 minutes and same-day OSKO payment.`,
     alternates: {
-      canonical: `https://auto-sell.ai/sell-${brand}`,
+      canonical: `https://www.auto-sell.ai/sell-${brand}`,
     },
     openGraph: {
-      url: `https://auto-sell.ai/sell-${brand}`,
+      url: `https://www.auto-sell.ai/sell-${brand}`,
     },
   }
 }

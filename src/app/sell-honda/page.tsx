@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sell My Honda | Fast Quotes & Same-Day Payment Australia-Wide',
   description: 'Sell your Honda quickly with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup and a stress-free selling experience.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-honda',
+    canonical: 'https://www.auto-sell.ai/sell-honda',
   },
 }
 

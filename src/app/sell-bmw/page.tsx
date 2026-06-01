@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sell My BMW | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell',
   description: 'Sell your BMW quickly with a fair quote, 30-min quote and same-day OSKO payment. Australia-wide pickup and a professional selling experience with Auto-Sell.',
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-bmw',
+    canonical: 'https://www.auto-sell.ai/sell-bmw',
   },
 }
 

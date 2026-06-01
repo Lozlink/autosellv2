@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Blog - Auto-Sell.ai",
   description: "Read the latest tips, guides, and insights about selling your car in Australia. Expert advice from Auto-Sell.ai.",
   alternates: {
-    canonical: 'https://auto-sell.ai/blog',
+    canonical: 'https://www.auto-sell.ai/blog',
   },
 }
 

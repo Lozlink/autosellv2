@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Sell your truck fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
   keywords: "sell truck, truck buyers, sell my truck, truck car buyers, cash for trucks, sell truck fast, light truck, heavy truck, commercial truck",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-trucks',
+    canonical: 'https://www.auto-sell.ai/sell-trucks',
   },
 }
 

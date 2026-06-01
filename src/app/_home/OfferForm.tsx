@@ -20,7 +20,7 @@ const STATE_LABEL: Record<StateCode, string> = {
   NT: 'Northern Territory',
 }
 
-type Step = 1 | 2 | 3
+type Step = 1 | 2
 
 type FormState = {
   // Step 1 — vehicle
@@ -93,7 +93,6 @@ function ChevronIcon({ className = '' }: { className?: string }) {
 
 const AU_PHONE_RE = /^(?:\+?61|0)[2-578](?:[ -]?\d){8}$/
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const POSTCODE_RE = /^\d{4}$/
 
 type Errors = Partial<Record<keyof FormState, string>>
 
@@ -117,8 +116,11 @@ function validateStep2(s: FormState): Errors {
   const errs: Errors = {}
   if (!s.name.trim() || s.name.trim().length < 2) errs.name = 'Enter your full name'
   if (!AU_PHONE_RE.test(s.phone.trim())) errs.phone = 'Enter a valid phone number'
-  if (!EMAIL_RE.test(s.email.trim())) errs.email = 'Enter a valid email'
-  if (!POSTCODE_RE.test(s.postcode.trim())) errs.postcode = 'Enter a 4-digit postcode'
+  // Email is optional — only validate the format if they typed something.
+  if (s.email.trim() && !EMAIL_RE.test(s.email.trim())) errs.email = 'Enter a valid email'
+  // Postcode field removed from the UI per request. Still kept in FormState
+  // as an empty string so the payload + CRM code that references it keeps
+  // type-checking without conditional branches.
   return errs
 }
 
@@ -138,14 +140,15 @@ export default function OfferForm() {
   }
 
   function next() {
-    const errs =
-      step === 1 ? validateStep1(form) : step === 2 ? validateStep2(form) : {}
+    // Only Step 1 advances; Step 2's button calls submit() directly via the
+    // button handler below.
+    const errs = step === 1 ? validateStep1(form) : validateStep2(form)
     if (Object.keys(errs).length) {
       setErrors(errs)
       return
     }
     setErrors({})
-    setStep((s) => (s < 3 ? ((s + 1) as Step) : s))
+    setStep((s) => (s < 2 ? ((s + 1) as Step) : s))
   }
 
   function back() {
@@ -284,7 +287,7 @@ export default function OfferForm() {
     setSubmitted(false)
   }
 
-  const stepLabels = ['Vehicle', 'Your Details', 'Confirm']
+  const stepLabels = ['Vehicle', 'Your Details']
 
   return (
     <div
@@ -331,7 +334,6 @@ export default function OfferForm() {
                 <Step1Rego form={form} errors={errors} onChange={set} />
               ))}
             {step === 2 && <Step2Personal form={form} errors={errors} onChange={set} />}
-            {step === 3 && <Step3Confirm form={form} />}
 
             {submitError && (
               <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-bold text-red-700">
@@ -351,7 +353,20 @@ export default function OfferForm() {
               )}
               <button
                 type="button"
-                onClick={step < 3 ? next : submit}
+                onClick={() => {
+                  if (step === 1) {
+                    next()
+                  } else {
+                    // Step 2 — validate then submit immediately. No confirm step.
+                    const errs = validateStep2(form)
+                    if (Object.keys(errs).length) {
+                      setErrors(errs)
+                      return
+                    }
+                    setErrors({})
+                    void submit()
+                  }
+                }}
                 disabled={submitting}
                 className="flex-1 rounded-xl py-4 text-base font-black tracking-wider text-slate-900 transition-transform hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{
@@ -386,24 +401,24 @@ export default function OfferForm() {
 }
 
 function ctaLabel(step: Step) {
-  if (step === 1) return 'CONTINUE → YOUR DETAILS'
-  if (step === 2) return 'CONTINUE → CONFIRM'
-  return 'GET MY INSTANT OFFER →'
+  if (step === 1) return 'GET MY INSTANT OFFER '
+  return 'SEND MY OFFER →'
 }
 
 // ─── Step indicator ───────────────────────────────────────────────────────
 
 function StepIndicator({ step, labels }: { step: Step; labels: string[] }) {
+  const total = labels.length
   return (
     <>
       <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-2 text-slate-500">
-        <span className="text-slate-900">Step {step} of 3</span>
+        <span className="text-slate-900">Step {step} of {total}</span>
         <span>{labels[step - 1]}</span>
       </div>
       <div className="h-1.5 w-full bg-slate-200 rounded-full mb-5">
         <div
           className="h-full rounded-full transition-all duration-300"
-          style={{ width: `${(step / 3) * 100}%`, backgroundColor: GOLD }}
+          style={{ width: `${(step / total) * 100}%`, backgroundColor: GOLD }}
         />
       </div>
     </>
@@ -563,26 +578,16 @@ function Step2Personal({
         onChange={(v) => onChange('name', v)}
         error={errors.name}
       />
-      <div className="grid grid-cols-2 gap-3">
-        <FieldText
-          label="Mobile"
-          placeholder="0400 000 000"
-          value={form.phone}
-          onChange={(v) => onChange('phone', v)}
-          error={errors.phone}
-          inputMode="tel"
-        />
-        <FieldText
-          label="Postcode"
-          placeholder="2000"
-          value={form.postcode}
-          onChange={(v) => onChange('postcode', v.replace(/[^\d]/g, '').slice(0, 4))}
-          error={errors.postcode}
-          inputMode="numeric"
-        />
-      </div>
       <FieldText
-        label="Email"
+        label="Mobile"
+        placeholder="0400 000 000"
+        value={form.phone}
+        onChange={(v) => onChange('phone', v)}
+        error={errors.phone}
+        inputMode="tel"
+      />
+      <FieldText
+        label="Email (optional)"
         placeholder="you@email.com"
         value={form.email}
         onChange={(v) => onChange('email', v)}
@@ -596,46 +601,8 @@ function Step2Personal({
   )
 }
 
-// ─── Step 3: Confirm ──────────────────────────────────────────────────────
-
-function Step3Confirm({ form }: { form: FormState }) {
-  const rows: { label: string; value: string }[] = [
-    {
-      label: 'Vehicle',
-      value: form.unregistered
-        ? `${form.make} ${form.model}${form.year ? ` (${form.year})` : ''}`
-        : `${form.rego} · ${form.state ? STATE_LABEL[form.state as StateCode] : ''}`,
-    },
-  ]
-  if (form.unregistered && form.kilometres) rows.push({ label: 'Kilometres', value: `${form.kilometres} km` })
-  if (form.unregistered && form.state) rows.push({ label: 'Location', value: STATE_LABEL[form.state as StateCode] })
-  rows.push({ label: 'Name', value: form.name })
-  rows.push({ label: 'Mobile', value: form.phone })
-  rows.push({ label: 'Email', value: form.email })
-  rows.push({ label: 'Postcode', value: form.postcode })
-  if (form.unregistered && form.notes) rows.push({ label: 'Notes', value: form.notes })
-
-  return (
-    <div>
-      <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4">
-        <div className="text-[11px] font-black uppercase tracking-wider text-slate-700 mb-3">
-          Confirm your details
-        </div>
-        <dl className="grid grid-cols-3 gap-y-2 text-sm">
-          {rows.map((r) => (
-            <div key={r.label} className="contents">
-              <dt className="col-span-1 text-slate-500">{r.label}</dt>
-              <dd className="col-span-2 text-slate-900 font-semibold break-words">{r.value || '—'}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-      <p className="text-[11px] text-slate-500 leading-relaxed mt-3">
-        Check everything looks right, then hit submit and we&apos;ll send your offer within minutes.
-      </p>
-    </div>
-  )
-}
+// (Step3Confirm removed — the form is now 2-step and Step 2's button submits
+// directly. STATE_LABEL is still used elsewhere; the imports stay valid.)
 
 // ─── Reusable primitives ──────────────────────────────────────────────────
 
@@ -729,40 +696,35 @@ function StateMenu({
 }
 
 // ─── Success state ────────────────────────────────────────────────────────
+// Minimal one-line confirmation — the dark form header above already swaps
+// to "Offer request received!" so we don't need a big takeover panel here.
 
 function SuccessState({ form, onReset }: { form: FormState; onReset: () => void }) {
+  const firstName = form.name.split(' ')[0] || 'there'
   return (
     <div className="text-center py-2">
-      <div className="mx-auto w-14 h-14 rounded-full inline-flex items-center justify-center mb-3" style={{ backgroundColor: 'rgba(34,197,94,0.12)', color: '#16A34A' }}>
-        <CheckIcon className="w-7 h-7" />
+      <div
+        className="mx-auto w-12 h-12 rounded-full inline-flex items-center justify-center mb-3"
+        style={{ backgroundColor: 'rgba(34,197,94,0.12)', color: '#16A34A' }}
+      >
+        <CheckIcon className="w-6 h-6" />
       </div>
-      <h3 className="text-lg font-black text-slate-900">Your offer request has been received.</h3>
-      <p className="text-sm text-slate-500 mt-2 max-w-xs mx-auto">
-        Thanks {form.name.split(' ')[0] || 'there'} — our team will be in touch within 10 minutes with a fair offer.
+      <p className="text-sm text-slate-700">
+        Thanks <span className="font-bold text-slate-900">{firstName}</span> — we&apos;ll be in touch within 30 minutes with your offer.
       </p>
-      <div className="mt-5 rounded-xl bg-slate-50 border border-slate-200 p-4 text-left text-xs">
-        <div className="font-bold text-slate-900 mb-2">Submission summary</div>
-        <dl className="grid grid-cols-2 gap-y-1.5 text-slate-600">
-          <dt>Vehicle</dt>
-          <dd className="text-slate-900 font-semibold">
-            {form.unregistered ? `${form.make} ${form.model}` : `${form.rego} · ${form.state}`}
-          </dd>
-          {form.unregistered && form.kilometres && (
-            <>
-              <dt>Kilometres</dt>
-              <dd className="text-slate-900 font-semibold">{form.kilometres} km</dd>
-            </>
-          )}
-          <dt>Contact</dt>
-          <dd className="text-slate-900 font-semibold">{form.phone}</dd>
-        </dl>
-      </div>
+      <a
+        href="tel:0492858699"
+        className="inline-flex items-center justify-center gap-1.5 mt-4 text-xs font-bold text-slate-900"
+      >
+        <PhoneIcon className="w-3.5 h-3.5" />
+        Need it faster? Call 0492 858 699
+      </a>
       <button
         type="button"
         onClick={onReset}
-        className="mt-5 text-sm font-bold text-slate-600 hover:text-slate-900"
+        className="block mx-auto mt-4 text-[11px] font-semibold text-slate-500 hover:text-slate-700"
       >
-        Submit another offer →
+        Request another offer
       </button>
     </div>
   )

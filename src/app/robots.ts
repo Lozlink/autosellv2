@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/'],
       },
     ],
-    sitemap: 'https://auto-sell.ai/sitemap.xml',
+    sitemap: 'https://www.auto-sell.ai/sitemap.xml',
   };
 }

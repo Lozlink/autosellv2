@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Sell Damaged Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
   description: "Sell your damaged car fast with a 30-min quote, fair offer and same-day OSKO payment. Auto-Sell buys accident-damaged, hail-damaged and non-running cars Australia-wide.",
   alternates: {
-    canonical: 'https://auto-sell.ai/cash-for-damaged-cars',
+    canonical: 'https://www.auto-sell.ai/cash-for-damaged-cars',
   },
 }
 

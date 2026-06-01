@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast on the Gold Coast with Auto-Sell.ai. We buy all cars on the Gold Coast and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car gold coast, car buyers gold coast, sell car gold coast, cash for cars gold coast, sell car fast gold coast, gold coast car buyers",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-my-car-gold-coast',
+    canonical: 'https://www.auto-sell.ai/sell-my-car-gold-coast',
   },
 }
 

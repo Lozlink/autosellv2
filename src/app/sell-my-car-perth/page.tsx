@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Sell your car fast in Perth with Auto-Sell.ai. We buy all cars in Perth and surrounding areas. Get instant quotes and same-day payment. Free pickup service.",
   keywords: "sell my car perth, car buyers perth, sell car perth, cash for cars perth, sell car fast perth, perth car buyers",
   alternates: {
-    canonical: 'https://auto-sell.ai/sell-my-car-perth',
+    canonical: 'https://www.auto-sell.ai/sell-my-car-perth',
   },
 }
 

@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   keywords:
     'instant car offer, sell my car fast, sell my car quick, sell my car now, sell auto fast Sydney, sell my car instant quote, best place to sell my car',
   alternates: {
-    canonical: 'https://auto-sell.ai/how-to-sell-car-fast',
+    canonical: 'https://www.auto-sell.ai/how-to-sell-car-fast',
   },
   openGraph: {
     title: 'Instant Car Offer — Sell My Car Fast & Get Paid Today | Auto-Sell.ai',
     description:
       'Want to sell your car fast? Get an instant car offer powered by AI — no tyre-kickers, no dealer lowballs. Sell my car quick, get paid same day. Australia-wide.',
-    url: 'https://auto-sell.ai/how-to-sell-car-fast',
+    url: 'https://www.auto-sell.ai/how-to-sell-car-fast',
     type: 'website',
     locale: 'en_AU',
   },

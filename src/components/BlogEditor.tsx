@@ -202,7 +202,7 @@ export default function BlogEditor({ value, onChange, rows = 16 }: BlogEditorPro
           rows={rows}
           required
           placeholder={
-            'Start typing your post. Use the toolbar above for formatting.\n\nExamples:\n## A heading\n\nA paragraph of body copy.\n\n- A bulleted point\n- Another bulleted point\n\nLink to [our quote form](https://auto-sell.ai).'
+            'Start typing your post. Use the toolbar above for formatting.\n\nExamples:\n## A heading\n\nA paragraph of body copy.\n\n- A bulleted point\n- Another bulleted point\n\nLink to [our quote form](https://www.auto-sell.ai).'
           }
           className="w-full px-3 py-3 bg-gray-50 border-0 text-gray-800 placeholder-gray-400 focus:outline-none font-mono text-sm leading-relaxed"
         />

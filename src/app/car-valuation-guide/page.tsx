@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Car Valuation Guide | Instant Car Offer | Auto-Sell",
   description: "Discover your vehicle's true worth with Auto-Sell. We provide accurate market pricing and an instant car offer. Get paid today!",
   alternates: {
-    canonical: 'https://auto-sell.ai/car-valuation-guide',
+    canonical: 'https://www.auto-sell.ai/car-valuation-guide',
   },
 }
 
