@@ -11,6 +11,21 @@ import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
 const DEFAULTS = PAGE_COPY_DEFAULTS as Record<string, Record<string, unknown>>
 
+// Pretty-print a list default so it can seed the textarea as editable JSON.
+const listDefaultText = (def: unknown): string =>
+  Array.isArray(def) ? JSON.stringify(def, null, 2) : ''
+
+// True when the textarea's JSON parses to exactly the in-code default array, so
+// we can omit it on save and keep "unchanged = falls back to the code default".
+function listMatchesDefault(raw: string, def: unknown): boolean {
+  if (!Array.isArray(def)) return false
+  try {
+    return JSON.stringify(JSON.parse(raw)) === JSON.stringify(def)
+  } catch {
+    return false
+  }
+}
+
 export default function AdminPageCopy() {
   const router = useRouter()
   const [slug, setSlug] = useState<string>(PAGE_COPY_SLUGS[0] ?? '')
@@ -59,7 +74,11 @@ export default function AdminPageCopy() {
     for (const field of PAGE_COPY_REGISTRY[s]?.fields ?? []) {
       const v = blocks[field.key]
       if (field.type === 'list') {
-        next[field.key] = Array.isArray(v) ? JSON.stringify(v, null, 2) : ''
+        // Seed with the saved override if present, otherwise the in-code
+        // default — so the editor always sees editable JSON, never a blank box.
+        next[field.key] = Array.isArray(v)
+          ? JSON.stringify(v, null, 2)
+          : listDefaultText(DEFAULTS[s]?.[field.key])
       } else {
         next[field.key] = typeof v === 'string' ? v : ''
       }
@@ -75,8 +94,14 @@ export default function AdminPageCopy() {
   const onField = (key: string, value: string) =>
     setValues((prev) => ({ ...prev, [key]: value }))
 
+  // Reset a field: text/textarea clear to blank (placeholder shows the default);
+  // list fields repopulate with the default JSON so the box stays editable.
   const resetField = (key: string) =>
-    setValues((prev) => ({ ...prev, [key]: '' }))
+    setValues((prev) => {
+      const field = spec?.fields.find((f) => f.key === key)
+      const next = field?.type === 'list' ? listDefaultText(defaults[key]) : ''
+      return { ...prev, [key]: next }
+    })
 
   // Build the blocks payload from current values (drops empties → page falls
   // back to its in-code default). Returns null on a JSON error (already shown).
@@ -86,6 +111,9 @@ export default function AdminPageCopy() {
       const raw = values[field.key] ?? ''
       if (field.type === 'list') {
         if (!raw.trim()) continue
+        // Unchanged from the in-code default → don't persist it, so the page
+        // keeps reading the live default (and future code edits flow through).
+        if (listMatchesDefault(raw, defaults[field.key])) continue
         try {
           const parsed = JSON.parse(raw)
           if (!Array.isArray(parsed)) {
@@ -145,7 +173,9 @@ export default function AdminPageCopy() {
     setSaving(false)
     if (ok) {
       const cleared: Record<string, string> = {}
-      for (const field of spec?.fields ?? []) cleared[field.key] = ''
+      for (const field of spec?.fields ?? []) {
+        cleared[field.key] = field.type === 'list' ? listDefaultText(defaults[field.key]) : ''
+      }
       setValues(cleared)
       setSavedAt(new Date().toLocaleTimeString())
     }
@@ -170,9 +200,10 @@ export default function AdminPageCopy() {
         </div>
 
         <p className="text-xs text-gray-400 mb-6">
-          Edit copy on hardcoded marketing pages without touching code. The greyed text in each box is the
-          current built-in default — leave a field blank (or hit Reset) to use it. List fields are edited as
-          JSON. Changes go live within ~60 seconds.
+          Edit copy on hardcoded marketing pages without touching code. Text boxes show the current wording as
+          grey hint text — type to change it, or leave blank to keep it. List boxes come pre-filled with the
+          current content as JSON — just edit the words and leave the brackets, quotes and commas alone. Hit
+          Reset on any field to restore the original. Changes go live within ~60 seconds.
         </p>
 
         <div className="mb-6">
@@ -221,7 +252,11 @@ export default function AdminPageCopy() {
                       : typeof d === 'string' && d
                         ? d
                         : 'Using built-in default'
-                  const hasValue = (values[field.key] ?? '').length > 0
+                  const raw = values[field.key] ?? ''
+                  // For lists, "overridden" = differs from the in-code default;
+                  // for text, = any value typed in.
+                  const overridden =
+                    field.type === 'list' ? !listMatchesDefault(raw, d) : raw.length > 0
                   return (
                     <div key={field.key}>
                       <div className="flex items-center justify-between mb-1">
@@ -229,7 +264,7 @@ export default function AdminPageCopy() {
                           {field.label}
                           {field.type === 'list' && <span className="ml-2 text-xs text-gray-400">(JSON array)</span>}
                         </label>
-                        {hasValue && (
+                        {overridden && (
                           <button
                             type="button"
                             onClick={() => resetField(field.key)}
@@ -241,11 +276,12 @@ export default function AdminPageCopy() {
                       </div>
                       {field.type === 'list' ? (
                         <>
-                          {field.itemFields && (
-                            <p className="text-[11px] text-gray-400 mb-1">
-                              Each item: {field.itemFields.map((f) => `${f.key} (${f.type})`).join(', ')}
-                            </p>
-                          )}
+                          <p className="text-[11px] text-gray-400 mb-1">
+                            Pre-filled with the current content — change the words inside the quotes and keep the brackets, quotes and commas.
+                            {field.itemFields && (
+                              <> Each item has: {field.itemFields.map((f) => `${f.key} (${f.type})`).join(', ')}.</>
+                            )}
+                          </p>
                           <textarea
                             value={values[field.key] ?? ''}
                             onChange={(e) => onField(field.key, e.target.value)}

@@ -122,9 +122,15 @@ The admin editor has two reset paths: a per-field **Reset to default** link
 to defaults** (wipes every override for the page after a confirm). Both work
 because a blank field falls back to the in-code default.
 
-Note: list fields (arrays) still show a generic placeholder + the item-shape
-hint, not their full default JSON — only text/textarea defaults are surfaced as
-placeholders for now.
+Text/textarea fields show their default as the greyed placeholder (blank =
+default). List fields are **pre-filled** with the current content as editable
+JSON (the saved override if one exists, else the in-code default) rather than a
+placeholder — so an editor changes words inside an existing structure instead of
+typing brackets/quotes/commas from scratch. On save, any list whose JSON equals
+the in-code default is dropped (not persisted), so "unchanged = falls back to
+the live default" still holds and future default edits in code flow through.
+Per-field Reset repopulates the default JSON; Reset all clears every override
+and the boxes reload showing defaults.
 
 ## One-time setup (you do this)
 
