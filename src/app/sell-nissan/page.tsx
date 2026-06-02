@@ -4,43 +4,32 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: 'Sell My Nissan | Fast Quotes & Same-Day Payment Australia-Wide',
-  description: 'Sell your Nissan fast with a fair quote, 30-min quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, hassle-free sale.',
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-nissan',
-  },
+const SLUG = 'sell-nissan'
+const D = PAGE_COPY_DEFAULTS['sell-nissan']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-nissan',
+    },
+  }
 }
 
-export default function SellNissanPage() {
-  const models = [
-    'Nissan X-Trail',
-    'Nissan Qashqai',
-    'Nissan Navara',
-    'Nissan Pathfinder',
-    'Nissan Patrol',
-    'Nissan Juke',
-    'Nissan Micra',
-    'Nissan Leaf and hybrid/electric models',
-  ]
+export default async function SellNissanPage() {
+  const b = await getPageOverrides(SLUG)
+  const models = list(b, 'models', D.models)
 
-  const valuationFactors = [
-    'Verified market data',
-    'Recent Nissan sales',
-    'Condition and kilometres',
-    'Live buyer demand',
-    'Service history and optional features',
-  ]
+  const valuationFactors = list(b, 'valuation_factors', D.valuation_factors)
 
-  const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Fast quote based on verified data' },
-    { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
-    { icon: '', title: 'All Nissan Models', desc: 'SUVs, utes, sedans, vans and electric models' },
-    { icon: '', title: 'Australia-Wide', desc: 'We come to you for inspection, payment and collection' },
-    { icon: '', title: 'Any Condition', desc: 'High-km, unregistered, damaged vehicles' },
-    { icon: '', title: 'No Surprises', desc: 'No hidden fees and no pressure to sell' },
-  ]
+  const whyChoose = list(b, 'why_choose', D.why_choose)
 
   return (
     <div className="min-h-screen section-cream">
@@ -51,11 +40,11 @@ export default function SellNissanPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell Your Nissan
-              <span className="block" style={{ color: '#000' }}>Quick & Fair Quote</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get a quick, professional quote and same-day OSKO payment for your Nissan. Australia-wide pickup with zero hassle.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -97,10 +86,10 @@ export default function SellNissanPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Australia&apos;s Trusted Nissan Buyers
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Nissan vehicles are popular across Australia for their reliability, versatility and strong resale demand. Whether you drive a compact Micra, a family-focused X-Trail or a powerful Navara, selling your Nissan shouldn&apos;t involve weeks of advertising, negotiating or dealing with tyre-kickers. Auto-Sell.aigives you a fast and straightforward way to sell your Nissan at a fair market price, with a quote in around 30 minutes and same-day OSKO payment once you&apos;re ready to proceed.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -139,7 +128,7 @@ export default function SellNissanPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Nissan vehicles are popular across Australia for their reliability, versatility and strong resale demand. Whether you drive a compact Micra, a family-focused X-Trail or a powerful Navara, selling your Nissan shouldn&apos;t involve weeks of advertising, negotiating or dealing with tyre-kickers. Auto-Sell.aigives you a fast and straightforward way to sell your Nissan at a fair market price, with a quote in around 30 minutes and same-day OSKO payment once you&apos;re ready to proceed. If you&apos;ve been thinking &ldquo;I want to sell my Nissan quickly and without hassle,&rdquo; you&apos;re in the right place.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
         </div>
       </section>
@@ -148,8 +137,8 @@ export default function SellNissanPage() {
       <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Nissan Models</h2>
-            <p className="text-xl text-gray-600">The Nissan range covers everything from small hatches and sedans to SUVs, 4x4s and work-ready utes. No matter which model you own&mdash;or what condition it&apos;s in&mdash;you&apos;ll receive a data-backed offer that reflects today&apos;s real market demand.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{text(b, 'models_h2', D.models_h2)}</h2>
+            <p className="text-xl text-gray-600">{text(b, 'models_sub', D.models_sub)}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {models.map((model) => (
@@ -162,7 +151,7 @@ export default function SellNissanPage() {
             ))}
           </div>
           <p className="text-center text-gray-600 mt-8">
-            We also buy high-kilometre vehicles, unregistered cars, accident-damaged vehicles, repairable write-offs and non-running Nissans. If it&apos;s a Nissan, we&apos;ll give you an offer.
+            {text(b, 'models_footnote', D.models_footnote)}
           </p>
         </div>
       </section>
@@ -170,10 +159,10 @@ export default function SellNissanPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Smooth and Simple Selling Process</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling privately can take weeks&mdash;photos, listings, messages, inspections, cancellations and negotiations. Auto-Sell.airemoves all of that and replaces it with a clean, streamlined process that works on your terms.
+            {text(b, 'process_intro', D.process_intro)}
           </p>
 
           <div className="space-y-4">
@@ -182,8 +171,8 @@ export default function SellNissanPage() {
                 1
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Nissan&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -191,8 +180,8 @@ export default function SellNissanPage() {
                 2
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -202,12 +191,12 @@ export default function SellNissanPage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Pricing Based on Real Market Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Nissan prices vary significantly across the range. Models like the Navara and Patrol often attract strong demand, while popular SUVs like the X-Trail and Qashqai maintain consistent resale value. Electric and hybrid models like the Leaf also require specialist pricing.
+            {text(b, 'valuation_para1', D.valuation_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Our pricing approach ensures you receive a fair, realistic offer&mdash;not an automated estimate or a number that drops during inspection. If you already have another quote, share it with us&mdash;we often beat like-for-like offers, and we&apos;re transparent about how our pricing works.
+            {text(b, 'valuation_para2', D.valuation_para2)}
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -223,9 +212,9 @@ export default function SellNissanPage() {
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">We Come to You Anywhere in Australia</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Whether you&apos;re in a major city or a regional area, you don&apos;t need to travel or book multiple buyer appointments. We come to you for inspection, payment and collection. The entire process happens in one visit, so selling your Nissan is simple, fast and stress-free.
+            {text(b, 'aus_body', D.aus_body)}
           </p>
         </div>
       </section>
@@ -234,8 +223,8 @@ export default function SellNissanPage() {
       <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">The Easy Way to Sell My Nissan</h2>
-            <p className="text-xl text-gray-600">Nissan owners choose Auto-Sell.aibecause our service removes the uncertainty from selling a car. Our team handles everything professionally, keeps the process transparent and ensures you walk away with a fair deal and your payment instantly.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{text(b, 'why_h2', D.why_h2)}</h2>
+            <p className="text-xl text-gray-600">{text(b, 'why_sub', D.why_sub)}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChoose.map((item) => (
@@ -252,15 +241,15 @@ export default function SellNissanPage() {
       {/* CTA */}
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your Nissan for Cash Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{text(b, 'cta_h2', D.cta_h2)}</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your Nissan&mdash;or want an accurate idea of its current value&mdash;start with a fast, no-obligation quote.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="btn-pill-gold px-12 py-4 text-xl"
           >
-            Sell Your Nissan for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

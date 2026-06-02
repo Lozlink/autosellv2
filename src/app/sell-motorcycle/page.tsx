@@ -4,17 +4,28 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: "Sell My Motorcycle | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your motorcycle fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
-  keywords: "sell motorcycle, motorcycle buyers, sell my bike, cash for motorcycles, sell motorcycle fast, sports bike, cruiser, adventure bike",
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-motorcycle',
-  },
+const SLUG = 'sell-motorcycle'
+const D = PAGE_COPY_DEFAULTS['sell-motorcycle']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    keywords: text(b, 'meta_keywords', D.meta_keywords),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-motorcycle',
+    },
+  }
 }
 
-export default function SellMotorcyclePage() {
+export default async function SellMotorcyclePage() {
+  const b = await getPageOverrides(SLUG)
   return (
     <div className="min-h-screen section-cream">
       <Header />
@@ -24,11 +35,11 @@ export default function SellMotorcyclePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell My Motorcycle
-              <span className="block" style={{ color: '#000' }}>Sell Your Motorcycle for Cash Today</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Motorcycles offer freedom, convenience and pure riding enjoyment. Get a fair quote in ~30 minutes with instant OSKO payment and Australia-wide pickup.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -70,10 +81,10 @@ export default function SellMotorcyclePage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Sell Your Motorcycle the Easy Way
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                No matter the age, mileage, or condition of your motorcycle, we&apos;ll give you a competitive offer. Skip the hassle of private sales and get paid today.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -110,8 +121,8 @@ export default function SellMotorcyclePage() {
       {/* Intro Content */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">Motorcycles offer freedom, convenience and pure riding enjoyment—but when it&apos;s time to sell yours, the process shouldn&apos;t involve low offers, time-wasters or dealership pressure. Whether you ride a daily commuter bike, a weekend cruiser or a high-performance sports bike, Auto-Sell.aigives you a fast and reliable way to sell your motorcycle. You&apos;ll receive an offer within around 30 minutes and same-day OSKO payment once you accept.</p>
-          <p className="text-lg text-gray-700 leading-relaxed">If you&apos;ve been thinking &#34;I need a simple and trusted way to sell my motorcycle,&#34; this is the easiest place to start.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">{text(b, 'intro_para1', D.intro_para1)}</p>
+          <p className="text-lg text-gray-700 leading-relaxed">{text(b, 'intro_para2', D.intro_para2)}</p>
         </div>
       </section>
 
@@ -120,25 +131,15 @@ export default function SellMotorcyclePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              We Buy All Motorcycle Types
+              {text(b, 'types_h2', D.types_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              Australia&apos;s motorcycle market is broad, and we purchase all makes, models and conditions. Whether you own a learner-approved bike, adventure tourer, dirt bike or something high-powered, we&apos;ll give you a fair quote backed by real market data.
+              {text(b, 'types_sub', D.types_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { type: "Sports Bikes & Superbikes", description: "Honda CBR, Yamaha YZF, Kawasaki Ninja, Ducati" },
-              { type: "Learner & Commuter Bikes", description: "CB125, CB500, Ninja 400, MT-07" },
-              { type: "Cruiser Motorcycles", description: "Harley-Davidson, Suzuki Boulevard, Indian Chief" },
-              { type: "Adventure & Touring", description: "BMW GS, Kawasaki Versys, Honda CB500X" },
-              { type: "Dirt, Enduro & Motocross", description: "Honda CRF, Yamaha YZ, KTM, Suzuki RM-Z" },
-              { type: "Scooters & Urban Bikes", description: "Vespa, Yamaha NMAX, Honda Activa, maxi-scooters" },
-              { type: "High-Km & Older Motorcycles", description: "Any age, any kilometer reading welcome" },
-              { type: "Non-Running Bikes", description: "Damaged, mechanical issues, mechanical issues" },
-              { type: "Modified & Custom Bikes", description: "Custom paint, engine mods, accessories" }
-            ].map((bikeType, index) => (
+            {list(b, 'types', D.types).map((bikeType, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{bikeType.type}</h3>
                 <p className="text-gray-600">{bikeType.description}</p>
@@ -151,21 +152,21 @@ export default function SellMotorcyclePage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Stress-Free Selling Experience</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Selling a motorcycle privately can bring endless messages, time-wasting inspections and attempts to negotiate the price down. Dealership offers often fall well below true market value. Auto-Sell.airemoves all that friction and gives you a clean, straightforward experience.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'process_intro', D.process_intro)}</p>
           <div className="space-y-4">
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your motorcycle&apos;s details using our quick online form. After reviewing the information, we send your quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">2</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you choose to proceed, we arrange an inspection at your home, workplace or another location that suits you. Once we confirm the bike&apos;s condition, we transfer payment instantly via OSKO. You receive your funds on the spot, and we handle the paperwork and organise collection the same day. No haggling. No pressure. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -175,26 +176,23 @@ export default function SellMotorcyclePage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Motorcycle Pricing Backed by Real Market Data</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Motorcycles vary significantly in value depending on the engine, brand, kilometres, modification history, condition and market demand. Our quotes take all of this into account, ensuring a realistic, accurate offer.</p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your offer is based on:</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'valuation_para1', D.valuation_para1)}</p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'valuation_lead', D.valuation_lead)}</p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Recent motorcycle sales</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Live market trends</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Brand and model desirability</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Kilometres and service history</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Mechanical and cosmetic condition</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Modifications and accessories</span></div>
+            {list(b, 'valuation_factors', D.valuation_factors).map((factor, i) => (
+              <div key={i} className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">{factor}</span></div>
+            ))}
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">You receive a fair figure—not an automated number and not a quote that drops dramatically at inspection. If you already have another offer, we&apos;re happy to review it—our offers often beat like-for-like quotes.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">{text(b, 'valuation_closing', D.valuation_closing)}</p>
         </div>
       </section>
 
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide, We Come to You</h2>
-          <p className="text-lg text-gray-700 leading-relaxed">Motorcycles aren&apos;t always convenient to transport, so our team comes to you anywhere in Australia. Whether the bike is at home, in storage, at your workplace or in a garage, inspection and pickup are handled in a single appointment.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">{text(b, 'aus_body', D.aus_body)}</p>
         </div>
       </section>
 
@@ -203,46 +201,15 @@ export default function SellMotorcyclePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              The Easy Way to Sell My Motorcycle
+              {text(b, 'why_h2', D.why_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              Motorcycle owners choose Auto-Sell.aibecause our process is fast, transparent and built around convenience. You stay in control, and every step is handled professionally.
+              {text(b, 'why_sub', D.why_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Live Motorcycle Market Data",
-                description: "Recent sales and current market trends ensure accurate motorcycle offers."
-              },
-              {
-                icon: "",
-                title: "Fair Brand & Model Pricing",
-                description: "Assessed on kilometers, service history, mechanical condition & desirability."
-              },
-              {
-                icon: "",
-                title: "Instant OSKO Payment",
-                description: "Get paid same-day via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Australia-Wide Pickup",
-                description: "We collect your motorcycle from anywhere in Australia—even non-running bikes."
-              },
-              {
-                icon: "",
-                title: "Quote in ~30 Minutes",
-                description: "Submit your motorcycle details and get a fair quote quickly."
-              },
-              {
-                icon: "",
-                title: "Paperwork Handled",
-                description: "We manage registration transfers and all legal documentation for you."
-              }
-            ].map((benefit, index) => (
+            {list(b, 'benefits', D.benefits).map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
@@ -257,17 +224,17 @@ export default function SellMotorcyclePage() {
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sell Your Motorcycle for Cash Today
+            {text(b, 'cta_h2', D.cta_h2)}
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your motorcycle—or want to find out its current market value—get started with a free, no-obligation quote.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Sell Your Motorcycle for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

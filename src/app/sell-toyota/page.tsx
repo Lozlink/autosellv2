@@ -4,16 +4,27 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: "Sell My Toyota | Fast 30-Min Quotes & Same-Day Payment | Auto-Sell",
-  description: "Sell your Toyota fast with a 30-min quote, same-day OSKO payment and free pickup Australia-wide. Get a fair, transparent quote with Auto-Sell.",
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-toyota',
-  },
+const SLUG = 'sell-toyota'
+const D = PAGE_COPY_DEFAULTS['sell-toyota']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-toyota',
+    },
+  }
 }
 
-export default function SellToyotaPage() {
+export default async function SellToyotaPage() {
+  const b = await getPageOverrides(SLUG)
   return (
     <div className="min-h-screen section-cream">
       <Header />
@@ -23,11 +34,11 @@ export default function SellToyotaPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell My Toyota
-              <span className="block" style={{ color: '#000' }}>Get Top Dollar Today</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Selling your Toyota should be quick, simple and fair. At Auto-Sell, we make it easy to turn your Toyota into cash without the back-and-forth of private buyers or the lowball offers that come with trade-ins.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -69,10 +80,10 @@ export default function SellToyotaPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Australia&apos;s Trusted Toyota Buyers
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Whether your Toyota is brand new or has seen better days, we&apos;ll make you a fair offer. No haggling, no hidden fees — just a straightforward process from quote to payment.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -111,10 +122,10 @@ export default function SellToyotaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Whether you&apos;re upgrading, clearing space or just ready to move on, we provide a fast, transparent way to sell your Toyota anywhere in Australia. Toyota holds its value well, but that doesn&apos;t mean you should wait weeks to get a decent offer.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Our team looks at real market demand, recent Toyota sales, condition, service history and extras to give you a fair, data-backed offer. You get a quote in around 30 minutes, and if you&apos;re happy, we come to you for pickup and same-day OSKO payment. No fees, no fuss, no pressure.
+            {text(b, 'intro_para2', D.intro_para2)}
           </p>
         </div>
       </section>
@@ -124,25 +135,15 @@ export default function SellToyotaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              A Fast Way to Sell Any Toyota Model
+              {text(b, 'models_h2', D.models_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              We buy every Toyota model, from reliable daily drivers to family SUVs, hybrids, commercial utes and even older vehicles
+              {text(b, 'models_sub', D.models_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              "Corolla",
-              "Camry",
-              "RAV4",
-              "Hilux",
-              "LandCruiser & Prado",
-              "Yaris & Yaris Cross",
-              "Kluger",
-              "HiAce",
-              "CH-R, Fortuner, Granvia & more"
-            ].map((model, index) => (
+            {list(b, 'models', D.models).map((model, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow bg-white">
                 <h3 className="text-xl font-semibold text-gray-900">{model}</h3>
               </div>
@@ -151,7 +152,7 @@ export default function SellToyotaPage() {
 
           <div className="mt-12 p-8 bg-white rounded-xl border border-gray-200">
             <p className="text-lg text-gray-700 text-center">
-              We also buy Toyotas that are high-km, unregistered, damaged, written-off (repairable), or not running. If it&apos;s a Toyota, we&apos;ll give you an offer.
+              {text(b, 'models_footnote', D.models_footnote)}
             </p>
           </div>
         </div>
@@ -160,9 +161,9 @@ export default function SellToyotaPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Buyers typically want multiple inspections, detailed condition checks and lengthy negotiation discussions. Auto-Sell.airemoves all of that by offering a smooth, straightforward process built around convenience and trust.
+            {text(b, 'process_intro', D.process_intro)}
           </p>
           <div className="space-y-4">
             <div className="flex items-start">
@@ -170,8 +171,8 @@ export default function SellToyotaPage() {
                 1
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Toyota&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -179,8 +180,8 @@ export default function SellToyotaPage() {
                 2
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -190,35 +191,25 @@ export default function SellToyotaPage() {
       {/* Fair Pricing Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Pricing Based on Real Market Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{text(b, 'pricing_h2', D.pricing_h2)}</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Toyota vehicles are in strong demand, especially hybrids and popular models like Hilux, RAV4 and LandCruiser. Our offers are based on current market conditions, live buyer demand, recent comparable sales and trusted data sources. The result is a fair, realistic offer that reflects what your Toyota is actually worth today—not an automated estimate or low trade-in figure.
+            {text(b, 'pricing_intro', D.pricing_intro)}
           </p>
 
           <div className="friendly-card p-8 mb-8">
             <p className="text-lg text-gray-800 font-semibold">
-              If you&apos;ve received another offer, tell us. We regularly beat like-for-like quotes and we&apos;re upfront about how our pricing works. Transparency is what sets us apart.
+              {text(b, 'pricing_callout', D.pricing_callout)}
             </p>
           </div>
 
           <ul className="space-y-4">
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Current market conditions and live buyer demand</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Recent comparable sales data</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Kilometres, condition and service history</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Trusted data sources and industry standards</span>
-            </li>
+            {list(b, 'pricing_factors', D.pricing_factors).map((factor, i) => (
+              <li key={i} className="flex items-start">
+                <span className="text-yellow-400 font-bold mr-4"></span>
+                <span className="text-gray-700">{factor}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
@@ -226,28 +217,20 @@ export default function SellToyotaPage() {
       {/* Australia-Wide Section */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">We Come to You Anywhere in Australia</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{text(b, 'aus_h2', D.aus_h2)}</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Whether you&apos;re in a major city or a regional area, our team can come to you. There&apos;s no need to drop your car off, organise transport or take time out of your day to meet multiple buyers. From inspection to payment to pickup, the entire process happens at your convenience. Long drives and dealership queues are a thing of the past.
+            {text(b, 'aus_intro', D.aus_intro)}
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3"></div>
-              <h3 className="font-semibold text-gray-900 mb-2">No Drop-Off Required</h3>
-              <p className="text-gray-600 text-sm">We come directly to your location for inspection and pickup.</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3"></div>
-              <h3 className="font-semibold text-gray-900 mb-2">Your Convenience</h3>
-              <p className="text-gray-600 text-sm">Schedule inspection and pickup at a time that works for you.</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3">🇦🇺</div>
-              <h3 className="font-semibold text-gray-900 mb-2">Australia-Wide</h3>
-              <p className="text-gray-600 text-sm">Regional or metro—we service the entire country.</p>
-            </div>
+            {list(b, 'aus_cards', D.aus_cards).map((card, i) => (
+              <div key={i} className="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                <div className="text-3xl mb-3">{card.icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-2">{card.title}</h3>
+                <p className="text-gray-600 text-sm">{card.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -257,44 +240,13 @@ export default function SellToyotaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Toyota Owners Choose Auto-Sell
+              {text(b, 'why_h2', D.why_h2)}
             </h2>
-            <p className="text-xl text-gray-600">People choose us because selling a car should be easy, quick and fair. Toyota owners trust us with their sale because we&apos;re transparent, consistent and reliable. We give real quotes based on real data, handle all the paperwork, and pay instantly. It&apos;s a stress-free way to move on from your Toyota without wasting weeks negotiating.</p>
+            <p className="text-xl text-gray-600">{text(b, 'why_sub', D.why_sub)}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Fast 30-Minute Quotes",
-                description: "Submit your Toyota details and receive a quote in around 30 minutes."
-              },
-              {
-                icon: "",
-                title: "Fair Market Pricing",
-                description: "Based on current market conditions, live buyer demand, and recent comparable sales."
-              },
-              {
-                icon: "",
-                title: "All Models Accepted",
-                description: "We buy every Toyota model in any condition, including high-km and damaged vehicles."
-              },
-              {
-                icon: "",
-                title: "Same-Day OSKO Payment",
-                description: "Get paid instantly via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Free Pickup Service",
-                description: "We come to you anywhere in Australia. No need to drop your car off."
-              },
-              {
-                icon: "",
-                title: "No Hidden Fees",
-                description: "What we quote is what you get paid. Complete transparency from start to finish."
-              }
-            ].map((benefit, index) => (
+            {list(b, 'benefits', D.benefits).map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow bg-white">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
@@ -309,16 +261,16 @@ export default function SellToyotaPage() {
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sell Your Toyota for Cash Today
+            {text(b, 'cta_h2', D.cta_h2)}
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            Sell your car the easy way.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="btn-pill-gold px-12 py-4 text-xl"
           >
-            Sell Your Toyota for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

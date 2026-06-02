@@ -4,16 +4,27 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: "Sell My Mazda | Fast Quotes & Same-Day Payment Australia-Wide",
-  description: "Sell your Mazda fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a quick, hassle-free sale.",
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-mazda',
-  },
+const SLUG = 'sell-mazda'
+const D = PAGE_COPY_DEFAULTS['sell-mazda']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-mazda',
+    },
+  }
 }
 
-export default function SellMazdaPage() {
+export default async function SellMazdaPage() {
+  const b = await getPageOverrides(SLUG)
   return (
     <div className="min-h-screen section-cream">
       <Header />
@@ -23,11 +34,11 @@ export default function SellMazdaPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell My Mazda
-              <span className="block" style={{ color: '#000' }}>Simple & Fast Payment</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -69,10 +80,10 @@ export default function SellMazdaPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Australia&apos;s Trusted Mazda Buyers
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand. Whether you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.aigives you a hassle-free process from quote to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear offer, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -111,10 +122,10 @@ export default function SellMazdaPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Mazda vehicles are some of the most popular and reliable cars on Australian roads, which means they hold value well and are always in demand. If you&apos;re looking to sell your Mazda and want a simple, fair and fast way to do it, Auto-Sell.aigives you a hassle-free process from quote to payment. Instead of weeks of messages, private inspections and uncertain offers, we give you a clear offer, a quote in around 30 minutes, and same-day OSKO payment once you&apos;re ready to proceed.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Whether you&apos;re upgrading, downsizing, or simply ready to part with your Mazda, we make sure the process is quick, transparent and convenient.
+            {text(b, 'intro_para2', D.intro_para2)}
           </p>
         </div>
       </section>
@@ -124,25 +135,15 @@ export default function SellMazdaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              We Buy Every Mazda Model
+              {text(b, 'models_h2', D.models_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              Mazda has a strong line-up&mdash;from small city hatchbacks to family SUVs and performance-driven models
+              {text(b, 'models_sub', D.models_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              "Mazda 3",
-              "Mazda 2",
-              "Mazda 6",
-              "CX-3",
-              "CX-5",
-              "CX-8",
-              "CX-9",
-              "Mazda BT-50",
-              "MX-5 & Sports Models"
-            ].map((model, index) => (
+            {list(b, 'models', D.models).map((model, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow bg-white">
                 <h3 className="text-xl font-semibold text-gray-900">{model}</h3>
               </div>
@@ -151,7 +152,7 @@ export default function SellMazdaPage() {
 
           <div className="mt-12 p-8 bg-white rounded-xl border border-gray-200">
             <p className="text-lg text-gray-700 text-center">
-              We also buy high-kilometre Mazdas, unregistered vehicles, accident-damaged cars, repairable write-offs and non-running vehicles. If it&apos;s a Mazda, we&apos;ll give you an offer.
+              {text(b, 'models_footnote', D.models_footnote)}
             </p>
           </div>
         </div>
@@ -160,23 +161,23 @@ export default function SellMazdaPage() {
       {/* Process Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Auto-Sell.airemoves the hassle and gives you a streamlined, transparent process from start to finish.
+            {text(b, 'process_intro', D.process_intro)}
           </p>
           <div className="space-y-4">
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Mazda&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">2</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -186,42 +187,32 @@ export default function SellMazdaPage() {
       {/* Fair Pricing Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Fair Mazda Pricing Backed By Real Market Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{text(b, 'pricing_h2', D.pricing_h2)}</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            The Mazda range has strong resale patterns, but values can vary significantly depending on model and demand. The CX-5 often attracts strong interest, while models like the MX-5 or late-model Mazda 3 may require more specialist pricing. Our team uses verified sales data, real-time pricing tools and industry-trusted sources to determine your offer.
+            {text(b, 'pricing_intro', D.pricing_intro)}
           </p>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            No matter which Mazda you own, you&apos;ll receive a fair offer based on today&apos;s real market data, live buyer demand, kilometres, condition and service history.
+            {text(b, 'pricing_intro2', D.pricing_intro2)}
           </p>
 
           <div className="friendly-card p-8 mb-8">
             <p className="text-lg text-gray-800 font-semibold mb-4">
-              That means no automated guesswork and no inflated numbers that get reduced later. Just an honest, data-driven offer that reflects what your Mazda is worth today.
+              {text(b, 'pricing_callout', D.pricing_callout)}
             </p>
             <p className="text-gray-700">
-              If you have another offer, share it with us—we commonly beat like-for-like quotes and we&apos;re upfront about how our pricing works.
+              {text(b, 'pricing_callout2', D.pricing_callout2)}
             </p>
           </div>
 
           <ul className="space-y-4">
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Verified sales data and real-time pricing tools</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Industry-trusted sources for accurate pricing</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">Model-specific demand analysis</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 font-bold mr-4"></span>
-              <span className="text-gray-700">No automated guesswork—honest, data-driven offers</span>
-            </li>
+            {list(b, 'pricing_factors', D.pricing_factors).map((factor, i) => (
+              <li key={i} className="flex items-start">
+                <span className="text-yellow-400 font-bold mr-4"></span>
+                <span className="text-gray-700">{factor}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
@@ -229,32 +220,24 @@ export default function SellMazdaPage() {
       {/* Australia-Wide Section */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">We Come to You Across Australia</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{text(b, 'aus_h2', D.aus_h2)}</h2>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling your Mazda shouldn&apos;t take weeks or require multiple appointments. Whether you&apos;re in a major city or a regional area, our team can come to you for inspection, payment and pickup. It&apos;s the fastest and most convenient way to sell your Mazda without stepping foot in a dealership.
+            {text(b, 'aus_intro', D.aus_intro)}
           </p>
 
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Mazda owners choose Auto-Sell.aibecause our process is fast, fair and straightforward. You stay in control at every step and never deal with hidden fees or unclear pricing. It&apos;s the easiest way to sell your Mazda with confidence.
+            {text(b, 'aus_intro2', D.aus_intro2)}
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3">🇦🇺</div>
-              <h3 className="font-semibold text-gray-900 mb-2">Australia-Wide</h3>
-              <p className="text-gray-600 text-sm">Major city or regional area—we service all of Australia.</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3"></div>
-              <h3 className="font-semibold text-gray-900 mb-2">Fastest Way</h3>
-              <p className="text-gray-600 text-sm">Quick process without dealership visits.</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center">
-              <div className="text-3xl mb-3"></div>
-              <h3 className="font-semibold text-gray-900 mb-2">Most Convenient</h3>
-              <p className="text-gray-600 text-sm">Inspection, payment and pickup all in one visit.</p>
-            </div>
+            {list(b, 'aus_cards', D.aus_cards).map((card, i) => (
+              <div key={i} className="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                <div className="text-3xl mb-3">{card.icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-2">{card.title}</h3>
+                <p className="text-gray-600 text-sm">{card.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -264,43 +247,12 @@ export default function SellMazdaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Auto-Sell.aifor Your Mazda?
+              {text(b, 'why_h2', D.why_h2)}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Fast 30-Minute Quotes",
-                description: "Submit your Mazda details and receive a quote usually within 30 minutes."
-              },
-              {
-                icon: "",
-                title: "Fair Market Pricing",
-                description: "Based on verified sales data, real-time pricing tools and industry-trusted sources."
-              },
-              {
-                icon: "",
-                title: "All Models Accepted",
-                description: "We buy every Mazda model in any condition, including high-km and damaged vehicles."
-              },
-              {
-                icon: "",
-                title: "Same-Day OSKO Payment",
-                description: "Get paid instantly via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Free Pickup Service",
-                description: "We come to you anywhere in Australia. No need to drop your car off."
-              },
-              {
-                icon: "",
-                title: "No Hidden Fees",
-                description: "What we quote is what you get paid. Complete transparency throughout."
-              }
-            ].map((benefit, index) => (
+            {list(b, 'benefits', D.benefits).map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
@@ -314,12 +266,12 @@ export default function SellMazdaPage() {
       {/* The Trusted Way to Sell My Mazda */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">The Trusted Way to Sell My Mazda</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'trusted_h2', D.trusted_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Mazda owners choose Auto-Sell.aibecause our process is fast, fair and straightforward. You stay in control at every step and never deal with hidden fees or unclear pricing. It&apos;s the easiest way to sell your Mazda with confidence.
+            {text(b, 'trusted_para1', D.trusted_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;re ready to sell—or just want to know what your Mazda is worth—start with a free, no-obligation quote.
+            {text(b, 'trusted_para2', D.trusted_para2)}
           </p>
         </div>
       </section>
@@ -328,16 +280,16 @@ export default function SellMazdaPage() {
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sell Your Mazda for Cash Today
+            {text(b, 'cta_h2', D.cta_h2)}
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            Sell your car the easy way.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="btn-pill-gold px-12 py-4 text-xl"
           >
-            Sell Your Mazda for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

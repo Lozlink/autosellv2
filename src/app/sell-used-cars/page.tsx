@@ -4,17 +4,28 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: "Sell My Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your car fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a smooth, stress-free sale.",
-  keywords: "sell used car, used car buyers, sell my car, used vehicle buyers, cash for used cars, sell car fast",
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-used-cars',
-  },
+const SLUG = 'sell-used-cars'
+const D = PAGE_COPY_DEFAULTS['sell-used-cars']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    keywords: text(b, 'meta_keywords', D.meta_keywords),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-used-cars',
+    },
+  }
 }
 
-export default function SellUsedCarsPage() {
+export default async function SellUsedCarsPage() {
+  const b = await getPageOverrides(SLUG)
   return (
     <div className="min-h-screen section-cream">
       <Header />
@@ -24,11 +35,11 @@ export default function SellUsedCarsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell My Car
-              <span className="block" style={{ color: '#000' }}>Sell Your Car for Cash Today</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Selling your car shouldn&apos;t be a long or complicated process. Get a fair quote in ~30 minutes with instant OSKO payment and Australia-wide pickup.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -70,10 +81,10 @@ export default function SellUsedCarsPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Sell Your Used Car the Easy Way
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                No matter the age, mileage, or condition of your used car, we&apos;ll give you a competitive offer. Skip the hassle of private sales and get paid today.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -110,8 +121,8 @@ export default function SellUsedCarsPage() {
       {/* Intro Content */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">Selling your car shouldn&apos;t be a long or complicated process. Whether you&apos;re upgrading, downsizing or simply ready to move on, Auto-Sell.aimakes it easy to sell your car quickly and for a fair price. Instead of dealing with tyre-kickers, private messages, low trade-in offers or weeks of waiting around, you get a fast offer, a quote in around 30 minutes and same-day OSKO payment once you accept.</p>
-          <p className="text-lg text-gray-700 leading-relaxed">If you&apos;ve been thinking &#34;I want a simple and reliable way to sell my car,&#34; our process is designed to give you exactly that.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">{text(b, 'intro_para1', D.intro_para1)}</p>
+          <p className="text-lg text-gray-700 leading-relaxed">{text(b, 'intro_para2', D.intro_para2)}</p>
         </div>
       </section>
 
@@ -120,25 +131,15 @@ export default function SellUsedCarsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              We Buy All Makes and Models
+              {text(b, 'types_h2', D.types_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              No matter what you drive, we&apos;ll give you an accurate quote backed by real market data. From compact hatches and sedans to SUVs, utes and performance vehicles, we buy every type of car across Australia.
+              {text(b, 'types_sub', D.types_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { type: "Small Cars & City Runarounds", description: "Corolla, Civic, 308, Fiesta, Pug" },
-              { type: "Family Sedans & Wagons", description: "Camry, Accord, Optima, Mondeo, Commodore" },
-              { type: "SUVs & Crossovers", description: "CRV, RAV4, Outlander, Kluger, Territory" },
-              { type: "Hybrid & Electric Vehicles", description: "Prius, Leaf, Ioniq, Niro, Tesla models" },
-              { type: "Performance & Sports Models", description: "Mustang, Holden SS, WRX, Focus ST" },
-              { type: "Older Cars with High Km", description: "Any age, any kilometer reading" },
-              { type: "Damaged Cars", description: "Accident, hail or mechanical damage" },
-              { type: "Unregistered Cars", description: "No current registration, no worries" },
-              { type: "Non-Running Cars", description: "Won&apos;t start, mechanical issues, broken-down" }
-            ].map((carType, index) => (
+            {list(b, 'types', D.types).map((carType, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{carType.type}</h3>
                 <p className="text-gray-600">{carType.description}</p>
@@ -151,21 +152,21 @@ export default function SellUsedCarsPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Hassle-Free Way to Sell Your Car</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Private selling can take weeks, and trade-in offers are often far below market value. Auto-Sell.airemoves the stress and gives you a clean, efficient way to sell your car with complete transparency.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'process_intro', D.process_intro)}</p>
           <div className="space-y-4">
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your car&apos;s details through our quick online form. Once we receive the information, our team reviews the details and sends you a quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">2</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you&apos;re happy to move forward, we arrange an on-site inspection at your home, workplace or anywhere convenient for you. After confirming the vehicle&apos;s condition, we transfer payment instantly via OSKO. You get paid on the spot, and we handle the paperwork and vehicle pickup the same day. No dealership appointments. No private inspections. No surprises.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -175,25 +176,23 @@ export default function SellUsedCarsPage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Car Pricing Backed by Real Data</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your offer is calculated using trusted data sources, recent sales trends and live buyer demand. This ensures you receive an accurate and transparent offer—not a generic automated estimate or a figure that changes at the last minute.</p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Your quote considers:</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'valuation_para1', D.valuation_para1)}</p>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'valuation_lead', D.valuation_lead)}</p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Make, model and year</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Kilometres and condition</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Service history</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Factory features and options</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Current market pricing and demand</span></div>
+            {list(b, 'valuation_factors', D.valuation_factors).map((factor, i) => (
+              <div key={i} className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">{factor}</span></div>
+            ))}
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">If you&apos;ve already received another quote, let us know—we regularly beat like-for-like offers and we&apos;re open about how our pricing works.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">{text(b, 'valuation_closing', D.valuation_closing)}</p>
         </div>
       </section>
 
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide, We Come to You</h2>
-          <p className="text-lg text-gray-700 leading-relaxed">Selling your car shouldn&apos;t interrupt your day. Whether you&apos;re based in a major metro area or a regional town, our team comes to you for inspection, payment and collection. Everything is handled in a single appointment, giving you the most convenient way to sell your car anywhere in Australia.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">{text(b, 'aus_body', D.aus_body)}</p>
         </div>
       </section>
 
@@ -202,46 +201,15 @@ export default function SellUsedCarsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              The Simple, Reliable Way to Sell My Car
+              {text(b, 'why_h2', D.why_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              People choose Auto-Sell.aibecause our service is fast, fair and completely transparent. You stay in control at every stage, and the entire process is designed to make selling your car easy and stress-free.
+              {text(b, 'why_sub', D.why_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Current Market Pricing",
-                description: "Offers based on make, model, year, kilometers and service history."
-              },
-              {
-                icon: "",
-                title: "Fair Market Pricing",
-                description: "Factory features, condition, market demand and current pricing all factor in."
-              },
-              {
-                icon: "",
-                title: "Instant OSKO Payment",
-                description: "Get paid same-day via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Australia-Wide Pickup",
-                description: "We collect your car from home, work or anywhere across Australia."
-              },
-              {
-                icon: "",
-                title: "Quote in ~30 Minutes",
-                description: "Submit your car details and get a fair quote quickly and easily."
-              },
-              {
-                icon: "",
-                title: "Paperwork Handled",
-                description: "We manage registration transfers and all legal documentation for you."
-              }
-            ].map((benefit, index) => (
+            {list(b, 'benefits', D.benefits).map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
@@ -256,17 +224,17 @@ export default function SellUsedCarsPage() {
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sell Your Car for Cash Today
+            {text(b, 'cta_h2', D.cta_h2)}
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your car—or simply want to know its current market value—start with a free, no-obligation quote.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Sell Your Car for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

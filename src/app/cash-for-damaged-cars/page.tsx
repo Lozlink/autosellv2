@@ -4,17 +4,28 @@ import Link from 'next/link'
 import Image from 'next/image'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
+const SLUG = 'cash-for-damaged-cars'
+const D = PAGE_COPY_DEFAULTS['cash-for-damaged-cars']
 
-export const metadata: Metadata = {
-  title: "Sell Damaged Car | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your damaged car fast with a 30-min quote, fair offer and same-day OSKO payment. Auto-Sell buys accident-damaged, hail-damaged and non-running cars Australia-wide.",
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/cash-for-damaged-cars',
-  },
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/cash-for-damaged-cars',
+    },
+  }
 }
 
-export default function CashForDamagedCarsPage() {
+export default async function CashForDamagedCarsPage() {
+  const b = await getPageOverrides(SLUG)
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -24,11 +35,11 @@ export default function CashForDamagedCarsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell Damaged Car
-                <span className="block" style={{ color: '#FFC325' }}>Get Your Offer Now</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+                <span className="block" style={{ color: '#FFC325' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-                A damaged car can be stressful to deal with—especially when repairs cost more than the vehicle is worth or you simply don&apos;t want the hassle of fixing it. Whether your car has accident damage, mechanical faults, hail damage or is no longer drivable, Auto-Sell gives you a fast and straightforward way to sell your damaged car.
+                {text(b, 'hero_intro', D.hero_intro)}
               </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -70,10 +81,10 @@ export default function CashForDamagedCarsPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                We Buy Damaged Cars of All Types
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Damage doesn&apos;t stop us from making an offer. We buy cars in all conditions—from lightly damaged vehicles to non-running write-offs. Whether the car has been in a collision, suffered mechanical failure or shows signs of wear and tear, we provide a fair offer based on real market data.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -112,10 +123,10 @@ export default function CashForDamagedCarsPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            A damaged car can be stressful to deal with—especially when repairs cost more than the vehicle is worth or you simply don&apos;t want the hassle of fixing it. Whether your car has accident damage, mechanical faults, hail damage or is no longer drivable, Auto-Sell gives you a fast and straightforward way to sell your damaged car. You&apos;ll receive a quote within around 30 minutes and same-day OSKO payment once you choose to accept.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;ve been thinking &ldquo;I want a simple, fair way to sell my damaged car,&rdquo; this is the easiest place to start.
+            {text(b, 'intro_para2', D.intro_para2)}
           </p>
         </div>
       </section>
@@ -125,10 +136,10 @@ export default function CashForDamagedCarsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              We Purchase All Damage Types
+              {text(b, 'damage_h2', D.damage_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              You don&apos;t need to repair anything or get the car ready for sale—we buy vehicles exactly as they are
+              {text(b, 'damage_sub', D.damage_sub)}
             </p>
           </div>
 
@@ -175,9 +186,9 @@ export default function CashForDamagedCarsPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Quick and Hassle-Free Way to Sell Your Damaged Car</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling a damaged car privately can be extremely difficult. Most buyers expect detailed reports, roadside inspections and repair quotes. Dealerships often decline damaged vehicles entirely. Auto-Sell removes the complexity and gives you a clean, transparent process.
+            {text(b, 'process_intro', D.process_intro)}
           </p>
           <div className="space-y-4">
             <div className="flex items-start">
@@ -185,8 +196,8 @@ export default function CashForDamagedCarsPage() {
                 1
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your car&apos;s details through our online form. Once we receive the information, we review everything and send your quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -194,8 +205,8 @@ export default function CashForDamagedCarsPage() {
                 2
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you go ahead, we organise an on-site inspection at your home, workplace or wherever the vehicle is located. After confirming its condition, we transfer payment instantly via OSKO. You get your funds immediately, and we handle all paperwork and vehicle collection the same day. No towing fees. No repair obligations. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -205,8 +216,8 @@ export default function CashForDamagedCarsPage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Pricing for Damaged Vehicles</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Even damaged cars have value, and our team uses verified market data and industry pricing tools to determine a fair offer. We consider:</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'valuation_intro', D.valuation_intro)}</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">The type and extent of damage</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Make, model and year</span></div>
@@ -215,15 +226,15 @@ export default function CashForDamagedCarsPage() {
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Demand for parts or resale</span></div>
             <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Current market trends for your vehicle type</span></div>
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">You receive a realistic offer—not an automated guess and not a figure that drops dramatically later. If you already have another quote, we&apos;re happy to compare—our offers often beat like-for-like quotes.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">{text(b, 'valuation_outro', D.valuation_outro)}</p>
         </div>
       </section>
 
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Collection, We Come to You</h2>
-          <p className="text-lg text-gray-700 leading-relaxed">Damaged cars aren&apos;t always easy to move, so we handle the logistics. Whether the car is at home, on a driveway, at a mechanic&apos;s shop or sitting in a carpark, our team comes to you anywhere in Australia. Inspection, payment and pickup all happen in a single appointment.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">{text(b, 'aus_body', D.aus_body)}</p>
         </div>
       </section>
 
@@ -232,10 +243,10 @@ export default function CashForDamagedCarsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              The Fastest Way to Sell My Damaged Car
+              {text(b, 'why_h2', D.why_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              Owners choose Auto-Sell because the process is simple, transparent and fast. We remove the stress and uncertainty of selling a damaged vehicle and replace it with a professional, reliable service.
+              {text(b, 'why_sub', D.why_sub)}
             </p>
           </div>
 
@@ -286,17 +297,17 @@ export default function CashForDamagedCarsPage() {
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sell Your Damaged Car for Cash Today
+            {text(b, 'cta_h2', D.cta_h2)}
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your damaged car—or want to know what it&apos;s worth—start with a free, no-obligation quote.
+            {text(b, 'cta_body', D.cta_body)}
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Sell Your Damaged Car for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

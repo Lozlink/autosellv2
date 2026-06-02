@@ -4,51 +4,32 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: 'Sell My Audi | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell',
-  description: 'Sell your Audi fast with a fair quote, 30-min quote and same-day OSKO payment. Australia-wide pickup for a smooth, professional and hassle-free sale.',
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-audi',
-  },
+const SLUG = 'sell-audi'
+const D = PAGE_COPY_DEFAULTS['sell-audi']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-audi',
+    },
+  }
 }
 
-export default function SellAudiPage() {
-  const models = [
-    'A1',
-    'A3',
-    'A4',
-    'A6',
-    'Q2',
-    'Q3',
-    'Q5',
-    'Q7',
-    'Q8',
-    'S Performance',
-    'RS Performance',
-    'TT',
-    'R8',
-    'e-tron',
-    'Hybrid Models',
-    'Electric Models',
-  ]
+export default async function SellAudiPage() {
+  const b = await getPageOverrides(SLUG)
+  const models = list(b, 'models', D.models)
 
-  const valuationFactors = [
-    'Recent Audi sales',
-    'Live market demand',
-    'Verified automotive pricing sources',
-    'Condition, kilometres and ownership history',
-    'Factory options and premium packages',
-  ]
+  const valuationFactors = list(b, 'valuation_factors', D.valuation_factors)
 
-  const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Quick, professional quote for your Audi' },
-    { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
-    { icon: '', title: 'All Audi Models', desc: 'From A1 to R8, plus electric and hybrid' },
-    { icon: '', title: 'Australia-Wide', desc: 'We arrange pickup anywhere across Australia' },
-    { icon: '', title: 'Any Condition', desc: 'High-km, unregistered, damaged, non-running' },
-    { icon: '', title: 'Hassle-Free', desc: 'We handle all paperwork and registration' },
-  ]
+  const whyChoose = list(b, 'why_choose', D.why_choose)
 
   return (
     <div className="min-h-screen section-cream">
@@ -59,11 +40,11 @@ export default function SellAudiPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell Your Audi
-              <span className="block" style={{ color: '#000' }}>Fast &amp; Fair Quote</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get a quick, professional quote and same-day OSKO payment for your Audi. Australia-wide pickup with zero hassle.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -105,10 +86,10 @@ export default function SellAudiPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Australia&apos;s Trusted Audi Buyers
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Whether your Audi is brand new or has seen better days, we&apos;ll make you a fair offer. No haggling, no hidden fees — just a straightforward process from quote to payment.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -147,7 +128,7 @@ export default function SellAudiPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Audi vehicles are known for refinement, performance and cutting-edge technology—so when you decide it&apos;s time to sell yours, you should receive a fair, transparent offer without the stress of private selling. Auto-Sell.aiprovides a fast, simple and professional way to sell your Audi, with a quote sent in around 30 minutes and same-day OSKO payment once you accept.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
         </div>
       </section>
@@ -156,8 +137,8 @@ export default function SellAudiPage() {
       <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All Audi Models</h2>
-            <p className="text-xl text-gray-600">From compact hatches to luxury sedans, performance models and premium SUVs. Regardless of the age, kilometres or condition of your Audi, we provide a fair offer backed by genuine market data.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{text(b, 'models_h2', D.models_h2)}</h2>
+            <p className="text-xl text-gray-600">{text(b, 'models_sub', D.models_sub)}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {models.map((model) => (
@@ -170,7 +151,7 @@ export default function SellAudiPage() {
             ))}
           </div>
           <p className="text-center text-gray-600 mt-8">
-            We also buy high-kilometre Audis, unregistered vehicles, accident-damaged cars and non-running vehicles. If it&apos;s an Audi, we&apos;ll make you an offer.
+            {text(b, 'models_footnote', D.models_footnote)}
           </p>
         </div>
       </section>
@@ -178,9 +159,9 @@ export default function SellAudiPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Buyers typically want multiple inspections, detailed condition checks and lengthy negotiation discussions. Auto-Sell.airemoves all of that by offering a smooth, straightforward process built around convenience and trust.
+            {text(b, 'process_intro', D.process_intro)}
           </p>
           <div className="space-y-4">
             <div className="flex items-start">
@@ -188,8 +169,8 @@ export default function SellAudiPage() {
                 1
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your Audi&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -197,8 +178,8 @@ export default function SellAudiPage() {
                 2
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -208,12 +189,12 @@ export default function SellAudiPage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Audi Pricing Based on Real Market Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Audi pricing varies widely depending on model, engine type, trim level and optional features. Performance variants like the S and RS models require specialist pricing, while electric models such as the e-tron rely on fast-evolving market data.
+            {text(b, 'valuation_para1', D.valuation_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Your offer is calculated using:
+            {text(b, 'valuation_lead', D.valuation_lead)}
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -224,7 +205,7 @@ export default function SellAudiPage() {
             ))}
           </div>
           <p className="text-lg text-gray-700 leading-relaxed mt-8">
-            This approach ensures a fair, accurate figure—not an automated estimate and not a number that changes later. If you&apos;ve received another quote, let us know—we often beat like-for-like quotes and we&apos;re transparent about how we determine your price.
+            {text(b, 'valuation_closing', D.valuation_closing)}
           </p>
         </div>
       </section>
@@ -232,9 +213,9 @@ export default function SellAudiPage() {
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">We Come to You Australia-Wide</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Selling your Audi shouldn&apos;t disrupt your day. Whether you&apos;re in a capital city or a regional area, our team comes to you for inspection, payment and collection. Everything is handled in one appointment, making it the easiest way to sell a prestige vehicle in Australia.
+            {text(b, 'aus_body', D.aus_body)}
           </p>
         </div>
       </section>
@@ -243,8 +224,8 @@ export default function SellAudiPage() {
       <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">The Trusted Way to Sell My Audi</h2>
-            <p className="text-xl text-gray-600">Audi owners choose Auto-Sell.aibecause they want a smooth, reliable and professional experience. You stay in control from start to finish, and you never deal with hidden fees, uncertain pricing or private buyer delays.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{text(b, 'why_h2', D.why_h2)}</h2>
+            <p className="text-xl text-gray-600">{text(b, 'why_sub', D.why_sub)}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChoose.map((item) => (
@@ -261,16 +242,16 @@ export default function SellAudiPage() {
       {/* CTA */}
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your Audi for Cash Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{text(b, 'cta_h2', D.cta_h2)}</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your Audi—or want to know its true market value—start with a free, no-obligation quote.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Sell Your Audi for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

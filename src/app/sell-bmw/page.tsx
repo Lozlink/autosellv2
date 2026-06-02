@@ -4,51 +4,32 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: 'Sell My BMW | Fast Quotes & Same-Day Payment Australia-Wide | Auto-Sell',
-  description: 'Sell your BMW quickly with a fair quote, 30-min quote and same-day OSKO payment. Australia-wide pickup and a professional selling experience with Auto-Sell.',
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-bmw',
-  },
+const SLUG = 'sell-bmw'
+const D = PAGE_COPY_DEFAULTS['sell-bmw']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-bmw',
+    },
+  }
 }
 
-export default function SellBmwPage() {
-  const models = [
-    '1 Series',
-    '2 Series',
-    '3 Series',
-    '4 Series',
-    '5 Series',
-    '7 Series',
-    'X1',
-    'X3',
-    'X5',
-    'X7',
-    'M Models',
-    'i3',
-    'i4',
-    'iX',
-    'Electric Models',
-    'Hybrid Models',
-  ]
+export default async function SellBmwPage() {
+  const b = await getPageOverrides(SLUG)
+  const models = list(b, 'models', D.models)
 
-  const valuationFactors = [
-    'Model, trim and factory options',
-    'Kilometres and overall condition',
-    'Service history',
-    'Current buyer demand',
-    'Live market pricing',
-  ]
+  const valuationFactors = list(b, 'valuation_factors', D.valuation_factors)
 
-  const whyChoose = [
-    { icon: '', title: '30-min Quote', desc: 'Quick, professional quote for your BMW' },
-    { icon: '', title: 'Same-Day Payment', desc: 'OSKO transfer straight to your account' },
-    { icon: '', title: 'All BMW Models', desc: 'From 1 Series to X7, M and electric vehicles' },
-    { icon: '', title: 'Australia-Wide', desc: 'We arrange pickup anywhere across Australia' },
-    { icon: '', title: 'Any Condition', desc: 'High-km, unregistered, damaged, non-running' },
-    { icon: '', title: 'Hassle-Free', desc: 'We handle all paperwork and registration' },
-  ]
+  const whyChoose = list(b, 'why_choose', D.why_choose)
 
   return (
     <div className="min-h-screen section-cream">
@@ -59,11 +40,11 @@ export default function SellBmwPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell Your BMW
-              <span className="block" style={{ color: '#000' }}>Fast &amp; Fair Quote</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get a quick, professional quote and same-day OSKO payment for your BMW. Australia-wide pickup with zero hassle.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -105,10 +86,10 @@ export default function SellBmwPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Australia&apos;s Trusted BMW Buyers
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Whether your BMW is brand new or has seen better days, we&apos;ll make you a fair offer. No haggling, no hidden fees — just a straightforward process from quote to payment.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -147,7 +128,7 @@ export default function SellBmwPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed">
-            BMW vehicles are celebrated for their exceptional performance, precise engineering and premium build quality. Whether you&apos;re selling a luxury sedan, versatile SUV, high-performance M model or innovative electric or hybrid BMW, Auto-Sell.ai provides a professional selling experience. We specialise in pricing premium vehicles and offer competitive quotes based on current market data.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
         </div>
       </section>
@@ -156,8 +137,8 @@ export default function SellBmwPage() {
       <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">We Buy All BMW Models</h2>
-            <p className="text-xl text-gray-600">BMW owners value precision and quality, and we treat each vehicle with the same level of respect. Whether you&apos;re selling a daily-driven 1 Series, a family-ready X5 or a performance-focused M model, we provide an accurate quote based on real market data and buyer demand.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{text(b, 'models_h2', D.models_h2)}</h2>
+            <p className="text-xl text-gray-600">{text(b, 'models_sub', D.models_sub)}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {models.map((model) => (
@@ -170,7 +151,7 @@ export default function SellBmwPage() {
             ))}
           </div>
           <p className="text-center text-gray-600 mt-8">
-            We also buy BMWs that are high-kilometre, unregistered, damaged or no longer running. If it&apos;s a BMW, we&apos;ll make you an offer.
+            {text(b, 'models_footnote', D.models_footnote)}
           </p>
         </div>
       </section>
@@ -178,9 +159,9 @@ export default function SellBmwPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Professional Selling Experience</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Selling a prestige vehicle privately can be time-consuming and often unpredictable. Buyers typically want multiple inspections, detailed condition checks and lengthy negotiation discussions. Auto-Sell.airemoves all of that by offering a smooth, straightforward process built around convenience and trust.
+            {text(b, 'process_intro', D.process_intro)}
           </p>
           <div className="space-y-4">
             <div className="flex items-start">
@@ -188,8 +169,8 @@ export default function SellBmwPage() {
                 1
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your BMW&apos;s details through our online form. Once received, our team reviews the information and sends you a quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -197,8 +178,8 @@ export default function SellBmwPage() {
                 2
               </span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you&apos;re happy to proceed, we arrange an on-site inspection at a time and place that suits you. After confirming the details, we transfer payment instantly via OSKO. You receive your funds immediately, and we take care of the paperwork and vehicle pickup. No dealership visits. No private buyer stress. No wasted time.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -208,12 +189,12 @@ export default function SellBmwPage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair BMW Pricing Driven by Real Data</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            BMW resale value varies significantly between models, trims and engine types. Performance models such as the M3, M4 and M5 require specialist pricing, and luxury SUVs like the X5 and X7 often carry strong demand. Our team uses verified market data, recent sales history and trusted automotive sources to determine your offer.
+            {text(b, 'valuation_para1', D.valuation_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Your quote considers:
+            {text(b, 'valuation_lead', D.valuation_lead)}
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {valuationFactors.map((factor) => (
@@ -224,7 +205,7 @@ export default function SellBmwPage() {
             ))}
           </div>
           <p className="text-lg text-gray-700 leading-relaxed mt-8">
-            This ensures your quote is accurate and transparent—not an automated estimate or a figure that gets reduced later. If you&apos;ve received another quote, we can review it—our offers frequently beat like-for-like quotes.
+            {text(b, 'valuation_closing', D.valuation_closing)}
           </p>
         </div>
       </section>
@@ -232,9 +213,9 @@ export default function SellBmwPage() {
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">We Come to You Anywhere in Australia</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Selling a prestige vehicle shouldn&apos;t feel complicated. Whether you live in a major city or a regional area, our team comes to you for inspection, payment and pickup. Everything happens in one appointment, giving you a seamless and stress-free way to move on from your BMW.
+            {text(b, 'aus_body', D.aus_body)}
           </p>
         </div>
       </section>
@@ -243,8 +224,8 @@ export default function SellBmwPage() {
       <section className="py-20 section-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">The Professional Way to Sell My BMW</h2>
-            <p className="text-xl text-gray-600">BMW owners choose Auto-Sell.aibecause we offer a professional, convenient and transparent experience from start to finish. No pressure, no hidden fees, and no time wasted dealing with private buyers. Just a fair offer and a fast, reliable process.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{text(b, 'why_h2', D.why_h2)}</h2>
+            <p className="text-xl text-gray-600">{text(b, 'why_sub', D.why_sub)}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChoose.map((item) => (
@@ -261,16 +242,16 @@ export default function SellBmwPage() {
       {/* CTA */}
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sell Your BMW for Cash Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{text(b, 'cta_h2', D.cta_h2)}</h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your BMW—or want to understand its current market value—start with a free, no-obligation quote.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Sell Your BMW for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

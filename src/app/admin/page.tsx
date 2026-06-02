@@ -74,6 +74,13 @@ export default function AdminDashboard() {
       newHref: '/admin/pages/new',
     },
     {
+      title: 'Page Copy',
+      description: 'Edit text on hardcoded marketing pages (e.g. Cash for Damaged Cars) without code changes.',
+      countLabel: 'Edit page copy',
+      href: '/admin/page-copy',
+      newHref: null,
+    },
+    {
       title: 'Leads',
       description: 'Customer enquiries and form submissions.',
       countLabel: 'View all leads',

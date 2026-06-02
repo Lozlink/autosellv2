@@ -4,17 +4,28 @@ import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { Suspense } from 'react'
+import { getPageOverrides, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
 
-export const metadata: Metadata = {
-  title: "Sell My Ute | Fast Quotes & Same-Day OSKO Payment Australia-Wide",
-  description: "Sell your ute fast with a 30-min quote, fair quote and same-day OSKO payment. Auto-Sell.aioffers Australia-wide pickup for a simple, stress-free sale.",
-  keywords: "sell ute, ute buyers, sell my ute, ute car buyers, cash for utes, sell ute fast, work ute, dual cab ute",
-  alternates: {
-    canonical: 'https://www.auto-sell.ai/sell-utes',
-  },
+const SLUG = 'sell-utes'
+const D = PAGE_COPY_DEFAULTS['sell-utes']
+
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverrides(SLUG)
+  return {
+    title: text(b, 'meta_title', D.meta_title),
+    description: text(b, 'meta_description', D.meta_description),
+    keywords: text(b, 'meta_keywords', D.meta_keywords),
+    alternates: {
+      canonical: 'https://www.auto-sell.ai/sell-utes',
+    },
+  }
 }
 
-export default function SellUtesPage() {
+export default async function SellUtesPage() {
+  const b = await getPageOverrides(SLUG)
   return (
     <div className="min-h-screen section-cream">
       <Header />
@@ -24,11 +35,11 @@ export default function SellUtesPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Sell My Ute
-              <span className="block" style={{ color: '#000' }}>Sell Your Ute for Cash Today</span>
+                {text(b, 'hero_h1_line1', D.hero_h1_line1)}
+              <span className="block" style={{ color: '#000' }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Australia&apos;s most sought-after vehicles for towing power, reliability & versatility. Get a fair quote in ~30 minutes with instant OSKO payment.
+              {text(b, 'hero_intro', D.hero_intro)}
             </p>
 
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -70,10 +81,10 @@ export default function SellUtesPage() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Sell Your Ute the Easy Way
+                {text(b, 'showcase_h2', D.showcase_h2)}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                No matter the age, mileage, or condition of your ute, we&apos;ll give you a competitive offer. Skip the hassle of private sales and get paid today.
+                {text(b, 'showcase_body', D.showcase_body)}
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -111,10 +122,10 @@ export default function SellUtesPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Utes are some of the most sought-after vehicles in Australia, prized for their towing power, reliability and versatility—whether for work, family or weekend adventures. When you&apos;re ready to sell your ute, the process shouldn&apos;t involve time-wasters, lowball offers or weeks of back-and-forth. Auto-Sell.aigives you a fast and transparent way to sell your ute, with a quote typically delivered within 30 minutes and same-day OSKO payment once you accept.
+            {text(b, 'intro_para1', D.intro_para1)}
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            If you&apos;ve been thinking &#34;I need a quick, fair and simple way to sell my ute,&#34; our process is built to make it easy.
+            {text(b, 'intro_para2', D.intro_para2)}
           </p>
         </div>
       </section>
@@ -124,25 +135,15 @@ export default function SellUtesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              We Buy All Ute Makes and Models
+              {text(b, 'types_h2', D.types_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              Utes hold their value exceptionally well, and we buy every type—diesel, petrol, 4x2, 4x4, single cab, dual cab and everything in between. No matter the condition, kilometres or age, you&apos;ll receive a fair, data-backed offer.
+              {text(b, 'types_sub', D.types_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { type: "Dual-Cab 4x4 Utes", description: "From Hilux and Ranger to Navara, BT-50, Triton" },
-              { type: "Work Utes & Trade Vehicles", description: "Amarok, Colorado, D-Max, LDV utes" },
-              { type: "Heavy-Duty Towing Utes", description: "Maximum payload & towing capacity" },
-              { type: "Diesel & Turbo-Diesel Models", description: "Fuel-efficient work horses" },
-              { type: "Older Utes", description: "Any age welcome—classic to recent models" },
-              { type: "High-Km Utes", description: "Still valuable regardless of kilometers" },
-              { type: "Accident-Damaged Utes", description: "Non-running, major damage welcome" },
-              { type: "Unregistered Utes", description: "Mechanical issues, parts value recognized" },
-              { type: "Utes with Accessories", description: "Canopies, bullbars, toolboxes, tow kits included" }
-            ].map((uteType, index) => (
+            {list(b, 'types', D.types).map((uteType, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{uteType.type}</h3>
                 <p className="text-gray-600">{uteType.description}</p>
@@ -155,21 +156,21 @@ export default function SellUtesPage() {
       {/* Process */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">A Fast and Hassle-Free Selling Experience</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Selling privately can bring endless messages, missed appointments and unrealistic offers. Dealerships may undervalue work vehicles or apply trade-in pressure. Auto-Sell.airemoves the stress by giving you a professional, straightforward process from start to finish.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'process_h2', D.process_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'process_intro', D.process_intro)}</p>
           <div className="space-y-4">
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">1</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Submit Your Details</h3>
-                <p className="text-gray-700">Start by submitting your ute&apos;s details through our quick online form. Once received, we review everything and send your quote—usually within 30 minutes during business hours.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step1_title', D.process_step1_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step1_body', D.process_step1_body)}</p>
               </div>
             </div>
             <div className="flex items-start">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-yellow-400 text-white font-bold mr-4 flex-shrink-0">2</span>
               <div>
-                <h3 className="font-semibold text-gray-900">Get a Quote in ~30 Minutes</h3>
-                <p className="text-gray-700">If you choose to proceed, we organise an on-site inspection at your home, job site, workplace or any location that suits you. After confirming the condition, we transfer payment instantly via OSKO. You get your money immediately, and we take care of the paperwork and collection on the same day. No trade-in pressure. No private-buyer hassles. No waiting around.</p>
+                <h3 className="font-semibold text-gray-900">{text(b, 'process_step2_title', D.process_step2_title)}</h3>
+                <p className="text-gray-700">{text(b, 'process_step2_body', D.process_step2_body)}</p>
               </div>
             </div>
           </div>
@@ -179,25 +180,22 @@ export default function SellUtesPage() {
       {/* Valuation */}
       <section className="py-16 section-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Fair Ute Pricing Backed by Real Market Data</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">Utes require specific expertise to value correctly—towing capacity, tray setup, accessories, suspension upgrades and service history can influence pricing significantly. Our offers are based on:</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'valuation_h2', D.valuation_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-8">{text(b, 'valuation_para1', D.valuation_para1)}</p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Live ute market data</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Recent sales of comparable models</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Kilometres and mechanical condition</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Service history and ownership</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Accessories like canopies, bullbars, toolboxes and tow kits</span></div>
-            <div className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">Brand- and model-specific demand trends</span></div>
+            {list(b, 'valuation_factors', D.valuation_factors).map((factor, i) => (
+              <div key={i} className="flex items-start"><span className="text-green-500 mr-3 font-bold">✓</span><span className="text-gray-700">{factor}</span></div>
+            ))}
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mt-8">You get a fair, accurate figure—not an automated estimate or a quote that&apos;s reduced later. If you have another offer, we&apos;re happy to review it—our offers often beat like-for-like quotes.</p>
+          <p className="text-lg text-gray-700 leading-relaxed mt-8">{text(b, 'valuation_closing', D.valuation_closing)}</p>
         </div>
       </section>
 
       {/* Australia-Wide */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Australia-Wide Service, We Come to You</h2>
-          <p className="text-lg text-gray-700 leading-relaxed">Whether your ute is based on a worksite, rural property, metro driveway or commercial yard, our team comes to you for inspection, payment and pickup. Everything is handled in a single appointment, making it the simplest way to sell your ute anywhere in Australia.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{text(b, 'aus_h2', D.aus_h2)}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">{text(b, 'aus_body', D.aus_body)}</p>
         </div>
       </section>
 
@@ -206,46 +204,15 @@ export default function SellUtesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              The Trusted and Easy Way to Sell My Ute
+              {text(b, 'why_h2', D.why_h2)}
             </h2>
             <p className="text-xl text-gray-600">
-              Ute owners choose Auto-Sell.aibecause we understand the value of work vehicles and treat the process with speed, clarity and professionalism. You stay in control throughout, and there are no hidden fees or surprises.
+              {text(b, 'why_sub', D.why_sub)}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "",
-                title: "Live Ute Market Data",
-                description: "Real-time market trends and recent comparable sales—you get current value."
-              },
-              {
-                icon: "",
-                title: "Fair Ute Pricing",
-                description: "Assessed on kilometers, mechanical condition, service history, accessories & demand."
-              },
-              {
-                icon: "",
-                title: "Instant OSKO Payment",
-                description: "Get paid same-day via OSKO transfer once inspection is complete."
-              },
-              {
-                icon: "",
-                title: "Australia-Wide Pickup",
-                description: "From worksite to rural property to metro driveway—we collect anywhere."
-              },
-              {
-                icon: "",
-                title: "Quote in ~30 Minutes",
-                description: "Submit ute details online and get a fair quote without pressure."
-              },
-              {
-                icon: "",
-                title: "Paperwork Handled",
-                description: "We manage registration transfers and all legal documentation for you."
-              }
-            ].map((benefit, index) => (
+            {list(b, 'benefits', D.benefits).map((benefit, index) => (
               <div key={index} className="text-center p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
@@ -260,17 +227,17 @@ export default function SellUtesPage() {
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sell Your Ute for Cash Today
+            {text(b, 'cta_h2', D.cta_h2)}
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            If you&apos;re ready to sell your ute—or want to check its current market value—start with a fast, obligation-free quote.
+            {text(b, 'cta_para', D.cta_para)}
           </p>
           <Link
             href="#sell-form"
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#000', color: '#FFC325' }}
           >
-            Sell Your Ute for Cash Today
+            {text(b, 'cta_button', D.cta_button)}
           </Link>
         </div>
       </section>

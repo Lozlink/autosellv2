@@ -17,61 +17,62 @@ import OfferForm from './_home/OfferForm'
 import Reveal from './_home/Reveal'
 import Header from '@/components/Header'
 import { FAQPageJsonLd } from '@/components/JsonLd'
+import { getPageOverridesCached, text, list } from '@/lib/pageContent'
+import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
+
+const SLUG = 'home'
+const D = PAGE_COPY_DEFAULTS.home
 
 export const revalidate = 60
 
-export const metadata: Metadata = {
-  title: 'Sell My Car Online | Instant AI Valuation & Same-Day Payment | Auto-Sell.ai',
-  description:
-    "Want to sell your car and actually get a fair price? Auto-Sell.ai uses AI-powered valuations to give you an instant offer and same-day OSKO payment. No fees, no hassle, Australia-wide.",
-  keywords:
-    'sell my car, sell my car online, instant car valuation, AI car valuation, same day payment, OSKO car payment, sell car online Australia, fair price for my car',
-  openGraph: {
-    title: 'Sell My Car Online | Instant AI Valuation & Same-Day Payment | Auto-Sell.ai',
-    description:
-      "Want to sell your car and actually get a fair price? Auto-Sell.ai uses AI-powered valuations to give you an instant offer and same-day OSKO payment. No fees, no hassle, Australia-wide.",
-    type: 'website',
-    locale: 'en_AU',
-    url: 'https://www.auto-sell.ai',
-  },
-  alternates: { canonical: 'https://www.auto-sell.ai' },
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getPageOverridesCached(SLUG)
+  const title = text(b, 'meta_title', D.meta_title)
+  const description = text(b, 'meta_description', D.meta_description)
+  return {
+    title,
+    description,
+    keywords: text(b, 'meta_keywords', D.meta_keywords),
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      locale: 'en_AU',
+      url: 'https://www.auto-sell.ai',
+    },
+    alternates: { canonical: 'https://www.auto-sell.ai' },
+  }
 }
 
-// FAQ data mirrored from the on-page accordion → JSON-LD for search snippets.
-// Kept here (rather than inside the FAQ section) so it can drive both render
-// targets from a single source of truth.
-const FAQ_JSONLD_ITEMS = [
+// FAQ data — single source of truth for the on-page accordion AND the JSON-LD
+// search snippets, and the default for the editable `faq_items` override.
+interface FaqItem { q: string; a: string }
+const FAQ_DEFAULTS: FaqItem[] = [
   {
-    question: 'How do I sell my car online in Australia?',
-    answer:
-      "Simply enter your vehicle details into our online valuation form — rego, make, model, and a few basic condition details. Our AI generates a fair market offer within seconds. If you're happy with it, accept online, and we'll organise pickup at a time that suits you. Payment is made via OSKO on the same day.",
+    q: 'How do I sell my car online in Australia?',
+    a: "Simply enter your vehicle details into our online valuation form — rego, make, model, and a few basic condition details. Our AI generates a fair market offer within seconds. If you're happy with it, accept online, and we'll organise pickup at a time that suits you. Payment is made via OSKO on the same day.",
   },
   {
-    question: 'How long does it take to sell my car with Auto-Sell.ai?',
-    answer:
-      'Most customers complete the entire process — valuation to payment — within the same day. The AI valuation takes under 60 seconds. Once you accept the offer and we complete the pickup, payment hits your account instantly via OSKO. No multi-day waits.',
+    q: 'How long does it take to sell my car with Auto-Sell.ai?',
+    a: 'Most customers complete the entire process — valuation to payment — within the same day. The AI valuation takes under 60 seconds. Once you accept the offer and we complete the pickup, payment hits your account instantly via OSKO. No multi-day waits.',
   },
   {
-    question: 'What condition does my car need to be in?',
-    answer:
-      "Any condition. Damaged, unregistered, high kilometres, mechanical issues — we buy it all. You don't need to fix anything up or spend money preparing the car before you sell. We assess it as-is and make you a genuine offer based on its actual current condition.",
+    q: 'What condition does my car need to be in?',
+    a: "Any condition. Damaged, unregistered, high kilometres, mechanical issues — we buy it all. You don't need to fix anything up or spend money preparing the car before you sell. We assess it as-is and make you a genuine offer based on its actual current condition.",
   },
   {
-    question: 'Will I get a better price than trading in at a dealership?',
-    answer:
-      "In most cases, yes — often significantly more. Dealer trade-ins are designed to maximise the dealer's margin, not your return. Our AI uses real market data to calculate what your car is genuinely worth, giving you a fair offer that reflects actual buyer demand — not what a dealership is willing to pay.",
+    q: 'Will I get a better price than trading in at a dealership?',
+    a: "In most cases, yes — often significantly more. Dealer trade-ins are designed to maximise the dealer's margin, not your return. Our AI uses real market data to calculate what your car is genuinely worth, giving you a fair offer that reflects actual buyer demand — not what a dealership is willing to pay.",
   },
   {
-    question: 'Is there a fee to use Auto-Sell.ai?',
-    answer:
-      'None whatsoever. Getting a valuation is completely free with no obligation to accept. There are no listing fees, no admin charges, and no commission deducted from your payment. What we offer is exactly what you receive.',
+    q: 'Is there a fee to use Auto-Sell.ai?',
+    a: 'None whatsoever. Getting a valuation is completely free with no obligation to accept. There are no listing fees, no admin charges, and no commission deducted from your payment. What we offer is exactly what you receive.',
   },
   {
-    question: "Can I sell a car that's still under finance?",
-    answer:
-      "Yes. If your vehicle is still under finance, you'll need to provide a payout letter from your finance company showing the current settlement figure. We handle the rest — paying out the finance balance and transferring any remaining amount directly to you.",
+    q: "Can I sell a car that's still under finance?",
+    a: "Yes. If your vehicle is still under finance, you'll need to provide a payout letter from your finance company showing the current settlement figure. We handle the rest — paying out the finance balance and transferring any remaining amount directly to you.",
   },
-] as const
+]
 
 // Lovable's exact palette (from getComputedStyle on the live site):
 //   --graphite        220 14% 26% → #393F4C  (hero dark wedge, banners)
@@ -141,7 +142,8 @@ function GoogleG({ className = 'w-4 h-4' }: { className?: string }) {
 
 // ─── Hero ────────────────────────────────────────────────────────────────
 
-function Hero() {
+async function Hero() {
+  const b = await getPageOverridesCached(SLUG)
   return (
     <section
       id="offer"
@@ -229,27 +231,27 @@ function Hero() {
                 <span className="absolute inline-flex h-2 w-2 rounded-full opacity-75 animate-ping" style={{ backgroundColor: GOLD }} />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ backgroundColor: GOLD }} />
               </span>
-              Live valuation desk open now
+              {text(b, 'hero_pill', D.hero_pill)}
             </span>
 
             <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[52px] xl:text-6xl font-black leading-[1.05] tracking-tight">
-              The Smarter Way to
+              {text(b, 'hero_h1_line1', D.hero_h1_line1)}
               <br />
-              <span style={{ color: GOLD }}>Sell My Car Online</span>
+              <span style={{ color: GOLD }}>{text(b, 'hero_h1_line2', D.hero_h1_line2)}</span>
             </h1>
 
             <p className="mt-5 text-xl md:text-2xl font-bold leading-tight text-white">
-              Instant AI Valuation. Same-Day Payment.
+              {text(b, 'hero_subhead', D.hero_subhead)}
             </p>
 
             <p className="mt-3 max-w-md text-base text-slate-300">
-              Australia&apos;s smartest way to sell your car online — fair price, instant offer, zero fees.
+              {text(b, 'hero_subpara', D.hero_subpara)}
             </p>
 
             {/* Micro-trust row — desktop only. On mobile we surface the Google
                 reviews / star-rating row instead (rendered below the buttons). */}
             <ul className="mt-5 hidden lg:flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-200">
-              {['No obligation', 'Instant AI valuation', 'Paid same day via OSKO'].map((item) => (
+              {list(b, 'hero_microtrust', D.hero_microtrust).map((item) => (
                 <li key={item} className="inline-flex items-center gap-1.5">
                   <svg className="w-4 h-4 flex-shrink-0" style={{ color: GOLD }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -268,7 +270,7 @@ function Hero() {
                   boxShadow: '0 1px 0 rgba(180, 120, 0, 0.4) inset, 0 8px 24px rgba(255, 195, 37, 0.35)',
                 }}
               >
-                Get My Free Offer
+                {text(b, 'hero_cta_primary', D.hero_cta_primary)}
                 <span aria-hidden="true">›</span>
               </a>
               <a
@@ -277,7 +279,7 @@ function Hero() {
                 style={{ backgroundColor: 'rgba(43,48,58,0.7)', borderColor: 'rgba(255,255,255,0.18)' }}
               >
                 <PhoneIcon className="w-4 h-4" />
-                Call Now
+                {text(b, 'hero_cta_secondary', D.hero_cta_secondary)}
               </a>
             </div>
 
@@ -286,16 +288,12 @@ function Hero() {
                 desktop-only above). */}
             <div className="mt-6 flex items-center gap-2 text-sm">
               <StarRow size={4} />
-              <span className="font-bold">4.9</span>
-              <span className="text-slate-300">· 60+ Google reviews</span>
+              <span className="font-bold">{text(b, 'hero_rating_value', D.hero_rating_value)}</span>
+              <span className="text-slate-300">· {text(b, 'hero_rating_count', D.hero_rating_count)}</span>
             </div>
 
             <div className="hidden lg:grid mt-6 grid-cols-3 gap-2.5 max-w-md">
-              {[
-                { stat: '2,500+', label: 'Cars bought' },
-                { stat: '$18M+', label: 'Paid out' },
-                { stat: '10 min', label: 'Avg offer' },
-              ].map((s) => (
+              {list(b, 'hero_stats', D.hero_stats).map((s) => (
                 <div
                   key={s.label}
                   className="rounded-lg px-3 py-3"
@@ -336,7 +334,9 @@ function Hero() {
 
 // ─── Trust strip (4 cards) ───────────────────────────────────────────────
 
-function TrustStrip() {
+async function TrustStrip() {
+  const b = await getPageOverridesCached(SLUG)
+  const ov = list<{ title?: string; sub?: string }>(b, 'trust_items', [])
   const items = [
     {
       title: 'We pay more than dealers',
@@ -383,7 +383,7 @@ function TrustStrip() {
   return (
     <section className="border-b border-slate-200" style={{ backgroundColor: SURFACE }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-7 grid grid-cols-2 lg:grid-cols-4 gap-5">
-        {items.map((it) => (
+        {items.map((it, i) => (
           <div key={it.title} className="flex items-start gap-3 group cursor-default">
             <span
               className="inline-flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
@@ -393,8 +393,8 @@ function TrustStrip() {
               <span className="w-5 h-5 block">{it.icon}</span>
             </span>
             <div>
-              <div className="text-sm font-bold leading-tight text-slate-900">{it.title}</div>
-              <div className="text-xs text-slate-500 mt-0.5 leading-tight">{it.sub}</div>
+              <div className="text-sm font-bold leading-tight text-slate-900">{ov[i]?.title ?? it.title}</div>
+              <div className="text-xs text-slate-500 mt-0.5 leading-tight">{ov[i]?.sub ?? it.sub}</div>
             </div>
           </div>
         ))}
@@ -405,13 +405,9 @@ function TrustStrip() {
 
 // ─── Stats banner (dark) ─────────────────────────────────────────────────
 
-function StatsBanner() {
-  const stats = [
-    { stat: '$18M+', label: 'Paid to sellers' },
-    { stat: '2,500+', label: 'Cars purchased' },
-    { stat: '10 min', label: 'Average offer time' },
-    { stat: '4.9★', label: 'Google rating' },
-  ]
+async function StatsBanner() {
+  const b = await getPageOverridesCached(SLUG)
+  const stats = list(b, 'stats_banner', D.stats_banner)
   return (
     <section className="py-12" style={{ backgroundColor: GRAPHITE }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center text-white">
@@ -428,7 +424,9 @@ function StatsBanner() {
 
 // ─── How It Works (4 numbered cards) ─────────────────────────────────────
 
-function HowItWorks() {
+async function HowItWorks() {
+  const b = await getPageOverridesCached(SLUG)
+  const ov = list<{ title?: string; body?: string }>(b, 'how_steps', [])
   const steps = [
     {
       n: 1,
@@ -470,21 +468,19 @@ function HowItWorks() {
     },
   ]
   return (
-    <section id="how" className="py-20 border-y border-slate-200" style={{ backgroundColor: SURFACE }}>
+    <section id="how-it-works" className="py-20 border-y border-slate-200" style={{ backgroundColor: SURFACE }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="text-center mb-12 max-w-3xl mx-auto">
-          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>HOW IT WORKS</div>
+          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'how_eyebrow', D.how_eyebrow)}</div>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-            Sell Your Car Online in 3 Simple Steps
+            {text(b, 'how_h2', D.how_h2)}
           </h2>
           <p className="mt-4 text-slate-500">
-            Forget the old way of doing things. No haggling. No strangers at your home. No paperwork
-            nightmares. Here&apos;s how we make selling your car online the easiest thing you&apos;ll do
-            this week.
+            {text(b, 'how_intro', D.how_intro)}
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
-          {steps.map((s) => (
+          {steps.map((s, i) => (
             <div
               key={s.n}
               className="relative rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-default"
@@ -504,8 +500,8 @@ function HowItWorks() {
               >
                 <span className="w-5 h-5 block">{s.icon}</span>
               </span>
-              <h3 className="text-lg font-black text-slate-900 mb-2">{s.title}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{s.body}</p>
+              <h3 className="text-lg font-black text-slate-900 mb-2">{ov[i]?.title ?? s.title}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">{ov[i]?.body ?? s.body}</p>
             </div>
           ))}
         </div>
@@ -537,16 +533,9 @@ function ProviderCell({ label, yes, highlight = false }: { label: string; yes: b
   )
 }
 
-function Comparison() {
-  const rows = [
-    { feat: 'Same-day payment', us: true, dealer: false, priv: false },
-    { feat: 'Free Australia-wide pickup', us: true, dealer: false, priv: false },
-    { feat: 'No haggling or pressure', us: true, dealer: false, priv: false },
-    { feat: 'Buys damaged / unregistered', us: true, dealer: false, priv: false },
-    { feat: 'Handles all paperwork', us: true, dealer: true, priv: false },
-    { feat: 'No strangers at your door', us: true, dealer: true, priv: false },
-    { feat: 'Fair market price', us: true, dealer: false, priv: true },
-  ]
+async function Comparison() {
+  const b = await getPageOverridesCached(SLUG)
+  const rows = list(b, 'comparison_rows', D.comparison_rows)
   const mark = (yes: boolean) =>
     yes ? (
       <span className="inline-flex items-center justify-center w-7 h-7 rounded-full" style={{ backgroundColor: 'rgba(34, 197, 94, 0.12)', color: '#16A34A' }}>
@@ -561,9 +550,9 @@ function Comparison() {
     <section id="why" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
         <div className="text-center mb-12">
-          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>WHY US</div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900">The smart way to sell</h2>
-          <p className="mt-3 text-slate-500">Compare your options.</p>
+          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'cmp_eyebrow', D.cmp_eyebrow)}</div>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900">{text(b, 'cmp_h2', D.cmp_h2)}</h2>
+          <p className="mt-3 text-slate-500">{text(b, 'cmp_sub', D.cmp_sub)}</p>
         </div>
         {/* Desktop / tablet: 4-column grid table. */}
         <div className="hidden md:block rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm">
@@ -572,11 +561,11 @@ function Comparison() {
               FEATURE
             </div>
             <div className="px-6 py-5 text-center border-b border-slate-200" style={{ backgroundColor: CREAM }}>
-              <div className="text-base font-black text-slate-900">Auto-Sell.ai</div>
+              <div className="text-base font-black text-slate-900">{text(b, 'cmp_col_us', D.cmp_col_us)}</div>
               <div className="text-[10px] font-black uppercase tracking-[0.15em] mt-1" style={{ color: '#B8860B' }}>RECOMMENDED</div>
             </div>
-            <div className="px-6 py-5 text-center text-base font-bold text-slate-500 bg-slate-50 border-b border-slate-200">Dealer</div>
-            <div className="px-6 py-5 text-center text-base font-bold text-slate-500 bg-slate-50 border-b border-slate-200">Private sale</div>
+            <div className="px-6 py-5 text-center text-base font-bold text-slate-500 bg-slate-50 border-b border-slate-200">{text(b, 'cmp_col_dealer', D.cmp_col_dealer)}</div>
+            <div className="px-6 py-5 text-center text-base font-bold text-slate-500 bg-slate-50 border-b border-slate-200">{text(b, 'cmp_col_priv', D.cmp_col_priv)}</div>
 
             {rows.map((r, i) => {
               const isLast = i === rows.length - 1
@@ -605,8 +594,8 @@ function Comparison() {
                 {r.feat}
               </div>
               <div className="grid grid-cols-3 divide-x divide-slate-200">
-                <ProviderCell label="Auto-Sell.ai" yes={r.us} highlight />
-                <ProviderCell label="Dealer" yes={r.dealer} />
+                <ProviderCell label={text(b, 'cmp_col_us', D.cmp_col_us)} yes={r.us} highlight />
+                <ProviderCell label={text(b, 'cmp_col_dealer', D.cmp_col_dealer)} yes={r.dealer} />
                 <ProviderCell label="Private" yes={r.priv} />
               </div>
             </div>
@@ -622,7 +611,8 @@ function Comparison() {
 
 // ─── Brand marquee (dark) ────────────────────────────────────────────────
 
-function BrandMarquee() {
+async function BrandMarquee() {
+  const b = await getPageOverridesCached(SLUG)
   // Pulled directly from the lovable reference:
   //   - simpleicons.org CDN for brands available there (served in white)
   //   - 3 locally hosted SVGs (Alfa Romeo, Isuzu, Jaguar) downloaded from
@@ -670,7 +660,7 @@ function BrandMarquee() {
     <section className="py-12 border-y border-white/5 overflow-hidden" style={{ backgroundColor: GRAPHITE }}>
       <div className="text-center mb-7">
         <div className="text-[10px] font-black tracking-[0.22em]" style={{ color: GOLD }}>
-          WE BUY EVERY MAKE &amp; MODEL
+          {text(b, 'marquee_eyebrow', D.marquee_eyebrow)}
         </div>
       </div>
       <div
@@ -728,46 +718,19 @@ function BrandMarquee() {
 
 // ─── Why Australians Choose Us — 5 long-form sections ────────────────────
 
-function ValueProps() {
-  const items = [
-    {
-      title: 'AI-Powered Valuations That Beat Dealer Trade-Ins',
-      body:
-        "When you walk into a dealership, the offer you get is based on what's best for them — not you. Our AI doesn't work for a dealership. It analyses live market data from across Australia to give you a price that actually reflects what your car is worth right now. Most of our customers receive significantly more than their dealer trade-in quote. See for yourself — it costs you nothing to find out.",
-    },
-    {
-      title: 'No Tyre-Kickers, No Haggling, No Waiting',
-      body:
-        'Selling privately means listing fees, dozens of enquiries that go nowhere, strangers turning up late, and buyers who want to knock $3,000 off because of a tiny scratch. With Auto-Sell.ai, none of that happens. You get one fair offer, based on real data, and you decide. That’s the whole process.',
-    },
-    {
-      title: 'We Buy Any Car, Any Condition, Australia-Wide',
-      body:
-        "New, used, high kilometres, a few bumps and scratches — we buy it all. Running or not. Registered or unregistered. We don't cherry-pick only the easy cars. If you've got a vehicle you want to sell, we want to hear from you. Our service covers every state and territory, from the Sydney CBD to regional Queensland and everywhere in between.",
-    },
-    {
-      title: 'Sell Your Car Online Without Leaving Your Driveway',
-      body:
-        "The entire process — valuation, offer, paperwork, payment — happens online or at your front door. You never need to drive anywhere, sit in a waiting room, or deal with a pushy salesperson. If you've got a smartphone and 10 minutes, you can sell your car today.",
-    },
-    {
-      title: 'No Hidden Fees, No Commission — Ever',
-      body:
-        "What we offer is what you get. We don’t clip the ticket on the way out. No admin fees, no listing costs, no surprise deductions on the day. Transparent pricing from start to finish — because that’s how it should work.",
-    },
-  ]
+async function ValueProps() {
+  const b = await getPageOverridesCached(SLUG)
+  const items = list(b, 'value_props', D.value_props)
   return (
     <section className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-8">
         <div className="text-center mb-12">
-          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>WHY CHOOSE US</div>
+          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'why_eyebrow', D.why_eyebrow)}</div>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-            Why Australians Choose Us to Sell Their Car
+            {text(b, 'why_h2', D.why_h2)}
           </h2>
           <p className="mt-5 text-base md:text-lg text-slate-700 leading-relaxed">
-            We built Auto-Sell.ai because selling a car in Australia was broken. Dealers low-ball you.
-            Private sales waste your weekends. Online platforms charge you to list, then leave you to
-            figure out the rest. We&apos;ve fixed all of that.
+            {text(b, 'why_intro', D.why_intro)}
           </p>
         </div>
         <div className="space-y-10 md:space-y-12">
@@ -790,32 +753,26 @@ function ValueProps() {
 
 // ─── The AI Advantage ────────────────────────────────────────────────────
 
-function AIAdvantage() {
+async function AIAdvantage() {
+  const b = await getPageOverridesCached(SLUG)
   return (
     <section className="py-20" style={{ backgroundColor: SURFACE }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-8">
         <div className="text-center mb-10">
-          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>THE AI ADVANTAGE</div>
+          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'ai_eyebrow', D.ai_eyebrow)}</div>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-            How Our AI Makes Online Car Sales Smarter
+            {text(b, 'ai_h2', D.ai_h2)}
           </h2>
         </div>
         <div className="space-y-6 text-base md:text-lg text-slate-700 leading-relaxed">
           <p>
-            The difference between Auto-Sell.ai and every other car buyer out there comes down to one
-            thing: data. While a traditional buyer gives you a gut-feel offer, our AI processes thousands of
-            real-time data points — current private sale listings, recent dealer auction results, regional
-            supply and demand, seasonal trends, and your vehicle&apos;s specific make, model, age, and
-            condition — all in seconds.
+            {text(b, 'ai_para1', D.ai_para1)}
           </p>
           <p>
-            The result is a valuation that&apos;s grounded in what the market is actually doing today, not
-            what someone thinks your car might be worth. It means you walk into every transaction knowing
-            the offer on the table is fair, calculated, and backed by real intelligence — not guesswork.
+            {text(b, 'ai_para2', D.ai_para2)}
           </p>
           <p>
-            That&apos;s the Auto-Sell.ai difference. And it&apos;s why more Australians are choosing to
-            sell their car with us over traditional dealers and private sale platforms.
+            {text(b, 'ai_para3', D.ai_para3)}
           </p>
         </div>
       </div>
@@ -825,29 +782,19 @@ function AIAdvantage() {
 
 // ─── Service Areas ───────────────────────────────────────────────────────
 
-function ServiceAreas() {
-  const cities = [
-    { label: 'Sell My Car Sydney', href: '/sell-my-car-sydney' },
-    { label: 'Sell My Car Melbourne', href: '/sell-my-car-melbourne' },
-    { label: 'Sell My Car Brisbane', href: '/sell-my-car-brisbane' },
-    { label: 'Sell My Car Perth', href: '/sell-my-car-perth' },
-    { label: 'Sell My Car Adelaide', href: '/sell-my-car-adelaide' },
-    { label: 'Sell My Car Canberra', href: '/sell-my-car-canberra' },
-    { label: 'Sell My Car Gold Coast', href: '/sell-my-car-gold-coast' },
-  ]
+async function ServiceAreas() {
+  const b = await getPageOverridesCached(SLUG)
+  const cities = list(b, 'service_areas', D.service_areas)
   return (
     <section id="service-areas" className="py-20 bg-white border-y border-slate-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
         <div className="text-center mb-10 max-w-3xl mx-auto">
-          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>AUSTRALIA-WIDE</div>
+          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'areas_eyebrow', D.areas_eyebrow)}</div>
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
-            We Buy Cars Across Australia — Sydney, Melbourne, Brisbane, Perth and Beyond
+            {text(b, 'areas_h2', D.areas_h2)}
           </h2>
           <p className="mt-5 text-base md:text-lg text-slate-700 leading-relaxed">
-            No matter where you are in Australia, we&apos;ve got you covered. Our team services all major
-            cities and regional areas — from Sydney&apos;s inner suburbs and Melbourne&apos;s outer east to
-            Brisbane&apos;s north side and the Perth metro area. If you&apos;re somewhere in between,
-            chances are we service you too.
+            {text(b, 'areas_intro', D.areas_intro)}
           </p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
@@ -868,7 +815,9 @@ function ServiceAreas() {
 
 // ─── What We Buy (vehicle type cards) ────────────────────────────────────
 
-function WhatWeBuy() {
+async function WhatWeBuy() {
+  const b = await getPageOverridesCached(SLUG)
+  const ov = list<string>(b, 'what_we_buy', [])
   const types = [
     {
       label: 'Cars',
@@ -928,10 +877,10 @@ function WhatWeBuy() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 text-center">
-        <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>WHAT WE BUY</div>
-        <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-10">Any vehicle, any condition</h2>
+        <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'buy_eyebrow', D.buy_eyebrow)}</div>
+        <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-10">{text(b, 'buy_h2', D.buy_h2)}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 max-w-5xl mx-auto">
-          {types.map((t) => (
+          {types.map((t, i) => (
             <div
               key={t.label}
               className="group rounded-2xl border border-slate-200 bg-white p-6 flex flex-col items-center gap-3 transition-all duration-300 cursor-default hover:-translate-y-1 hover:shadow-lg hover:border-[#FFC325]"
@@ -944,7 +893,7 @@ function WhatWeBuy() {
                 <span className="w-6 h-6 block">{t.icon}</span>
               </span>
               <span className="text-base font-black text-slate-900 transition-colors duration-300 group-hover:text-[#92560A]">
-                {t.label}
+                {ov[i] ?? t.label}
               </span>
             </div>
           ))}
@@ -956,34 +905,24 @@ function WhatWeBuy() {
 
 // ─── Reviews (horizontal scroll) ─────────────────────────────────────────
 
-function Reviews() {
-  const reviews = [
-    { name: 'Charmian Grove', when: '60 days ago', where: 'Wetherill Park, NSW', quote: 'Fantastic experience with Alex, Tony and the team! Friendly, honest, helpful — got the price I needed and the whole process was seamless. Highly recommend.' },
-    { name: 'Nick Dimitriadis', when: '60 days ago', where: 'Sydney, NSW', quote: 'Great experience dealing with Alex, a true professional. Straight to the point, offered genuine experience and a fair value for one of our fleet cars.' },
-    { name: 'Olrielle Foley', when: '90 days ago', where: 'Sydney, NSW', quote: 'Fantastic experience selling my car to Alex and his team. Friendly, professional and incredibly easygoing. Communication was clear and prompt the whole way.' },
-    { name: 'Johnathan Matti', when: '150 days ago', where: 'Sydney, NSW', quote: 'Auto-Sell.ai made selling my car incredibly easy. Fast, simple and stress-free. I just entered my details and they handled everything. Highly recommend!' },
-    { name: 'Uzziel', when: '150 days ago', where: 'Sydney, NSW', quote: 'Alex and John made the whole process easy and seamless. They arrived early, which I appreciated. Honest approach throughout.' },
-    { name: 'Michael Slevin', when: '210 days ago', where: 'Sydney, NSW', quote: 'Easy to deal with from start to finish. Communication was clear and straightforward, which made the whole process stress-free. Professional yet friendly.' },
-    { name: 'Mario P.', when: '90 days ago', where: 'Sydney, NSW', quote: 'This place is perfect — my experience with Alex was so fast and professional. Got what I wanted and a free Uber ride home.' },
-    { name: 'Jared Keens', when: '270 days ago', where: 'Sydney, NSW', quote: 'Alex was easy to deal with from start to finish. Fair offer without any high-pressure tactics. The whole process was straightforward and stress-free.' },
-    { name: 'Phillip Ngo', when: '60 days ago', where: 'Sydney, NSW', quote: 'Sold and picked up from my house within 20 minutes. Great service, super quick, with a super fair price!' },
-    { name: 'Danielle Elosman', when: '30 days ago', where: 'Sydney, NSW', quote: 'These guys came super fast. Asked to sell my car and got paid instantly! They paid the most than all the other competitors. Auto-Sell.ai was the best.' },
-  ]
+async function Reviews() {
+  const b = await getPageOverridesCached(SLUG)
+  const reviews = list(b, 'reviews', D.reviews)
   return (
     <section id="reviews" className="py-20 border-y border-slate-200 overflow-hidden" style={{ backgroundColor: SURFACE }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="text-center mb-10">
-          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>CUSTOMER REVIEWS</div>
+          <div className="text-[11px] font-bold tracking-[0.22em] mb-3" style={{ color: '#B8860B' }}>{text(b, 'reviews_eyebrow', D.reviews_eyebrow)}</div>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-            Loved by sellers
-            <br />across Australia
+            {text(b, 'reviews_h2_line1', D.reviews_h2_line1)}
+            <br />{text(b, 'reviews_h2_line2', D.reviews_h2_line2)}
           </h2>
           <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm text-sm">
             <GoogleG className="w-4 h-4" />
             <span className="font-bold text-slate-900">Google Reviews</span>
             <StarRow size={4} />
-            <span className="font-bold text-slate-900">4.9</span>
-            <span className="text-slate-500">· 60+ reviews</span>
+            <span className="font-bold text-slate-900">{text(b, 'reviews_badge_rating', D.reviews_badge_rating)}</span>
+            <span className="text-slate-500">· {text(b, 'reviews_badge_count', D.reviews_badge_count)}</span>
           </div>
         </div>
         {/* Duplicated track for seamless infinite scroll. Pauses on hover. */}
@@ -1046,7 +985,9 @@ function Reviews() {
 
 // ─── Final CTA (dark card) ───────────────────────────────────────────────
 
-function FinalCta() {
+async function FinalCta() {
+  const b = await getPageOverridesCached(SLUG)
+  const ov = list<{ title?: string; sub?: string }>(b, 'final_cta_stats', [])
   const stats = [
     {
       title: '10 min',
@@ -1106,15 +1047,14 @@ function FinalCta() {
             aria-hidden="true"
           />
           <div className="relative text-white">
-            <div className="text-[11px] font-black tracking-[0.22em] mb-3" style={{ color: GOLD }}>READY WHEN YOU ARE</div>
+            <div className="text-[11px] font-black tracking-[0.22em] mb-3" style={{ color: GOLD }}>{text(b, 'final_eyebrow', D.final_eyebrow)}</div>
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-black leading-tight">
-              Ready to Sell Your Car?
+              {text(b, 'final_h2_line1', D.final_h2_line1)}
               <br />
-              <span style={{ color: GOLD }}>Get Your Free AI Valuation Now</span>
+              <span style={{ color: GOLD }}>{text(b, 'final_h2_line2', D.final_h2_line2)}</span>
             </h2>
             <p className="mt-4 text-slate-300 max-w-md text-sm md:text-base leading-relaxed">
-              Australians deserve better than low-ball dealer offers and the frustration of private sales
-              that drag on for weeks. Instant valuation, same-day payment, zero fees. No catches.
+              {text(b, 'final_para', D.final_para)}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
@@ -1125,7 +1065,7 @@ function FinalCta() {
                   boxShadow: '0 1px 0 rgba(180,120,0,0.4) inset, 0 10px 30px rgba(255,195,3,0.35)',
                 }}
               >
-                Sell My Car Today <span aria-hidden="true">›</span>
+                {text(b, 'final_cta_primary', D.final_cta_primary)} <span aria-hidden="true">›</span>
               </a>
               <a
                 href="tel:0492858699"
@@ -1138,7 +1078,7 @@ function FinalCta() {
             </div>
           </div>
           <div className="relative grid grid-cols-2 gap-4">
-            {stats.map((s) => (
+            {stats.map((s, i) => (
               <div
                 key={s.title}
                 className="rounded-2xl p-5 text-white"
@@ -1150,8 +1090,8 @@ function FinalCta() {
                 <span className="inline-block w-5 h-5 mb-3" style={{ color: GOLD }} aria-hidden="true">
                   {s.icon}
                 </span>
-                <div className="text-2xl font-black">{s.title}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{s.sub}</div>
+                <div className="text-2xl font-black">{ov[i]?.title ?? s.title}</div>
+                <div className="text-xs text-slate-400 mt-0.5">{ov[i]?.sub ?? s.sub}</div>
               </div>
             ))}
           </div>
@@ -1163,33 +1103,9 @@ function FinalCta() {
 
 // ─── FAQ (two-column) ────────────────────────────────────────────────────
 
-function FAQ() {
-  const faqs = [
-    {
-      q: 'How do I sell my car online in Australia?',
-      a: "Simply enter your vehicle details into our online valuation form — rego, make, model, and a few basic condition details. Our AI generates a fair market offer within seconds. If you're happy with it, accept online, and we'll organise pickup at a time that suits you. Payment is made via OSKO on the same day.",
-    },
-    {
-      q: 'How long does it take to sell my car with Auto-Sell.ai?',
-      a: 'Most customers complete the entire process — valuation to payment — within the same day. The AI valuation takes under 60 seconds. Once you accept the offer and we complete the pickup, payment hits your account instantly via OSKO. No multi-day waits.',
-    },
-    {
-      q: 'What condition does my car need to be in?',
-      a: "Any condition. Damaged, unregistered, high kilometres, mechanical issues — we buy it all. You don't need to fix anything up or spend money preparing the car before you sell. We assess it as-is and make you a genuine offer based on its actual current condition.",
-    },
-    {
-      q: 'Will I get a better price than trading in at a dealership?',
-      a: "In most cases, yes — often significantly more. Dealer trade-ins are designed to maximise the dealer's margin, not your return. Our AI uses real market data to calculate what your car is genuinely worth, giving you a fair offer that reflects actual buyer demand — not what a dealership is willing to pay.",
-    },
-    {
-      q: 'Is there a fee to use Auto-Sell.ai?',
-      a: 'None whatsoever. Getting a valuation is completely free with no obligation to accept. There are no listing fees, no admin charges, and no commission deducted from your payment. What we offer is exactly what you receive.',
-    },
-    {
-      q: "Can I sell a car that's still under finance?",
-      a: "Yes. If your vehicle is still under finance, you'll need to provide a payout letter from your finance company showing the current settlement figure. We handle the rest — paying out the finance balance and transferring any remaining amount directly to you.",
-    },
-  ]
+async function FAQ() {
+  const b = await getPageOverridesCached(SLUG)
+  const faqs = list(b, 'faq_items', D.faq_items)
   return (
     <section id="faq" className="relative py-24 border-y border-slate-200 overflow-hidden" style={{ backgroundColor: SURFACE }}>
       {/* Subtle cream glow on right */}
@@ -1202,14 +1118,14 @@ function FAQ() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left intro column */}
           <div>
-            <div className="text-[11px] font-bold tracking-[0.22em] mb-4" style={{ color: '#B8860B' }}>FAQ</div>
+            <div className="text-[11px] font-bold tracking-[0.22em] mb-4" style={{ color: '#B8860B' }}>{text(b, 'faq_eyebrow', D.faq_eyebrow)}</div>
             <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.05]">
-              Got <span style={{ color: GOLD }}>questions?</span>
+              {text(b, 'faq_h2_pre', D.faq_h2_pre)} <span style={{ color: GOLD }}>{text(b, 'faq_h2_highlight', D.faq_h2_highlight)}</span>
               <br />
-              We&apos;ve got answers.
+              {text(b, 'faq_h2_post', D.faq_h2_post)}
             </h2>
             <p className="mt-6 text-slate-500 max-w-md">
-              Everything you need to know before selling. Still curious? Our team is one call away.
+              {text(b, 'faq_intro', D.faq_intro)}
             </p>
             <a
               href="tel:0492858699"
@@ -1253,19 +1169,20 @@ function FAQ() {
 
 // ─── Sticky mobile bottom bar ────────────────────────────────────────────
 
-function MobileBottomBar() {
+async function MobileBottomBar() {
+  const b = await getPageOverridesCached(SLUG)
   return (
     <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-slate-200 px-3 py-3 flex gap-2 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)]">
       <a href="tel:0492858699" className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-bold text-slate-900 border border-slate-300 bg-white">
         <PhoneIcon className="w-4 h-4" />
-        Call
+        {text(b, 'mbar_call', D.mbar_call)}
       </a>
       <a
         href="#offer"
         className="flex-[1.4] inline-flex items-center justify-center px-4 py-3 rounded-lg font-bold text-slate-900"
         style={{ backgroundColor: GOLD }}
       >
-        Get My Offer
+        {text(b, 'mbar_offer', D.mbar_offer)}
       </a>
     </div>
   )
@@ -1273,7 +1190,9 @@ function MobileBottomBar() {
 
 // ─── Page ────────────────────────────────────────────────────────────────
 
-export default function Home() {
+export default async function Home() {
+  const b = await getPageOverridesCached(SLUG)
+  const faqItems = list(b, 'faq_items', FAQ_DEFAULTS)
   return (
     <div className="home-root min-h-screen bg-white pb-24 lg:pb-0">
       {/*
@@ -1287,7 +1206,7 @@ export default function Home() {
         }
       `}</style>
 
-      <FAQPageJsonLd items={FAQ_JSONLD_ITEMS.map((f) => ({ question: f.question, answer: f.answer }))} />
+      <FAQPageJsonLd items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
       <Header />
       {/* Hero is intentionally NOT wrapped in Reveal — it's above the fold and
           users should see it immediately. The internal stagger pill / heading /
