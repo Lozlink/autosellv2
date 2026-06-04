@@ -19,6 +19,7 @@ import Header from '@/components/Header'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 import { getPageOverridesCached, text, list } from '@/lib/pageContent'
 import { PAGE_COPY_DEFAULTS } from '@/lib/pageCopyDefaults'
+import { getGoogleReviews } from '@/lib/googleRating'
 
 const SLUG = 'home'
 const D = PAGE_COPY_DEFAULTS.home
@@ -907,7 +908,22 @@ async function WhatWeBuy() {
 
 async function Reviews() {
   const b = await getPageOverridesCached(SLUG)
-  const reviews = list(b, 'reviews', D.reviews)
+  const staticReviews = list(b, 'reviews', D.reviews)
+
+  // Pull live Google reviews + rating server-side (cached 30 min). Feature the
+  // live, freshest reviews first, then top up with the curated static set so
+  // the marquee stays full. De-dupe by name because the static defaults were
+  // originally seeded from these same Google reviews. If the API is
+  // unconfigured or down, getGoogleReviews returns empty -> pure static fallback.
+  const { reviews: liveReviews, rating, userRatingsTotal } = await getGoogleReviews()
+  const seen = new Set(liveReviews.map((r) => r.name.trim().toLowerCase()))
+  const merged = [...liveReviews, ...staticReviews.filter((r) => !seen.has(r.name.trim().toLowerCase()))]
+  const reviews = merged.length > 0 ? merged : staticReviews
+
+  // Prefer the live rating/count; fall back to the editable copy when offline.
+  const badgeRating = rating != null ? rating.toFixed(1) : text(b, 'reviews_badge_rating', D.reviews_badge_rating)
+  const badgeCount = userRatingsTotal != null ? `${userRatingsTotal} reviews` : text(b, 'reviews_badge_count', D.reviews_badge_count)
+
   return (
     <section id="reviews" className="py-20 border-y border-slate-200 overflow-hidden" style={{ backgroundColor: SURFACE }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
@@ -921,8 +937,8 @@ async function Reviews() {
             <GoogleG className="w-4 h-4" />
             <span className="font-bold text-slate-900">Google Reviews</span>
             <StarRow size={4} />
-            <span className="font-bold text-slate-900">{text(b, 'reviews_badge_rating', D.reviews_badge_rating)}</span>
-            <span className="text-slate-500">· {text(b, 'reviews_badge_count', D.reviews_badge_count)}</span>
+            <span className="font-bold text-slate-900">{badgeRating}</span>
+            <span className="text-slate-500">· {badgeCount}</span>
           </div>
         </div>
         {/* Duplicated track for seamless infinite scroll. Pauses on hover. */}
@@ -960,7 +976,7 @@ async function Reviews() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 text-sm">{r.name}</div>
-                    <div className="text-xs text-slate-500">{r.when} · {r.where}</div>
+                    <div className="text-xs text-slate-500">{r.when}{r.where ? ` · ${r.where}` : ''}</div>
                   </div>
                 </div>
                 <div className="mb-2"><StarRow size={3} /></div>
@@ -1215,13 +1231,15 @@ export default async function Home() {
       <Reveal><TrustStrip /></Reveal>
       <Reveal><StatsBanner /></Reveal>
       <Reveal><HowItWorks /></Reveal>
+      {/* Reviews moved up directly under How It Works — social proof lands
+          right after we explain the process, well above the fold-deep content. */}
+      <Reveal><Reviews /></Reveal>
       <Reveal><ValueProps /></Reveal>
       <Reveal><AIAdvantage /></Reveal>
       <Reveal><Comparison /></Reveal>
       <Reveal><BrandMarquee /></Reveal>
       <Reveal><WhatWeBuy /></Reveal>
       <Reveal><ServiceAreas /></Reveal>
-      <Reveal><Reviews /></Reveal>
       <Reveal><FinalCta /></Reveal>
       <Reveal><FAQ /></Reveal>
       <MobileBottomBar />

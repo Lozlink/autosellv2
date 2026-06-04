@@ -263,12 +263,14 @@ export default function ReviewsComponent() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch('/api/google-reviews', { cache: 'no-store' })
+        const res = await fetch('/api/reviews', { cache: 'no-store' })
         const data = await res.json()
         if (Array.isArray(data.reviews) && data.reviews.length > 0) {
-          // Only show reviews that have written text content
-          const withText = data.reviews.filter((r: Review) => r.review && r.review.trim().length > 0)
-          setReviews(withText.length > 0 ? withText : data.reviews)
+          // Feature 5-star reviews that have written text content.
+          const fiveStarWithText = data.reviews.filter(
+            (r: Review) => r.rating === 5 && r.review && r.review.trim().length > 0
+          )
+          setReviews(fiveStarWithText.length > 0 ? fiveStarWithText : data.reviews)
           setIsLoading(false)
         }
       } catch (error) {

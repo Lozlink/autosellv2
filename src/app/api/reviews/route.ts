@@ -40,8 +40,12 @@ export async function GET() {
       location: r.relative_time_description,
       rating: r.rating,
       review: r.text,
-      date: r.time ? new Date(r.time * 1000).toISOString() : new Date().toISOString(),
+      // YYYY-MM-DD so clients can safely parse with a fixed-time suffix.
+      date: r.time
+        ? new Date(r.time * 1000).toISOString().slice(0, 10)
+        : new Date().toISOString().slice(0, 10),
       profilePhotoUrl: r.profile_photo_url,
+      verified: true,
       url: r.author_url,
     }))
 
