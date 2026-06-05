@@ -14,6 +14,13 @@ interface Page {
   slug: string
   meta_title: string | null
   meta_description: string | null
+  meta_keywords: string | null
+  hero_subtitle: string | null
+  content: string | null
+  cta_heading: string | null
+  cta_description: string | null
+  cta_button_text: string | null
+  cta_button_link: string | null
   published: boolean
   created_at: string
   updated_at: string
@@ -131,6 +138,46 @@ function AdminPagesInner() {
     const res = await fetch(`/api/admin/pages/${id}`, { method: 'DELETE' })
     if (res.ok) fetchPages()
     else alert('Failed to delete page')
+  }
+
+  // Clone a page into a new draft so the team can spin up a landing page from
+  // the "Draft Layout" template (or any existing page). Carries copy/CTA/SEO;
+  // resets to unpublished and derives a fresh slug.
+  const [duplicatingId, setDuplicatingId] = useState<string | null>(null)
+  const duplicatePage = async (p: Page) => {
+    setDuplicatingId(p.id)
+    const payload = (slug: string) => ({
+      title: `${p.title} (copy)`,
+      slug,
+      hero_subtitle: p.hero_subtitle ?? '',
+      content: p.content ?? '',
+      cta_heading: p.cta_heading ?? '',
+      cta_description: p.cta_description ?? '',
+      cta_button_text: p.cta_button_text ?? '',
+      cta_button_link: p.cta_button_link ?? '/#sell-form',
+      meta_title: p.meta_title ?? '',
+      meta_description: p.meta_description ?? '',
+      meta_keywords: p.meta_keywords ?? '',
+      published: false,
+    })
+    const create = (slug: string) =>
+      fetch('/api/admin/pages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload(slug)),
+      })
+    // First try "<slug>-copy"; on a slug collision, retry with a short suffix.
+    let res = await create(`${p.slug}-copy`)
+    if (!res.ok) {
+      res = await create(`${p.slug}-copy-${Math.random().toString(36).slice(2, 6)}`)
+    }
+    setDuplicatingId(null)
+    if (res.ok) {
+      updateParams({ status: 'draft' })
+      fetchPages()
+    } else {
+      alert('Failed to duplicate page')
+    }
   }
 
   const togglePublished = async (p: Page) => {
@@ -259,6 +306,14 @@ function AdminPagesInner() {
                       className="bg-[#FFC325] hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-lg text-sm"
                     >
                       Edit
+                    </button>
+                    <button
+                      onClick={() => duplicatePage(p)}
+                      disabled={duplicatingId === p.id}
+                      title="Create a new draft page from this one"
+                      className="bg-white hover:bg-yellow-50 text-gray-700 font-semibold px-4 py-2 rounded-lg text-sm border border-yellow-300 disabled:opacity-50"
+                    >
+                      {duplicatingId === p.id ? 'Duplicating…' : 'Duplicate'}
                     </button>
                     <button
                       onClick={() => deletePage(p.id, p.title)}

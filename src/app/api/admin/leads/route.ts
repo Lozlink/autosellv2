@@ -4,9 +4,11 @@ import { supabaseAdmin } from '@/lib/supabaseAdmin'
 
 type Tab = 'leads' | 'inquiries' | 'conversations'
 type Range = '30' | '90' | '365' | 'all'
+type Status = 'all' | 'new' | 'contacted'
 
 const VALID_TABS: Tab[] = ['leads', 'inquiries', 'conversations']
 const VALID_RANGES: Range[] = ['30', '90', '365', 'all']
+const VALID_STATUSES: Status[] = ['all', 'new', 'contacted']
 
 const DEFAULT_PAGE_SIZE = 50
 const MAX_PAGE_SIZE = 200
@@ -90,8 +92,13 @@ export async function GET(req: Request) {
   const qRaw = url.searchParams.get('q') ?? ''
   const q = sanitiseSearch(qRaw)
 
+  const statusParam = url.searchParams.get('status') ?? 'all'
+
   const tab: Tab = (VALID_TABS as string[]).includes(tabParam) ? (tabParam as Tab) : 'inquiries'
   const range: Range = (VALID_RANGES as string[]).includes(rangeParam) ? (rangeParam as Range) : 'all'
+  const status: Status = (VALID_STATUSES as string[]).includes(statusParam)
+    ? (statusParam as Status)
+    : 'all'
   const page = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1
   const pageSize = Math.min(
     Math.max(Number.isFinite(pageSizeParam) && pageSizeParam > 0 ? pageSizeParam : DEFAULT_PAGE_SIZE, 1),
@@ -104,6 +111,11 @@ export async function GET(req: Request) {
   const buildCountQuery = (table: 'leads' | 'inquiries' | 'conversations') => {
     let qb = supabaseAdmin!.from(table).select('id', { count: 'exact', head: true })
     if (threshold) qb = qb.gte('created_at', threshold)
+    // Status only applies to leads/inquiries — conversations have no contacted state.
+    if (table !== 'conversations') {
+      if (status === 'new') qb = qb.is('contacted_at', null)
+      else if (status === 'contacted') qb = qb.not('contacted_at', 'is', null)
+    }
     if (q) {
       const clause =
         table === 'conversations'
@@ -252,6 +264,8 @@ export async function GET(req: Request) {
     .order('created_at', { ascending: false })
     .range(from, to)
   if (threshold) dataQuery = dataQuery.gte('created_at', threshold)
+  if (status === 'new') dataQuery = dataQuery.is('contacted_at', null)
+  else if (status === 'contacted') dataQuery = dataQuery.not('contacted_at', 'is', null)
   if (q) {
     const clause = countSearchClause(tab, q)
     if (clause) dataQuery = dataQuery.or(clause)
@@ -276,4 +290,91 @@ export async function GET(req: Request) {
     data: dataRes.data ?? [],
     counts,
   })
+}
+
+// ──────────── Lead management updates (contacted status + notes) ────────────
+
+const PATCHABLE_TABLES = ['leads', 'inquiries'] as const
+type PatchableTable = (typeof PATCHABLE_TABLES)[number]
+
+interface PatchBody {
+  table?: unknown
+  id?: unknown
+  contacted?: unknown
+  notes?: unknown
+}
+
+export async function PATCH(req: Request) {
+  const cookieStore = await cookies()
+  const isAdmin = cookieStore.get('admin_auth')?.value === 'true'
+  if (!isAdmin) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (!supabaseAdmin) {
+    return NextResponse.json({ error: 'Server missing SUPABASE_SERVICE_ROLE_KEY' }, { status: 500 })
+  }
+
+  let body: PatchBody
+  try {
+    body = (await req.json()) as PatchBody
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  }
+
+  const table = body.table
+  const id = body.id
+  if (
+    typeof table !== 'string' ||
+    !(PATCHABLE_TABLES as readonly string[]).includes(table) ||
+    typeof id !== 'string' ||
+    !id
+  ) {
+    return NextResponse.json(
+      { error: "Expected { table: 'leads' | 'inquiries', id: string }" },
+      { status: 400 },
+    )
+  }
+
+  const update: Record<string, string | null> = {}
+  const now = new Date().toISOString()
+
+  if (typeof body.contacted === 'boolean') {
+    update.contacted_at = body.contacted ? now : null
+  }
+  if (typeof body.notes === 'string') {
+    const trimmed = body.notes.trim()
+    update.admin_notes = trimmed || null
+    update.notes_updated_at = trimmed ? now : null
+  }
+
+  if (Object.keys(update).length === 0) {
+    return NextResponse.json(
+      { error: 'Nothing to update — provide contacted (boolean) and/or notes (string)' },
+      { status: 400 },
+    )
+  }
+
+  const res = await supabaseAdmin
+    .from(table as PatchableTable)
+    .update(update)
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (res.error) {
+    // 42703 = undefined column — the management columns haven't been added yet.
+    if (res.error.code === '42703') {
+      return NextResponse.json(
+        { error: 'Lead management columns missing. Apply migration 009_add_lead_management_fields.sql.' },
+        { status: 500 },
+      )
+    }
+    const notFound = res.error.code === 'PGRST116'
+    return NextResponse.json(
+      { error: notFound ? 'Record not found' : res.error.message },
+      { status: notFound ? 404 : 500 },
+    )
+  }
+
+  return NextResponse.json({ data: res.data })
 }

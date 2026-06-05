@@ -123,7 +123,7 @@ export default function EditPageAdmin() {
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Edit Page</h1>
           <div className="flex items-center gap-3">
-            <button onClick={() => router.push('/admin')} className="text-sm text-gray-500 hover:text-gray-700">Blog Admin</button>
+            <button onClick={() => router.push('/admin')} className="text-sm text-gray-500 hover:text-gray-700">Dashboard</button>
             <button onClick={() => router.push('/admin/leads')} className="text-sm text-gray-500 hover:text-gray-700">Leads</button>
             <button onClick={() => router.push('/admin/pages')} className="text-sm text-gray-500 hover:text-gray-700">Pages</button>
             <button onClick={logout} className="text-sm text-yellow-600 hover:text-yellow-500">Logout</button>

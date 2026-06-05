@@ -3,7 +3,14 @@
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-interface Lead {
+// Lead management fields shared by leads and inquiries (migration 009).
+interface Managed {
+  contacted_at?: string | null
+  admin_notes?: string | null
+  notes_updated_at?: string | null
+}
+
+interface Lead extends Managed {
   id: string
   name: string
   email: string
@@ -14,7 +21,7 @@ interface Lead {
   created_at: string
 }
 
-interface Inquiry {
+interface Inquiry extends Managed {
   id: string
   name: string
   email: string
@@ -56,6 +63,7 @@ interface ConversationThread {
 
 type Tab = 'inquiries' | 'leads' | 'conversations'
 type Range = '30' | '90' | '365' | 'all'
+type Status = 'all' | 'new' | 'contacted'
 
 interface Counts {
   leads: number
@@ -66,12 +74,19 @@ interface Counts {
 const PAGE_SIZE = 50
 const VALID_TABS: Tab[] = ['inquiries', 'leads', 'conversations']
 const VALID_RANGES: Range[] = ['30', '90', '365', 'all']
+const VALID_STATUSES: Status[] = ['all', 'new', 'contacted']
 
 const RANGE_OPTIONS: { value: Range; label: string }[] = [
   { value: '30', label: 'Last 30 days' },
   { value: '90', label: 'Last 90 days' },
   { value: '365', label: 'Last 12 months' },
   { value: 'all', label: 'All time' },
+]
+
+const STATUS_OPTIONS: { value: Status; label: string }[] = [
+  { value: 'all', label: 'All statuses' },
+  { value: 'new', label: 'New' },
+  { value: 'contacted', label: 'Contacted' },
 ]
 
 export default function AdminLeadsPage() {
@@ -108,17 +123,26 @@ function AdminLeadsInner() {
     return Number.isFinite(raw) && raw > 0 ? raw : 1
   }, [searchParams])
   const q: string = useMemo(() => searchParams.get('q') ?? '', [searchParams])
+  const status: Status = useMemo(() => {
+    const raw = searchParams.get('status')
+    return (VALID_STATUSES as string[]).includes(raw ?? '') ? (raw as Status) : 'all'
+  }, [searchParams])
 
   const updateParams = useCallback(
-    (patch: Partial<{ tab: Tab; range: Range; page: number; q: string }>) => {
+    (patch: Partial<{ tab: Tab; range: Range; page: number; q: string; status: Status }>) => {
       const next = new URLSearchParams(searchParams.toString())
-      // tab/range/q changes always reset to page 1 unless explicitly setting page.
+      // tab/range/q/status changes always reset to page 1 unless explicitly setting page.
       if (patch.tab !== undefined) {
         next.set('tab', patch.tab)
         next.set('page', '1')
       }
       if (patch.range !== undefined) {
         next.set('range', patch.range)
+        next.set('page', '1')
+      }
+      if (patch.status !== undefined) {
+        if (patch.status === 'all') next.delete('status')
+        else next.set('status', patch.status)
         next.set('page', '1')
       }
       if (patch.q !== undefined) {
@@ -177,6 +201,7 @@ function AdminLeadsInner() {
       pageSize: String(PAGE_SIZE),
     })
     if (q) params.set('q', q)
+    if (status !== 'all') params.set('status', status)
     const res = await fetch(`/api/admin/leads?${params.toString()}`)
     if (!res.ok) {
       setError('Failed to load data')
@@ -225,11 +250,24 @@ function AdminLeadsInner() {
       }
     }
     setLoading(false)
-  }, [tab, range, page, q])
+  }, [tab, range, page, q, status])
 
   useEffect(() => {
     fetchData()
   }, [fetchData])
+
+  // Merge a PATCHed row back into the active list without a full refetch,
+  // so expanded cards and scroll position are preserved.
+  const applyUpdate = useCallback(
+    (updated: Managed & { id: string }) => {
+      if (tab === 'leads') {
+        setLeads((prev) => prev.map((l) => (l.id === updated.id ? { ...l, ...updated } : l)))
+      } else if (tab === 'inquiries') {
+        setInquiries((prev) => prev.map((i) => (i.id === updated.id ? { ...i, ...updated } : i)))
+      }
+    },
+    [tab],
+  )
 
   const logout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' })
@@ -313,6 +351,17 @@ function AdminLeadsInner() {
               </div>
 
               <div className="flex items-center gap-2">
+                {tab !== 'conversations' && (
+                  <select
+                    value={status}
+                    onChange={(e) => updateParams({ status: e.target.value as Status })}
+                    className="px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-[#FFC325]"
+                  >
+                    {STATUS_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                  </select>
+                )}
                 <label className="text-xs text-gray-500 whitespace-nowrap">Range:</label>
                 <select
                   value={range}
@@ -397,6 +446,7 @@ function AdminLeadsInner() {
                   expanded={expandedId === item.id}
                   onToggle={() => setExpandedId(expandedId === item.id ? null : item.id)}
                   formatDate={formatDate}
+                  onUpdated={applyUpdate}
                 />
               ))}
             {tab === 'leads' &&
@@ -407,6 +457,7 @@ function AdminLeadsInner() {
                   expanded={expandedId === item.id}
                   onToggle={() => setExpandedId(expandedId === item.id ? null : item.id)}
                   formatDate={formatDate}
+                  onUpdated={applyUpdate}
                 />
               ))}
             {tab === 'conversations' &&
@@ -476,11 +527,13 @@ function InquiryCard({
   expanded,
   onToggle,
   formatDate,
+  onUpdated,
 }: {
   item: Inquiry
   expanded: boolean
   onToggle: () => void
   formatDate: (d: string) => string
+  onUpdated: (row: Managed & { id: string }) => void
 }) {
   return (
     <div className="bg-white border border-yellow-200 rounded-xl overflow-hidden">
@@ -491,6 +544,7 @@ function InquiryCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-semibold text-gray-800 text-sm truncate">{item.name}</span>
+            <StatusBadge item={item} />
             {item.vehicle_make && (
               <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full">
                 {item.vehicle_year} {item.vehicle_make} {item.vehicle_model}
@@ -536,6 +590,7 @@ function InquiryCard({
               <p className="text-sm text-gray-700 bg-gray-50 rounded-lg p-2">{item.message}</p>
             </div>
           )}
+          <LeadManagement table="inquiries" item={item} onUpdated={onUpdated} formatDate={formatDate} />
         </div>
       )}
     </div>
@@ -547,11 +602,13 @@ function LeadCard({
   expanded,
   onToggle,
   formatDate,
+  onUpdated,
 }: {
   item: Lead
   expanded: boolean
   onToggle: () => void
   formatDate: (d: string) => string
+  onUpdated: (row: Managed & { id: string }) => void
 }) {
   return (
     <div className="bg-white border border-yellow-200 rounded-xl overflow-hidden">
@@ -562,6 +619,7 @@ function LeadCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-semibold text-gray-800 text-sm truncate">{item.name}</span>
+            <StatusBadge item={item} />
             {item.enquiry_type && (
               <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
                 {item.enquiry_type}
@@ -596,6 +654,7 @@ function LeadCard({
               <p className="text-sm text-gray-700 bg-gray-50 rounded-lg p-2">{item.message}</p>
             </div>
           )}
+          <LeadManagement table="leads" item={item} onUpdated={onUpdated} formatDate={formatDate} />
         </div>
       )}
     </div>
@@ -694,6 +753,133 @@ function Detail({ label, value }: { label: string; value?: string }) {
     <div>
       <span className="text-xs text-gray-400 block">{label}</span>
       <span className="text-gray-700">{value}</span>
+    </div>
+  )
+}
+
+function StatusBadge({ item }: { item: Managed }) {
+  return (
+    <>
+      {item.contacted_at ? (
+        <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Contacted</span>
+      ) : (
+        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">New</span>
+      )}
+      {item.admin_notes && (
+        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">Notes</span>
+      )}
+    </>
+  )
+}
+
+function LeadManagement({
+  table,
+  item,
+  onUpdated,
+  formatDate,
+}: {
+  table: 'leads' | 'inquiries'
+  item: Managed & { id: string }
+  onUpdated: (row: Managed & { id: string }) => void
+  formatDate: (d: string) => string
+}) {
+  const [notes, setNotes] = useState(item.admin_notes ?? '')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [justSaved, setJustSaved] = useState(false)
+  const savedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  useEffect(() => {
+    return () => {
+      if (savedTimerRef.current) clearTimeout(savedTimerRef.current)
+    }
+  }, [])
+
+  const contacted = Boolean(item.contacted_at)
+  const notesDirty = notes.trim() !== (item.admin_notes ?? '')
+
+  const patch = async (body: { contacted?: boolean; notes?: string }): Promise<boolean> => {
+    setBusy(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/admin/leads', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ table, id: item.id, ...body }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error ?? 'Update failed')
+      onUpdated(data.data as Managed & { id: string })
+      return true
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Update failed')
+      return false
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const toggleContacted = () => patch({ contacted: !contacted })
+
+  const saveNotes = async () => {
+    const ok = await patch({ notes })
+    if (ok) {
+      setJustSaved(true)
+      if (savedTimerRef.current) clearTimeout(savedTimerRef.current)
+      savedTimerRef.current = setTimeout(() => setJustSaved(false), 2000)
+    }
+  }
+
+  return (
+    <div className="mt-4 pt-3 border-t border-dashed border-yellow-200">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+          Lead management
+        </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          {contacted && item.contacted_at && (
+            <span className="text-xs text-gray-400">Contacted {formatDate(item.contacted_at)}</span>
+          )}
+          <button
+            onClick={toggleContacted}
+            disabled={busy}
+            className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors disabled:opacity-50 ${
+              contacted
+                ? 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+                : 'bg-green-600 text-white hover:bg-green-500'
+            }`}
+          >
+            {contacted ? 'Mark as not contacted' : 'Mark as contacted'}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-3">
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          placeholder="Notes — e.g. called 3pm, wants pickup Saturday, offered $8,500..."
+          rows={3}
+          className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#FFC325] resize-y"
+        />
+        <div className="flex items-center justify-between mt-1 gap-3">
+          <span className="text-xs text-gray-400">
+            {justSaved
+              ? 'Saved'
+              : item.notes_updated_at
+                ? `Notes updated ${formatDate(item.notes_updated_at)}`
+                : ''}
+          </span>
+          <button
+            onClick={saveNotes}
+            disabled={busy || !notesDirty}
+            className="px-3 py-1.5 text-sm font-medium bg-[#FFC325] text-gray-900 rounded-lg hover:bg-yellow-400 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {busy ? 'Saving...' : 'Save notes'}
+          </button>
+        </div>
+      </div>
+
+      {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
     </div>
   )
 }
