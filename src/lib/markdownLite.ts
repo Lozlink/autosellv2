@@ -14,6 +14,7 @@
  *   - `**bold**` / `__bold__` → <strong>
  *   - `*italic*` / `_italic_` → <em>
  *   - `[label](url)` → <a>
+ *   - trailing `::center` on a heading/paragraph line → centered block
  *
  * Line-based scan: structural prefixes (`##`, `-`, `1.`, `>`) start a new
  * block without requiring a blank line above them. Blank lines also act as
@@ -152,12 +153,25 @@ export function markdownLiteToHtml(input: string): string {
   }
 
   for (const raw of lines) {
-    const line = raw.trim()
+    let line = raw.trim()
 
     if (!line) {
       flush()
       continue
     }
+
+    // Trailing `::center` marker centers the block (headings and paragraphs).
+    // Stripped from all line kinds so it never renders literally.
+    const centerMatch = line.match(/^(.*?)\s*::center$/i)
+    const centered = centerMatch !== null
+    if (centerMatch) {
+      line = centerMatch[1]
+      if (!line) {
+        flush()
+        continue
+      }
+    }
+    const centerAttr = centered ? ' style="text-align:center"' : ''
 
     // Heading: 1–3 leading hashes followed by space + text. Standalone block.
     // If the line contains both a heading AND following body text, split them.
@@ -166,7 +180,7 @@ export function markdownLiteToHtml(input: string): string {
       flush()
       const level = h[1].length === 3 ? 'h3' : 'h2'
       const [titleText, restText] = splitInlineHeading(h[2])
-      out.push(`<${level}>${inline(titleText)}</${level}>`)
+      out.push(`<${level}${centerAttr}>${inline(titleText)}</${level}>`)
       if (restText) out.push(`<p>${inline(restText)}</p>`)
       continue
     }
@@ -206,7 +220,7 @@ export function markdownLiteToHtml(input: string): string {
 
     // Plain paragraph line — one <p> per source line.
     flush()
-    out.push(`<p>${inline(line)}</p>`)
+    out.push(`<p${centerAttr}>${inline(line)}</p>`)
   }
 
   flush()

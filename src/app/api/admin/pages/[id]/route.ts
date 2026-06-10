@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { supabaseAdmin } from '@/lib/supabaseAdmin'
+import { parsePageSections } from '@/lib/pageSections'
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const cookieStore = await cookies()
@@ -47,10 +48,14 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
 
   const { id } = await params
   const {
-    title, slug, content, meta_title, meta_description, meta_keywords,
+    title, slug, content, sections, meta_title, meta_description, meta_keywords,
     hero_subtitle, cta_heading, cta_description, cta_button_text, cta_button_link,
     published,
   } = body
+
+  // Sanitize sections server-side (jsonb column is untyped); an empty array
+  // is stored as null so "no sections" has one canonical representation.
+  const parsedSections = sections !== undefined ? parsePageSections(sections) : undefined
 
   const { error } = await supabaseAdmin
     .from('pages')
@@ -58,6 +63,9 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
       ...(title !== undefined && { title }),
       ...(slug !== undefined && { slug }),
       ...(content !== undefined && { content }),
+      ...(parsedSections !== undefined && {
+        sections: parsedSections.length > 0 ? parsedSections : null,
+      }),
       ...(meta_title !== undefined && { meta_title }),
       ...(meta_description !== undefined && { meta_description }),
       ...(meta_keywords !== undefined && { meta_keywords }),

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { supabaseAdmin } from '@/lib/supabaseAdmin'
+import { parsePageSections } from '@/lib/pageSections'
 
 const DEFAULT_PAGE_SIZE = 25
 const MAX_PAGE_SIZE = 100
@@ -106,19 +107,25 @@ export async function POST(req: Request) {
   }
 
   const {
-    title, slug, content, meta_title, meta_description, meta_keywords,
+    title, slug, content, sections, meta_title, meta_description, meta_keywords,
     hero_subtitle, cta_heading, cta_description, cta_button_text, cta_button_link,
     published = false,
   } = body
 
-  if (!title || !slug || !content) {
+  // Sanitize sections server-side: drops incomplete/unknown blocks so the DB
+  // only ever stores valid section data (the jsonb column is untyped).
+  const parsedSections = parsePageSections(sections)
+
+  // A page needs a body OR at least one structured section.
+  if (!title || !slug || (!content && parsedSections.length === 0)) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
   const { error } = await supabaseAdmin.from('pages').insert({
     title,
     slug,
-    content,
+    content: content || '', // column is NOT NULL; sections-only pages store an empty body
+    sections: parsedSections.length > 0 ? parsedSections : null,
     meta_title: meta_title || null,
     meta_description: meta_description || null,
     meta_keywords: meta_keywords || null,

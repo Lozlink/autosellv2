@@ -72,6 +72,12 @@ const BUTTONS: ButtonSpec[] = [
     title: 'Blockquote',
     line: (line) => (line.startsWith('> ') ? line.slice(2) : `> ${line}`),
   },
+  {
+    label: 'Center',
+    title: 'Center this line (works on headings and paragraphs)',
+    line: (line) =>
+      /\s*::center$/i.test(line) ? line.replace(/\s*::center$/i, '') : `${line} ::center`,
+  },
 ]
 
 interface BlogEditorProps {
@@ -225,7 +231,8 @@ export default function BlogEditor({ value, onChange, rows = 16 }: BlogEditorPro
         <code className="px-1 bg-white border border-gray-200 rounded">**bold**</code>{' '}
         <code className="px-1 bg-white border border-gray-200 rounded">_italic_</code>{' '}
         <code className="px-1 bg-white border border-gray-200 rounded">- bullet</code>{' '}
-        <code className="px-1 bg-white border border-gray-200 rounded">[link](url)</code>. You can also paste raw HTML &amp; it&apos;ll render as-is.
+        <code className="px-1 bg-white border border-gray-200 rounded">[link](url)</code>{' '}
+        <code className="px-1 bg-white border border-gray-200 rounded">## heading ::center</code>. You can also paste raw HTML &amp; it&apos;ll render as-is.
       </div>
     </div>
   )

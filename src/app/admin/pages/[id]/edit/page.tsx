@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import BlogEditor from '@/components/BlogEditor'
+import SectionsEditor from '@/components/SectionsEditor'
+import { parsePageSections, type PageSection } from '@/lib/pageSections'
 
 interface PageForm {
   title: string
   slug: string
   hero_subtitle: string
-  content: string
+  sections: PageSection[]
   cta_heading: string
   cta_description: string
   cta_button_text: string
@@ -28,7 +29,7 @@ export default function EditPageAdmin() {
     title: '',
     slug: '',
     hero_subtitle: '',
-    content: '',
+    sections: [],
     cta_heading: '',
     cta_description: '',
     cta_button_text: '',
@@ -51,11 +52,18 @@ export default function EditPageAdmin() {
         return
       }
       const data = await res.json()
+      // Legacy pages stored their body in a single `content` field. Surface it
+      // as a leading Text section so it stays visible/editable here; on save
+      // it persists as a section and `content` is cleared (renders identically).
+      const legacyContent = (data.content ?? '') as string
+      const sections = parsePageSections(data.sections)
       setForm({
         title: data.title ?? '',
         slug: data.slug ?? '',
         hero_subtitle: data.hero_subtitle ?? '',
-        content: data.content ?? '',
+        sections: legacyContent.trim()
+          ? [{ type: 'markdown', content: legacyContent }, ...sections]
+          : sections,
         cta_heading: data.cta_heading ?? '',
         cta_description: data.cta_description ?? '',
         cta_button_text: data.cta_button_text ?? '',
@@ -83,7 +91,9 @@ export default function EditPageAdmin() {
     const res = await fetch(`/api/admin/pages/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+      // content: '' clears the legacy body field — it was converted into a
+      // leading Text section on load, so saving both would double-render it.
+      body: JSON.stringify({ ...form, content: '' }),
     })
     setSaving(false)
     if (res.ok) {
@@ -162,14 +172,17 @@ export default function EditPageAdmin() {
 
           <hr className="border-yellow-200" />
 
-          {/* Page Content */}
+          {/* Page Content — structured sections */}
           <div className="space-y-4">
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Page Content</h2>
-            <p className="text-xs text-gray-400">The main body section. Use the toolbar for formatting (markdown), or paste raw HTML.</p>
-            <BlogEditor
-              value={form.content}
-              onChange={(next) => setForm((prev) => ({ ...prev, content: next }))}
-              rows={12}
+            <p className="text-xs text-gray-400">
+              The page body, built from blocks — text, card grids, numbered steps, checklists
+              and FAQs, styled like the brand pages. Incomplete rows (e.g. cards without a
+              title) are dropped on save.
+            </p>
+            <SectionsEditor
+              value={form.sections}
+              onChange={(sections) => setForm((prev) => ({ ...prev, sections }))}
             />
           </div>
 

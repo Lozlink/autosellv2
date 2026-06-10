@@ -7,6 +7,19 @@ import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 import { markdownLiteToHtml, looksLikeBlockHtml } from '@/lib/markdownLite'
+import PageSections from '@/components/PageSections'
+import {
+  parsePageSections,
+  mapSectionStrings,
+  collectSectionFaqItems,
+  fillPlaceholders,
+} from '@/lib/pageSections'
+
+// Re-check the pages table at most every 60s so newly published or edited CMS
+// pages go live without a redeploy — every other content route already does
+// this. Without it the catch-all can cache a 404 from before the page existed,
+// which is why a freshly published page shows as "not visible".
+export const revalidate = 60
 
 // Pull FAQ pairs out of a markdown body for FAQ rich-result schema. Matches the
 // Draft Layout convention: a heading containing "FAQ"/"Frequently Asked", then
@@ -52,15 +65,15 @@ export async function generateMetadata({
   }
 
   return {
-    title: page.meta_title || page.title,
-    description: page.meta_description || undefined,
-    keywords: page.meta_keywords || undefined,
+    title: fillPlaceholders(page.meta_title || page.title),
+    description: fillPlaceholders(page.meta_description) || undefined,
+    keywords: fillPlaceholders(page.meta_keywords) || undefined,
     alternates: {
       canonical: `https://www.auto-sell.ai/${fullSlug}`,
     },
     openGraph: {
-      title: page.meta_title || page.title,
-      description: page.meta_description || undefined,
+      title: fillPlaceholders(page.meta_title || page.title),
+      description: fillPlaceholders(page.meta_description) || undefined,
       url: `https://www.auto-sell.ai/${fullSlug}`,
       type: 'website',
       locale: 'en_AU',
@@ -88,12 +101,26 @@ export default async function Page({
     notFound()
   }
 
+  const title = fillPlaceholders(page.title)
+  const heroSubtitle = fillPlaceholders(page.hero_subtitle)
+  const bodyContent = fillPlaceholders(page.content)
+
+  // Structured sections (pages.sections jsonb). Rendered after the markdown
+  // body, with the same building blocks as the hand-built brand pages. Empty
+  // or malformed values degrade to [] so legacy pages render exactly as before.
+  const sections = mapSectionStrings(parsePageSections(page.sections), fillPlaceholders)
+  const ctaHeading = fillPlaceholders(page.cta_heading) || 'Ready to Get Started?'
+  const ctaDescription =
+    fillPlaceholders(page.cta_description) ||
+    'Get a fair quote in ~30 minutes with same-day OSKO payment across Australia.'
+  const ctaButtonText = fillPlaceholders(page.cta_button_text) || 'Get Your Quote Now'
+
   // Pages may store either markdown-lite (toolbar/editor) or raw HTML. Only
   // skip the converter when real block-level HTML is present, so markdown
   // headings/lists render properly while legacy HTML pages keep working.
-  const contentHtml = looksLikeBlockHtml(page.content)
-    ? page.content
-    : markdownLiteToHtml(page.content)
+  const contentHtml = looksLikeBlockHtml(bodyContent)
+    ? bodyContent
+    : markdownLiteToHtml(bodyContent)
 
   // Default the CTA to the on-page lead form. Respect an explicit custom link,
   // but treat the legacy "/#sell-form" (points at the home form) as the default
@@ -103,7 +130,9 @@ export default async function Page({
       ? page.cta_button_link
       : '#sell-form'
 
-  const faqItems = extractFaqItems(page.content)
+  // FAQ rich-result schema: structured faq sections first, then the legacy
+  // markdown-extraction fallback for body-only pages.
+  const faqItems = [...collectSectionFaqItems(sections), ...extractFaqItems(bodyContent)]
 
   return (
     <div className="min-h-screen section-cream">
@@ -115,10 +144,10 @@ export default async function Page({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">{page.title}</h1>
-              {page.hero_subtitle && (
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">{title}</h1>
+              {heroSubtitle && (
                 <p className="text-xl md:text-2xl text-gray-700 mb-8">
-                  {page.hero_subtitle}
+                  {heroSubtitle}
                 </p>
               )}
               <div className="space-y-4 mt-8 hidden lg:block">
@@ -146,7 +175,7 @@ export default async function Page({
             <div className="order-1 lg:order-2">
               <div className="liquid-glass-form-container rounded-2xl shadow-xl">
                 <Suspense fallback={<div className="rounded-2xl p-8 border bg-white/30 animate-pulse h-96" style={{ borderColor: '#FFC325' }}></div>}>
-                  <OfferForm heading={page.title} subheading="Get Your Free Quote Now" />
+                  <OfferForm heading={title} subheading="Get Your Free Quote Now" />
                 </Suspense>
               </div>
             </div>
@@ -154,31 +183,37 @@ export default async function Page({
         </div>
       </section>
 
-      {/* Page Content */}
-      <section className="py-16 bg-white text-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="blog-content prose prose-lg prose-gray max-w-none"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
-        </div>
-      </section>
+      {/* Page Content (legacy single markdown body — skipped when empty so
+          fully section-based pages don't render a blank white band) */}
+      {bodyContent.trim() !== '' && (
+        <section className="py-16 bg-white text-gray-900">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+              className="blog-content prose prose-lg prose-gray max-w-none"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Structured sections (card grids, steps, checklists, FAQ, banners) */}
+      {sections.length > 0 && <PageSections sections={sections} />}
 
       {/* CTA Section */}
       <section className="py-20 section-cta">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            {page.cta_heading || 'Ready to Get Started?'}
+            {ctaHeading}
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            {page.cta_description || 'Get a fair quote in ~30 minutes with same-day OSKO payment across Australia.'}
+            {ctaDescription}
           </p>
           <Link
             href={ctaHref}
             className="inline-block px-12 py-4 rounded-lg text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
             style={{ backgroundColor: '#333', color: '#fff' }}
           >
-            {page.cta_button_text || 'Get Your Quote Now'}
+            {ctaButtonText}
           </Link>
         </div>
       </section>

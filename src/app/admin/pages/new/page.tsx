@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import BlogEditor from '@/components/BlogEditor'
+import SectionsEditor from '@/components/SectionsEditor'
+import type { PageSection } from '@/lib/pageSections'
 
 export default function NewPageAdmin() {
   const router = useRouter()
@@ -10,7 +11,7 @@ export default function NewPageAdmin() {
     title: '',
     slug: '',
     hero_subtitle: '',
-    content: '',
+    sections: [] as PageSection[],
     cta_heading: '',
     cta_description: '',
     cta_button_text: '',
@@ -105,14 +106,17 @@ export default function NewPageAdmin() {
 
           <hr className="border-yellow-200" />
 
-          {/* Page Content */}
+          {/* Page Content — structured sections */}
           <div className="space-y-4">
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Page Content</h2>
-            <p className="text-xs text-gray-400">The main body section. Use the toolbar for formatting (markdown), or paste raw HTML.</p>
-            <BlogEditor
-              value={form.content}
-              onChange={(next) => setForm((prev) => ({ ...prev, content: next }))}
-              rows={12}
+            <p className="text-xs text-gray-400">
+              The page body, built from blocks — text, card grids, numbered steps, checklists
+              and FAQs, styled like the brand pages. Incomplete rows (e.g. cards without a
+              title) are dropped on save.
+            </p>
+            <SectionsEditor
+              value={form.sections}
+              onChange={(sections) => setForm((prev) => ({ ...prev, sections }))}
             />
           </div>
 
