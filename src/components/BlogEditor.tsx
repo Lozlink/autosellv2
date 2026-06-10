@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { markdownLiteToHtml } from '@/lib/markdownLite'
+import { markdownLiteToHtml, looksLikeBlockHtml } from '@/lib/markdownLite'
 
 /**
  * BlogEditor — markdown editor with toolbar + live preview tab.
@@ -217,7 +217,11 @@ export default function BlogEditor({ value, onChange, rows = 16 }: BlogEditorPro
           {value.trim() ? (
             <div
               className="blog-content max-w-none"
-              dangerouslySetInnerHTML={{ __html: markdownLiteToHtml(value) }}
+              // Match the live renderer: pre-rendered block HTML bypasses the
+              // markdown converter, so pasted HTML previews as it will render.
+              dangerouslySetInnerHTML={{
+                __html: looksLikeBlockHtml(value) ? value : markdownLiteToHtml(value),
+              }}
             />
           ) : (
             <p className="text-sm text-gray-400 italic">Nothing to preview yet — switch back to Edit and start typing.</p>

@@ -17,6 +17,7 @@ interface Page {
   meta_keywords: string | null
   hero_subtitle: string | null
   content: string | null
+  sections: unknown
   cta_heading: string | null
   cta_description: string | null
   cta_button_text: string | null
@@ -151,6 +152,9 @@ function AdminPagesInner() {
       slug,
       hero_subtitle: p.hero_subtitle ?? '',
       content: p.content ?? '',
+      // Carry structured sections too — section-based pages have an empty
+      // `content`, so omitting this fails the content-or-sections validation.
+      sections: p.sections ?? [],
       cta_heading: p.cta_heading ?? '',
       cta_description: p.cta_description ?? '',
       cta_button_text: p.cta_button_text ?? '',
