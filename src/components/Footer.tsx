@@ -31,6 +31,7 @@ const vehicleTypes = [
   { label: 'Hatchbacks', href: '/sell-hatchbacks' },
   { label: 'Trucks', href: '/sell-trucks' },
   { label: 'Vans', href: '/sell-van' },
+  { label: 'Old Cars', href: '/sell-old-cars' }
 ]
 
 // const FACEBOOK_URL = 'https://www.facebook.com/autosell.ai'

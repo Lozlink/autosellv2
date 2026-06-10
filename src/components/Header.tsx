@@ -124,7 +124,8 @@ export default function Header() {
                     { type: 'Trucks', href: '/sell-trucks' },
                     { type: 'Vans', href: '/sell-van' },
                     { type: 'Motorcycles', href: '/sell-motorcycle' },
-                    { type: 'Damaged Cars', href: '/cash-for-damaged-cars' }
+                    { type: 'Damaged Cars', href: '/cash-for-damaged-cars' },
+                    { type: 'Old Cars', href: '/sell-old-cars' }
                   ].map((item) => (
                     <Link
                       key={item.type}
@@ -300,6 +301,7 @@ export default function Header() {
                         { type: 'Vans', href: '/sell-van' },
                         { type: 'Motorcycles', href: '/sell-motorcycle' },
                         { type: 'Damaged Cars', href: '/cash-for-damaged-cars' },
+                        { type: 'Old Cars', href: '/sell-old-cars' }
                       ].map((item) => (
                           <Link
                               key={item.type}
