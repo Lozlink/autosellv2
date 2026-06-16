@@ -271,6 +271,23 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
         console.warn('[OfferForm] send-email failed', e)
       }
 
+      // Fire the lead conversion into GTM's dataLayer. The old CarSellForm used
+      // a native <form> submit, which GTM's Form Submit auto-event caught; this
+      // SPA form posts via JS (no native submit), so that trigger stopped firing
+      // on 2 Jun. Push an explicit event instead — SPA-reliable, no redirect,
+      // once per saved lead (so no duplicate conversions). Agency: build a GTM
+      // Custom Event trigger on `lead_form_submitted`.
+      if (typeof window !== 'undefined') {
+        const w = window as Window & { dataLayer?: Record<string, unknown>[] }
+        w.dataLayer = w.dataLayer || []
+        w.dataLayer.push({
+          event: 'lead_form_submitted',
+          form_name: 'sell_offer_form',
+          form_location: window.location.pathname,
+          vehicle_entry: form.unregistered ? 'unregistered' : 'rego',
+        })
+      }
+
       setSubmitted(true)
     } catch (e) {
       console.error('[OfferForm] submission failed', e)
