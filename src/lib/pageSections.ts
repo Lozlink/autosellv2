@@ -33,6 +33,10 @@ export interface MarkdownSection {
   heading?: string
   content: string
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface CardGridSection {
@@ -42,6 +46,10 @@ export interface CardGridSection {
   cards: CardItem[]
   footnote?: string
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface StepsSection {
@@ -50,6 +58,10 @@ export interface StepsSection {
   intro?: string
   steps: StepItem[]
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface ChecklistSection {
@@ -58,6 +70,10 @@ export interface ChecklistSection {
   intro?: string
   items: string[]
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface FaqSection {
@@ -65,12 +81,18 @@ export interface FaqSection {
   heading?: string
   items: FaqItem[]
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface ComparisonRow {
   /** Optional bold lead-in, e.g. "The upside" */
   label?: string
   text: string
+  /** Optional colour tone for the label: pro (green), con (orange), muted (grey). */
+  tone?: 'pro' | 'con' | 'muted'
 }
 
 export interface ComparisonColumn {
@@ -78,6 +100,8 @@ export interface ComparisonColumn {
   rows: ComparisonRow[]
   /** Visually emphasise this column (gold border) — e.g. the recommended option. */
   highlight?: boolean
+  /** Optional pill badge on the column, e.g. "Recommended". */
+  badge?: string
 }
 
 export interface ComparisonSection {
@@ -86,6 +110,10 @@ export interface ComparisonSection {
   intro?: string
   columns: ComparisonColumn[]
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface ButtonSection {
@@ -94,6 +122,10 @@ export interface ButtonSection {
   /** Defaults to #sell-form (the on-page quote form). */
   link?: string
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 export interface ImageTextSection {
@@ -112,6 +144,10 @@ export interface ImageTextSection {
   imageAlt?: string
   imagePosition?: 'left' | 'right'
   background?: SectionBackground
+  /** Optional author-supplied CSS class, for custom styling hooks. */
+  className?: string
+  /** Optional gold uppercase eyebrow rendered above the heading. */
+  eyebrow?: string
 }
 
 // Note: no CTA block type — every page already renders the built-in CTA
@@ -170,6 +206,10 @@ function background(v: unknown): SectionBackground | undefined {
   return v === 'white' || v === 'cream' ? v : undefined
 }
 
+function rowTone(v: unknown): 'pro' | 'con' | 'muted' | undefined {
+  return v === 'pro' || v === 'con' || v === 'muted' ? v : undefined
+}
+
 /**
  * Validate an untyped jsonb value into PageSection[].
  * Tolerant by design: malformed entries and unknown types are dropped so a
@@ -182,6 +222,8 @@ export function parsePageSections(value: unknown): PageSection[] {
   for (const raw of value) {
     if (!raw || typeof raw !== 'object') continue
     const s = raw as Record<string, unknown>
+    const className = optStr(s.className)
+    const eyebrow = optStr(s.eyebrow)
 
     switch (s.type) {
       case 'markdown': {
@@ -192,6 +234,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           heading: optStr(s.heading),
           content,
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -212,6 +256,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           cards,
           footnote: optStr(s.footnote),
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -227,6 +273,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           intro: optStr(s.intro),
           steps,
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -241,6 +289,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           intro: optStr(s.intro),
           items,
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -255,6 +305,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           heading: optStr(s.heading),
           items,
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -264,9 +316,14 @@ export function parsePageSections(value: unknown): PageSection[] {
           .map((c) => ({
             title: str(c.title),
             highlight: c.highlight === true ? true : undefined,
+            badge: optStr(c.badge),
             rows: (Array.isArray(c.rows) ? c.rows : [])
               .filter((r): r is Record<string, unknown> => !!r && typeof r === 'object')
-              .map((r) => ({ label: optStr(typeof r.label === 'string' ? r.label.trim() : undefined), text: str(r.text).trim() }))
+              .map((r) => ({
+                label: optStr(typeof r.label === 'string' ? r.label.trim() : undefined),
+                text: str(r.text).trim(),
+                tone: rowTone(r.tone),
+              }))
               .filter((r) => r.text !== '' || r.label !== undefined),
           }))
           .filter((c) => c.title.trim() !== '')
@@ -277,6 +334,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           intro: optStr(s.intro),
           columns,
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -295,6 +354,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           imageAlt: optStr(s.imageAlt),
           imagePosition: s.imagePosition === 'left' ? 'left' : undefined,
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -306,6 +367,8 @@ export function parsePageSections(value: unknown): PageSection[] {
           text,
           link: optStr(s.link),
           background: background(s.background),
+          className,
+          eyebrow,
         })
         break
       }
@@ -368,7 +431,7 @@ export function mapSectionStrings(
           columns: section.columns.map((c) => ({
             ...c,
             title: fn(c.title),
-            rows: c.rows.map((r) => ({ label: opt(r.label), text: fn(r.text) })),
+            rows: c.rows.map((r) => ({ ...r, label: opt(r.label), text: fn(r.text) })),
           })),
         }
       case 'imageText':

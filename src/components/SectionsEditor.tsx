@@ -85,9 +85,17 @@ export default function SectionsEditor({
       {value.map((section, i) => (
         <div key={i} className="border border-yellow-200 rounded-lg">
           <div className="flex items-center justify-between px-4 py-2 bg-yellow-50 rounded-t-lg">
-            <span className="text-sm font-semibold text-gray-700">
-              {i + 1}. {SECTION_TYPE_LABELS[section.type]}
-            </span>
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-sm font-semibold text-gray-700">
+                {i + 1}. {SECTION_TYPE_LABELS[section.type]}
+              </span>
+              <code
+                className="text-[11px] text-gray-600 bg-white border border-yellow-200 rounded px-1.5 py-0.5 whitespace-nowrap"
+                title="Default CSS hook for this section — target it from the page's Custom CSS"
+              >
+                .cms-section--{section.type}
+              </code>
+            </div>
             <div className="flex items-center gap-2">
               <button type="button" onClick={() => move(i, -1)} disabled={i === 0} className={smallBtnCls} title="Move up">
                 &uarr;
@@ -106,6 +114,28 @@ export default function SectionsEditor({
           </div>
           <div className="p-4 space-y-3">
             <SectionFields section={section} onChange={(next) => update(i, next)} />
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">
+                Eyebrow (optional) — small gold label above the heading
+              </label>
+              <input
+                value={section.eyebrow ?? ''}
+                onChange={(e) => update(i, { ...section, eyebrow: e.target.value })}
+                placeholder="e.g. WHY AUTO-SELL.AI"
+                className={inputCls}
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">
+                CSS class (optional) — target it from the page&apos;s Custom CSS
+              </label>
+              <input
+                value={section.className ?? ''}
+                onChange={(e) => update(i, { ...section, className: e.target.value })}
+                placeholder="e.g. dark-faq"
+                className={inputCls}
+              />
+            </div>
           </div>
         </div>
       ))}
@@ -497,6 +527,13 @@ function SectionFields({
                     />
                     Highlight
                   </label>
+                  <input
+                    value={col.badge ?? ''}
+                    onChange={(e) => setColumn(i, { ...col, badge: e.target.value })}
+                    placeholder="Badge (e.g. Recommended)"
+                    title="Pill badge shown on the column"
+                    className={`${inputBaseCls} w-40 flex-none`}
+                  />
                   <button
                     type="button"
                     onClick={() => onChange({ ...section, columns: section.columns.filter((_, j) => j !== i) })}
@@ -525,6 +562,26 @@ function SectionFields({
                       placeholder="Text"
                       className={inputCls}
                     />
+                    <select
+                      value={row.tone ?? ''}
+                      onChange={(e) =>
+                        setColumn(i, {
+                          ...col,
+                          rows: col.rows.map((r, k) =>
+                            k === j
+                              ? { ...r, tone: (e.target.value || undefined) as 'pro' | 'con' | 'muted' | undefined }
+                              : r,
+                          ),
+                        })
+                      }
+                      title="Label colour"
+                      className={`${inputBaseCls} w-28 flex-none`}
+                    >
+                      <option value="">Tone</option>
+                      <option value="pro">Pro (green)</option>
+                      <option value="con">Con (orange)</option>
+                      <option value="muted">Muted</option>
+                    </select>
                     <button
                       type="button"
                       onClick={() => setColumn(i, { ...col, rows: col.rows.filter((_, k) => k !== j) })}

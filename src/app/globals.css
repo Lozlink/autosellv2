@@ -883,3 +883,51 @@ select.liquid-glass-input option {
   border-top: 1px solid #e5e7eb;
   margin: 2em 0;
 }
+
+/* === CMS section block enhancements ======================================
+   Defaults for the optional eyebrow, **gold** heading accents, comparison
+   row-label tones, and the column badge. Brand-gold by default; a page's
+   Custom CSS can override per page. */
+.cms-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffc325;
+  margin-bottom: 0.75rem;
+}
+.cms-accent {
+  color: #ffc325;
+}
+.cms-row-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+/* Two-class selectors so tones win over a page theme's generic paragraph rules. */
+.cms-row-label.cms-row-label--pro {
+  color: #22c55e !important;
+}
+.cms-row-label.cms-row-label--con {
+  color: #f97316 !important;
+}
+.cms-row-label.cms-row-label--muted {
+  color: #8a93a8 !important;
+}
+.cms-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffc325;
+  color: #0a0f1e;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}

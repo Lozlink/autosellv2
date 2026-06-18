@@ -19,6 +19,7 @@ export default function NewPageAdmin() {
     meta_title: '',
     meta_description: '',
     meta_keywords: '',
+    custom_css: '',
     published: false,
   })
   const [loading, setLoading] = useState(false)
@@ -163,6 +164,26 @@ export default function NewPageAdmin() {
               <label className="block text-sm text-gray-600 mb-1">Meta Keywords</label>
               <input name="meta_keywords" value={form.meta_keywords} onChange={onChange} placeholder="keyword1, keyword2, keyword3" className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
             </div>
+          </div>
+
+          <hr className="border-yellow-200" />
+
+          {/* Custom CSS */}
+          <div className="space-y-4">
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Custom CSS</h2>
+            <p className="text-xs text-gray-400">
+              Optional CSS for this page only. Target the section hooks (e.g.
+              <code> .cms-section--faq</code>) or a section&apos;s own CSS class. Styling only — scripts never run.
+            </p>
+            <textarea
+              name="custom_css"
+              value={form.custom_css}
+              onChange={onChange}
+              rows={8}
+              spellCheck={false}
+              placeholder={'.cms-section--faq summary { background: #0a0f1e; color: #fff; }'}
+              className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#FFC325]"
+            />
           </div>
 
           <hr className="border-yellow-200" />

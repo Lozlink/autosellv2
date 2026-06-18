@@ -20,6 +20,29 @@ import type {
 // article body. Server component; expects sections already passed through
 // parsePageSections + placeholder filling.
 
+// Renders **gold** spans inside a heading: "Get a **Fair Offer**" → gold "Fair Offer".
+function Accent({ text }: { text?: string }) {
+  if (!text) return null
+  return (
+    <>
+      {text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+        i % 2 === 1 ? (
+          <span key={i} className="cms-accent">
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  )
+}
+
+// Optional gold uppercase eyebrow above a section heading.
+function Eyebrow({ text }: { text?: string }) {
+  return text ? <div className="cms-eyebrow">{text}</div> : null
+}
+
 const DEFAULT_BACKGROUND: Record<PageSection['type'], SectionBackground> = {
   markdown: 'white',
   cardGrid: 'cream',
@@ -43,8 +66,11 @@ function MarkdownBlock({ section }: { section: MarkdownSection }) {
   return (
     <section className={`py-16 ${bgClass(section)}`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Eyebrow text={section.eyebrow} />
         {section.heading && (
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">{section.heading}</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <Accent text={section.heading} />
+          </h2>
         )}
         <div
           className="blog-content prose prose-lg prose-gray max-w-none text-gray-900"
@@ -59,10 +85,13 @@ function CardGridBlock({ section }: { section: CardGridSection }) {
   return (
     <section className={`py-20 ${bgClass(section)}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {(section.heading || section.subheading) && (
+        {(section.heading || section.subheading || section.eyebrow) && (
           <div className="text-center mb-12">
+            <Eyebrow text={section.eyebrow} />
             {section.heading && (
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">{section.heading}</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                <Accent text={section.heading} />
+              </h2>
             )}
             {section.subheading && (
               <p className="text-xl text-gray-600">{section.subheading}</p>
@@ -95,8 +124,11 @@ function StepsBlock({ section }: { section: StepsSection }) {
   return (
     <section className={`py-16 ${bgClass(section)}`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Eyebrow text={section.eyebrow} />
         {section.heading && (
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">{section.heading}</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <Accent text={section.heading} />
+          </h2>
         )}
         {section.intro && (
           <p className="text-lg text-gray-700 leading-relaxed mb-8">{section.intro}</p>
@@ -123,8 +155,11 @@ function ChecklistBlock({ section }: { section: ChecklistSection }) {
   return (
     <section className={`py-16 ${bgClass(section)}`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Eyebrow text={section.eyebrow} />
         {section.heading && (
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">{section.heading}</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <Accent text={section.heading} />
+          </h2>
         )}
         {section.intro && (
           <p className="text-lg text-gray-700 leading-relaxed mb-8">{section.intro}</p>
@@ -145,18 +180,37 @@ function ChecklistBlock({ section }: { section: ChecklistSection }) {
 }
 
 function FaqBlock({ section }: { section: FaqSection }) {
+  // Native <details>/<summary> accordion — real click-to-expand with zero
+  // JavaScript (works in this server component), keyboard-accessible, and the
+  // answer text stays in the DOM (collapsed) so SEO + the FAQ JSON-LD are
+  // unaffected. The +/- indicator is pure CSS: the vertical bar collapses when
+  // the <details> is open.
   return (
     <section className={`py-16 ${bgClass(section)}`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Eyebrow text={section.eyebrow} />
         <h2 className="text-3xl font-bold text-gray-900 mb-8">
-          {section.heading || 'Frequently Asked Questions'}
+          <Accent text={section.heading || 'Frequently Asked Questions'} />
         </h2>
-        <div className="space-y-6">
+        <div className="space-y-4">
           {section.items.map((item, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.question}</h3>
-              <p className="text-gray-700">{item.answer}</p>
-            </div>
+            <details
+              key={i}
+              className="group bg-white rounded-xl border border-gray-200 open:shadow-sm"
+            >
+              <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 [&::-webkit-details-marker]:hidden">
+                <h3 className="text-lg font-semibold text-gray-900">{item.question}</h3>
+                <span
+                  className="relative h-4 w-4 flex-shrink-0"
+                  style={{ color: '#FFC325' }}
+                  aria-hidden="true"
+                >
+                  <span className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 rounded bg-current" />
+                  <span className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 rounded bg-current transition-transform duration-200 group-open:scale-y-0" />
+                </span>
+              </summary>
+              <p className="px-6 pb-5 text-gray-700">{item.answer}</p>
+            </details>
           ))}
         </div>
       </div>
@@ -178,10 +232,13 @@ function ComparisonBlock({ section }: { section: ComparisonSection }) {
   return (
     <section className={`py-20 ${bgClass(section)}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {(section.heading || section.intro) && (
+        {(section.heading || section.intro || section.eyebrow) && (
           <div className="text-center mb-12">
+            <Eyebrow text={section.eyebrow} />
             {section.heading && (
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">{section.heading}</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                <Accent text={section.heading} />
+              </h2>
             )}
             {section.intro && <p className="text-xl text-gray-600">{section.intro}</p>}
           </div>
@@ -190,17 +247,22 @@ function ComparisonBlock({ section }: { section: ComparisonSection }) {
           {section.columns.map((col, i) => (
             <div
               key={i}
-              className={`p-8 rounded-xl bg-white ${
+              className={`relative p-8 rounded-xl bg-white ${
                 col.highlight ? 'border-2 shadow-lg' : 'border border-gray-200'
               }`}
               style={col.highlight ? { borderColor: '#FFC325' } : undefined}
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">{col.title}</h3>
+              {col.badge && <div className="cms-badge">{col.badge}</div>}
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <Accent text={col.title} />
+              </h3>
               <div className="space-y-4">
                 {col.rows.map((row, j) => (
                   <div key={j}>
                     {row.label && (
-                      <p className="font-semibold text-gray-900 mb-1">{row.label}</p>
+                      <p className={`cms-row-label${row.tone ? ` cms-row-label--${row.tone}` : ''}`}>
+                        {row.label}
+                      </p>
                     )}
                     {row.text && <p className="text-gray-700">{row.text}</p>}
                   </div>
@@ -226,8 +288,11 @@ function ImageTextBlock({ section }: { section: ImageTextSection }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           <div className={imageLeft ? 'lg:order-2' : ''}>
+            <Eyebrow text={section.eyebrow} />
             {section.heading && (
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">{section.heading}</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                <Accent text={section.heading} />
+              </h2>
             )}
             {bodyHtml && (
               <div
@@ -281,28 +346,51 @@ function ButtonBlock({ section }: { section: ButtonSection }) {
   )
 }
 
+function renderBlock(section: PageSection) {
+  switch (section.type) {
+    case 'markdown':
+      return <MarkdownBlock section={section} />
+    case 'cardGrid':
+      return <CardGridBlock section={section} />
+    case 'steps':
+      return <StepsBlock section={section} />
+    case 'checklist':
+      return <ChecklistBlock section={section} />
+    case 'faq':
+      return <FaqBlock section={section} />
+    case 'comparison':
+      return <ComparisonBlock section={section} />
+    case 'imageText':
+      return <ImageTextBlock section={section} />
+    case 'button':
+      return <ButtonBlock section={section} />
+  }
+}
+
+// Stable, author-targetable class hooks on every section so page Custom CSS can
+// style them: `.cms-section`, `.cms-section--<type>`, `.cms-section--<type>-<n>`
+// (n = 1-based index among same-type sections), plus the section's own optional
+// `className`. The wrapper is layout-transparent (full-width block).
 export default function PageSections({ sections }: { sections: PageSection[] }) {
   return (
     <>
       {sections.map((section, i) => {
-        switch (section.type) {
-          case 'markdown':
-            return <MarkdownBlock key={i} section={section} />
-          case 'cardGrid':
-            return <CardGridBlock key={i} section={section} />
-          case 'steps':
-            return <StepsBlock key={i} section={section} />
-          case 'checklist':
-            return <ChecklistBlock key={i} section={section} />
-          case 'faq':
-            return <FaqBlock key={i} section={section} />
-          case 'comparison':
-            return <ComparisonBlock key={i} section={section} />
-          case 'imageText':
-            return <ImageTextBlock key={i} section={section} />
-          case 'button':
-            return <ButtonBlock key={i} section={section} />
-        }
+        const typeIndex = sections
+          .slice(0, i + 1)
+          .filter((s) => s.type === section.type).length
+        const cls = [
+          'cms-section',
+          `cms-section--${section.type}`,
+          `cms-section--${section.type}-${typeIndex}`,
+          section.className,
+        ]
+          .filter((c): c is string => Boolean(c))
+          .join(' ')
+        return (
+          <div key={i} className={cls}>
+            {renderBlock(section)}
+          </div>
+        )
       })}
     </>
   )

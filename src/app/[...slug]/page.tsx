@@ -137,6 +137,15 @@ export default async function Page({
   return (
     <div className="min-h-screen section-cream">
       {faqItems.length > 0 && <FAQPageJsonLd items={faqItems} />}
+      {page.custom_css && (
+        // Page-scoped author CSS. Only loads on this page, so it can't affect
+        // others. The </style> guard prevents breaking out of the style tag.
+        <style
+          dangerouslySetInnerHTML={{
+            __html: String(page.custom_css).replace(/<\/style/gi, '<\\/style'),
+          }}
+        />
+      )}
       <Header />
 
       {/* Hero Section with inline lead form (matches brand/type pages) */}

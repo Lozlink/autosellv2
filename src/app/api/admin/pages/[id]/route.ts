@@ -50,7 +50,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
   const {
     title, slug, content, sections, meta_title, meta_description, meta_keywords,
     hero_subtitle, cta_heading, cta_description, cta_button_text, cta_button_link,
-    published,
+    custom_css, published,
   } = body
 
   // Sanitize sections server-side (jsonb column is untyped); an empty array
@@ -74,6 +74,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
       ...(cta_description !== undefined && { cta_description }),
       ...(cta_button_text !== undefined && { cta_button_text }),
       ...(cta_button_link !== undefined && { cta_button_link }),
+      ...(custom_css !== undefined && { custom_css: custom_css || null }),
       ...(published !== undefined && { published }),
     })
     .eq('id', id)
