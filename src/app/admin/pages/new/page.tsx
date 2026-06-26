@@ -20,6 +20,7 @@ export default function NewPageAdmin() {
     meta_description: '',
     meta_keywords: '',
     custom_css: '',
+    custom_js: '',
     published: false,
   })
   const [loading, setLoading] = useState(false)
@@ -182,6 +183,24 @@ export default function NewPageAdmin() {
               rows={8}
               spellCheck={false}
               placeholder={'.cms-section--faq summary { background: #0a0f1e; color: #fff; }'}
+              className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#FFC325]"
+            />
+          </div>
+
+          {/* Custom JavaScript */}
+          <div className="space-y-4">
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Custom JavaScript</h2>
+            <p className="text-xs text-gray-400">
+              Optional scripts / structured data for this page only. Paste a &lt;script&gt; (runs on the page)
+              or a &lt;script type=&quot;application/ld+json&quot;&gt; schema block. Runs author code — add only what you trust.
+            </p>
+            <textarea
+              name="custom_js"
+              value={form.custom_js}
+              onChange={onChange}
+              rows={8}
+              spellCheck={false}
+              placeholder='<script type="application/ld+json">{...}</script>'
               className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-[#FFC325]"
             />
           </div>

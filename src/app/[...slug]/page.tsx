@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Link from 'next/link'
 import OfferForm from '@/app/_home/OfferForm'
+import CustomCode from '@/components/CustomCode'
 import { FAQPageJsonLd } from '@/components/JsonLd'
 import { markdownLiteToHtml, looksLikeBlockHtml } from '@/lib/markdownLite'
 import PageSections from '@/components/PageSections'
@@ -146,6 +147,7 @@ export default async function Page({
           }}
         />
       )}
+      {page.custom_js && <CustomCode code={String(page.custom_js)} />}
       <Header />
 
       {/* Hero Section with inline lead form (matches brand/type pages) */}

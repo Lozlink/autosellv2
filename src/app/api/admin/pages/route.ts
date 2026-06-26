@@ -109,7 +109,7 @@ export async function POST(req: Request) {
   const {
     title, slug, content, sections, meta_title, meta_description, meta_keywords,
     hero_subtitle, cta_heading, cta_description, cta_button_text, cta_button_link,
-    custom_css, published = false,
+    custom_css, custom_js, published = false,
   } = body
 
   // Sanitize sections server-side: drops incomplete/unknown blocks so the DB
@@ -135,6 +135,7 @@ export async function POST(req: Request) {
     cta_button_text: cta_button_text || null,
     cta_button_link: cta_button_link || null,
     custom_css: custom_css || null,
+    custom_js: custom_js || null,
     published,
   })
 
