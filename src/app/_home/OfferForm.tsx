@@ -278,13 +278,25 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
       // once per saved lead (so no duplicate conversions). Agency: build a GTM
       // Custom Event trigger on `lead_form_submitted`.
       if (typeof window !== 'undefined') {
-        const w = window as Window & { dataLayer?: Record<string, unknown>[] }
+        const w = window as Window & {
+          dataLayer?: Record<string, unknown>[]
+          fbq?: (...args: unknown[]) => void
+        }
         w.dataLayer = w.dataLayer || []
         w.dataLayer.push({
           event: 'lead_form_submitted',
           form_name: 'sell_offer_form',
           form_location: window.location.pathname,
           vehicle_entry: form.unregistered ? 'unregistered' : 'rego',
+        })
+
+        // Meta Pixel standard 'Lead' conversion. Fires here (once per saved
+        // lead) rather than in the layout bootstrap, so it counts real form
+        // submissions instead of every page load. fbq() is initialised in
+        // layout.tsx; guard in case the pixel script is blocked.
+        w.fbq?.('track', 'Lead', {
+          content_name: 'sell_offer_form',
+          content_category: form.unregistered ? 'unregistered' : 'rego',
         })
       }
 
