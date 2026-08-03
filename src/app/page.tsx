@@ -14,6 +14,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import OfferForm from './_home/OfferForm'
+import OfferCtaLink from './_home/OfferCtaLink'
 import Reveal from './_home/Reveal'
 import Header from '@/components/Header'
 import { FAQPageJsonLd } from '@/components/JsonLd'
@@ -263,8 +264,7 @@ async function Hero() {
             </ul>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href="#offer"
+              <OfferCtaLink
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-slate-900 transition-transform hover:scale-[1.02]"
                 style={{
                   backgroundColor: GOLD,
@@ -273,7 +273,7 @@ async function Hero() {
               >
                 {text(b, 'hero_cta_primary', D.hero_cta_primary)}
                 <span aria-hidden="true">›</span>
-              </a>
+              </OfferCtaLink>
               <a
                 href="tel:0492858699"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-white border transition-colors"
@@ -309,7 +309,7 @@ async function Hero() {
 
           {/* Right: functional form panel (client component — owns state,
               validation, and 3-step progression). */}
-          <div id="offer-form" className="relative lg:max-w-[440px] lg:w-full lg:ml-auto mt-8 lg:mt-0">
+          <div id="offer-form" className="relative scroll-mb-[88px] lg:scroll-mb-0 lg:max-w-[440px] lg:w-full lg:ml-auto mt-8 lg:mt-0">
             <OfferForm />
           </div>
 
@@ -1073,8 +1073,7 @@ async function FinalCta() {
               {text(b, 'final_para', D.final_para)}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href="#offer"
+              <OfferCtaLink
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-slate-900"
                 style={{
                   background: `linear-gradient(180deg, ${GOLD}, #E6A500)`,
@@ -1082,7 +1081,7 @@ async function FinalCta() {
                 }}
               >
                 {text(b, 'final_cta_primary', D.final_cta_primary)} <span aria-hidden="true">›</span>
-              </a>
+              </OfferCtaLink>
               <a
                 href="tel:0492858699"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-white border"
@@ -1193,13 +1192,12 @@ async function MobileBottomBar() {
         <PhoneIcon className="w-4 h-4" />
         {text(b, 'mbar_call', D.mbar_call)}
       </a>
-      <a
-        href="#offer"
+      <OfferCtaLink
         className="flex-[1.4] inline-flex items-center justify-center px-4 py-3 rounded-lg font-bold text-slate-900"
         style={{ backgroundColor: GOLD }}
       >
         {text(b, 'mbar_offer', D.mbar_offer)}
-      </a>
+      </OfferCtaLink>
     </div>
   )
 }
