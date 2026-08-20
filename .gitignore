@@ -46,3 +46,10 @@ next-env.d.ts
 /public/content/
 /scripts/blog-migration/
 /scripts/
+/ADMIN_CAPABILITIES.md
+/AUTOSELL_CONTEXT.md
+/CMS_PAGE_GUIDE.md
+/CONTRIBUTING.md
+/WORDPRESS_MIGRATION.md
+/HANDOVER_DEV_INTERNAL.md
+/CLAUDE.md

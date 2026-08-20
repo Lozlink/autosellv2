@@ -189,7 +189,7 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
 
     // Reshape into the existing Auto-Sell inquiries schema so it slots into
     // the same CRM + email pipeline the legacy CarSellForm uses (Supabase
-    // `inquiries` table + /api/close-lead + /api/send-email).
+    // `inquiries` table + /api/pipedrive-lead + /api/send-email).
     const make = form.unregistered ? form.make.trim() : (lookup?.make || '')
     const model = form.unregistered ? form.model.trim() : (lookup?.model || '')
     const year = form.unregistered ? form.year.trim() : (lookup?.year || '')
@@ -222,8 +222,9 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
       const { error: supabaseError } = await supabase.from('inquiries').insert([payload])
       if (supabaseError) throw new Error(supabaseError.message)
 
-      // 2. Fire Close CRM lead creation — non-blocking, same as legacy.
-      void fetch('/api/close-lead', {
+      // 2. Fire Pipedrive CRM lead creation — non-blocking, same pattern as
+      //    the retired Close sync.
+      void fetch('/api/pipedrive-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -238,7 +239,7 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
           postcode: payload.postcode,
           message: payload.message,
         }),
-      }).catch((e) => console.error('[OfferForm] Close CRM sync failed', e))
+      }).catch((e) => console.error('[OfferForm] Pipedrive sync failed', e))
 
       // 2b. SMS notify the team. Non-blocking — if Twilio is misconfigured
       //     in dev or the API hits an error, the lead has still been saved
