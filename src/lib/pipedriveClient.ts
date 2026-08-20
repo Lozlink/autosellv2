@@ -1,6 +1,7 @@
 // Pipedrive sunset the v1 endpoints for core entities (Persons, Deals, etc.)
 // on 31 Jul 2026, but Leads and Notes have no v2 equivalents — so this client
-// deliberately mixes /api/v2 (persons) and /api/v1 (leads, notes).
+// deliberately mixes v2 (persons) and v1 (leads, notes). Path shapes differ on
+// api.pipedrive.com: v1 is bare /v1/..., v2 is /api/v2/... — /api/v1 404s.
 const PIPEDRIVE_API_BASE = 'https://api.pipedrive.com';
 
 function getAuthHeaders(): Record<string, string> {
@@ -53,9 +54,9 @@ export async function createPipedrivePerson(payload: PipedrivePersonPayload): Pr
 
 // Lead ids are UUID strings, unlike numeric person/note ids.
 export async function createPipedriveLead(payload: PipedriveLeadPayload): Promise<{ id: string }> {
-  return pipedrivePost('/api/v1/leads', payload, 'lead');
+  return pipedrivePost('/v1/leads', payload, 'lead');
 }
 
 export async function createPipedriveNote(payload: PipedriveNotePayload): Promise<{ id: number }> {
-  return pipedrivePost('/api/v1/notes', payload, 'note');
+  return pipedrivePost('/v1/notes', payload, 'note');
 }
