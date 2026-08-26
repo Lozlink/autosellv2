@@ -163,7 +163,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex justify-between">
                       <span>Quote requests:</span>
-                      <span className="font-semibold" style={{ color: '#FFC325' }}>Within 30 minutes</span>
+                      <span className="font-semibold" style={{ color: '#FFC325' }}>Within 24 hours</span>
                     </div>
                   </div>
                 </div>
@@ -184,7 +184,7 @@ export default function ContactPage() {
             Ready to Sell Your Car?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Don&apos;t wait - get your car valued in 30 minutes and receive same-day payment.
+            Don&apos;t wait - get your car valued within 24 hours and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

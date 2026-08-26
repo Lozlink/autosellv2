@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: TypePageProps): Promise<Metad
 	const { plural: titleType } = getDisplayName(typeParam)
 	return {
 		title: `Sell ${titleType} - Auto-Sell.ai`,
-		description: `We buy all ${titleType} in any condition. Free quote in 30 minutes and same-day OSKO payment.`,
+		description: `We buy all ${titleType} in any condition. Free quote within 24 hours and same-day OSKO payment.`,
 		alternates: {
 			canonical: `https://www.auto-sell.ai/sell-${typeParam}`,
 		},
@@ -55,7 +55,7 @@ export default async function TypePage({ params }: TypePageProps) {
 								<span className="block" style={{ color: '#FFC325' }}>Fast, Easy, Same-Day Payment</span>
 							</h1>
 							<p className="text-xl md:text-2xl text-gray-700 mb-8">
-								We buy all {plural} in any condition. Get your free quote in 30 minutes and same-day payment.
+								We buy all {plural} in any condition. Get your Free quote within 24 hours and same-day payment.
 							</p>
 						</div>
 
@@ -82,7 +82,7 @@ export default async function TypePage({ params }: TypePageProps) {
 							<div className="space-y-3">
 								<div className="flex items-center gap-3">
 									<span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
-									<span className="text-gray-700">Free quote in 30 minutes</span>
+									<span className="text-gray-700">Free quote within 24 hours</span>
 								</div>
 								<div className="flex items-center gap-3">
 									<span className="text-xl" style={{ color: '#FFC325' }}>✓</span>

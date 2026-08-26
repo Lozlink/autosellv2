@@ -136,7 +136,7 @@ export async function sendCustomerConfirmationEmail(data: QuoteEmailData): Promi
         </td></tr>
         <tr><td style="padding:28px 32px;">
           <p style="margin:0 0 14px 0;font-size:15px;line-height:1.65;color:#374151;">
-            Thanks for sending us the details on your <strong style="color:#111827;">${carLine}</strong>. One of our team will be in touch within 30 minutes during business hours with your free, no-obligation AI-powered valuation.
+            Thanks for sending us the details on your <strong style="color:#111827;">${carLine}</strong>. One of our team will be in touch within 24 hours during business hours with your free, no-obligation AI-powered valuation.
           </p>
           <p style="margin:0 0 14px 0;font-size:15px;line-height:1.65;color:#374151;">
             If you accept the offer, we&rsquo;ll arrange a free pickup at a time that suits you and pay you on the spot via OSKO — funds in your bank account in seconds.
@@ -145,7 +145,7 @@ export async function sendCustomerConfirmationEmail(data: QuoteEmailData): Promi
             <div style="font-size:11px;font-weight:700;letter-spacing:0.16em;color:#92560A;text-transform:uppercase;margin-bottom:8px;">What happens next</div>
             <ol style="margin:0;padding-left:18px;font-size:14px;line-height:1.65;color:#374151;">
               <li>We review the vehicle details you submitted.</li>
-              <li>You get a fair, data-backed valuation in your inbox within 30 minutes.</li>
+              <li>You get a fair, data-backed valuation in your inbox within 24 hours.</li>
               <li>Accept the offer online &mdash; or walk away, zero pressure.</li>
               <li>We collect the car and pay via OSKO the same day.</li>
             </ol>
@@ -165,11 +165,11 @@ export async function sendCustomerConfirmationEmail(data: QuoteEmailData): Promi
 
   const textBody = `Hi ${firstName},
 
-Thanks for sending us the details on your ${carLine}. Our team will be in touch within 30 minutes during business hours with your free, no-obligation AI-powered valuation.
+Thanks for sending us the details on your ${carLine}. Our team will be in touch within 24 hours during business hours with your free, no-obligation AI-powered valuation.
 
 What happens next:
   1. We review the vehicle details you submitted.
-  2. You get a fair, data-backed valuation within 30 minutes.
+  2. You get a fair, data-backed valuation within 24 hours.
   3. Accept the offer online — or walk away, zero pressure.
   4. We collect the car and pay via OSKO the same day.
 

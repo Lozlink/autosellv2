@@ -3,7 +3,7 @@ import BrandPage from '../[brand]/page'
 
 export const metadata: Metadata = {
   title: 'Sell Your Toyota - Auto-Sell.ai',
-  description: 'We buy all Toyota models in any condition. Free quote in 30 minutes and same-day OSKO payment.',
+  description: 'We buy all Toyota models in any condition. Free quote within 24 hours and same-day OSKO payment.',
 }
 
 export default function ToyotaPage() {

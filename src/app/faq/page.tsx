@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "How quickly can I get a quote?",
-    answer: "Our AI-powered system typically provides quotes within 30 minutes of submitting your car details. During business hours, many quotes are available in just 10-15 minutes."
+    answer: "Our AI-powered system typically provides quotes within 24 hours of submitting your car details. During business hours, many quotes are available in just 10-15 minutes."
   },
   {
     question: "Do you really pay on the same day?",

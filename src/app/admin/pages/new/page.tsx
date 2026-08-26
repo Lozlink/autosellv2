@@ -140,7 +140,7 @@ export default function NewPageAdmin() {
             </div>
             <div>
               <label className="block text-sm text-gray-600 mb-1">CTA Description</label>
-              <input name="cta_description" value={form.cta_description} onChange={onChange} placeholder="Get a fair quote in ~30 minutes with same-day OSKO payment across Australia." className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
+              <input name="cta_description" value={form.cta_description} onChange={onChange} placeholder="Get a fair quote within 24 hours with same-day OSKO payment across Australia." className="w-full px-3 py-2 bg-gray-50 border border-yellow-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFC325]" />
             </div>
             <div>
               <label className="block text-sm text-gray-600 mb-1">CTA Button Link</label>

@@ -740,7 +740,7 @@ function SuccessState({ form, onReset }: { form: FormState; onReset: () => void 
         <CheckIcon className="w-6 h-6" />
       </div>
       <p className="text-sm text-slate-700">
-        Thanks <span className="font-bold text-slate-900">{firstName}</span> — we&apos;ll be in touch within 30 minutes with your offer.
+        Thanks <span className="font-bold text-slate-900">{firstName}</span> — we&apos;ll be in touch within 24 hours with your offer.
       </p>
       <a
         href="tel:0492858699"

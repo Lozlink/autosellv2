@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Sell Your Car - Auto-Sell.ai",
-  description: "Sell any car with Auto-Sell.ai. We buy all car makes and models in any condition. Get your free quote in 30 minutes and same-day payment.",
+  description: "Sell any car with Auto-Sell.ai. We buy all car makes and models in any condition. Get your free quote in 24 hours and same-day payment.",
 }
 
 export default function CarsPage() {
@@ -24,7 +24,7 @@ export default function CarsPage() {
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8">
                 We buy all car makes and models - Toyota, Ford, Holden, BMW, Mercedes, and more.
-                Any condition, any age. Get your free quote in 30 minutes.
+                Any condition, any age. Get your free quote within 24 hours.
               </p>
 
               <div className="space-y-4 mb-8 hidden lg:block">
@@ -146,7 +146,7 @@ export default function CarsPage() {
                 <span className="text-2xl font-bold" style={{ color: '#000000' }}></span>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Fast Service</h3>
-              <p className="text-gray-600">Get your quote in 30 minutes and receive payment the same day.</p>
+              <p className="text-gray-600">Get your quote within 24 hours and receive payment the same day.</p>
             </div>
             
             <div className="text-center p-6  hover:shadow-md transition-shadow">

@@ -33,7 +33,7 @@ export default function TermsPage() {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">2. Quote Process</h2>
               <ul className="list-disc pl-6 mb-4 space-y-2">
-                <li>Quotes are provided within 30 minutes of form submission during business hours</li>
+                <li>Quotes are provided within 24 hours of form submission during business hours</li>
                 <li>Quotes are valid for 24 hours from the time of issue</li>
                 <li>Quotes are based on information provided and may be adjusted after inspection</li>
                 <li>We reserve the right to decline any vehicle at our discretion</li>

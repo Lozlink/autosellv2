@@ -79,7 +79,7 @@ export default function SellCoupesPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
-                  <span className="text-gray-700">Free quote in 30 minutes</span>
+                  <span className="text-gray-700">Free quote within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
@@ -204,7 +204,7 @@ export default function SellCoupesPage() {
             Ready to Sell Your Coupe?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get your free coupe offer in 30 minutes and receive same-day payment.
+            Get your free coupe offer within 24 hours and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

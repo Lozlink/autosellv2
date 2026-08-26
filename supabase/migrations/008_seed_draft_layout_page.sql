@@ -48,7 +48,7 @@ We buy {{TOPIC}} in almost any condition across {{LOCATION}}:
 
 ## How It Works
 
-1. **Get your instant offer.** Enter your rego and a few details to receive a quote, usually within 30 minutes.
+1. **Get your instant offer.** Enter your rego and a few details to receive a quote, usually within 24 hours.
 2. **Book a free inspection.** We come to you anywhere in {{LOCATION}} at a time that suits.
 3. **Get paid the same day.** Accept the offer and we pay by OSKO bank transfer and handle the paperwork.
 
@@ -79,7 +79,7 @@ Whether you are in a major city or a regional town, our team can come to you for
 ## {{TOPIC}} — Frequently Asked Questions
 
 **How quickly can I sell {{TOPIC}}?**
-Most customers get an offer within 30 minutes and can be paid the same day once they accept.
+Most customers get an offer within 24 hours and can be paid the same day once they accept.
 
 **Do you buy {{TOPIC}} with finance owing?**
 Yes. We can settle the finance directly and pay you any remaining balance.

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
   const titleBrand = brand.charAt(0).toUpperCase() + brand.slice(1)
   return {
     title: `Sell Your ${titleBrand} - Auto-Sell.ai`,
-    description: `We buy all ${titleBrand} models in any condition. Free quote in 30 minutes and same-day OSKO payment.`,
+    description: `We buy all ${titleBrand} models in any condition. Free quote within 24 hours and same-day OSKO payment.`,
     alternates: {
       canonical: `https://www.auto-sell.ai/sell-${brand}`,
     },
@@ -41,7 +41,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
                 <span className="block" style={{ color: '#FFC325' }}>Get Top Dollar Today</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8">
-                We buy all {titleBrand} models in any condition. Get your free quote in 30 minutes and same-day payment.
+                We buy all {titleBrand} models in any condition. Get your Free quote within 24 hours and same-day payment.
               </p>
 
               <div className="space-y-4 mb-8 hidden lg:block">
@@ -89,7 +89,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
-                  <span className="text-gray-700">Free quote in 30 minutes</span>
+                  <span className="text-gray-700">Free quote within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
@@ -179,7 +179,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
                 <span className="text-2xl font-bold" style={{ color: '#FFC325' }}></span>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Fast Service</h3>
-              <p className="text-gray-600">Get your quote in 30 minutes and receive payment the same day.</p>
+              <p className="text-gray-600">Get your quote within 24 hours and receive payment the same day.</p>
             </div>
 
             <div className="text-center p-6 rounded-xl border bg-white/40" style={{ borderColor: '#FFC325' }}>

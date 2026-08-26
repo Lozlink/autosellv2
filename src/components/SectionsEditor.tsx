@@ -647,7 +647,7 @@ function SectionFields({
               value={(section.items ?? []).join('\n')}
               onChange={(e) => onChange({ ...section, items: e.target.value.split('\n') })}
               rows={3}
-              placeholder={'Free quote in 30 minutes\nSame-day OSKO payment'}
+              placeholder={'Free quote within 24 hours\nSame-day OSKO payment'}
               className={inputCls}
             />
           </div>

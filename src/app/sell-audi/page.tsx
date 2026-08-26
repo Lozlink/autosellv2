@@ -94,7 +94,7 @@ export default async function SellAudiPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
-                  <span className="text-gray-700">Free quote in 30 minutes</span>
+                  <span className="text-gray-700">Free quote within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>

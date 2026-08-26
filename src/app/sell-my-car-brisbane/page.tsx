@@ -81,7 +81,7 @@ export default function SellMyCarBrisbanePage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
-                  <span className="text-gray-700">Free quote in 30 minutes</span>
+                  <span className="text-gray-700">Free quote within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-xl" style={{ color: '#FFC325' }}>✓</span>
@@ -206,7 +206,7 @@ export default function SellMyCarBrisbanePage() {
             Ready to Sell Your Car in Brisbane?
           </h2>
           <p className="text-xl mb-8" style={{ color: '#1f2937' }}>
-            Get your free Brisbane car quote in 30 minutes and receive same-day payment.
+            Get your free Brisbane car quote within 24 hours and receive same-day payment.
           </p>
           <Link
             href="#sell-form"

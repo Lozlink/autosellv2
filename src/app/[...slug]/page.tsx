@@ -113,7 +113,7 @@ export default async function Page({
   const ctaHeading = fillPlaceholders(page.cta_heading) || 'Ready to Get Started?'
   const ctaDescription =
     fillPlaceholders(page.cta_description) ||
-    'Get a fair quote in ~30 minutes with same-day OSKO payment across Australia.'
+    'Get a fair quote within 24 hours with same-day OSKO payment across Australia.'
   const ctaButtonText = fillPlaceholders(page.cta_button_text) || 'Get Your Quote Now'
 
   // Pages may store either markdown-lite (toolbar/editor) or raw HTML. Only

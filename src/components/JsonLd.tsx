@@ -6,7 +6,7 @@ export function OrganizationJsonLd() {
     url: 'https://www.auto-sell.ai',
     logo: 'https://www.auto-sell.ai/brand-guideline/autosell-logo/PNG/1 (1).png',
     description:
-      "Australia's #1 AI-powered car buying service. Get free quotes in 30 minutes, same-day OSKO payment, and free Australia-wide pickup.",
+      "Australia's #1 AI-powered car buying service. Get free quotes within 24 hours, same-day OSKO payment, and free Australia-wide pickup.",
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+61-492 858 699',

@@ -176,7 +176,7 @@ export default async function BlogPage() {
             Ready to Sell Your Car?
           </h2>
           <p className="text-xl mb-8 text-gray-700">
-            Get a fair quote in 30 minutes and same-day OSKO payment. No fees, no hassle.
+            Get a fair quote within 24 hours and same-day OSKO payment. No fees, no hassle.
           </p>
           <Link
             href="/#sell-form"

@@ -410,7 +410,7 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
         )}
         {success && (
           <div className="glass-alert-success px-4 py-2.5 rounded-xl mb-2 md:mb-6 flex items-center justify-between text-sm" role="alert">
-            <span><strong>Quote Submitted!</strong> We&apos;ll contact you within 30 minutes with your offer.</span>
+            <span><strong>Quote Submitted!</strong> We&apos;ll contact you within 24 hours with your offer.</span>
             <button onClick={() => setSuccess(false)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
           </div>
         )}
@@ -585,7 +585,7 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
       )}
       {success && (
         <div className="glass-alert-success px-4 py-3 rounded-xl mb-3 md:mb-6 flex items-center justify-between text-sm" role="alert">
-          <span><strong>Quote Submitted!</strong> We&apos;ll contact you within 30 minutes with your offer.</span>
+          <span><strong>Quote Submitted!</strong> We&apos;ll contact you within 24 hours with your offer.</span>
           <button onClick={() => setSuccess(false)} className="ml-4 font-bold text-lg leading-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity">&times;</button>
         </div>
       )}
@@ -709,7 +709,7 @@ export default function CarSellForm({ heading, subheading, onStepChange }: CarSe
           <svg className="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          We&apos;ll contact you within 30 minutes with your competitive offer
+          We&apos;ll contact you within 24 hours with your competitive offer
         </p>
       </div>
     </motion.div>

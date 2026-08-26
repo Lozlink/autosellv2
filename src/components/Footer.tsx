@@ -62,7 +62,7 @@ export default async function Footer() {
               </Link>
             </div>
             <p className="text-gray-500 text-sm mb-4 leading-relaxed">
-              Australia&apos;s smarter way to sell your car. AI-powered quotes in 30 minutes,
+              Australia&apos;s smarter way to sell your car. AI-powered quotes within 24 hours,
               same-day OSKO payment, and free Australia-wide pickup.
             </p>
 
