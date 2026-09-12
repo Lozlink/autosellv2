@@ -1,7 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { supabase } from '@/lib/supabaseClient'
+import PhotoPicker, { createPendingPhoto, type PendingPhoto } from './PhotoPicker'
+import { MAX_INQUIRY_PHOTOS } from '@/lib/inquiryPhotos'
 
 const GOLD = '#FFC403'
 const GRAPHITE_DEEP = '#2B303A'
@@ -89,6 +92,20 @@ function ChevronIcon({ className = '' }: { className?: string }) {
   )
 }
 
+// ─── Upload plumbing ──────────────────────────────────────────────────────
+
+// A hung request must not stall the upload queue forever. Generous enough
+// for a ~700 KB photo on a poor mobile connection.
+const UPLOAD_TIMEOUT_MS = 45_000
+
+function uploadTimeoutSignal(): AbortSignal | undefined {
+  // AbortSignal.timeout is missing on older Safari; uploads simply run
+  // without a deadline there rather than failing outright.
+  return typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
+    ? AbortSignal.timeout(UPLOAD_TIMEOUT_MS)
+    : undefined
+}
+
 // ─── Validation ───────────────────────────────────────────────────────────
 
 const AU_PHONE_RE = /^(?:\+?61|0)[2-578](?:[ -]?\d){8}$/
@@ -133,6 +150,125 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+
+  // ── Photos (optional) ─────────────────────────────────────────────────
+  // Kept outside FormState so validation and Errors stay untouched.
+  // `photosRef` mirrors state synchronously so the async upload loop never
+  // reads stale React state; `inquiryIdRef` is set the moment the lead row
+  // is saved, which is what gates uploads.
+  const [photos, setPhotos] = useState<PendingPhoto[]>([])
+  const [photoNotice, setPhotoNotice] = useState<string | null>(null)
+  const photosRef = useRef<PendingPhoto[]>([])
+  const inquiryIdRef = useRef<string | null>(null)
+  const drainingRef = useRef(false)
+
+  function commitPhotos(updater: (prev: PendingPhoto[]) => PendingPhoto[]) {
+    photosRef.current = updater(photosRef.current)
+    setPhotos(photosRef.current)
+  }
+
+  function patchPhoto(id: string, patch: Partial<PendingPhoto>) {
+    commitPhotos((prev) => prev.map((p) => (p.id === id ? { ...p, ...patch } : p)))
+  }
+
+  function addPhotos(files: File[]) {
+    // Some Android pickers report an empty type for HEIC; let prepare decide.
+    const images = files.filter((f) => f.type.startsWith('image/') || f.type === '')
+    const room = Math.max(0, MAX_INQUIRY_PHOTOS - photosRef.current.length)
+    const accepted = images.slice(0, room)
+    if (images.length > accepted.length) setPhotoNotice(`You can add up to ${MAX_INQUIRY_PHOTOS} photos.`)
+    else if (files.length > images.length) setPhotoNotice('Only photos can be added.')
+    else setPhotoNotice(null)
+    if (accepted.length === 0) return
+
+    const added = accepted.map((file) => createPendingPhoto(file))
+    commitPhotos((prev) => [...prev, ...added])
+    // Surface unusable files straight away (wrong format / too large) so the
+    // customer can swap them before submitting.
+    for (const p of added) {
+      p.prepared.catch((err: unknown) => {
+        patchPhoto(p.id, {
+          status: 'error',
+          unusable: true,
+          error: err instanceof Error ? err.message : 'Unsupported photo',
+        })
+      })
+    }
+    void drainUploads()
+  }
+
+  function removePhoto(id: string) {
+    const target = photosRef.current.find((p) => p.id === id)
+    if (target) URL.revokeObjectURL(target.previewUrl)
+    commitPhotos((prev) => prev.filter((p) => p.id !== id))
+    setPhotoNotice(null)
+  }
+
+  function retryPhotos() {
+    // Only network failures are worth retrying; a photo the browser could
+    // not decode will fail the same way every time.
+    commitPhotos((prev) =>
+      prev.map((p) =>
+        p.status === 'error' && !p.unusable ? { ...p, status: 'pending', error: undefined } : p
+      )
+    )
+    void drainUploads()
+  }
+
+  // Uploads run one at a time, only once the inquiry row exists, and never
+  // block the submit path: the lead is saved and the conversion event fires
+  // whether or not any photo makes it.
+  async function drainUploads() {
+    if (drainingRef.current) return
+    drainingRef.current = true
+    try {
+      for (;;) {
+        // Re-read every iteration: reset() clears the id mid-flight, and a
+        // photo chosen for the *next* lead must never post to the old one.
+        const inquiryId = inquiryIdRef.current
+        if (!inquiryId) break
+        const next = photosRef.current.find((p) => p.status === 'pending')
+        if (!next) break
+        await uploadPhoto(inquiryId, next)
+      }
+    } finally {
+      drainingRef.current = false
+    }
+  }
+
+  async function uploadPhoto(inquiryId: string, photo: PendingPhoto) {
+    patchPhoto(photo.id, { status: 'uploading' })
+
+    let blob: Blob
+    try {
+      blob = await photo.prepared
+    } catch (e) {
+      patchPhoto(photo.id, {
+        status: 'error',
+        unusable: true,
+        error: e instanceof Error ? e.message : 'Unsupported photo',
+      })
+      return
+    }
+
+    try {
+      const body = new FormData()
+      body.append('inquiry_id', inquiryId)
+      body.append('photo', blob, 'photo.jpg')
+      const res = await fetch('/api/inquiry-photos', { method: 'POST', body, signal: uploadTimeoutSignal() })
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null
+        throw new Error(data?.error || 'Upload failed')
+      }
+      patchPhoto(photo.id, { status: 'done', error: undefined })
+    } catch (e) {
+      const timedOut = e instanceof DOMException && e.name === 'TimeoutError'
+      patchPhoto(photo.id, {
+        status: 'error',
+        error: timedOut ? 'Upload timed out' : e instanceof Error ? e.message : 'Upload failed',
+      })
+    }
+  }
 
   function set<K extends keyof FormState>(k: K, v: FormState[K]) {
     setForm((f) => ({ ...f, [k]: v }))
@@ -194,7 +330,13 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
     const model = form.unregistered ? form.model.trim() : (lookup?.model || '')
     const year = form.unregistered ? form.year.trim() : (lookup?.year || '')
 
+    // Minted client-side so photo uploads can be keyed to this row without
+    // reading it back (the anon insert stays return=minimal). The column is
+    // uuid with a gen_random_uuid() default, so supplying it is safe.
+    const inquiryId = uuidv4()
+
     const payload = {
+      id: inquiryId,
       name: form.name.trim(),
       email: form.email.trim(),
       phone: form.phone.trim(),
@@ -221,6 +363,11 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
       // 1. Persist to Supabase. Mirrors CarSellForm.handleRegoConfirmSubmit.
       const { error: supabaseError } = await supabase.from('inquiries').insert([payload])
       if (supabaseError) throw new Error(supabaseError.message)
+
+      // 1b. The row exists — start any queued photo uploads in the background.
+      //     Runs alongside the CRM/email calls below and is never awaited.
+      inquiryIdRef.current = inquiryId
+      void drainUploads()
 
       // 2. Fire Pipedrive CRM lead creation — non-blocking, same pattern as
       //    the retired Close sync.
@@ -315,6 +462,10 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
     setErrors({})
     setStep(1)
     setSubmitted(false)
+    for (const p of photosRef.current) URL.revokeObjectURL(p.previewUrl)
+    commitPhotos(() => [])
+    setPhotoNotice(null)
+    inquiryIdRef.current = null
   }
 
   const stepLabels = ['Vehicle', 'Your Details']
@@ -352,7 +503,14 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
       {/* Body */}
       <div className="bg-white px-6 md:px-7 py-6">
         {submitted ? (
-          <SuccessState form={form} onReset={reset} />
+          <SuccessState
+            form={form}
+            onReset={reset}
+            photos={photos}
+            photoNotice={photoNotice}
+            onAddPhotos={addPhotos}
+            onRetryPhotos={retryPhotos}
+          />
         ) : (
           <>
             <StepIndicator step={step} labels={stepLabels} />
@@ -363,7 +521,22 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
               ) : (
                 <Step1Rego form={form} errors={errors} onChange={set} />
               ))}
-            {step === 2 && <Step2Personal form={form} errors={errors} onChange={set} />}
+            {step === 2 && (
+              <Step2Personal
+                form={form}
+                errors={errors}
+                onChange={set}
+                photoPicker={
+                  <PhotoPicker
+                    photos={photos}
+                    onAdd={addPhotos}
+                    onRemove={removePhoto}
+                    notice={photoNotice}
+                    disabled={submitting}
+                  />
+                }
+              />
+            )}
 
             {submitError && (
               <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-bold text-red-700">
@@ -411,7 +584,7 @@ export default function OfferForm({ heading, subheading }: { heading?: string; s
 
             <div className="flex items-center justify-center gap-2 mt-4 text-[12px] text-slate-500">
               <CheckIcon className="w-3.5 h-3.5" />
-              <span>Free · No obligation · 30 second offer</span>
+              <span>Free · No obligation </span>
             </div>
 
             <div className="flex items-center gap-3 my-4 text-[10px] font-bold text-slate-400">
@@ -594,10 +767,13 @@ function Step2Personal({
   form,
   errors,
   onChange,
+  photoPicker,
 }: {
   form: FormState
   errors: Errors
   onChange: <K extends keyof FormState>(k: K, v: FormState[K]) => void
+  /** Optional photo picker slot, rendered below the contact fields. */
+  photoPicker?: ReactNode
 }) {
   return (
     <div className="space-y-3">
@@ -624,6 +800,7 @@ function Step2Personal({
         error={errors.email}
         inputMode="email"
       />
+      {photoPicker}
       <p className="text-[11px] text-slate-500 leading-relaxed pt-1">
         By submitting, you agree to be contacted regarding your offer.
       </p>
@@ -729,7 +906,21 @@ function StateMenu({
 // Minimal one-line confirmation — the dark form header above already swaps
 // to "Offer request received!" so we don't need a big takeover panel here.
 
-function SuccessState({ form, onReset }: { form: FormState; onReset: () => void }) {
+function SuccessState({
+  form,
+  onReset,
+  photos,
+  photoNotice,
+  onAddPhotos,
+  onRetryPhotos,
+}: {
+  form: FormState
+  onReset: () => void
+  photos: PendingPhoto[]
+  photoNotice: string | null
+  onAddPhotos: (files: File[]) => void
+  onRetryPhotos: () => void
+}) {
   const firstName = form.name.split(' ')[0] || 'there'
   return (
     <div className="text-center py-2">
@@ -742,6 +933,22 @@ function SuccessState({ form, onReset }: { form: FormState; onReset: () => void 
       <p className="text-sm text-slate-700">
         Thanks <span className="font-bold text-slate-900">{firstName}</span> — we&apos;ll be in touch within 24 hours with your offer.
       </p>
+
+      {/* Post-submit photo prompt. The lead is already saved and the
+          conversion has fired, so this is pure upside: zero friction on the
+          conversion path, and the customer has their phone in hand. */}
+      <div className="mt-4 rounded-xl px-3 py-2" style={{ backgroundColor: 'rgba(255, 195, 3, 0.08)' }}>
+        <PhotoUploadSummary photos={photos} />
+        <PhotoPicker
+          photos={photos}
+          onAdd={onAddPhotos}
+          onRetry={onRetryPhotos}
+          notice={photoNotice}
+          prompt={photos.length ? 'Add more photos' : 'Add photos of your car for a sharper offer'}
+          sublabel=""
+          align="center"
+        />
+      </div>
       <a
         href="tel:0492858699"
         className="inline-flex items-center justify-center gap-1.5 mt-4 text-xs font-bold text-slate-900"
@@ -757,5 +964,29 @@ function SuccessState({ form, onReset }: { form: FormState; onReset: () => void 
         Request another offer
       </button>
     </div>
+  )
+}
+
+// One-line status for the post-submit photo box. Thumbnails themselves (with
+// per-photo spinner / tick / failure marks) are rendered by PhotoPicker.
+function PhotoUploadSummary({ photos }: { photos: PendingPhoto[] }) {
+  const total = photos.length
+  if (total === 0) return null
+  const done = photos.filter((p) => p.status === 'done').length
+  const failed = photos.filter((p) => p.status === 'error').length
+  const active = total - done - failed
+
+  let text: string
+  if (active > 0) text = `Uploading photos… ${done} of ${total}`
+  else if (failed > 0) text = `${done} of ${total} photos received`
+  else text = total === 1 ? 'Photo received — thanks!' : `${total} photos received — thanks!`
+
+  return (
+    <p className="mb-1 flex items-center justify-center gap-2 text-xs font-bold text-slate-700">
+      {active > 0 && (
+        <span className="w-3.5 h-3.5 rounded-full border-2 border-slate-300 border-t-slate-800 animate-spin" />
+      )}
+      {text}
+    </p>
   )
 }

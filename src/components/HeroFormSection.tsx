@@ -61,7 +61,7 @@ export default function HeroFormSection() {
               <span className="block mt-2 text-[#FFC325]">Confirm Your Vehicle</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mt-5 mb-6 max-w-xl leading-relaxed">
-              Just confirm your vehicle details and we&apos;ll have your <strong className="text-white">free AI valuation</strong> ready in minutes.
+              Just confirm your vehicle details and we&apos;ll have your <strong className="text-white">free AI valuation</strong> ready within a day.
             </p>
           </>
         )}
