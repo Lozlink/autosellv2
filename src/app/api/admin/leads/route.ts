@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { supabaseAdmin } from '@/lib/supabaseAdmin'
+import { INQUIRY_PHOTOS_BUCKET } from '@/lib/inquiryPhotos'
 
 type Tab = 'leads' | 'inquiries' | 'conversations'
 type Range = '30' | '90' | '365' | 'all'
@@ -13,6 +14,35 @@ const VALID_STATUSES: Status[] = ['all', 'new', 'contacted']
 const DEFAULT_PAGE_SIZE = 50
 const MAX_PAGE_SIZE = 200
 const CONVERSATION_FALLBACK_CAP = 2000
+
+// Inquiry photos live in a private bucket; the admin gets short-lived signed
+// URLs rather than bucket access. Long enough for a review session.
+const PHOTO_URL_TTL_SECONDS = 60 * 60
+
+type PhotoRow = { photo_paths?: string[] | null }
+
+// Adds `photo_urls` (signed, in photo_paths order) to inquiry rows. Any
+// storage failure degrades to "no photos" rather than failing the listing.
+async function withPhotoUrls<T extends PhotoRow>(rows: T[]): Promise<(T & { photo_urls: string[] })[]> {
+  const pathsOf = (r: PhotoRow) => (Array.isArray(r.photo_paths) ? r.photo_paths : [])
+  const allPaths = rows.flatMap(pathsOf)
+  const urlByPath = new Map<string, string>()
+  if (allPaths.length > 0 && supabaseAdmin) {
+    const { data, error } = await supabaseAdmin.storage
+      .from(INQUIRY_PHOTOS_BUCKET)
+      .createSignedUrls(allPaths, PHOTO_URL_TTL_SECONDS)
+    if (error) console.error('[admin/leads] signed photo URLs failed', error)
+    for (const item of data ?? []) {
+      if (item.path && item.signedUrl) urlByPath.set(item.path, item.signedUrl)
+    }
+  }
+  return rows.map((r) => ({
+    ...r,
+    photo_urls: pathsOf(r)
+      .map((p) => urlByPath.get(p))
+      .filter((u): u is string => Boolean(u)),
+  }))
+}
 
 function dateThreshold(range: Range): string | null {
   if (range === 'all') return null
@@ -277,7 +307,9 @@ export async function GET(req: Request) {
   }
 
   const total = dataRes.count ?? 0
-  const hasMore = from + (dataRes.data?.length ?? 0) < total
+  const rows = dataRes.data ?? []
+  const hasMore = from + rows.length < total
+  const data = tab === 'inquiries' ? await withPhotoUrls(rows) : rows
 
   return NextResponse.json({
     tab,
@@ -287,7 +319,7 @@ export async function GET(req: Request) {
     pageSize,
     total,
     hasMore,
-    data: dataRes.data ?? [],
+    data,
     counts,
   })
 }

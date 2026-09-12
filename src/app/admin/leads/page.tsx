@@ -38,6 +38,10 @@ interface Inquiry extends Managed {
   budget?: string
   preferred_location?: string
   vin_or_reg?: string
+  /** Storage object paths (private bucket). */
+  photo_paths?: string[] | null
+  /** Short-lived signed URLs, added by the admin API in photo_paths order. */
+  photo_urls?: string[]
   created_at: string
 }
 
@@ -550,6 +554,11 @@ function InquiryCard({
                 {item.vehicle_year} {item.vehicle_make} {item.vehicle_model}
               </span>
             )}
+            {item.photo_paths && item.photo_paths.length > 0 && (
+              <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">
+                {item.photo_paths.length} {item.photo_paths.length === 1 ? 'photo' : 'photos'}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
             <span>{item.email}</span>
@@ -578,6 +587,35 @@ function InquiryCard({
             <Detail label="Budget" value={item.budget} />
             <Detail label="Location" value={item.preferred_location} />
           </div>
+          {item.photo_paths && item.photo_paths.length > 0 && (
+            <div className="mt-3">
+              <span className="text-xs text-gray-400 block mb-1">Customer photos</span>
+              {item.photo_urls && item.photo_urls.length > 0 && (
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                  {item.photo_urls.map((url, i) => (
+                    <a
+                      key={url}
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block aspect-square rounded-lg overflow-hidden bg-gray-100 border border-gray-200"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element -- short-lived signed URL from private storage */}
+                      <img src={url} alt={`Customer photo ${i + 1}`} loading="lazy" className="w-full h-full object-cover" />
+                    </a>
+                  ))}
+                </div>
+              )}
+              {/* Badge counts stored paths; if signing failed the grid would
+                  otherwise look identical to a lead with no photos. */}
+              {(item.photo_urls?.length ?? 0) < item.photo_paths.length && (
+                <p className="text-xs text-red-600 mt-1">
+                  {item.photo_paths.length - (item.photo_urls?.length ?? 0)} of {item.photo_paths.length} photos
+                  could not be loaded from Storage. Check the server log and the inquiry-photos bucket.
+                </p>
+              )}
+            </div>
+          )}
           {item.vehicle_description && (
             <div className="mt-3">
               <span className="text-xs text-gray-400 block mb-1">Vehicle Description</span>
